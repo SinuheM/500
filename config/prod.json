@@ -1,0 +1,9 @@
+{
+	"redis" : {
+		"secret" : "e045630006f4427658c24880e44c761cc2ef00f5554b9eb1ec534b3d87f6c010",
+		"options" : {}
+	},
+	"mongo" : {
+		"db" : "500Production"
+	}	
+}
