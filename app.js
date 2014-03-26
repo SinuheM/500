@@ -13,7 +13,7 @@ var app = express();
 
 // Connects with db and load models
 var db = require('./lib/db');
-db.loadModels(['user']);
+db.loadModels(['user, startup']);
 
 // Static assets
 app.use(express.static('./public'));
