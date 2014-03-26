@@ -3,14 +3,18 @@ var db = require('../lib/db'),
 
 var userSchema = schema({
 	displayName : {type : String},
-	username    : {type : String, required : true, lowercase: true},
-	password    : {type : String, required : true},
-	type        : {type : String, required : true, default: 'founder'},
-	role        : {type : String, required : true, default: 'user'},
-	angelListData : schema.Types.Mixed,
+	username    : {type : String, lowercase: true},
+	password    : {type : String},
+	type        : {type : String, default: 'founder'},
+	role        : {type : String, default: 'user'},
 	avatar      : {type : String},
 	bio         : {type : String},
-	socialContacts : [schema.Types.Mixed]
+	active      : {type : Boolean, default: false},
+	angelListData : schema.Types.Mixed,
+	socialContacts : [{
+		provider : {type : String},
+		url      : {type : String},
+	}],
 });
 
 var User = db.model('user', userSchema);

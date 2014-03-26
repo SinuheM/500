@@ -11,7 +11,11 @@
     "passport-local": "~0.1.6",
     "stackers": "~0.1.2",
     "password-hash": "~1.2.1",
-    "connect-flash": "~0.1.1"
+    "connect-flash": "~0.1.1",
+    "optimist": "~0.6.1",
+    "request": "~2.34.0",
+    "async": "~0.2.10",
+    "inquirer": "~0.4.1"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
