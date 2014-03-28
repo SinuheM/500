@@ -5,16 +5,20 @@ module.exports = function (grunt) {
 			assets: {
 				files: ['public/stylus/*.styl'],
 				tasks: ['stylus']
+			},
+			test:{
+				files: ['test/*.js', 'models/*.js'],
+				tasks: ['mochaTest']
 			}
 		},
-		// mochaTest: {
-		// 	test: {
-		// 		options: {
-		// 			reporter: 'spec'
-		// 		},
-		// 		src: ['test/*.js']
-		// 	}
-		// }
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec'
+				},
+				src: ['test/*.js']
+			}
+		},
 		stylus: {
 			compile: {
 				options: {
@@ -35,7 +39,7 @@ module.exports = function (grunt) {
 		}
 	});
 
-	// grunt.loadNpmTasks('grunt-mocha-test');
+	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-nodemon');

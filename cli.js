@@ -7,6 +7,7 @@ var util = require('util');
 
 db.loadModels(['user', 'startup']);
 var angelListApi = require('./lib/angelListApi');
+var StartUp = db.model('startup');
 
 if(!taskName){
 	console.log('FAIL!!! Action is require');
@@ -109,7 +110,7 @@ if(taskName === 'searchUser'){
 }else if(taskName === 'showStartUp'){
 	if(! (argv.id) ){
 		console.log('FAIL!!! showStartUp requires a id');
-		console.log('SAMPLE: node cli.js showStartUp --id 219');
+		console.log('SAMPLE: node cli.js showStartUp --id 267676');
 		process.exit();
 	}
 
@@ -131,21 +132,19 @@ if(taskName === 'searchUser'){
 		process.exit();
 	}
 
-	console.log('Getting user info of: ', argv.id);
-
 	angelListApi.addUser(argv.id, argv.type, function (err, userData) {
 		if(err){
 			console.log('FAIL!!! showUser failed with error', err);
 			process.exit();
 		}
 
-		console.log('User data:\n', util.inspect(userData,false,2,true));
+		console.log('Added User successful:\n', userData.displayName);
 		process.exit();
 	});
 }else if(taskName === 'addStartUp'){
 	if(! (argv.id ) ){
 		console.log('FAIL!!! addStartUp requires a id');
-		console.log('SAMPLE: node cli.js addStartUp --id 219');
+		console.log('SAMPLE: node cli.js addStartUp --id 267676');
 		process.exit();
 	}
 
@@ -157,8 +156,42 @@ if(taskName === 'searchUser'){
 			process.exit();
 		}
 
-		console.log('Start up data:\n', util.inspect(userData,false,2,true));
+		console.log('Added Start up data:\n', util.inspect(userData,false,2,true));
 		process.exit();
+	});
+}else if(taskName === 'listFounders'){
+	if(! (argv.id ) ){
+		console.log('FAIL!!! listFounders requires a id');
+		console.log('SAMPLE: node cli.js listFounders --id 267676');
+		process.exit();
+	}
+
+	angelListApi.getFounders(argv.id, function (err, founders) {
+		if(err){
+			console.log('FAIL!!! listFounders failed with error', err);
+			process.exit();
+		}
+
+		console.log('Founders data:\n', util.inspect(founders,false,4,true));
+		process.exit();
+	});
+}else if(taskName === 'addFounders'){
+	if(! (argv.id ) ){
+		console.log('FAIL!!! addFounders requires a id');
+		console.log('SAMPLE: node cli.js addFounders --id 267676');
+		process.exit();
+	}
+
+	StartUp.findOne({'angelListData.id': argv.id}, function(err, startUp){
+		if(err){console.log('FAIL!!! addFounders failed with error', err);process.exit();}
+		if(!startUp){console.log('FAIL!!! addFounders. No startup on file');process.exit();}
+
+		startUp.addFounders(function(err, founders){
+			if(err){console.log('FAIL!!! addFounders. On adding founders', err);process.exit();}
+
+			console.log('founders',founders);
+			process.exit();
+		});
 	});
 }else{
 	console.log('FAIL!!! invalid action, check cli.js to verify what you are doing');

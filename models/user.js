@@ -1,6 +1,8 @@
 var db = require('../lib/db'),
 	schema = db.Schema;
 
+var Slug = require('./slug');
+
 var userSchema = schema({
 	displayName : {type : String},
 	username    : {type : String, lowercase: true},
@@ -16,6 +18,8 @@ var userSchema = schema({
 		url      : {type : String},
 	}],
 });
+
+userSchema.plugin(Slug.plugIt, {type: 'user', slugFrom : 'displayName' });
 
 var User = db.model('user', userSchema);
 

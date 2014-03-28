@@ -13,7 +13,9 @@ var app = express();
 
 // Connects with db and load models
 var db = require('./lib/db');
-db.loadModels(['user, startup']);
+db.loadModels(['slug', 'user', 'startup']);
+
+var Slug = db.model('slug');
 
 // Static assets
 app.use(express.static('./public'));
@@ -63,6 +65,15 @@ passport.deserializeUser(function (obj, done) {
 
 app.get('/', function (req, res) {
 	res.render('home/index');
+});
+
+app.get('/:slug', function (req, res) {
+	Slug.getResourceBySlug(req.params.slug, function(err, data){
+		if(err) {return res.send(500, err);}
+		if(!data) {return res.send(404, 'not found');}
+
+		res.send(data);
+	});
 });
 
 // Controllers
