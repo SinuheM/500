@@ -7,6 +7,7 @@ var util = require('util');
 
 db.loadModels(['user', 'startup']);
 var angelListApi = require('./lib/angelListApi');
+var embedlyApi = require('./lib/embedlyApi');
 
 var StartUp = db.model('startup');
 var User    = db.model('user');
@@ -215,6 +216,21 @@ if(taskName === 'searchUser'){
 			process.exit();
 		});
 	});
+}else if(taskName === 'getUrlInfo'){
+	if(! (argv.url ) ){
+		console.log('FAIL!!! getUrlInfo requires a url');
+		console.log('SAMPLE: node cli.js getUrlInfo --url "http://techcrunch.com/2014/04/02/winning-angellist/"');
+		process.exit();
+	}
+
+	console.log('Looking info for ', argv.url);
+
+	embedlyApi.getUrlInfo(argv.url, function(err, data){
+		if(err){console.log('FAIL!!! getUrlInfo failed with error', err);process.exit();}
+
+		console.log('Url Info: ', data);
+		process.exit();
+	})
 }else{
 	console.log('FAIL!!! invalid action, check cli.js to verify what you are doing');
 	process.exit();

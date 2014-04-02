@@ -38,24 +38,6 @@ adminStartUpsController.get('', function (req, res) {
 	});
 });
 
-adminStartUpsController.get('/:currentStartup', function (req, res) {
-	res.data.breadcrumbs.push({
-		label : 'Startups',
-		url : '/admin/startups'
-	});
-	res.data.breadcrumbs.push({
-		label : res.data.currentStartup.name
-	});
-
-	var message = req.flash('message');
-	console.log('message', message);
-
-	res.render('admin-startups/single',{
-		currentStartup : res.data.currentStartup,
-		message : message[0]
-	});
-});
-
 adminStartUpsController.get('/add-from-angellist', function (req, res) {
 	res.data.breadcrumbs.push({
 		label : 'Startups',
@@ -89,6 +71,24 @@ adminStartUpsController.get('/new', function (req, res) {
 	}else{
 		res.render('admin-startups/new');
 	}
+});
+
+adminStartUpsController.get('/:currentStartup', function (req, res) {
+	res.data.breadcrumbs.push({
+		label : 'Startups',
+		url : '/admin/startups'
+	});
+	res.data.breadcrumbs.push({
+		label : res.data.currentStartup.name
+	});
+
+	var message = req.flash('message');
+	console.log('message', message);
+
+	res.render('admin-startups/single',{
+		currentStartup : res.data.currentStartup,
+		message : message[0]
+	});
 });
 
 adminStartUpsController.post('/new', function (req, res) {
