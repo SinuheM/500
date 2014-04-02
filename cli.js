@@ -7,7 +7,9 @@ var util = require('util');
 
 db.loadModels(['user', 'startup']);
 var angelListApi = require('./lib/angelListApi');
+
 var StartUp = db.model('startup');
+var User    = db.model('user');
 
 if(!taskName){
 	console.log('FAIL!!! Action is require');
@@ -128,7 +130,7 @@ if(taskName === 'searchUser'){
 }else if(taskName === 'addUser'){
 	if(! (argv.id && argv.type) ){
 		console.log('FAIL!!! showUser requires a id');
-		console.log('SAMPLE: node cli.js showUser --id 219 --type mentor|founder');
+		console.log('SAMPLE: node cli.js showUser --id 219 --type admin|team|mentor|founder|regular');
 		process.exit();
 	}
 
@@ -189,7 +191,27 @@ if(taskName === 'searchUser'){
 		startUp.addFounders(function(err, founders){
 			if(err){console.log('FAIL!!! addFounders. On adding founders', err);process.exit();}
 
-			console.log('founders',founders);
+			console.log('Founders added',founders);
+			process.exit();
+		});
+	});
+}else if(taskName === 'setAsAdmin'){
+	if(! (argv.email ) ){
+		console.log('FAIL!!! setAsAdmin requires a email');
+		console.log('SAMPLE: node cli.js setAsAdmin --email siedrix@gmail.com');
+		process.exit();
+	}
+
+	User.findOne({username : argv.email}, function(err, user){
+		if(err){console.log('FAIL!!! setAsAdmin failed with error', err);process.exit();}
+		if(!user){console.log('FAIL!!! setAsAdmin. No user on found');process.exit();}
+
+		user.type = 'admin';
+
+		user.save(function(err){
+			if(err){console.log('FAIL!!! setAsAdmin failed with error', err);process.exit();}
+
+			console.log('User set as admin successfully');
 			process.exit();
 		});
 	});

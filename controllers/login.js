@@ -27,7 +27,7 @@ var loginController = controller({
 
 loginController.get('/login', function (req, res) {
 	if (req.session && req.session.passport && req.session.passport.user) {
-		return res.redirect('/app');
+		return res.redirect('/admin');
 	}
 
 	var error = req.flash('error');
@@ -36,7 +36,7 @@ loginController.get('/login', function (req, res) {
 
 loginController.get('/signup', function (req, res) {
 	if (req.session && req.session.passport && req.session.passport.user) {
-		return res.redirect('/app');
+		return res.redirect('/admin');
 	}
 
 	res.render('login/signup');
@@ -49,6 +49,7 @@ loginController.get('/logout', function (req, res) {
 });
 
 loginController.post('/signup', function (req, res) {
+	console.log('signup', req.body);
 	if (!(req.body.email && req.body.displayName && req.body.password && req.body.password === req.body.repassword)) {
 		res.send('invalid user');
 	}
@@ -60,24 +61,28 @@ loginController.post('/signup', function (req, res) {
 		user = new User({
 			displayName : req.body.displayName,
 			username : req.body.email,
-			password : passwordHash.generate(req.body.password)
+			password : passwordHash.generate(req.body.password),
+			active   : true,
+			type     : 'team'
 		});
 
+		console.log('new user', user);
 		user.save(function (err, data) {
+			console.log('saved', err, data);
 			if (err) { return res.send(500, err); }
+			if (!req.session.passport) { req.session.passport = {}; }
 
-			if (!req.session.password) { req.session.password = {}; }
-			req.session.password.user = {
+			req.session.passport.user = {
 				id : data._id
 			};
 
-			res.redirect('/app');
+			res.redirect('/admin');
 		});
 	});
 });
 
 loginController.post('/login', passport.authenticate('local', {
-	successRedirect: '/app',
+	successRedirect: '/admin',
 	failureRedirect: '/login?error=true',
 	failureFlash: true
 }));

@@ -63,6 +63,13 @@ passport.deserializeUser(function (obj, done) {
 	done(null, obj);
 });
 
+// Controllers
+var loginController = require('./controllers/login');
+var adminController = require('./controllers/admin');
+
+loginController(app);
+adminController(app);
+
 app.get('/', function (req, res) {
 	res.render('home/index');
 });
@@ -75,12 +82,5 @@ app.get('/:slug', function (req, res) {
 		res.send(data);
 	});
 });
-
-// Controllers
-var loginController = require('./controllers/login');
-var appController = require('./controllers/app');
-
-loginController(app);
-appController(app);
 
 app.listen(3000);

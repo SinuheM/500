@@ -25,7 +25,8 @@ module.exports = function (grunt) {
 					compress : false
 				},
 				files: {
-					'public/css/main.css': 'public/stylus/main.styl'
+					'public/css/main.css': 'public/stylus/main.styl',
+					'public/css/admin.css': 'public/stylus/admin.styl'
 				}
 			}
 		},

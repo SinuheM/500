@@ -1,9 +1,10 @@
 var db = require('../lib/db'),
 	schema = db.Schema,
+	Schema = db.Schema,
 	_s = require('underscore.string');
 
 var slugSchema = schema({
-	slug         : {type : String},
+	slug         : {type : String, lowercase: true, require: true},
 	resourceType : {type : String},
 	resourceId   : {type : String}
 });
@@ -12,25 +13,34 @@ var Slug = db.model('slug', slugSchema);
 Slug._reserved = {};
 Slug._models = {};
 
+Slug.slugify = function (toBeSlugify) {
+	return _s.slugify(toBeSlugify).replace(/-/g,'');
+};
+
 Slug.reserve = function (slug) {
 	this._reserved[slug] = true;
 };
 
 Slug.plugIt = function (schema, options) {
-	schema.add({ slug: String });
+	schema.add({
+		slug: {type : Schema.Types.ObjectId, ref: 'slug' },
+		slugStr: {type : String, lowercase: true, es_indexed:true},
+	});
 
 	schema.pre('save', function (next) {
 		var self = this;
 		var slug;
 
-		if(!this.slug){
-			slug =  _s.slugify(this[options.slugFrom]).replace(/-/g,'');
+		if(this.slugStr){
+			slug =  this.slugStr;
 		}else{
-			slug =  this.slug;
+			slug =  _s.slugify(this[options.slugFrom]).replace(/-/g,'');
 		}
 
 		if(Slug._reserved[slug]){
-			return next(new Error('slug reserved'));
+			var error = new Error('slug reserved');
+			error.validationError = true;
+			return next(error);
 		}
 
 		Slug.find({slug : slug}, function(err, slugItems){
@@ -38,13 +48,14 @@ Slug.plugIt = function (schema, options) {
 			var error;
 
 			if(slugItems.length === 0){
-				self.slug =  slug;
 				var newSlug = new Slug({
 					slug         : slug,
 					resourceType : options.type,
 					resourceId   : self._id.toString()
 				});
 
+				self.slug =  newSlug;
+				self.slugStr =  slug;
 				newSlug.save(next);
 			}else if(slugItems.length === 1){
 				var item = slugItems[0];
@@ -53,10 +64,12 @@ Slug.plugIt = function (schema, options) {
 					next();
 				}else{
 					error = new Error('slug taken');
+					error.validationError = true;
 					next(error);
 				}
 			}else if(slugItems){
 				error = new Error('there are to many items with this slugs');
+				error.validationError = true;
 				next(error);
 			}
 		});
@@ -83,6 +96,49 @@ Slug.getResourceBySlug = function (slug, callback) {
 	});
 };
 
+Slug.prototype.change = function (newSlug, callback) {
+	var self = this;
+	var error;
+
+	if(!newSlug){
+		error = new Error('slug empty');
+		error.validationError = true;
+		return callback(error);
+	}
+
+	if(Slug._reserved[newSlug]){
+		error = new Error('slug reserved');
+		error.validationError = true;
+		return callback(error);
+	}
+
+	Slug.findOne({slug:newSlug}, function(err, inDb){
+		if(err) {return callback(err);}
+		if(inDb) {
+			var error = new Error('slug taken');
+			error.validationError = true;
+			return callback(error);
+		}
+
+		self.slug = newSlug;
+
+		self.save(function(err){
+			if(err) {return callback(err);}
+
+			var model = db.model(self.resourceType);
+
+			model.findOne({_id : db.Types.ObjectId(self.resourceId)},function(err, resource){
+				if(err) {return callback(err);}
+
+				resource.slugStr = newSlug;
+
+				resource.save(callback);
+			});
+		});
+	});
+};
+
+Slug.reserve('admin');
 Slug.reserve('blog');
 
 module.exports = Slug;

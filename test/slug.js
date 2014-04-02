@@ -19,12 +19,17 @@ describe('Slugs', function(){
 
 			user.save(function(err, data){
 				expect(err).equals(null);
-				expect(data.username).to.equal('siedrix@gmail.com');
-				expect(data.displayName).to.equal('Daniel Zavala');
-				expect(data.type).to.equal('team');
-				expect(data.slug).to.equal('danielzavala');
 
-				done();
+				Slug.findOne({_id: data.slug}, function(err, item){
+					expect(err).equals(null);
+
+					expect(data.username).to.equal('siedrix@gmail.com');
+					expect(data.displayName).to.equal('Daniel Zavala');
+					expect(data.type).to.equal('team');
+					expect(item.slug).to.equal('danielzavala');
+
+					done();
+				});
 			});
 		});
 
@@ -37,6 +42,7 @@ describe('Slugs', function(){
 
 			user.save(function(err){
 				expect(err.message).equals('slug taken');
+				expect(err.validationError).equals(true);
 
 				done();
 			});
@@ -47,17 +53,21 @@ describe('Slugs', function(){
 				username : 'd@gmail.com',
 				displayName : 'Daniel Zavala de la Vega',
 				type :'team',
-				slug : 'danielzavaladelavega',
+				slugStr : 'danielzavaladelavega',
 			});
 
 			user.save(function(err, data){
 				expect(err).equals(null);
-				expect(data.username).to.equal('d@gmail.com');
-				expect(data.displayName).to.equal('Daniel Zavala de la Vega');
-				expect(data.type).to.equal('team');
-				expect(data.slug).to.equal('danielzavaladelavega');
 
-				done();
+				Slug.findOne({_id: data.slug}, function(err, item){
+					expect(err).equals(null);
+					expect(data.username).to.equal('d@gmail.com');
+					expect(data.displayName).to.equal('Daniel Zavala de la Vega');
+					expect(data.type).to.equal('team');
+					expect(item.slug).to.equal('danielzavaladelavega');
+
+					done();
+				});
 			});
 		});
 
@@ -66,26 +76,28 @@ describe('Slugs', function(){
 				username : 'd@gmail.com',
 				displayName : 'Daniel Zavala de la Vega',
 				type :'team',
-				slug : 'danielzavala',
+				slugStr : 'danielzavala',
 			});
 
 			user.save(function(err){
 				expect(err.message).equals('slug taken');
+				expect(err.validationError).equals(true);
 
 				done();
 			});
 		});
 
-		it('Should save with user with new slug', function(done){
+		it('Shouldnt save with user with reserved slug', function(done){
 			var user = new User({
 				username : 'd@gmail.com',
 				displayName : 'Daniel Zavala de la Vega',
 				type :'team',
-				slug : 'blog',
+				slugStr : 'blog',
 			});
 
 			user.save(function(err){
 				expect(err.message).equals('slug reserved');
+				expect(err.validationError).equals(true);
 
 				done();
 			});
@@ -110,11 +122,15 @@ describe('Slugs', function(){
 
 			startUp.save(function(err, data){
 				expect(err).equals(null);
-				expect(data.name).to.equal('TaskRabbit');
-				expect(data.url).to.equal('https://www.taskrabbit.com/');
-				expect(data.slug).to.equal('taskrabbit');
 
-				done();
+				Slug.findOne({_id: data.slug}, function(err, item){
+					expect(err).equals(null);
+					expect(data.name).to.equal('TaskRabbit');
+					expect(data.url).to.equal('https://www.taskrabbit.com/');
+					expect(item.slug).to.equal('taskrabbit');
+
+					done();
+				});
 			});
 		});
 
@@ -126,6 +142,7 @@ describe('Slugs', function(){
 
 			startUp.save(function(err){
 				expect(err.message).equals('slug taken');
+				expect(err.validationError).equals(true);
 
 				done();
 			});
@@ -159,6 +176,67 @@ describe('Slugs', function(){
 				expect(data.resource.displayName).equals('Daniel Zavala');
 
 				done();
+			});
+		});
+	});
+
+	describe('ChangeSlug', function(){
+		it('Should change slug to d', function(done){
+			Slug.findOne({slug:'danielzavala'}, function(err, slug){
+				expect(err).equals(null);
+
+				slug.changeSlag('d', function (err) {
+					expect(err).equals(null);
+					
+					Slug.getResourceBySlug('d', function(err, data){
+						expect(err).equals(null);
+						expect(data.type).equals('user');
+						expect(data.resource.username).equals('siedrix@gmail.com');
+						expect(data.resource.slugStr).equals('d');
+						expect(data.resource.displayName).equals('Daniel Zavala');
+
+						done();
+					});
+				});
+			});
+		});
+
+		it('Shouldnt be able to change slug into a reserved one', function(done){
+			Slug.findOne({slug:'d'}, function(err, slug){
+				expect(err).equals(null);
+
+				slug.changeSlag('blog', function (err) {
+					expect(err.message).equals('slug reserved');
+					expect(err.validationError).equals(true);
+
+					done();
+				});
+			});
+		});
+
+		it('Shouldnt be able to change slug into a used one', function(done){
+			Slug.findOne({slug:'d'}, function(err, slug){
+				expect(err).equals(null);
+
+				slug.changeSlag('taskrabbit', function (err) {
+					expect(err.message).equals('slug taken');
+					expect(err.validationError).equals(true);
+
+					done();
+				});
+			});
+		});
+
+		it('Shouldnt be able to change slug into a empty one', function(done){
+			Slug.findOne({slug:'d'}, function(err, slug){
+				expect(err).equals(null);
+
+				slug.change('', function (err) {
+					expect(err.message).equals('slug empty');
+					expect(err.validationError).equals(true);
+
+					done();
+				});
 			});
 		});
 	});

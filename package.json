@@ -16,7 +16,8 @@
     "request": "~2.34.0",
     "async": "~0.2.10",
     "inquirer": "~0.4.1",
-    "underscore.string": "~2.3.3"
+    "underscore.string": "~2.3.3",
+    "mongoosastic": "~0.2.6"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
