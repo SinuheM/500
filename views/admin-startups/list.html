@@ -1,0 +1,93 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	<i class="fa fa-building-o"></i>Startups
+{% endblock %}
+
+{% block content %}
+<div class="row list-header">
+	<div class="col-xs-6">
+		<p class="title">Startup list.</p>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group stand-alone">
+			<span class="input-group-addon"><i class="fa fa-search"></i></span>
+			<input type="text" placeholder="Search" class="form-control searchbar">
+		</div>
+	</div>
+</div>
+<div id="startupsTable">
+	
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/template" id="tableTemplate">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>excerpt</th>
+			</tr>
+		</thead>
+		<tbody class="list-container">			
+		</tbody>
+	</table>
+</script>
+<script type="text/template" id="tableRowTemplate">
+	<td><%= user.name %></td>
+	<td><%= user.slugStr %></td>
+	<td><%= user.excerpt %></td>
+</script>
+<script type="text/javascript" src="/js/vendors/underscore.js"></script>
+<script type="text/javascript" src="/js/vendors/backbone.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<script type="text/javascript" src="/js/widgets/list.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	{% autoescape false %}
+	window.startups = {{startups|json}};
+	{% endautoescape %}
+
+	var userList = new window.Widgets.List({
+		template : '#tableTemplate',
+		itemTemplate : '#tableRowTemplate',
+		itemTagName : 'tr',
+		goTo : function() {
+			window.location = '/admin/startups/' + this.model.get('_id');
+		}
+	});
+	userList.render().$el.appendTo('#startupsTable');
+	userList.fill(window.startups);
+
+	window.widgets.userList = userList;
+
+	var stoppedTyping;
+	$('.searchbar').on('keyup', function(e){
+		var $this = $(this);
+		
+		if (stoppedTyping) clearTimeout(stoppedTyping);
+
+		stoppedTyping = setTimeout(function(){
+			window.widgets.userList.empty();
+
+			if($this.val()){
+				var xhrSearch = $.post('/admin/users/search',{search: $this.val() });
+
+				xhrSearch.done(function(data){
+					window.widgets.userList.fill(data.hits);
+				});
+			}else{
+				window.widgets.userList.fill(window.users);
+			}
+		}, 500);
+	});
+});
+</script>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	<i class="fa fa-users"></i>User managment
+{% endblock %}
+
+{% block content %}
+<div class="row list-header">
+	<div class="col-xs-12">
+		<p class="title">User list.</p>
+	</div>
+</div>
+<div class="row list-header">
+	<div class="col-xs-12">
+		<div class="input-group stand-alone">
+			<span class="input-group-addon"><i class="fa fa-search"></i></span>
+			<input type="text" placeholder="Search" class="form-control searchbar">
+		</div>
+	</div>
+</div>
+<div id="angelListUserList">
+	
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/template" id="listTemplate">
+	<h2>On Angellist</h2>
+	<div class="list-container row"></div>
+</script>
+<script type="text/template" id="listItemTemplate">
+	<div class="panel">
+		<div class="row angel-list-card-content">
+			<% if( user.pic ){ %>
+			<div class="col-xs-12 has-pic">
+				<img src="<%= user.pic %>">
+				<div>
+					<h4><%= user.name %></h4>
+					<p><a href="<%= user.url %>"><%= user.url %></a></p>
+					<a href="/admin/users/new?angelListId=<%= user.id %>" class="add-btn btn btn-success">Add</a>
+				</div>
+			</div>
+			<% }else{ %>
+			<div class="col-xs-12">
+				<h4><%= user.name %></h4>
+				<a href="/admin/users/new?angelListId=<%= user.id %>" class="add-btn btn btn-success">Add</a>
+			</div>				
+			<% }%>
+		</div>
+	</div>
+</script>
+<script type="text/javascript" src="/js/vendors/underscore.js"></script>
+<script type="text/javascript" src="/js/vendors/backbone.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<script type="text/javascript" src="/js/widgets/list.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var angelListUsers = new window.Widgets.List({
+		itemTagClassName : 'angel-list-card col-xs-6 col-lg-4',
+		hideOnEmpty : true
+	});
+	angelListUsers.render().$el.appendTo('#angelListUserList');
+
+	window.widgets.angelListUsers = angelListUsers;
+
+	var stoppedTyping;
+	$('.searchbar').on('keyup', function(e){
+		var $this = $(this);
+		
+		if (stoppedTyping) clearTimeout(stoppedTyping);
+
+		stoppedTyping = setTimeout(function(){
+			window.widgets.angelListUsers.empty();
+
+			if($this.val()){
+				var xhrSearchAngelList = $.post('/admin/users/searchAngelList',{search: $this.val() });
+
+				xhrSearchAngelList.done(function(data){
+					window.widgets.angelListUsers.fill(data);
+				});
+			}else{
+				window.widgets.userList.fill(window.users);
+			}
+		}, 500);
+	});
+});
+</script>
+{% endblock %}

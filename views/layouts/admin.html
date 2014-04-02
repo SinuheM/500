@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+		<title>{% block title %}500 admin{% endblock %}</title>
+
+		<link href="/css/style.default.css" rel="stylesheet">
+		<link href="/css/admin.css" rel="stylesheet">
+		{% block head %}{% endblock %}
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>	
+<body>
+	<section>
+		<div class="leftpanel">
+			<div class="logopanel">
+				<h1><a href="/"><img src="/imgs/logo-admin.png"></a></h1>
+			</div>
+			<div class="leftpanelinner">
+				<ul class="nav nav-pills nav-stacked nav-bracket">
+					<li><a href="/admin"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+					<li class="nav-parent"><a href=""><i class="fa fa-users"></i> <span>User managment</span></a>
+						<ul class="children">
+							<li><a href="/admin/users"><i class="fa fa-caret-right"></i> Full list</a></li>
+							<li><a href="/admin/users/add-from-angellist"><i class="fa fa-caret-right"></i> Add from Angellist</a></li>
+							<li><a href="/admin/users/new"><i class="fa fa-caret-right"></i> Add User</a></li>
+						</ul>
+					</li>
+					<li class="nav-parent"><a href=""><i class="fa fa-building-o"></i> <span>Start Ups</span></a>
+						<ul class="children">
+							<li><a href="/admin/startups/"><i class="fa fa-caret-right"></i> Full list</a></li>
+							<li><a href="/admin/startups/add-from-angellist"><i class="fa fa-caret-right"></i> Add from Angellist</a></li>
+							<li><a href="/admin/startups/new"><i class="fa fa-caret-right"></i> Add Startup</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="mainpanel">
+			<div class="headerbar">
+				<a class="menutoggle"><i class="fa fa-bars"></i></a>
+				<div class="header-right">
+					<ul class="headermenu">
+						<li>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+									{% if user.avatar %}
+										<img src="{{ user.avatar }}" alt="" />
+									{% else %}
+										<img src="/imgs/user-placeholder.png" alt="" />
+									{% endif %}
+									{{user.displayName}}
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+									<li><a href="/user/profile"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+									<li><a href="/logout"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="pageheader">
+				<h2>{% block header %}<i class="fa fa-home"></i>Dashboard{% endblock %}</h2>
+				<div class="breadcrumb-wrapper">
+					<ol class="breadcrumb">
+						{% for crumb in breadcrumbs %}
+							{% if crumb.url %}
+								<li><a href="{{crumb.url}}">{{crumb.label}}</a></li>
+							{% else %}
+								<li class="active">{{crumb.label}}</li>
+							{% endif %}
+						{% endfor %}
+					</ol>
+				</div>
+			</div>
+			<div class="subheaderbar">
+				{% block subheader %}{% endblock %}
+			</div>
+			<div class="contentpanel">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</section>
+
+	<script src="/js/vendors/jquery.js"></script>
+	<script src="/js/vendors/bootstrap.js"></script>
+	<script src="/js/vendors/modernizr.min.js"></script>
+	<script src="/js/custom.js"></script>
+	{% block js %}{% endblock %}
+</body>
+</html>

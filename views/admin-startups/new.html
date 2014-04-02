@@ -1,0 +1,74 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	<i class="fa fa-building-o"></i> Add Startup
+{% endblock %}
+
+{% block content %}
+<div class="panel panel-dark">
+	<form class="form-horizontal form-bordered" method="post" action="/admin/startups/new">
+		<div class="panel-heading">
+			<h4 class="panel-title">Startup information</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Name</label>
+				<div class="col-sm-6">
+					<input name="name" type="text" class="form-control" value="{{angelListStartUp.name}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Slug</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">500.co/</span>
+						<input name="slug" type="text" placeholder="select-a-slug" class="input-slug form-control" value="{{angelListStartUp.slug}}">
+					</div>					
+				</div>
+			</div>		
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Url</label>
+				<div class="col-sm-6">
+					<input name="url" type="text" class="form-control" value="{{angelListStartUp.url}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Excerpt</label>
+				<div class="col-sm-6">
+					<textarea name="excerpt" class="form-control" rows="3">{{angelListStartUp.excerpt}}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Description</label>
+				<div class="col-sm-6">
+					<textarea name="description" class="form-control" rows="5">{{angelListStartUp.description}}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Video</label>
+				<div class="col-sm-6">
+					<input name="video" type="text" class="form-control" value="{{angelListStartUp.video}}">
+				</div>
+			</div>			
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>		
+	</form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}

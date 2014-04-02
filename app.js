@@ -3,13 +3,18 @@ var express  = require('express.io'),
 	// _        = require('underscore'),
 	swig     = require('swig'),
 	passport = require('passport'),
-	flash = require('connect-flash');
+	flash = require('connect-flash'),
+	Controller = require('stackers');
 
 // Load conf
 var conf = require('./conf');
 console.log('Running app.js in', conf.env, 'environment');
 
 var app = express();
+
+Controller.on('error', function (statusCode, error) {
+	console.log(statusCode, error);
+});
 
 // Connects with db and load models
 var db = require('./lib/db');
