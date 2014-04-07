@@ -1,4 +1,5 @@
 var db = require('../lib/db'),
+	mongoosastic = require('mongoosastic'),
 	schema = db.Schema,
 	async = require('async'),
 	_ = require('underscore');
@@ -18,6 +19,7 @@ var startupSchema = schema({
 });
 
 startupSchema.plugin(Slug.plugIt, {type: 'startup', slugFrom : 'name' });
+startupSchema.plugin(mongoosastic);
 
 var Startup = db.model('startup', startupSchema);
 var angelListApi = require('../lib/angelListApi');

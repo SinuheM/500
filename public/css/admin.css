@@ -99,6 +99,20 @@ body > section .logopanel img {
   bottom: 10px;
   right: 20px;
 }
+.search-box .btn-default-alt {
+  padding-bottom: 7px;
+  padding-top: 8px;
+}
+#images img.selected {
+  border: 3px solid #00f;
+}
+#loader {
+  padding: 20px 0;
+  font-size: 27px;
+}
+#loader label {
+  color: #999;
+}
 .list-header {
   margin-bottom: 15px;
 }
@@ -109,6 +123,17 @@ body > section .logopanel img {
   font-size: 25px;
   margin: 0;
   margin-top: 14px;
+}
+.fancy-label {
+  color: #999;
+  text-transform: uppercase;
+  font-family: 'LatoBold';
+  font-size: 20px;
+  margin-top: 12px;
+  text-align: right;
+}
+.error-label {
+  color: #a94442;
 }
 .input-group.stand-alone .input-group-addon {
   border-right: 0;

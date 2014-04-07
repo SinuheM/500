@@ -83,7 +83,6 @@ adminStartUpsController.get('/:currentStartup', function (req, res) {
 	});
 
 	var message = req.flash('message');
-	console.log('message', message);
 
 	res.render('admin-startups/single',{
 		currentStartup : res.data.currentStartup,
@@ -108,6 +107,25 @@ adminStartUpsController.post('/new', function (req, res) {
 	});
 });
 
+adminStartUpsController.post('/searchAngelList', function(req, res){
+	angelListApi.searchStartUp(req.body.search, function(err, results){
+		console.log(err, results);
+
+		if(err){return res.sendError(500, err);}
+		res.send(results);
+	});
+});
+
+adminStartUpsController.post('/search', function(req, res){
+	Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true}, function(err, results) {
+		console.log(err, results);
+
+		if(err){return res.sendError(500, err);}
+		res.send(results);
+	});
+});
+
+
 adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	var currentStartup = res.data.currentStartup;
 
@@ -122,15 +140,6 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 
 		req.flash('message', 'user updated');
 		res.redirect('/admin/startups/' + currentStartup.id);
-	});
-});
-
-adminStartUpsController.post('/searchAngelList', function(req, res){
-	angelListApi.searchStartUp(req.body.search, function(err, results){
-		console.log(err, results);
-
-		if(err){return res.sendError(500, err);}
-		res.send(results);
 	});
 });
 

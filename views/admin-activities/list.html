@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block header %}
-	<i class="fa fa-building-o"></i>Startups
+	<i class="fa fa-file-o"></i>Activities
 {% endblock %}
 
 {% block content %}
 <div class="row list-header">
 	<div class="col-xs-6">
-		<p class="title">Startup list.</p>
+		<p class="title">Activity list.</p>
 	</div>
 	<div class="col-xs-6">
 		<div class="input-group stand-alone">
@@ -24,6 +24,11 @@
 <div id="startupsTable">
 	
 </div>
+<div class="row">
+	<div class="col-xs-12 text-right">
+		<a href="/admin/activities/new" class="btn btn-success-alt">Add new</a>
+	</div>
+</div>
 {% endblock %}
 
 {% block js %}
@@ -31,9 +36,9 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>excerpt</th>
+				<th>Title</th>
+				<th>Slug</th>
+				<th>Uploader</th>
 			</tr>
 		</thead>
 		<tbody class="list-container">			
@@ -41,9 +46,9 @@
 	</table>
 </script>
 <script type="text/template" id="tableRowTemplate">
-	<td><%= user.name %></td>
+	<td><%= user.title %></td>
 	<td><%= user.slugStr %></td>
-	<td><%= user.excerpt %></td>
+	<td><%= user.uploader.displayName %></td>
 </script>
 <script type="text/javascript" src="/js/vendors/underscore.js"></script>
 <script type="text/javascript" src="/js/vendors/backbone.js"></script>
@@ -52,21 +57,21 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	{% autoescape false %}
-	window.startups = {{startups|json}};
+	window.activities = {{activities|json}};
 	{% endautoescape %}
 
-	var userList = new window.Widgets.List({
+	var activityList = new window.Widgets.List({
 		template : '#tableTemplate',
 		itemTemplate : '#tableRowTemplate',
 		itemTagName : 'tr',
 		goTo : function() {
-			window.location = '/admin/startups/' + this.model.get('_id');
+			window.location = '/admin/activities/' + this.model.get('_id');
 		}
 	});
-	userList.render().$el.appendTo('#startupsTable');
-	userList.fill(window.startups);
+	activityList.render().$el.appendTo('#startupsTable');
+	activityList.fill(window.activities);
 
-	window.widgets.userList = userList;
+	window.widgets.activityList = activityList;
 
 	var stoppedTyping;
 	$('.searchbar').on('keyup', function(e){
@@ -75,16 +80,16 @@ $(document).ready(function(){
 		if (stoppedTyping) clearTimeout(stoppedTyping);
 
 		stoppedTyping = setTimeout(function(){
-			window.widgets.userList.empty();
+			window.widgets.activityList.empty();
 
 			if($this.val()){
-				var xhrSearch = $.post('/admin/startups/search',{search: $this.val() });
+				var xhrSearch = $.post('/admin/users/search',{search: $this.val() });
 
 				xhrSearch.done(function(data){
-					window.widgets.userList.fill(data.hits);
+					window.widgets.activityList.fill(data.hits);
 				});
 			}else{
-				window.widgets.userList.fill(window.users);
+				window.widgets.activityList.fill(window.users);
 			}
 		}, 500);
 	});

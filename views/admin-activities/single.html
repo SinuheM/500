@@ -1,0 +1,87 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	<i class="fa fa-file-o"></i>{{currectActivity.title}} 
+	<span><a class="resorce-slug" href="/{{currectActivity.slugStr}}" target="_blank">500.co/{{currectActivity.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
+{% endblock %}
+
+{% block subheader %}
+	{% include "../partials/slug-change.html" with currectActivity only %}
+{% endblock %}
+
+{% block content %}
+{% if message %}
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Saved!</strong> {{message}}.
+</div>
+{% endif %}
+<div class="panel panel-dark">
+	<form class="form-horizontal form-bordered" method="post" action="/admin/activities/{{currectActivity.id}}/edit">
+		<div class="panel-heading">
+			<h4 class="panel-title">Startup information</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Provider</label>
+				<label id="providerDisplay" class="col-sm-9"><img src="{{currectActivity.favicon}}"/> {{currectActivity.provider}}</label>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Uploader</label>
+				<label id="providerDisplay" class="col-sm-9">{{currectActivity.uploader.displayName}}</label>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Title</label>
+				<div class="col-sm-6">
+					<input id="title" name="title" type="text" class="form-control" value="{{currectActivity.title}}">
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Description</label>
+				<div class="col-sm-6">
+					<textarea name="description" class="form-control" rows="5">{{currectActivity.description}}</textarea>
+				</div>
+			</div>
+			{% if currectActivity.imagePool.length %}
+			<div class="form-group image-group">
+				<label class="col-sm-3 control-label">Images</label>
+				<input class="image-src" name="image" type="hidden" value="{{ currectActivity.image }}">
+				<div id="images" class="col-sm-6">
+					{% for image in currectActivity.imagePool %}
+					<img src="{{image.url}}" data-url="{{ image.url }}" {% if image.url === currectActivity.image %}class="selected"{% endif %} >
+					{% endfor %}
+				</div>
+			</div>			
+			{% endif %}
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#images').on('click', 'img', function(e){
+		var $img = $(e.currentTarget);
+
+		$('#images img').removeClass('selected');
+		$img.addClass('selected');
+
+		$('.image-src').val( $img.data('url') );
+	});
+});
+</script>
+{% endblock %}

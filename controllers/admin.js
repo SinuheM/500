@@ -32,9 +32,11 @@ adminController.get('', function (req, res) {
 var adminUsersController = require('./admin-users');
 var adminSlugsController = require('./admin-slugs');
 var adminStartUpsController = require('./admin-startups');
+var adminActivitiesController = require('./admin-activities');
 
 adminController.attach(adminUsersController);
 adminController.attach(adminSlugsController);
 adminController.attach(adminStartUpsController);
+adminController.attach(adminActivitiesController);
 
 module.exports = adminController;

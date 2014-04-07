@@ -18,7 +18,7 @@ Controller.on('error', function (statusCode, error) {
 
 // Connects with db and load models
 var db = require('./lib/db');
-db.loadModels(['slug', 'user', 'startup']);
+db.loadModels(['slug', 'user', 'startup', 'activity']);
 
 var Slug = db.model('slug');
 
@@ -83,6 +83,10 @@ app.get('/:slug', function (req, res) {
 	Slug.getResourceBySlug(req.params.slug, function(err, data){
 		if(err) {return res.send(500, err);}
 		if(!data) {return res.send(404, 'not found');}
+
+		if(data.type === 'activity'){
+			return res.redirect(data.resource.url);
+		}
 
 		res.send(data);
 	});

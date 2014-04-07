@@ -3,10 +3,11 @@ var expect = chai.expect;
 
 var db = require('../lib/db');
 
-db.loadModels(['slug', 'user', 'startup']);
+db.loadModels(['slug', 'user', 'startup', 'activity']);
 var Slug = db.model('slug');
 var User = db.model('user');
 var StartUp = db.model('startup');
+var Activity = db.model('activity');
 
 describe('Slugs', function(){
 	describe('Users', function(){
@@ -158,6 +159,45 @@ describe('Slugs', function(){
 		});
 	});
 
+	describe('Activity', function(){
+		it('Activity should have a generic slug', function(done){
+			var activity = new Activity({
+				url : 'http://google.com/'
+			});
+
+			activity.save(function(err, data){
+				expect(err).equals(null);
+
+				Slug.findOne({_id: data.slug}, function(err, item){
+					expect(err).equals(null);
+					expect(data.url).to.equal('http://google.com/');
+					expect(item.slug).to.equal('activity' + activity._id);
+
+					done();
+				});
+			});
+		});
+
+		it('Activity should have a specific slug', function(done){
+			var activity = new Activity({
+				url : 'http://yahoo.com/',
+				slugStr : 'yahoo'
+			});
+
+			activity.save(function(err, data){
+				expect(err).equals(null);
+
+				Slug.findOne({_id: data.slug}, function(err, item){
+					expect(err).equals(null);
+					expect(data.url).to.equal('http://yahoo.com/');
+					expect(item.slug).to.equal('yahoo');
+
+					done();
+				});
+			});
+		});
+	});
+
 	describe('GetResourceBySlug', function(){
 		it('Should Return reserved', function(done){
 			Slug.getResourceBySlug('blog', function(err, data){
@@ -185,7 +225,7 @@ describe('Slugs', function(){
 			Slug.findOne({slug:'danielzavala'}, function(err, slug){
 				expect(err).equals(null);
 
-				slug.changeSlag('d', function (err) {
+				slug.change('d', function (err) {
 					expect(err).equals(null);
 					
 					Slug.getResourceBySlug('d', function(err, data){
@@ -205,7 +245,7 @@ describe('Slugs', function(){
 			Slug.findOne({slug:'d'}, function(err, slug){
 				expect(err).equals(null);
 
-				slug.changeSlag('blog', function (err) {
+				slug.change('blog', function (err) {
 					expect(err.message).equals('slug reserved');
 					expect(err.validationError).equals(true);
 
@@ -218,7 +258,7 @@ describe('Slugs', function(){
 			Slug.findOne({slug:'d'}, function(err, slug){
 				expect(err).equals(null);
 
-				slug.changeSlag('taskrabbit', function (err) {
+				slug.change('taskrabbit', function (err) {
 					expect(err.message).equals('slug taken');
 					expect(err.validationError).equals(true);
 

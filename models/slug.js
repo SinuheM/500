@@ -32,9 +32,16 @@ Slug.plugIt = function (schema, options) {
 		var slug;
 
 		if(this.slugStr){
-			slug =  this.slugStr;
+			slug =  self.slugStr;
 		}else{
-			slug =  _s.slugify(this[options.slugFrom]).replace(/-/g,'');
+			var slugFrom;
+			if(typeof options.slugFrom === 'function'){
+				slugFrom = options.slugFrom(self);
+			}else{
+				slugFrom = self[options.slugFrom];
+			}
+
+			slug =  _s.slugify(slugFrom).replace(/-/g,'');
 		}
 
 		if(Slug._reserved[slug]){

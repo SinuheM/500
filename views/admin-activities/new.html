@@ -1,0 +1,160 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	<i class="fa fa-file-o"></i> Add activity
+{% endblock %}
+
+{% block content %}
+<div class="search-box">
+	<div class="form-group">
+		<label class="col-xs-2 control-label fancy-label">Url:</label>
+		<div class="col-xs-8">
+			<input class="form-control" value="">
+			<span class="error-label" style="display:none">Error: Invalid Url</span>
+		</div>
+		<a class="col-xs-2 btn btn-default-alt">Search Info</a>
+	</div>
+</div>
+<div id="loader" class="row" style="display:none">
+	<label class="col-xs-12 control-label text-center"><i class="fa fa-spinner fa-spin"></i> Loading...</label>
+</div>
+<div class="panel panel-dark" style="display:none">
+	<form class="form-horizontal form-bordered" method="post" action="/admin/activities/new">
+		<div class="panel-heading">
+			<h4 class="panel-title">Edit user information</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Provider</label>
+				<label id="providerDisplay" class="col-sm-9"></label>
+				<input id="favicon" name="favicon" type="hidden">
+				<input id="provider" name="provider" type="hidden">				
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Slug</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">500.co/</span>
+						<input name="slugStr" type="text" placeholder="leave empty to have a generic slug" class="input-slug form-control" value="{{angelListUser.slug}}">
+					</div>					
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Title</label>
+				<div class="col-sm-6">
+					<input id="url" name="url" type="hidden">
+					<input id="title" name="title" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Description</label>
+				<div class="col-sm-6">
+					<textarea id="description" name="description" class="form-control" rows="5"></textarea>
+				</div>
+			</div>
+			<div class="form-group image-group">
+				<input class="image-pool" name="image-pool" type="hidden">
+				<input class="image-src" name="image" type="hidden">
+				<label class="col-sm-3 control-label">Images</label>
+				<div id="images" class="col-sm-6"></div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>		
+	</form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(document).ready(function () {
+	window.searchUrl = function(){
+		var urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/
+
+		if( !$('.search-box input').val().match(urlRegex) ){
+			$('.search-box .error-label').show();
+
+			return;
+		}
+
+		var xhr = $.post('/admin/activities/fetchUrlInfo',{
+			url : $('.search-box input').val()
+		});
+
+		$('.search-box .error-label').hide();
+		$('#loader').fadeIn();
+		$('form input').val('');
+		$('form textarea').text('');
+		$('#images').html('');
+		$('.panel').fadeOut();
+
+		xhr.done(function(data){
+			$('#loader').hide();
+			$('#title').val(data.title);
+			$('#provider').val(data.provider_display);
+			$('#url').val(data.url);
+			$('#description').val(data.description);
+			if(data.favicon_url){
+				$('#favicon').val(data.favicon_url);
+				$('#providerDisplay').html('<img src="'+ data.favicon_url +'"/> '+ data.provider_display);
+			}else{
+				$('#providerDisplay').html(data.provider_display);
+			}
+
+
+			if(data.images && data.images.length){
+				$('.image-group').show();
+				$('.image-pool').val( JSON.stringify(data.images) );
+
+				data.images.forEach(function(item){
+					var $image = $('<img src="'+item.url+'">');
+
+					$image.data('colors', item.colors);
+					$image.data('url', item.url);
+					$image.appendTo('#images');
+				});
+
+				$('#images img:first').click();
+			}else{
+				$('.image-group').hide();
+			}
+
+			$('.panel').fadeIn();
+		});
+
+		xhr.fail(function(){
+			console.log(arguments);
+		});
+	}
+
+	$('#images').on('click', 'img', function(e){
+		var $img = $(e.currentTarget);
+
+		$('#images img').removeClass('selected');
+		$img.addClass('selected');
+
+		$('.image-src').val( $img.data('url') );
+	});
+
+	$('.search-box input').on('keypress', function(e){
+		if(e.which === 13){
+			window.searchUrl();
+		}
+	});
+
+	$('.search-box .btn').on('click', function(){
+		window.searchUrl();
+	});
+});
+</script>
+{% endblock %}
