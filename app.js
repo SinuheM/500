@@ -18,7 +18,7 @@ Controller.on('error', function (statusCode, error) {
 
 // Connects with db and load models
 var db = require('./lib/db');
-db.loadModels(['slug', 'user', 'startup', 'activity']);
+db.loadModels(['slug', 'user', 'startup', 'activity', 'batch']);
 
 var Slug = db.model('slug');
 

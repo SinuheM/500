@@ -30,7 +30,6 @@
 
 {% block js %}
 <script type="text/template" id="listTemplate">
-	<h2>On Angellist</h2>
 	<div class="list-container row"></div>
 </script>
 <script type="text/template" id="listItemTemplate">
@@ -60,13 +59,13 @@
 <script type="text/javascript" src="/js/widgets/list.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var angelListUsers = new window.Widgets.List({
+	var angelListStartUps = new window.Widgets.List({
 		itemTagClassName : 'angel-list-card col-xs-6 col-lg-4',
 		hideOnEmpty : true
 	});
-	angelListUsers.render().$el.appendTo('#angelListUserList');
+	angelListStartUps.render().$el.appendTo('#angelListUserList');
 
-	window.widgets.angelListUsers = angelListUsers;
+	window.widgets.angelListStartUps = angelListStartUps;
 
 	var stoppedTyping;
 	$('.searchbar').on('keyup', function(e){
@@ -75,16 +74,16 @@ $(document).ready(function(){
 		if (stoppedTyping) clearTimeout(stoppedTyping);
 
 		stoppedTyping = setTimeout(function(){
-			window.widgets.angelListUsers.empty();
+			window.widgets.angelListStartUps.empty();
 
 			if($this.val()){
 				var xhrSearchAngelList = $.post('/admin/startups/searchAngelList',{search: $this.val() });
 
 				xhrSearchAngelList.done(function(data){
-					window.widgets.angelListUsers.fill(data);
+					window.widgets.angelListStartUps.fill(data);
 				});
 			}else{
-				window.widgets.userList.fill(window.users);
+				window.widgets.angelListStartUps.fill([]);
 			}
 		}, 500);
 	});

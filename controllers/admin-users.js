@@ -56,16 +56,32 @@ adminUsersController.get('/new', function (req, res) {
 		label : 'Add user'
 	});
 
+	console.log('angelListId', req.query.angelListId);
+
 	if(req.query.angelListId){
 		angelListApi.getUserInfo(req.query.angelListId, function(err, data){
 			if(err){return res.sendError(500, err);}
+			console.log('angellistData', data);
 
 			data.slug = Slug.slugify(data.displayName);
+			data.angelListId = req.query.angelListId;
 
+			console.log(data);
 			res.render('admin-users/new', {angelListUser : data});
 		});
 	}else{
-		res.render('admin-users/new');
+		res.render('admin-users/new', {
+			angelListUser : {
+				socialContacts : [
+					{provider:'twitter'},
+					{provider:'facebook'},
+					{provider:'github'},
+					{provider:'aboutme'},
+					{provider:'linkedin'},
+					{provider:'blog'}
+				]
+			}
+		});
 	}
 });
 
@@ -87,6 +103,12 @@ adminUsersController.get('/:currentUser', function (req, res) {
 });
 
 adminUsersController.post('/new', function (req, res) {
+	var saveHandler = function(err){
+		if(err){ return res.sendError(500, err); }
+		req.flash('message', 'Saved sucessfully');
+		res.redirect('/admin/users/' + user.id );
+	};
+
 	var user = new User({
 		bio : req.body.bio,
 		type : req.body.type,
@@ -95,11 +117,23 @@ adminUsersController.post('/new', function (req, res) {
 		username: req.body.email
 	});
 
-	user.save(function(err){
-		if(err){ return res.sendError(500, err); }
-		req.flash('message', 'Saved sucessfully');
-		res.redirect('/admin/users/' + user.id );
-	});
+	user.socialContacts.push({provider:'twitter', url:req.body.twitter});
+	user.socialContacts.push({provider:'facebook', url:req.body.facebook});
+	user.socialContacts.push({provider:'github', url:req.body.github});
+	user.socialContacts.push({provider:'linkedin', url:req.body.linkedin});
+	user.socialContacts.push({provider:'aboutme', url:req.body.aboutme});
+	user.socialContacts.push({provider:'blog', url:req.body.blog});
+
+	if(req.body.angelListId){
+		angelListApi.getUserInfo(req.body.angelListId, function(err, data){
+			if(err){ return res.sendError(500, err); }
+
+			user.angelListData = data.angelListData;
+			user.save(saveHandler);
+		});
+	}else{
+		user.save(saveHandler);
+	}
 });
 	
 

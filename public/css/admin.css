@@ -85,14 +85,14 @@ body > section .logopanel img {
   padding: 10px;
 }
 .angel-list-card .panel .angel-list-card-content .has-pic {
-  padding-left: 150px;
+  padding-left: 160px;
 }
 .angel-list-card .panel .angel-list-card-content .has-pic img {
   width: 140px;
   height: 140px;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 10px;
 }
 .angel-list-card .panel .angel-list-card-content .add-btn {
   position: absolute;
@@ -112,6 +112,9 @@ body > section .logopanel img {
 }
 #loader label {
   color: #999;
+}
+.table-clickable td {
+  cursor: pointer;
 }
 .list-header {
   margin-bottom: 15px;

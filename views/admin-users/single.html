@@ -54,6 +54,24 @@
 					</select>
 				</div>
 			</div>
+			<legend>Profiles</legend>
+			{% for profile in currentUser.socialContacts %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ profile.provider }}</label>
+				{% if profile.provider !== 'blog' %}
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">{{profile.provider|slugPlaceholder}}</span>
+						<input name="{{profile.provider}}" type="text" placeholder="select-a-slug" class="input-slug form-control" value="{{profile.url}}">
+					</div>					
+				</div>
+				{% else %}
+				<div class="col-sm-6">
+					<input name="{{profile.provider}}" type="text" class="form-control" value="{{profile.url}}">
+				</div>
+				{% endif %}
+			</div>
+			{% endfor %}
 		</div>
 		<div class="panel-footer">
 			<div class="row">

@@ -10,12 +10,24 @@ var startupSchema = schema({
 	name        : {type : String},
 	url         : {type : String},
 	logo        : {type : String},
-	video       : {type : String},
 	excerpt     : {type : String},
 	description : {type : String},
+	video       : {type : String},
+	location    : {type : String},
+	size        : {type : String},
+	investmentType : {type : String}, // seed, acceleration
+
+	funding     : [schema.Types.Mixed],
+	market      : [{type : String}],
+	
+	batch       : {type : String}, // link to batch model
 	founders    : [{type : schema.Types.ObjectId, ref: 'user' }],
+
+	// angellist, crunchbase, twitter, blog, youtube
+	socialContacts : [schema.Types.Mixed],
+
 	angelListData : schema.Types.Mixed,
-	socialContacts : [schema.Types.Mixed]
+	active : {type : Boolean}
 });
 
 startupSchema.plugin(Slug.plugIt, {type: 'startup', slugFrom : 'name' });

@@ -20,6 +20,7 @@
 				<label class="col-sm-3 control-label">Name</label>
 				<div class="col-sm-6">
 					<input name="displayName" type="text" class="form-control" value="{{angelListUser.displayName}}">
+					<input name="angelListId" type="hidden" class="form-control" value="{{angelListUser.angelListId}}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -30,7 +31,7 @@
 						<input name="slug" type="text" placeholder="select-a-slug" class="input-slug form-control" value="{{angelListUser.slug}}">
 					</div>					
 				</div>
-			</div>		
+			</div>	
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Email</label>
 				<div class="col-sm-6">
@@ -54,6 +55,24 @@
 					</select>
 				</div>
 			</div>			
+			<legend>Profiles</legend>
+			{% for profile in angelListUser.socialContacts %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ profile.provider }}</label>
+				{% if profile.provider !== 'blog' %}
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">{{profile.provider|slugPlaceholder}}</span>
+						<input name="{{profile.provider}}" type="text" placeholder="select-a-slug" class="input-slug form-control" value="{{profile.url}}">
+					</div>					
+				</div>
+				{% else %}
+				<div class="col-sm-6">
+					<input name="{{profile.provider}}" type="text" class="form-control" value="{{profile.url}}">
+				</div>
+				{% endif %}
+			</div>
+			{% endfor %}
 		</div>
 		<div class="panel-footer">
 			<div class="row">

@@ -1,0 +1,63 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	Batches
+{% endblock %}
+
+{% block content %}
+{% if error %}
+<div class="alert alert-danger">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Error!</strong> {{error}}.
+</div>
+{% endif %}
+{% if message %}
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Saved!</strong> {{message}}.
+</div>
+{% endif %}
+<div class="row list-header">
+	<div class="col-xs-6">
+		<p class="title">Add batch.</p>
+	</div>
+</div>
+<div class="panel panel-dark">
+	{% if batch %}
+	<form class="form-horizontal form-bordered" method="post" action="/admin/startups/batches/{{batch.id}}/edit">
+	{% else %}
+	<form class="form-horizontal form-bordered" method="post" action="/admin/startups/batches/new">
+	{% endif %}
+		<div class="panel-heading">
+			<h4 class="panel-title">Batch information</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Name</label>
+				<div class="col-sm-6">
+					<input name="name" type="text" class="form-control" value="{{batch.name}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Location</label>
+				<div class="col-sm-6">
+					<input name="location" type="text" class="form-control" value="{{batch.location}}">
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button class="btn btn-primary">Create</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+{% endblock %}

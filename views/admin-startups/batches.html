@@ -1,0 +1,51 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}User list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	Batches
+{% endblock %}
+
+{% block content %}
+<div class="row list-header">
+	<div class="col-xs-6">
+		<p class="title">Batch list.</p>
+	</div>
+	<div class="col-xs-6 text-right">
+		<a href="/admin/startups/batches/new" class="btn btn-success-alt"><i class="fa fa-plus"></i> Add batch</a>
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-striped mb30 table-clickable">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for batch in batches %}
+			<tr data-id="{{ batch.id }}">
+				<td>{{ batch.name }}</td>
+				<td>{{ batch.location }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>	
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function(){	
+	$('.table-clickable').on('click', 'tbody tr', function(e){
+		debugger
+		var $row = $(e.currentTarget);
+
+		window.location = '/admin/startups/batches/' + $row.data('id');
+	});
+});
+</script>
+{% endblock %}
