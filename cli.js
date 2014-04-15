@@ -230,7 +230,32 @@ if(taskName === 'searchUser'){
 
 		console.log('Url Info: ', data);
 		process.exit();
-	})
+	});
+}else if(taskName === 'sync'){
+	if(! (argv.model ) ){
+		console.log('FAIL!!! sync requires a model');
+		console.log('SAMPLE: node cli.js sync --model user');
+		process.exit();
+	}
+
+	var model = db.model(argv.model);
+	var count = 0;
+
+	var stream = model.synchronize();
+
+	stream.on('data', function(){
+		count++;
+	});
+
+	stream.on('close', function(){
+		console.log('SUCESS!!! indexed ' + count + ' documents!');
+		process.exit();
+	});
+
+	stream.on('error', function(err){
+		console.log('FAIL!!! sync failed with error', err);
+		process.exit();
+	});
 }else{
 	console.log('FAIL!!! invalid action, check cli.js to verify what you are doing');
 	process.exit();

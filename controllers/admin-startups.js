@@ -2,12 +2,10 @@
 var controller = require('stackers'),
 	db = require('../lib/db'),
 	Busboy = require('busboy'),
-	inspect = require('util').inspect,
 	path = require('path'),
 	_ = require('underscore'),
 	fs = require('fs');
 
-var User    = db.model('user');
 var Startup = db.model('startup');
 var Slug    = db.model('slug');
 var Batch    = db.model('batch');
@@ -34,6 +32,15 @@ adminStartUpsController.param('batch', function (batch, done) {
 	Batch.findOne({_id: db.Types.ObjectId(batch)}, done);
 });
 
+var getBatches = function(req, res, next){
+	Batch.find({active: true}, function(err, batches){
+		if(err){return res.sendError(500, err);}
+
+		res.data.batches = batches;
+		next();
+	});
+};
+
 adminStartUpsController.get('', function (req, res) {
 	res.data.breadcrumbs.push({
 		label : 'Startups'
@@ -58,14 +65,7 @@ adminStartUpsController.get('/add-from-angellist', function (req, res) {
 	res.render('admin-startups/angel-list-search');
 });
 
-adminStartUpsController.get('/new', function(req, res, next){
-	Batch.find({}, function(err, batches){
-		if(err){return res.sendError(500, err);}
-
-		res.data.batches = batches;
-		next();
-	});
-},function (req, res) {
+adminStartUpsController.get('/new', getBatches, function (req, res) {
 	res.data.breadcrumbs.push({
 		label : 'Startups',
 		url : '/admin/startups'
@@ -95,7 +95,7 @@ adminStartUpsController.get('/batches', function (req, res) {
 		label : 'Batches'
 	});
 
-	Batch.find({}, function(err, batches){
+	Batch.find({active:true}, function(err, batches){
 		res.render('admin-startups/batches', {batches:batches});
 	});
 });
@@ -141,15 +141,7 @@ adminStartUpsController.get('/batches/:batch', function (req, res) {
 	});
 });
 
-adminStartUpsController.get('/:currentStartup', function(req, res, next){
-	Batch.find({}, function(err, batches){
-		if(err){return res.sendError(500, err);}
-
-		res.data.batches = batches;
-		next();
-	});
-},
-function (req, res) {
+adminStartUpsController.get('/:currentStartup', getBatches, function (req, res) {
 	res.data.breadcrumbs.push({
 		label : 'Startups',
 		url : '/admin/startups'
@@ -256,6 +248,18 @@ adminStartUpsController.post('/batches/:batch/edit', function (req, res) {
 		if(err){ return res.sendError(500, err); }
 		req.flash('message', 'Saved sucessfully');
 		res.redirect('/admin/startups/batches/' + batch.id );
+	});
+});
+
+adminStartUpsController.post('/batches/:batch/delete', function (req, res) {
+	if(res.user.type !== 'admin'){return res.sendError(403);}
+	var batch = res.data.batch;
+
+	batch.active   = false;
+	batch.save(function(err){
+		if(err){ return res.sendError(500, err); }
+		req.flash('message', 'Deleted sucessfully');
+		res.redirect('/admin/startups/batches/');
 	});
 });
 

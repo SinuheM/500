@@ -1,6 +1,4 @@
 $(document).ready(function () {
-	console.log('Utils');
-
 	if($.fn.tagsInput){
 		$('.form-tags').tagsInput({
 			width:'auto',
@@ -8,9 +6,42 @@ $(document).ready(function () {
 		});
 	}
 
-	$('.image-uploader').each(function (i, item) {
-		console.log('Setting image-uploader for', item);
+	$('.char-counter').each(function(i, item){
+		var $item = $(item);
 
+		var $warning = $('<p><label class="warning"></label>(<label class="count"></label>)</p>');
+		var $label = $warning.find('.warning');
+		var $count = $warning.find('.count');
+		
+		var maxSize = $item.data('maxSize');
+		var remaing = maxSize - $item.val().length;
+
+		$warning.insertAfter($item);
+		$warning.css('margin-top', '10px');
+
+
+		$label.html('Max characters allows '+ maxSize);
+
+		$count.text(remaing);
+		if(remaing < 0){
+			$count.addClass('alert-danger');
+		}else{
+			$count.removeClass('alert-danger');
+		}
+
+		$item.on('keyup', function(){
+			var remaing = maxSize - $item.val().length;
+
+			$count.text(remaing);
+			if(remaing < 0){
+				$count.addClass('alert-danger');
+			}else{
+				$count.removeClass('alert-danger');
+			}
+		});
+	});
+
+	$('.image-uploader').each(function (i, item) {
 		var $item = $(item);
 		var $fileInput = $('<input id="uploader-'+ $item.attr('name') +'" type="file" name="'+ $item.attr('name') +'"/>');
 

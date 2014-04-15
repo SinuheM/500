@@ -3,7 +3,8 @@ var db = require('../lib/db'),
 
 var batchSchema = schema({
 	name         : {type : String, lowercase: true, require: true},
-	location     : {type : String}
+	location     : {type : String},
+	active       : {type : Boolean, default: true}
 });
 
 var Batch = db.model('batch', batchSchema);
