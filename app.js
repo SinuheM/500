@@ -28,7 +28,9 @@ var Slug = db.model('slug');
 
 // Static assets
 app.use(express.static('./public'));
-app.use(express.static('./static'));
+app.use('/css',express.static('./static/css'));
+app.use('/js',express.static('./static/js'));
+app.use('/img',express.static('./static/img'));
 
 // Template engine
 var swigHelpers = require('./views/helpers');
@@ -83,6 +85,7 @@ loginController(app);
 adminController(app);
 
 app.get('/', function (req, res) {
+	console.log('home index?');
 	res.render('home/index');
 });
 
