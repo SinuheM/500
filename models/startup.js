@@ -20,8 +20,12 @@ var startupSchema = schema({
 	funding     : [schema.Types.Mixed],
 	markets     : [{type : String}],
 	
-	batch       : {type : schema.Types.ObjectId, ref: 'batch' },
-	founders    : [{type : schema.Types.ObjectId, ref: 'user' }],
+	batch       : {type : schema.Types.ObjectId, ref: 'batch'},
+	founders    : [{type : schema.Types.ObjectId, ref: 'user'}],
+	updatedDate : {type : Date},
+	createdDate	: {type : Date, default: Date.now},
+	createdBy   : {type : schema.Types.ObjectId, ref: 'user'},
+	updatedBy   : {type : schema.Types.ObjectId, ref: 'user'},
 
 	// angellist, crunchbase, twitter, blog, youtube
 	socialContacts : [schema.Types.Mixed],
@@ -32,6 +36,12 @@ var startupSchema = schema({
 
 startupSchema.plugin(Slug.plugIt, {type: 'startup', slugFrom : 'name' });
 startupSchema.plugin(mongoosastic);
+
+startupSchema.pre('save', function (next) {
+	this.updatedDate = new Date();
+
+	next();
+});
 
 var Startup = db.model('startup', startupSchema);
 var angelListApi = require('../lib/angelListApi');

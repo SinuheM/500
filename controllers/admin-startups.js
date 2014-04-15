@@ -196,6 +196,8 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
 		startup.video   = fields.video;
+		startup.createdBy = res.user;
+		startup.updatedBy = res.user;
 
 		if(fields.batch){
 			startup.batch   = fields.batch;
@@ -299,6 +301,7 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
 		startup.video   = fields.video;
+		startup.updatedBy = res.user;
 
 		if(fields.markets){
 			startup.markets = fields.markets.split(',');

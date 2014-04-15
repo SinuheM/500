@@ -1,0 +1,165 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500.co</title>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" href="/css/500.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <header id="int" class="fixed">
+        <div id="logo">
+            <a href="/">
+                <img class="black" src="img/500-black.png" alt="500">
+            </a>
+        </div>
+        <nav>
+            <a href="">ABOUT</a>
+            <a href="">ACCELERATOR</a>
+            <a href="" class="active">PORTFOLIO</a>
+            <a href="">MENTORS</a>
+            <a href="">EVENTS</a>
+            <a href="">ACTIVITY</a>
+        </nav>
+    </header>
+    <section id="portfolio">
+        <div id="search">
+            <div class="center">
+                <div class="container">
+                    <h4>Search the 500+ companies in our portfolio</h4>
+                    <input type="search" placeholder="search">
+                    <p><span>Try makerbot, education, China</span></p>
+                    <ul id="filter" style="visibility: hidden;">
+                        <li>Filter results by:</li>
+                        <li class="drop">
+                            <span>Investment Themes</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop">
+                            <span>Batch</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop active">
+                            <span>Business Model</span>
+                            <ul class="submain">
+                                <li><a href="">B2B</a></li>
+                                <li class="active"><a href="">B2C</a></li>
+                                <li class="active"><a href="">B2B2C</a></li>
+                                <li><a href="">Marketplace</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop">
+                            <span>Locations</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop">
+                            <span>Stages</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop">
+                            <span>Status</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div id="starters">
+            <div class="center">
+                <ul class="card">
+                    {% for startup in startups %}
+                    <li>
+                    	<a href="/{{startup.slugStr}}">
+	                        <div class="content">
+	                            <img src="{{startup.logo}}">
+	                            <p class="title">{{startup.name}}</p>
+	                            <p class="detail">{{startup.excerpt}}</p>
+	                            <p>{{startup.description}}</p>
+	                            {% if startup.batch %}
+	                            <p class="footer">{{startup.batch.name}}</p>
+	                            {% endif %}
+	                        </div>
+                    	</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="center">
+            <div class="row-2">
+                <a href="/"><img src="img/500-white.png"></a>
+            </div>
+            <div class="row-3">
+                <nav>
+                    <a href="">ABOUT</a>
+                    <a href="">ACCELERATOR</a>
+                    <a href="">PORTFOLIO</a>
+                    <a href="">MENTORS</a>
+                    <a href="">EVENTS</a>
+                    <a href="">ACTIVITY</a>
+                </nav>
+            </div>
+            <div class="row-3">
+                <ul class="pin">
+                    <li>
+                        <p>Mexico City</p>
+                        <p>Chihuahua 230, Colonia Roma, México, Distrito Federal 06700</p>
+                    </li>
+                    <li>
+                        <p>Silicon Valley</p>
+                        <p>444 Castro St, Suite 1200, Mountain View, CA 9404</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="row-4">
+                <ul id="social">
+                    <li><a href=""><img src="img/facebook.png"></a></li>
+                    <li><a href=""><img src="img/twitter.png"></a></li>
+                    <li><a href=""><img src="img/linkedin.png"></a></li>
+                    <li><a href=""><img src="img/youtube.png"></a></li>
+                    <li><a href=""><img src="img/gplus.png"></a></li>
+                </ul>
+                <div class="clearfix"></div>
+                <p>©2010–2014 500 Startups | <a href="">Legal</a></p>
+                <img src="img/partners/goco-footer.jpg">
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
+<script src="js/500.js"></script>
+</body>
+</html>

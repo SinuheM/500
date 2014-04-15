@@ -20,10 +20,15 @@ Controller.on('error', function (statusCode, error) {
 var db = require('./lib/db');
 db.loadModels(['slug', 'user', 'startup', 'activity', 'batch']);
 
+// Load renderes for reserved slugs
+var renderer = require('./lib/renderer');
+renderer.load(['startups']);
+
 var Slug = db.model('slug');
 
 // Static assets
 app.use(express.static('./public'));
+app.use(express.static('./static'));
 
 // Template engine
 var swigHelpers = require('./views/helpers');
@@ -85,6 +90,11 @@ app.get('/:slug', function (req, res) {
 	Slug.getResourceBySlug(req.params.slug, function(err, data){
 		if(err) {return res.send(500, err);}
 		if(!data) {return res.send(404, 'not found');}
+
+		if(data.type === 'reserved'){
+			var render = renderer.get(req.params.slug);
+			return render(req, res);
+		}
 
 		if(data.type === 'activity'){
 			return res.redirect(data.resource.url);
