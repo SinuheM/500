@@ -51,7 +51,7 @@ section#team ul li {}
 section#team ul li a {color: #b43322; font-size: 0.7rem; text-decoration: underline;}
 section#team #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative;}
 section#team #team-list .center {position: relative; z-index: 10}
-section#team #team-list ul {margin: 0 7.5%; list-style: none; position: absolute; top: 0;}
+section#team #team-list ul {margin: 0; list-style: none; position: absolute; top: 0;}
 section#team #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
 section#team #team-list ul li img {width: 100%}
 section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0;}

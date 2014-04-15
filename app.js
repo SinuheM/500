@@ -22,7 +22,7 @@ db.loadModels(['slug', 'user', 'startup', 'activity', 'batch']);
 
 // Load renderes for reserved slugs
 var renderer = require('./lib/renderer');
-renderer.load(['startups']);
+renderer.load(['startups', 'home']);
 
 var Slug = db.model('slug');
 
@@ -85,8 +85,8 @@ loginController(app);
 adminController(app);
 
 app.get('/', function (req, res) {
-	console.log('home index?');
-	res.render('home/index');
+	var render = renderer.get('home');
+	render(req, res);
 });
 
 app.get('/:slug', function (req, res) {
