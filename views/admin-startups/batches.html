@@ -41,7 +41,6 @@
 <script>
 $(document).ready(function(){	
 	$('.table-clickable').on('click', 'tbody tr', function(e){
-		debugger
 		var $row = $(e.currentTarget);
 
 		window.location = '/admin/startups/batches/' + $row.data('id');

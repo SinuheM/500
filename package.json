@@ -17,7 +17,8 @@
     "async": "~0.2.10",
     "inquirer": "~0.4.1",
     "underscore.string": "~2.3.3",
-    "mongoosastic": "~0.2.6"
+    "mongoosastic": "~0.2.6",
+    "busboy": "~0.2.3"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

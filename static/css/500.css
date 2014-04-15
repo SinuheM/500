@@ -1,0 +1,158 @@
+/*
+	Autor: Manu Uribe
+		   manucrea.com
+*/
+
+body {font-family: 'Open Sans', sans-serif;}
+h1 {font-size: 5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
+h2 {font-size: 4.5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
+h3 {font-size: 2.5rem}
+h4 {font-size: 2rem}
+h5 {font-size: 1.3rem}
+p {font-size: 1.25rem; margin: 0.25rem; font-weight: 300;}
+a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+.clearfix {clear: both;}
+
+::selection {background: #b43322; color: #F0F0F0;}
+::-moz-selection {background: #b43322; color: #F0F0F0;}
+
+header {font-weight: 300; position: absolute; z-index: 100; bottom: 0; padding-left: 1.25em; margin: 1.25em 0; height: 65px; border-left-style: solid; border-left-width: 8px; border-left-color: #FFF; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+header#int {position: absolute; top: 0}
+header#int nav a:hover, header#int nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem;}
+header#fixadent {bottom: 0;}
+header #logo {float: left;}
+header #logo a {display: block;}
+header#fixadent #logo .black {display: none;}
+header #logo .white {}
+header nav {float: left; margin: 1.5em 0 1.5em 1.5em;}
+header nav a {color: #222; margin: 0 1em;}
+header#fixadent nav a {color: #FFF;}
+header#fixadent.fixed nav a:hover, header#fixadent.fixed nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+
+.center {margin: 0 auto; max-width: 960px;}
+section {}
+
+#fixadent.fixed {border-left-color: #000;}
+#fixadent.fixed a {color: #222}
+#fixadent.fixed #logo .white {display: none;}
+#fixadent.fixed #logo .black {display: block;}
+header nav a:hover, header nav a.active {color: #f2f2f2; border-bottom: solid 4px #f2f2f2; padding-bottom: 0.5rem;}
+
+section#home {background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center;}
+section#home .center {padding-top: 25%}
+section#home h1 {color: #FFF;}
+section#entrepreneurs {text-align: center; padding: 8em 0 5em;}
+section#entrepreneurs iframe {margin: 2em 0; max-width: 785px; width: 95%}
+section#team {padding: 5em 0 1em;}
+section#team ul#date-500 {max-width: 960px; margin: 0 auto; list-style: none; text-align: center;}
+section#team ul#date-500 li {float: left; width: 33%;}
+section#team ul {}
+section#team ul li {}
+section#team ul li a {color: #b43322; font-size: 0.7rem; text-decoration: underline;}
+section#team #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative;}
+section#team #team-list .center {position: relative; z-index: 10}
+section#team #team-list ul {margin: 0 7.5%; list-style: none; position: absolute; top: 0;}
+section#team #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
+section#team #team-list ul li img {width: 100%}
+section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0;}
+section#help-startups h5 {margin-left: 1rem}
+section#help-startups p {font-size: 1rem}
+section#help-startups ul {margin: 3rem 0; list-style: none;}
+section#help-startups ul li {float: left; width: 33.33%; margin-bottom: 3rem; font-size: 0.75rem}
+section#help-startups a {color: #b43322; text-decoration: underline;}
+section#help-startups .clearfix {margin: 5rem 0}
+section#help-startups h4 {margin-bottom: 4rem}
+section#amazing {text-align: center; padding: 4rem 0; margin: 1rem 0}
+section#amazing p.sub {margin-top: 3rem; font-size: 1rem}
+section#legal {background-image: url(../img/bg-legal.jpg); background-repeat: repeat-x; background-position: top center; background-color: #f2f2f2; padding: 10rem 0}
+section#legal .center {background-color: #FFF; padding: 5rem; border: solid 1px #999;}
+section#legal h3 {text-align: center; margin-bottom: 5rem}
+section#legal p {font-size: 1rem; margin-bottom: 2rem}
+section#activity {padding: 10rem 0 3rem}
+section#activity #activity-list {margin: 5rem 0 0; list-style: none; background-image: url(../img/activity-line.jpg); background-repeat: repeat-y; background-position: left center;}
+section#activity #activity-list li {display: inline-block; margin-bottom: 3rem; width: 100%}
+section#activity #activity-list li .row-2 {text-align: center; position: relative;}
+section#activity #activity-list li .row-2 span {}
+section#activity #activity-list li .row-2 span.icon {float: right;}
+section#activity #activity-list li .row-2 span img {}
+section#activity #activity-list li h5 span {}
+section#activity #activity-list li .info {}
+section#activity #activity-list li .info p {font-size: 1rem}
+section#activity #activity-list li .info img {float: left; width: 50%;}
+section#activity #activity-list li .info .detail {float: left; width: 50%; padding-left: 1rem}
+section#activity #activity-list li .info .detail.only {width: 100%}
+section#activity #activity-list li .meta {font-size: 0.65rem; margin-top: 0.5rem}
+section#activity #activity-list li .meta span {font-weight: 800}
+section#activity #activity-list li .meta a {text-decoration: underline;}
+section#activity #activity-list li .row-10 {padding-left: 2rem}
+section#portfolio {}
+section#portfolio #search {padding: 10rem 0 0;}
+section#portfolio #search .container {text-align: center;}
+section#portfolio #search .container input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 80%; margin: 3rem auto 0; padding: 0.5rem 0.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
+section#portfolio #search .container p {margin: 0.5rem auto 0; line-height: 1rem; width: 80%}
+section#portfolio #search .container p span {float: right; font-size: 0.85em; color: #ccc}
+section#portfolio #search .container #filter {margin: 6rem 0 0; list-style: none; text-align: left; position: relative;}
+section#portfolio #search .container #filter a {display: block;}
+section#portfolio #search .container #filter li {float: left; padding: 0 1.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+section#portfolio #search .container #filter li.drop.active {list-style-image: url(../img/list-active.png); list-style-position: inside; color: #222; background-image: url(../img/select-black.png);}
+section#portfolio #search .container #filter li ul li.drop.active a {padding: 0.5rem 0.5rem}
+section#portfolio #search .container #filter li.drop {color: #ccc; background-image: url(../img/select-gray.png); background-repeat: no-repeat; background-position: right center}
+section#portfolio #search .container #filter li.drop:hover {color: #222; background-image: url(../img/select-black.png);}
+section#portfolio #search .container #filter li.drop:hover .submain {display: block;}
+section#portfolio #search .container #filter li .submain {top: 25px; display: none; list-style: none; position: absolute; margin: 0; background-color: #FFF; z-index: 10; box-shadow: 0px 1px 5px rgba(0,0,0,0.25); -webkit-box-shadow: 0px 1px 5px rgba(0,0,0,0.25); -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.25); transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+section#portfolio #search .container #filter li .submain li {float: none; padding: 0;}
+section#portfolio #search .container #filter li .submain li.active {background-image: none; list-style-image: url(../img/list-active.png); list-style-position: inside;}
+section#portfolio #search .container #filter li .submain li a {padding: 0.5rem 1.5rem;}
+section#portfolio #search .container #filter li .submain li.active a {padding: 0.5rem;}
+section#portfolio #search .container #filter li .submain li a:hover {background-color: #ccc}
+section#portfolio #search .container #filter span {}
+section#portfolio #starters {background-color: #f2f2f2; padding: 3rem 0 6rem}
+
+.line {height: 8em}
+.line p {float: left; margin: 0; width: 50%}
+.line div {float: left; width: 25%}
+.line div img {display: inline-block;}
+.line div span {display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle;}
+#mapa {}
+#mapa img {width: 100%}
+.separator {border-bottom: solid 1px #ccc; margin: 4rem 0;}
+button.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322;}
+button.outline:hover {background-color: #b43322; color: #FFF}
+
+.row-2, .row-3, .row-4, .row-5, .row-7, .row-10 {float: left; vertical-align: top;}
+.row-2 {width: 16.6%}
+.row-3 {width: 24.9%}
+.row-4 {width: 33.2%}
+.row-5 {width: 41.5%; text-align: left;}
+.row-7 {width: 58.1%}
+.row-10 {width: 83%}
+
+.row-7 a {float: right; margin-right: 2.5rem}
+
+.card {margin: 2rem 0; list-style: none; text-align: center;}
+.card li {float: left; padding: 0.5rem; width: 25%; position: relative;}
+.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;}
+.card li img {margin: 4rem 0}
+.card li p {font-size: 0.85rem}
+.card li p.title {font-size: 1rem; font-weight: 600}
+.card li p.detail {font-size: 0.65rem}
+.card li p.footer {font-size: 0.85rem; color: #808080; margin: 2.5rem 0 0.25rem}
+
+.amazing-partners {margin: 1rem 0 6rem; list-style: none;}
+.amazing-partners li {display: inline-block;}
+.amazing-partners li img {}
+
+#social {list-style: none; margin: 0 0 4rem; float: right;}
+#social li {float: left; margin: 0 0.5rem}
+#social li a {}
+
+footer {background-color: #222; color: #FFF; padding: 6rem 0}
+footer nav {font-size: 1rem}
+footer nav a {color: #FFF; display: block; margin-bottom: 1.5rem; font-weight: 300}
+footer .pin {}
+footer .pin li {list-style-image: url(../img/pin.png); margin-bottom: 2rem}
+footer .pin li p {font-size: 0.8rem; line-height: 1rem; margin-bottom: 1rem}
+footer a {color: #FFF}
+footer a:hover {color: #f2f2f2}
+footer .row-4 {text-align: right;}
+footer .row-4 p {font-size: 0.85rem}

@@ -50,6 +50,8 @@ app.configure(function () {
 	app.use(express.cookieParser());
 	app.use(express.json());
 	app.use(express.urlencoded());
+	// app.use(express.multipart());
+
 	app.use(express.session({
 		store: new RedisStore(conf.redis.options),
 		secret: conf.redis.secret

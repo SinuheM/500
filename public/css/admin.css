@@ -113,6 +113,17 @@ body > section .logopanel img {
 #loader label {
   color: #999;
 }
+.image-uploader {
+  padding: 10px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 3px;
+}
+.image-uploader img {
+  max-width: 100%;
+}
 .table-clickable td {
   cursor: pointer;
 }

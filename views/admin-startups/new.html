@@ -1,8 +1,9 @@
 {% extends '../layouts/admin.html' %}
 
-{% block title %}User list{% endblock %}
+{% block title %}Add start up{% endblock %}
 
 {% block head %}
+	<link rel="stylesheet" href="/css/jquery.tagsinput.css" />
 {% endblock %}
 
 {% block header %}
@@ -11,7 +12,7 @@
 
 {% block content %}
 <div class="panel panel-dark">
-	<form class="form-horizontal form-bordered" method="post" action="/admin/startups/new">
+	<form id="create-startup" class="form-horizontal form-bordered" method="post" action="/admin/startups/new" enctype="multipart/form-data">
 		<div class="panel-heading">
 			<h4 class="panel-title">Startup information</h4>
 		</div>
@@ -50,9 +51,35 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-3 control-label">Logo</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="logo">
+						<img src="{{angelListStartUp.logo}}"/>
+					</div>
+					<input name="remoteLogoUrl" value="{{angelListStartUp.logo}}" type="hidden">
+				</div>
+			</div>		
+			<div class="form-group">
 				<label class="col-sm-3 control-label">Video</label>
 				<div class="col-sm-6">
 					<input name="video" type="text" class="form-control" value="{{angelListStartUp.video}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Batch</label>
+				<div class="col-sm-6">
+					<select name="batch" class="form-control input-sm mb15">
+						<option value=""></option>
+						{% for batch in batches %}
+						<option value="{{batch.id}}">{{batch.name}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Markets</label>
+				<div class="col-sm-6">
+					<input name="markets" class="form-control form-tags" value="{{currentStartup.markets|join(',')}}" placeholder="Add markets"/>
 				</div>
 			</div>			
 		</div>
@@ -68,7 +95,14 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
+$('#create-startup').on('submit', function (e) {
+	var $logoUploader = $('#create-startup #uploader-logo');
 
+	if($logoUploader.val() === ''){
+		$logoUploader.remove();
+	}
+});
 </script>
 {% endblock %}

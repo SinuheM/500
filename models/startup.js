@@ -18,9 +18,9 @@ var startupSchema = schema({
 	investmentType : {type : String}, // seed, acceleration
 
 	funding     : [schema.Types.Mixed],
-	market      : [{type : String}],
+	markets     : [{type : String}],
 	
-	batch       : {type : String}, // link to batch model
+	batch       : {type : schema.Types.ObjectId, ref: 'batch' },
 	founders    : [{type : schema.Types.ObjectId, ref: 'user' }],
 
 	// angellist, crunchbase, twitter, blog, youtube

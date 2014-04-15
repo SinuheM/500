@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block header %}
-	Batches
+	{% if batch %}
+		{{batch.name}}
+	{% else %}
+		New batch
+	{% endif %}		
 {% endblock %}
 
 {% block content %}
@@ -22,11 +26,6 @@
 	<strong>Saved!</strong> {{message}}.
 </div>
 {% endif %}
-<div class="row list-header">
-	<div class="col-xs-6">
-		<p class="title">Add batch.</p>
-	</div>
-</div>
 <div class="panel panel-dark">
 	{% if batch %}
 	<form class="form-horizontal form-bordered" method="post" action="/admin/startups/batches/{{batch.id}}/edit">

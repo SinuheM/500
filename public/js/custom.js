@@ -268,7 +268,5 @@ jQuery(document).ready(function() {
    // Handles form inside of dropdown 
    jQuery('.dropdown-menu').find('form').click(function (e) {
       e.stopPropagation();
-    });
-      
-
+   });
 });

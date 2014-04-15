@@ -3,13 +3,14 @@
 {% block title %}User list{% endblock %}
 
 {% block head %}
+	<link rel="stylesheet" href="/css/jquery.tagsinput.css" />
 {% endblock %}
 
 {% block header %}
 	{% if currentStartup.avatar %}
 		<img class="logo" src="{{currentStartup.logo}}">
 	{% else %}
-		<i class="fa fa-user"></i>
+		<i class="fa fa-building-o"></i>
 	{% endif %}
 	{{currentStartup.name}} <span><a class="resorce-slug" href="/{{currentStartup.slugStr}}" target="_blank">500.co/{{currentStartup.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
 {% endblock %}
@@ -26,7 +27,7 @@
 </div>
 {% endif %}
 <div class="panel panel-dark">
-	<form class="form-horizontal form-bordered" method="post" action="/admin/startups/{{currentStartup.id}}/edit">
+	<form id="update-startup" class="form-horizontal form-bordered" method="post" action="/admin/startups/{{currentStartup.id}}/edit" enctype="multipart/form-data">
 		<div class="panel-heading">
 			<h4 class="panel-title">Startup information</h4>
 		</div>
@@ -56,11 +57,36 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-sm-3 control-label">Logo</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="logo">
+						<img src="{{currentStartup.logo}}"/>
+					</div>
+				</div>
+			</div>			
+			<div class="form-group">
 				<label class="col-sm-3 control-label">Video</label>
 				<div class="col-sm-6">
 					<input name="video" type="text" class="form-control" value="{{currentStartup.video}}">
 				</div>
-			</div>			
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Batch</label>
+				<div class="col-sm-6">
+					<select name="batch" class="form-control input-sm mb15">
+						<option value=""></option>
+						{% for batch in batches %}
+						<option value="{{batch.id}}" {% if batch.id == currentStartup.batch %} selected="true"{% endif %}>{{batch.name}}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Markets</label>
+				<div class="col-sm-6">
+					<input name="markets" class="form-control form-tags" value="{{currentStartup.markets|join(',')}}" placeholder="Add markets"/>
+				</div>
+			</div>
 		</div>
 		<div class="panel-footer">
 			<div class="row">
@@ -74,8 +100,15 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
 <script type="text/javascript">
+$('#update-startup').on('submit', function (e) {
+	var $logoUploader = $('#update-startup #uploader-logo');
 
+	if($logoUploader.val() === ''){
+		$logoUploader.remove();
+	}
+});
 </script>
 {% endblock %}
