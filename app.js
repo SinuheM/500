@@ -22,7 +22,7 @@ db.loadModels(['slug', 'user', 'startup', 'activity', 'batch']);
 
 // Load renderes for reserved slugs
 var renderer = require('./lib/renderer');
-renderer.load(['startups', 'home']);
+renderer.load(['startups', 'startup', 'home']);
 
 var Slug = db.model('slug');
 
@@ -94,9 +94,16 @@ app.get('/:slug', function (req, res) {
 		if(err) {return res.send(500, err);}
 		if(!data) {return res.send(404, 'not found');}
 
+		var render;
+
 		if(data.type === 'reserved'){
-			var render = renderer.get(req.params.slug);
+			render = renderer.get(req.params.slug);
 			return render(req, res);
+		}
+
+		if(data.type === 'startup'){
+			render = renderer.get('startup');
+			return render(req, res, data);
 		}
 
 		if(data.type === 'activity'){

@@ -1,3 +1,5 @@
+var url = require('url');
+
 var helpers = function(swig){
 	swig.setFilter('slugPlaceholder', function (provider) {
 		if(provider === 'twitter'){
@@ -17,6 +19,12 @@ var helpers = function(swig){
 		}else{
 			return provider;
 		}
+	});
+
+	swig.setFilter('domain', function (urlStr) {
+		var location = url.parse(urlStr);
+
+		return location.hostname.toLowerCase();
 	});
 };
 

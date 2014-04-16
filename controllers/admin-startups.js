@@ -302,9 +302,12 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	busboy.on('finish', function() {
 		startup.name    = fields.name;
 		startup.url     = fields.url;
+		startup.title   = fields.title;
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
-		startup.video   = fields.video;
+		startup.video     = fields.video;
+		startup.location  = fields.location;
+		startup.size      = fields.size;
 		startup.updatedBy = res.user;
 
 		if(fields.markets){
@@ -317,8 +320,6 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 
 		if(useLocalLogo){
 			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + extension );
-		}else{
-			startup.logo = fields.remoteLogoUrl;
 		}
 
 		startup.save(function(err){
