@@ -305,17 +305,20 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		startup.title   = fields.title;
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
-		startup.video     = fields.video;
 		startup.location  = fields.location;
 		startup.size      = fields.size;
 		startup.updatedBy = res.user;
 
+		if(fields.video){
+			startup.video = fields.video;
+			startup.embed = null;
+		}
 		if(fields.markets){
 			startup.markets = fields.markets.split(',');
 		}
 
 		if(fields.batch){
-			startup.batch   = fields.batch;
+			startup.batch = fields.batch;
 		}
 
 		if(useLocalLogo){

@@ -123,11 +123,10 @@ section#startup #top-head .container .social li {display: inline-block; margin: 
 section#startup #top-head .container .social li a {}
 section#startup #top-head .container .social li a img {}
 section#startup #detail {position: relative; background-color: #f2f2f2; padding-bottom: 10em}
-section#startup #detail.video {padding-top: 15em}
+section#startup #detail.video {padding-top: 17em}
 section#startup #detail .center {position: relative;}
 section#startup #detail .video {text-align: center; position: absolute; margin: 0 auto; top: -30em; width: 100%}
-section#startup #detail .video iframe {width: 100%}
-section#startup #detail .info {margin: 3em 0}
+section#startup #detail .info {margin: 0}
 section#startup #detail .info .company {display: inline-block; width: 38%; vertical-align: top; background-color: #FFF; padding: 2em; border: solid 1px #ccc; margin-right: 3em}
 section#startup #detail .info .company h4 {margin-bottom: 1em}
 section#startup #detail .info .company div {margin-bottom: 1em}

@@ -1,4 +1,5 @@
 var db = require('../lib/db'),
+	embedlyApi = require('../lib/embedlyApi'),
 	mongoosastic = require('mongoosastic'),
 	schema = db.Schema,
 	async = require('async'),
@@ -13,10 +14,12 @@ var startupSchema = schema({
 	title       : {type : String, max: 50},
 	excerpt     : {type : String, max: 250},
 	description : {type : String},
-	video       : {type : String},
 	location    : {type : String},
 	size        : {type : String},
 	investmentType : {type : String}, // seed, acceleration
+
+	video       : {type : String},
+	embed       : {type : String}, // Clear to refetch
 
 	funding     : [schema.Types.Mixed],
 	markets     : [{type : String}],
@@ -38,10 +41,28 @@ var startupSchema = schema({
 startupSchema.plugin(Slug.plugIt, {type: 'startup', slugFrom : 'name' });
 startupSchema.plugin(mongoosastic);
 
+// Update date
 startupSchema.pre('save', function (next) {
 	this.updatedDate = new Date();
 
 	next();
+});
+
+// Get video embed if needed
+startupSchema.pre('save', function (next) {
+	var self = this;
+
+	if(this.video && !this.embed){
+		embedlyApi.getEmbed(this.video, '740', function(err, embed){
+			if(err){return next(err);}
+
+			self.embed = embed;
+
+			next();
+		});
+	}else{
+		next();
+	}
 });
 
 var Startup = db.model('startup', startupSchema);
