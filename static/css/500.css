@@ -150,7 +150,7 @@ section#portfolio.team #search h6 {margin: 4em 0 0}
 section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
 section#portfolio #mentors.team500 {padding: 3rem 0 10rem}
 section#portfolio #mentors h6 {text-align: center; position: relative; top: -2rem}
-section#portfolio #mentors ul {margin: 0; position: relative; list-style: none;}
+section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 10}
 section#portfolio #mentors ul.up {top: -10rem}
 section#portfolio #mentors ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #mentors ul li a {display: block;}
