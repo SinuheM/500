@@ -97,10 +97,12 @@
                     <li>
                     	<a href="/{{startup.slugStr}}">
 	                        <div class="content">
-	                            <img src="{{startup.logo}}">
+                                <div class="image-container">
+                                    <img src="{{startup.logo}}">
+                                </div>
 	                            <p class="title">{{startup.name}}</p>
-	                            <p class="detail">{{startup.excerpt}}</p>
-	                            <p>{{startup.description}}</p>
+	                            <p class="detail">{{startup.title}}</p>
+	                            <p>{{startup.excerpt}}</p>
 	                            {% if startup.batch %}
 	                            <p class="footer">{{startup.batch.name}}</p>
 	                            {% endif %}
@@ -119,6 +121,5 @@
 <script>
     $(document).foundation();
 </script>
-<script src="/js/500.js"></script>
 </body>
 </html>

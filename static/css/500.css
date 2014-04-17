@@ -167,12 +167,14 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 
 .card {margin: 2rem 0; list-style: none; text-align: center;}
 .card li {float: left; padding: 0.5rem; width: 25%; position: relative;}
-.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;}
-.card li img {margin: 4rem 0}
+.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;height: 410px;}
+.card li .image-container {height: 200px;display: table-cell;vertical-align: middle;}
+.card li img {}
 .card li p {font-size: 0.85rem}
 .card li p.title {font-size: 1rem; font-weight: 600}
-.card li p.detail {font-size: 0.65rem}
-.card li p.footer {font-size: 0.85rem; color: #808080; margin: 2.5rem 0 0.25rem}
+.card li p.detail {font-size: 0.65rem;margin-bottom: .8em; font-weight: bold; text-transform: capitalize;}
+.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 900;position: absolute;bottom: 20px;left: 0;width: 100%;}
+.startup-card li .content: {height: 420px}
 
 .amazing-partners {margin: 1rem 0 6rem; list-style: none;}
 .amazing-partners li {display: inline-block;}
