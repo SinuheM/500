@@ -135,7 +135,6 @@ adminUsersController.post('/new', function (req, res) {
 		user.save(saveHandler);
 	}
 });
-	
 
 adminUsersController.post('/:currentUser/edit', function (req, res) {
 	var currentUser = res.data.currentUser;

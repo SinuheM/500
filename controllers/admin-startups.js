@@ -74,15 +74,27 @@ adminStartUpsController.get('/new', getBatches, function (req, res) {
 		label : 'Add Startup'
 	});
 
+	// angellist, crunchbase, twitter, blog, youtube
 	if(req.query.angelListId){
 		angelListApi.getStatUpInfo(req.query.angelListId, function(err, data){
 			if(err){return res.sendError(500, err);}
 
 			data.slug = Slug.slugify(data.name);
-			res.render('admin-startups/new', {angelListStartUp : data});
+			data.description = data.description !== null ? data.description : '';
+			data.video = data.video !== null ? data.video : '';
+
+			res.render('admin-startups/new', {angelListStartUp : data, socialProfiles: data.socialContacts});
 		});
 	}else{
-		res.render('admin-startups/new');
+		res.render('admin-startups/new',{
+			socialProfiles : [
+				{provider:'angellist'},
+				{provider:'crunchbase'},
+				{provider:'twitter'},
+				{provider:'blog'},
+				{provider:'youtube'}
+			]
+		});
 	}
 });
 
@@ -185,6 +197,7 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.name    = fields.name;
 		startup.slugStr = fields.slug;
 		startup.url     = fields.url;
+		startup.investmentStatus = fields.investmentStatus;
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
 		startup.video   = fields.video;
@@ -204,6 +217,12 @@ adminStartUpsController.post('/new', function (req, res) {
 		}else{
 			startup.logo = fields.remoteLogoUrl;
 		}
+
+		startup.socialProfiles.push({provider:'twitter', url:fields.twitter});
+		startup.socialProfiles.push({provider:'crunchbase', url:fields.crunchbase});
+		startup.socialProfiles.push({provider:'angellist', url:fields.angellist});
+		startup.socialProfiles.push({provider:'blog', url:fields.blog});
+		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
 
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }
@@ -324,6 +343,13 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		if(useLocalLogo){
 			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + extension );
 		}
+
+		startup.socialProfiles = [];
+		startup.socialProfiles.push({provider:'twitter', url:fields.twitter});
+		startup.socialProfiles.push({provider:'crunchbase', url:fields.crunchbase});
+		startup.socialProfiles.push({provider:'angellist', url:fields.angellist});
+		startup.socialProfiles.push({provider:'blog', url:fields.blog});
+		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
 
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }

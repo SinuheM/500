@@ -11,12 +11,13 @@ var startupSchema = schema({
 	name        : {type : String},
 	url         : {type : String},
 	logo        : {type : String},
-	title       : {type : String, max: 50},
-	excerpt     : {type : String, max: 250},
+	excerpt     : {type : String, max: 64},
 	description : {type : String},
 	location    : {type : String},
 	size        : {type : String},
-	investmentType : {type : String}, // seed, acceleration
+
+	investmentType   : {type : String, max: 50}, // seed, acceleration
+	investmentStatus : {type : String}, // seed, acceleration
 
 	video       : {type : String},
 	embed       : {type : String}, // Clear to refetch
@@ -32,7 +33,7 @@ var startupSchema = schema({
 	updatedBy   : {type : schema.Types.ObjectId, ref: 'user'},
 
 	// angellist, crunchbase, twitter, blog, youtube
-	socialContacts : [schema.Types.Mixed],
+	socialProfiles : [schema.Types.Mixed],
 
 	angelListData : schema.Types.Mixed,
 	active : {type : Boolean}

@@ -5,21 +5,45 @@ var helpers = function(swig){
 		if(provider === 'twitter'){
 			return '@';
 		}else if(provider === 'facebook'){
-			return 'http://facebook.com/';
-			// return url.replace(/https?:\/\/www.facebook.com\//, '').toLowerCase();
+			return 'facebook.com/';
 		}else if(provider === 'github'){
-			return 'https://github.com/';
-			// return url.replace(/https?:\/\/github.com\//, '').toLowerCase();
+			return 'github.com/';
 		}else if(provider === 'linkedin'){
-			return 'https://www.linkedin.com/in/';
-			// return url.replace(/https?:\/\/www.linkedin.com\/in\//, '').toLowerCase();
+			return 'www.linkedin.com/in/';
 		}else if(provider === 'aboutme'){
-			return 'http://aboutme.com/';
-			// return url.replace(/https?:\/\/about.me\//, '').toLowerCase();
+			return 'aboutme.com/';
+		}else if(provider === 'angellist'){
+			return 'angel.co/';
+		}else if(provider === 'crunchbase'){
+			return 'www.crunchbase.com/company/';
+		}else if(provider === 'youtube'){
+			return 'www.youtube.com/user/';
 		}else{
 			return provider;
 		}
 	});
+
+	swig.setFilter('socialUrl', function (url, provider) {
+		if(provider === 'twitter'){
+			return 'http://twitter.com/' + url;
+		}else if(provider === 'facebook'){
+			return 'facebook.com/';
+		}else if(provider === 'github'){
+			return 'github.com/';
+		}else if(provider === 'linkedin'){
+			return 'www.linkedin.com/in/';
+		}else if(provider === 'aboutme'){
+			return 'aboutme.com/';
+		}else if(provider === 'angellist'){
+			return 'https://angel.co/' + url;
+		}else if(provider === 'crunchbase'){
+			return 'http://www.crunchbase.com/company/' + url;
+		}else if(provider === 'youtube'){
+			return 'http://www.youtube.com/user/' + url;
+		}else{
+			return url;
+		}
+	});	
 
 	swig.setFilter('domain', function (urlStr) {
 		var location = url.parse(urlStr);

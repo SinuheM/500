@@ -114,4 +114,8 @@ app.get('/:slug', function (req, res) {
 	});
 });
 
+// Create upload folder if it doesnt exist
+var mkdirp = require('mkdirp');
+mkdirp('./public/uploads');
+
 app.listen(3000);
