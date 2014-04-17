@@ -92,7 +92,7 @@ section#portfolio #search .container {text-align: center;}
 section#portfolio #search .container input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 80%; margin: 3rem auto 0; padding: 0.5rem 0.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
 section#portfolio #search .container p {margin: 0.5rem auto 0; line-height: 1rem; width: 80%}
 section#portfolio #search .container p span {float: right; font-size: 0.85em; color: #ccc}
-section#portfolio #search .container #filter {margin: 6rem 0 0; list-style: none; text-align: left; position: relative;}
+section#portfolio #search .container #filter {margin: 6rem 0 0; list-style: none; text-align: left; position: relative; font-size: 0.95rem}
 section#portfolio #search .container #filter a {display: block;}
 section#portfolio #search .container #filter li {float: left; padding: 0 1.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 section#portfolio #search .container #filter li.drop.active {list-style-image: url(../img/list-active.png); list-style-position: inside; color: #222; background-image: url(../img/select-black.png);}
@@ -143,6 +143,51 @@ section#startup #detail .founders ul li img {display: inline-block; vertical-ali
 section#startup #detail .founders ul li .perfil {display: inline-block; width: 70%; vertical-align: top; margin-left: 0.5em}
 section#startup #detail .founders ul li h5 {margin: 0.25em 0; line-height: 1em; font-size: 1.1em}
 section#startup #detail .founders ul li h6 {color: #666}
+section#portfolio.mentors #search {padding: 10rem 0;}
+section#portfolio.team #search {padding: 10rem 0 8rem;}
+section#portfolio.team #search p {line-height: 1.5rem}
+section#portfolio.team #search h6 {margin: 4em 0 0}
+section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
+section#portfolio #mentors.team500 {padding: 3rem 0 10rem}
+section#portfolio #mentors h6 {text-align: center; position: relative; top: -2rem}
+section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 10}
+section#portfolio #mentors ul.up {top: -10rem}
+section#portfolio #mentors ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
+section#portfolio #mentors ul li a {display: block;}
+section#portfolio #mentors ul li a:hover {background-color: #252525; color: #FFF}
+section#portfolio #mentors ul li a:hover p.role {color: #ccc}
+section#portfolio #mentors ul li img {}
+section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0.75rem}
+section#portfolio #mentors ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
+section#portfolio #mentors ul li .content p.role {color: #666; text-transform: uppercase; font-size: 0.55rem;}
+section#mentor-single {padding-top: 11em}
+section#mentor-single .center {width: 50%; position: relative;}
+section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
+section#mentor-single .archive .head-info {position: relative; top: -2.5em}
+section#mentor-single .archive .head-info .image-container {display: inline-block; width: 30%; vertical-align: top;}
+section#mentor-single .archive .head-info .image-container img {}
+section#mentor-single .archive .head-info .name {display: inline-block; width: 68%; vertical-align: bottom; padding-left: 1rem;}
+section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em}
+section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #ccc; font-size: 1rem; font-weight: 600; margin: 0;}
+section#mentor-single .archive .info {font-weight: 300}
+section#mentor-single .archive .info li {}
+section#mentor-single .archive .info li.location {list-style-image: url(../img/black-pin.png);}
+section#mentor-single .archive .info li.web {list-style-image: url(../img/home.png);}
+section#mentor-single .archive h6 {font-family: 'Open Sans', sans-serif; font-size: 1.2rem;}
+section#mentor-single .archive .expertise {margin: 0; list-style: none;}
+section#mentor-single .archive .expertise li {float: left; background-color: #f1f1f1; font-weight: 300; padding: 0.15rem 0.5rem; border: solid 1px #e0e0e0; margin-right: 0.5rem;}
+section#mentor-single .archive p {font-size: 1rem; margin: 2rem 0.25rem}
+section#mentor-single .archive .social-connect {margin: 0; line-height: 1rem}
+section#mentor-single .archive .social-connect li {display: inline-block; margin-right: 0.5rem}
+section#mentor-single .archive .social-connect li a {}
+section#mentor-single .archive .social-connect li a img {}
+section#mentor-single .next-mentor {float: right; width: 2%; height: 100%; position: absolute; right: 0; padding-top: 0.75em;}
+section#mentor-single .next-mentor a {display: block; background-color: #fff; border-right: solid 1px #ccc; height: 100%; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;}
+section#mentor-single .next-mentor a:hover {background-color: #ccc}
+section#mentor-single .next-mentor a img {height: 100%; width: 100%;}
+
+body.layer-single {background-color: #f2f2f2}
+header#int.simple {background-color: transparent;}
 
 .line {height: 8em}
 .line p {float: left; margin: 0; width: 50%}
