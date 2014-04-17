@@ -117,12 +117,12 @@ adminUsersController.post('/new', function (req, res) {
 		username: req.body.email
 	});
 
-	user.socialContacts.push({provider:'twitter', url:req.body.twitter});
-	user.socialContacts.push({provider:'facebook', url:req.body.facebook});
-	user.socialContacts.push({provider:'github', url:req.body.github});
-	user.socialContacts.push({provider:'linkedin', url:req.body.linkedin});
-	user.socialContacts.push({provider:'aboutme', url:req.body.aboutme});
-	user.socialContacts.push({provider:'blog', url:req.body.blog});
+	user.profiles.push({provider:'twitter', url:req.body.twitter});
+	user.profiles.push({provider:'facebook', url:req.body.facebook});
+	user.profiles.push({provider:'github', url:req.body.github});
+	user.profiles.push({provider:'linkedin', url:req.body.linkedin});
+	user.profiles.push({provider:'aboutme', url:req.body.aboutme});
+	user.profiles.push({provider:'blog', url:req.body.blog});
 
 	if(req.body.angelListId){
 		angelListApi.getUserInfo(req.body.angelListId, function(err, data){

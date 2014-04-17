@@ -80,9 +80,11 @@ passport.deserializeUser(function (obj, done) {
 // Controllers
 var loginController = require('./controllers/login');
 var adminController = require('./controllers/admin');
+var utilsController = require('./controllers/utils');
 
 loginController(app);
 adminController(app);
+utilsController(app);
 
 app.get('/', function (req, res) {
 	var render = renderer.get('home');

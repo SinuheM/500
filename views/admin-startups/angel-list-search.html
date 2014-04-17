@@ -35,19 +35,19 @@
 <script type="text/template" id="listItemTemplate">
 	<div class="panel">
 		<div class="row angel-list-card-content">
-			<% if( user.pic ){ %>
+			<% if( item.pic ){ %>
 			<div class="col-xs-12 has-pic">
-				<img src="<%= user.pic %>">
+				<img src="<%= item.pic %>">
 				<div>
-					<h4><%= user.name %></h4>
-					<p><a href="<%= user.url %>"><%= user.url %></a></p>
-					<a href="/admin/startups/new?angelListId=<%= user.id %>" class="add-btn btn btn-success">Add</a>
+					<h4><%= item.name %></h4>
+					<p><a href="<%= item.url %>"><%= item.url %></a></p>
+					<a href="/admin/startups/new?angelListId=<%= item.id %>" class="add-btn btn btn-success">Add</a>
 				</div>
 			</div>
 			<% }else{ %>
 			<div class="col-xs-12">
-				<h4><%= user.name %></h4>
-				<a href="/admin/startups/new?angelListId=<%= user.id %>" class="add-btn btn btn-success">Add</a>
+				<h4><%= item.name %></h4>
+				<a href="/admin/startups/new?angelListId=<%= item.id %>" class="add-btn btn btn-success">Add</a>
 			</div>				
 			<% }%>
 		</div>

@@ -69,7 +69,7 @@ window.Widgets.List.ListItem = Backbone.View.extend({
 	},
 	goTo : function(){},
 	render : function () {
-		this.$el.html( this.template({ user: this.model.toJSON() }) );
+		this.$el.html( this.template({ item: this.model.toJSON() }) );
 
 		return this;
 	}

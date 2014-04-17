@@ -32,7 +32,7 @@
             <div class="center">
                 <div class="container">
                     <h4>Search the 500+ companies in our portfolio</h4>
-                    <input type="search" placeholder="search">
+                    <input id="searchbox" type="search" placeholder="search">
                     <p><span>Try makerbot, education, China</span></p>
                     <ul id="filter" style="visibility: hidden;">
                         <li>Filter results by:</li>
@@ -91,6 +91,7 @@
             </div>
         </div>
         <div id="starters">
+            {% if false %}
             <div class="center">
                 <ul class="card">
                     {% for startup in startups %}
@@ -113,12 +114,44 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
+            {% endif %}
         </div>
     </section>
     {% include "../partials/footer.html" %}
+<script type="text/template" id="listTemplate">
+    <ul class="card list-container">
+    </ul>
+    <div class="clearfix"></div>
+</script>
+<script type="text/template" id="listItemTemplate">
+    <li>
+        <a target="_blank" href="/<%= item.slugStr %>">
+            <div class="content">
+                <div class="image-container">
+                    <img src="<%= item.logo %>">
+                </div>
+                <p class="title"><%= item.name %></p>
+                <p class="detail"><%= item.title %></p>
+                <p> <%= item.excerpt %></p>
+                <% if(item.batch){ %>
+                <p class="footer"><%= item.batch.name %></p>
+                <% } %>
+            </div>
+        </a>
+    </li>
+</script>
 <script src="/js/vendor/jquery.js"></script>
+<script src="/js/vendors/underscore.js"></script>
+<script src="/js/vendors/backbone.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/widgets/list.js"></script>
+<script src="/js/app/startups.js"></script>
 <script src="/js/foundation.min.js"></script>
-<script>
+<script>    
+    {% autoescape false %}
+    window.startups = {{startups|json}};
+    {% endautoescape %}
+
     $(document).foundation();
 </script>
 </body>
