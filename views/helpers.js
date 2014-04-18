@@ -43,7 +43,19 @@ var helpers = function(swig){
 		}else{
 			return url;
 		}
-	});	
+	});
+
+	swig.setFilter('socialEmoticon', function (provider) {
+		if(provider === 'twitter'){
+			return '/img/startup-twitter.png';
+		}else if(provider === 'crunchbase'){
+			return '/img/startup-cb.png';
+		}else if(provider === 'angellist'){
+			return '/img/startup-hi.png';
+		}else{
+			return '';
+		}
+	});
 
 	swig.setFilter('domain', function (urlStr) {
 		var location = url.parse(urlStr);
