@@ -156,7 +156,7 @@ section#startup #top-head .container .social {margin: 3em auto 2em; text-align: 
 section#startup #top-head .container .social li {display: inline-block; margin: 0 0.25em}
 section#startup #top-head .container .social li a {}
 section#startup #top-head .container .social li a img {}
-section#startup #detail {position: relative; background-color: #f2f2f2; padding-bottom: 10em}
+section#startup #detail {position: relative; background-color: #f2f2f2; padding-bottom: 10rem; padding-top: 4rem}
 section#startup #detail.video {padding-top: 17em}
 section#startup #detail .center {position: relative;}
 section#startup #detail .video {text-align: center; position: absolute; margin: 0 auto; top: -30em; width: 100%}
