@@ -117,7 +117,22 @@
 				</div>
 				{% endif %}
 			</div>
-			{% endfor %}					
+			{% endfor %}	
+			<legend>Investments</legend>
+			<div class="form-group">
+				<label class="col-sm-1 control-label">Amount</label>
+				<div class="col-sm-4">
+					<input id="investment-amount" type="text" class="form-control" value="">
+				</div>
+				<label class="col-sm-1 control-label">Url</label>
+				<div class="col-sm-4">
+					<input id="investment-url" type="text" class="form-control" value="">
+				</div>
+				<a id="add-investment" class="col-sm-1 btn btn-primary-alt">Add</a>
+				<input id="investment-data" name="investments" type="hidden">
+			</div>
+			<div id="investments" class="form-group">
+			</div>
 		</div>
 		<div class="panel-footer">
 			<div class="row">
@@ -131,14 +146,53 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
-$('#create-startup').on('submit', function (e) {
-	var $logoUploader = $('#create-startup #uploader-logo');
+$(document).ready(function(){
+	$('#create-startup').on('submit', function (e) {
+		var $logoUploader = $('#create-startup #uploader-logo');
 
-	if($logoUploader.val() === ''){
-		$logoUploader.remove();
-	}
+		if($logoUploader.val() === ''){
+			$logoUploader.remove();
+		}
+
+		var investment = [];
+		$('.investment').each(function(i, item){
+			investment.push({
+				amount : $(item).data('amount'),
+				url    : $(item).data('url')
+			})
+		});
+
+		$('#investment-data').val( JSON.stringify(investment) );	
+	});
+
+	$('#investments').sortable();
+    $('#investments').disableSelection();
+
+	$("#add-investment").on('click', function(){
+		var amount = $("#investment-amount").val();
+		var url    = $("#investment-url").val();
+
+		if(amount){
+			console.log(amount, url);
+			$("#investment-amount").css('border-color', 'inherit');
+
+			var $investment = $('<div class="investment alert">' +
+				'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+				'<strong>'+amount+'</strong> <a href="'+url+'" target="_black" class="alert-link">'+ url +'</a>.'+
+			'</div>');
+			$investment.data('url',    url);
+			$investment.data('amount', amount);
+
+			$("#investment-amount").val('');
+			$("#investment-url").val('');
+			$('#investments').append($investment);
+		}else{
+			$("#investment-amount").css('border-color', '#a94442').focus();
+		}
+	});
 });
 </script>
 {% endblock %}

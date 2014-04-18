@@ -239,3 +239,6 @@ footer .pin li p {font-size: 0.8rem; line-height: 1rem; margin-bottom: 1rem}
 footer a {color: #FFF}
 footer .row-4 {text-align: right;}
 footer .row-4 p {font-size: 0.85rem}
+
+/* utils */
+.block{display: block}

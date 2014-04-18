@@ -72,10 +72,18 @@
                             <p>1-29 employes</p>
                         </div>
                         {% endif %}
-                        {% if startup.funding.lenght %}
+                        {% if startup.funding.length %}
                         <div>
                             <h6>FUNDING</h6>
-                            <p>$8M Series B in 2012<br>$9M Series A in 2006<br>$1.2 Seed in 2099</p>
+                            <p>
+                            {% for investment in startup.funding %}
+                                {% if investment.url %}
+                                <a class="block" href="{{investment.url}}">{{ investment.amount }}</a>
+                                {% else %}
+                                <span class="block">{{ investment.amount }}</span>
+                                {% endif %}
+                            {% endfor %}
+                            </p>
                         </div>
                         {% endif %}
                         {% if startup.markets.length %}

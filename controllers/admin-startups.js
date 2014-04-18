@@ -224,6 +224,8 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.socialProfiles.push({provider:'blog', url:fields.blog});
 		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
 
+		startup.funding = JSON.parse(fields.investments);
+
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }
 			req.flash('message', 'Saved sucessfully');
@@ -350,6 +352,8 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		startup.socialProfiles.push({provider:'angellist', url:fields.angellist});
 		startup.socialProfiles.push({provider:'blog', url:fields.blog});
 		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
+
+		startup.funding = JSON.parse(fields.investments);
 
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }

@@ -19,7 +19,7 @@ $(document).ready(function () {
 					list.fill(data);
 				});
 			}else{
-				list.fill([]);
+				list.fill(window.startups);
 			}
 
 			lastSearch = $this.val();
