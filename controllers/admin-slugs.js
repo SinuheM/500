@@ -20,7 +20,6 @@ adminSlugsController.post('/:slug/change', function (req, res) {
 	var slug = res.data.slug;
 
 	slug.change(req.body.value, function(err){
-		console.log(res.data.slug);
 		if(err){
 			if(err.validationError){
 				return res.send({error:true, message:err.message});

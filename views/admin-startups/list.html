@@ -32,7 +32,7 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Email</th>
+				<th>Slug</th>
 				<th>excerpt</th>
 			</tr>
 		</thead>
@@ -55,7 +55,7 @@ $(document).ready(function(){
 	window.startups = {{startups|json}};
 	{% endautoescape %}
 
-	var userList = new window.Widgets.List({
+	var statuUpList = new window.Widgets.List({
 		template : '#tableTemplate',
 		itemTemplate : '#tableRowTemplate',
 		itemTagName : 'tr',
@@ -63,10 +63,10 @@ $(document).ready(function(){
 			window.location = '/admin/startups/' + this.model.get('_id');
 		}
 	});
-	userList.render().$el.appendTo('#startupsTable');
-	userList.fill(window.startups);
+	statuUpList.render().$el.appendTo('#startupsTable');
+	statuUpList.fill(window.startups);
 
-	window.widgets.userList = userList;
+	window.widgets.statuUpList = statuUpList;
 
 	var stoppedTyping;
 	$('.searchbar').on('keyup', function(e){
@@ -75,16 +75,16 @@ $(document).ready(function(){
 		if (stoppedTyping) clearTimeout(stoppedTyping);
 
 		stoppedTyping = setTimeout(function(){
-			window.widgets.userList.empty();
+			window.widgets.statuUpList.empty();
 
 			if($this.val()){
 				var xhrSearch = $.post('/admin/startups/search',{search: $this.val() });
 
 				xhrSearch.done(function(data){
-					window.widgets.userList.fill(data.hits);
+					window.widgets.statuUpList.fill(data);
 				});
 			}else{
-				window.widgets.userList.fill(window.users);
+				window.widgets.statuUpList.fill(window.users);
 			}
 		}, 500);
 	});

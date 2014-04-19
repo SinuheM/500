@@ -169,7 +169,27 @@
 		</div>
 	</form>
 </div>
+
+{% if  user.type == 'admin' %}
+<div class="panel panel-danger">
+	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/startups/{{currentStartup.id}}/delete">
+		<div class="panel-heading">
+			<h4 class="panel-title">Delete Startup</h4>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<label class="col-sm-9">This action will delete this startup</label>
+				<div class="col-sm-3 text-right">
+					<button class="btn btn-danger">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</form>	
+</div>
+{% endif %}
+
 {% endblock %}
+
 
 {% block js %}
 <script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>

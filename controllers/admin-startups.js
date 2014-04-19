@@ -46,7 +46,7 @@ adminStartUpsController.get('', function (req, res) {
 		label : 'Startups'
 	});
 
-	Startup.find({}, function(err, startups){
+	Startup.find({active:true}, function(err, startups){
 		if(err){res.sendError(500, err);}
 
 		res.render('admin-startups/list',{startups: startups});
@@ -204,6 +204,7 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.description = fields.description;
 		startup.video   = fields.video;
 		startup.investmentClass = fields.investmentClass;
+		startup.active  = true;
 
 		startup.createdBy = res.user;
 		startup.updatedBy = res.user;
@@ -298,9 +299,11 @@ adminStartUpsController.post('/searchAngelList', function(req, res){
 });
 
 adminStartUpsController.post('/search', function(req, res){
-	Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true}, function(err, results) {
+	Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {active:true}}}, function(err, results) {
 		if(err){return res.sendError(500, err);}
-		res.send(results);
+
+		var startups = _.filter(results.hits, function(item){return item.name;});
+		res.send(startups);
 	});
 });
 
@@ -381,6 +384,27 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	});
 
 	req.pipe(busboy);
+});
+
+adminStartUpsController.post('/:currentStartup/delete', function (req, res) {
+	var startup = res.data.currentStartup;
+
+	startup.publish = false;
+	startup.active  = false;
+
+	startup.save(function(err){
+		if(err){ return res.sendError(500, err); }
+		Slug.findOne({_id: startup.slug},function(err, slug){
+			if(err){ return res.sendError(500, err); }
+			if(startup.slugStr === 'startup-'+startup.id){res.redirect('/admin/startups/');}
+
+			slug.change('startup-'+startup.id, function(err){
+				if(err){ return res.sendError(500, err); }
+				res.redirect('/admin/startups/');
+			});
+		});
+	});
+
 });
 
 module.exports = adminStartUpsController;
