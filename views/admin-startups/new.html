@@ -41,9 +41,18 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Investment Status</label>
 				<div class="col-sm-6">
-					<input name="investmentStatus" data-max-size='50' class="char-counter form-control validate[maxSize[50]]" value=""/>
+					<input name="investmentType" data-max-size='50' class="char-counter form-control validate[maxSize[50]]" value=""/>
 				</div>
-			</div>			
+			</div>	
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Investment Class</label>
+				<div class="col-sm-6">
+					<select name="investmentClass" class="form-control input-sm mb15">
+						<option value="acceleration">Acceleration</option>
+						<option value="seed">Seed</option>
+					<select/>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Excerpt</label>
 				<div class="col-sm-6">

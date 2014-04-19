@@ -79,8 +79,10 @@ adminStartUpsController.get('/new', getBatches, function (req, res) {
 		angelListApi.getStatUpInfo(req.query.angelListId, function(err, data){
 			if(err){return res.sendError(500, err);}
 
+			console.log(data);
 			data.slug = Slug.slugify(data.name);
 			data.description = data.description !== null ? data.description : '';
+			data.excerpt = data.excerpt !== null ? data.excerpt : '';
 			data.video = data.video !== null ? data.video : '';
 
 			res.render('admin-startups/new', {angelListStartUp : data, socialProfiles: data.socialContacts});
@@ -197,10 +199,12 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.name    = fields.name;
 		startup.slugStr = fields.slug;
 		startup.url     = fields.url;
-		startup.investmentStatus = fields.investmentStatus;
+		startup.investmentType = fields.investmentType;
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
 		startup.video   = fields.video;
+		startup.investmentClass = fields.investmentClass;
+
 		startup.createdBy = res.user;
 		startup.updatedBy = res.user;
 
@@ -225,6 +229,8 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
 
 		startup.funding = JSON.parse(fields.investments);
+
+		return res.send(fields);
 
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }
@@ -321,13 +327,17 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	});
 
 	busboy.on('finish', function() {
+		console.log(fields);
 		startup.name    = fields.name;
 		startup.url     = fields.url;
-		startup.title   = fields.title;
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
 		startup.location  = fields.location;
 		startup.size      = fields.size;
+
+		startup.investmentType  = fields.investmentType;
+		startup.investmentClass = fields.investmentClass;
+
 		startup.updatedBy = res.user;
 
 		if(fields.video){
@@ -354,6 +364,14 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
 
 		startup.funding = JSON.parse(fields.investments);
+
+		if(fields.action === 'publish'){
+			startup.publish = true;
+		}
+
+		if(fields.action === 'unpublish'){
+			startup.publish = false;
+		}
 
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }

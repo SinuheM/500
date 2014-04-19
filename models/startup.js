@@ -17,7 +17,7 @@ var startupSchema = schema({
 	size        : {type : String},
 
 	investmentType   : {type : String, max: 50}, // seed, acceleration
-	investmentStatus : {type : String}, // seed, acceleration
+	investmentClass  : {type : String}, // seed, acceleration
 
 	video       : {type : String},
 	embed       : {type : String}, // Clear to refetch
@@ -36,7 +36,9 @@ var startupSchema = schema({
 	socialProfiles : [schema.Types.Mixed],
 
 	angelListData : schema.Types.Mixed,
-	active : {type : Boolean}
+
+	active  : {type : Boolean},
+	publish : {type : Boolean}
 });
 
 startupSchema.plugin(Slug.plugIt, {type: 'startup', slugFrom : 'name' });
