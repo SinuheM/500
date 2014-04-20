@@ -1,3 +1,21 @@
+{% if currentPage == "home"%}
+    <header id="fixadent">
+        <div id="logo">
+            <a href="/">
+                <img class="black" src="/img/500-black.png" alt="500">
+                <img class="white" src="/img/500-white.png" alt="500">
+            </a>
+        </div>
+        <nav>
+            <a href="/team">TEAM</a>
+            <a href="/accelerator">ACCELERATOR</a>
+            <a href="/startups">PORTFOLIO</a>
+            <a href="/mentors">MENTORS</a>
+            <a href="/events">EVENTS</a>
+            <a href="/activity">ACTIVITY</a>
+        </nav>
+    </header>
+{% else %}
     <header id="int" class="fixed">
         <div id="logo">
             <a href="/">
@@ -13,3 +31,4 @@
             <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
         </nav>
     </header>
+{% endif %}

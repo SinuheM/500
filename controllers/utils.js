@@ -14,8 +14,6 @@ utilsController.post('/startups/search', function(req, res){
 		if(err){return res.sendError(500, err);}
 
 		var startups = _.filter(results.hits, function(item){return item.name;});
-
-		console.log(startups);
 		res.send(startups);
 	});
 });
