@@ -236,6 +236,52 @@ section#staff-member .content ul.social li {float: left; margin-right: 0.5rem}
 section#staff-member .content ul.social li a {display: block;}
 section#staff-member .over-shadow {position: fixed; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
 section#staff-member .staff-cover {position: fixed; top: 0; z-index: 0; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat;}
+section#portfolio.accelerator-top #search {padding: 10rem 0 2rem;}
+section#portfolio.accelerator-top #search h4 {}
+section#portfolio.accelerator-top #search p {line-height: 1.5rem; margin: 1rem auto 3rem;}
+section#portfolio.accelerator-top #search button {margin: 3rem 0 1.25rem;}
+section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padding: 1rem 0 6rem}
+section#portfolio.accelerator-top #mentors.accelerator h4 {margin-top: 5rem}
+section#portfolio.accelerator-top #mentors.accelerator p {}
+section#portfolio.accelerator-top #mentors.accelerator dl#locations {margin-top: 2rem}
+section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; border-right: solid 1px #000; padding: 0.5rem 1rem}
+section#portfolio.accelerator-top #mentors.accelerator dl#locations dd:last-child {border: none;}
+section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a {background-color: transparent; border: solid 1px #000; font-weight: 300; padding: 0.5rem 1.5rem}
+section#portfolio.accelerator-top #mentors.accelerator dl#locations dd.active a, section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a:hover {background-color: #000; color: #fff}
+section#portfolio.accelerator-top #mentors.accelerator .tabs-content {margin-top: 2rem}
+section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations {}
+section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations img {}
+section#portfolio.accelerator-top #mentors.accelerator .mentors-network {margin-top: 4rem}
+section#portfolio.accelerator-top #mentors.accelerator button#view-all {margin-top: 3rem}
+section#portfolio.accelerator-top #mentors.accelerator ul.area {}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li {width: 30%; margin: 1rem; padding: 1.5rem; text-align: left; height: 25rem}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container {text-align: right;}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li p {font-size: 0.85rem; margin: 0.25rem 0.25rem 1.25rem;}
+section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 3rem 0; text-align: center;}
+section#portfolio.accelerator-top .deal h4 {color: #fff}
+section#portfolio.accelerator-top .deal dl#deal-tabs {margin: 2rem 0 1rem !important}
+section#portfolio.accelerator-top .deal dl#deal-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
+section#portfolio.accelerator-top .deal dl#deal-tabs dd:last-child {border: none;}
+section#portfolio.accelerator-top .deal dl#deal-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
+section#portfolio.accelerator-top .deal dl#deal-tabs dd.active a, section#portfolio.accelerator-top .deal dl#deal-tabs dd a:hover {background-color: #fff; color: #7ac364}
+section#portfolio.accelerator-top .deal dl#deal-tabs .tabs-content {}
+section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 3rem 0}
+section#portfolio.accelerator-top .apply h4 {color: #fff}
+section#portfolio.accelerator-top .apply dl#apply-tabs {margin: 2rem 0 1rem !important}
+section#portfolio.accelerator-top .apply dl#apply-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
+section#portfolio.accelerator-top .apply dl#apply-tabs dd:last-child {border: none;}
+section#portfolio.accelerator-top .apply dl#apply-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
+section#portfolio.accelerator-top .apply dl#apply-tabs dd.active a, section#portfolio.accelerator-top .apply dl#apply-tabs dd a:hover {background-color: #fff; color: #000}
+section#portfolio.accelerator-top .apply dl#apply-tabs .tabs-content {}
+section#portfolio.accelerator-top .apply dl#apply-tabs .tabs-content h4 {}
+section#portfolio.accelerator-top #special-bg {text-align: center; padding: 5rem 0; position: relative;}
+section#portfolio.accelerator-top #special-bg .bg {background-color: #f2f2f2; position: absolute; width: 100%; height: 30rem; left: 0; top: 0; z-index: -1;}
+section#portfolio.accelerator-top .questions {text-align: center; padding: 1rem 0 4rem}
+section#portfolio.accelerator-top .questions h4 {}
+section#portfolio.accelerator-top .questions p {}
+section#portfolio.accelerator-top .questions a {color: #b43322; text-decoration: underline;}
 
 body.layer-single {background-color: #f2f2f2}
 header#int.simple {background-color: transparent;}
