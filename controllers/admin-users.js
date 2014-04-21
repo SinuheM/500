@@ -111,12 +111,14 @@ adminUsersController.post('/new', function (req, res) {
 	var fields = {};
 	var useLocalLogo, extension;
 
+	var user = new User({});
+
 	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
 		if(fieldname === 'avatar' && filename !== 'undefined') {
 			var extensionArray = filename.split('.');
 			extension      = _.last(extensionArray);
 
-			var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + startup._id.toString() +  '.' + extension );
+			var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
 			useLocalLogo = true;
 
 			file.pipe(fs.createWriteStream(avatarFilePath));
@@ -135,21 +137,19 @@ adminUsersController.post('/new', function (req, res) {
 			res.redirect('/admin/users/' + user.id );
 		};
 
-		var user = new User({
-			bio : fields.bio,
-			type : fields.type,
-			group : fields.group,
-			title : fields.title,
-			displayName : fields.displayName,
-			companyName : fields.company,
-			slugStr : fields.slug,
-			username: fields.email,
-			location: fields.location,
-			link: fields.link,
-			active : false,
-			publish : false
-		});
-
+		user.bio = fields.bio;
+		user.type = fields.type;
+		user.group = fields.group;
+		user.title = fields.title;
+		user.displayName = fields.displayName;
+		user.companyName = fields.company;
+		user.slugStr = fields.slug;
+		user.username= fields.email;
+		user.location= fields.location;
+		user.link= fields.link;
+		user.active = false;
+		user.publish = false;
+		
 		user.profiles.push({provider:'twitter', url:fields.twitter});
 		user.profiles.push({provider:'facebook', url:fields.facebook});
 		user.profiles.push({provider:'github', url:fields.github});
@@ -180,7 +180,6 @@ adminUsersController.post('/new', function (req, res) {
 	});
 
 	req.pipe(busboy);
-
 });
 
 adminUsersController.post('/:currentUser/edit', function (req, res) {
@@ -191,6 +190,7 @@ adminUsersController.post('/:currentUser/edit', function (req, res) {
 
 	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
 		if(fieldname === 'avatar' && filename !== 'undefined') {
+			debugger;
 			var extensionArray = filename.split('.');
 			extension      = _.last(extensionArray);
 
@@ -226,6 +226,7 @@ adminUsersController.post('/:currentUser/edit', function (req, res) {
 		currentUser.profiles.push({provider:'aboutme', url:fields.aboutme});
 		currentUser.profiles.push({provider:'blog', url:fields.blog});
 
+		debugger;
 		if(useLocalLogo){
 			currentUser.avatar = path.join('/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
 		}
