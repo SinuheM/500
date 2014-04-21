@@ -3,6 +3,7 @@
 {% block title %}User list{% endblock %}
 
 {% block head %}
+	<link rel="stylesheet" href="/css/jquery.tagsinput.css" />
 {% endblock %}
 
 {% block header %}
@@ -11,7 +12,7 @@
 
 {% block content %}
 <div class="panel panel-dark">
-	<form class="form-horizontal form-bordered" method="post" action="/admin/users/new">
+	<form id="create-user" class="form-horizontal form-bordered" method="post" action="/admin/users/new" enctype="multipart/form-data">
 		<div class="panel-heading">
 			<h4 class="panel-title">Edit user information</h4>
 		</div>
@@ -21,6 +22,15 @@
 				<div class="col-sm-6">
 					<input name="displayName" type="text" class="form-control" value="{{angelListUser.displayName}}">
 					<input name="angelListId" type="hidden" class="form-control" value="{{angelListUser.angelListId}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Avatar</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="avatar">
+						<img src="{{angelListUser.avatar}}"/>
+					</div>
+					<input name="remoteLogoUrl" value="{{angelListUser.avatar}}" type="hidden">
 				</div>
 			</div>
 			<div class="form-group">
@@ -39,12 +49,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Bio</label>
-				<div class="col-sm-6">
-					<textarea name="bio" class="form-control" rows="5">{{angelListUser.bio}}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
 				<label class="col-sm-3 control-label">Type</label>
 				<div class="col-sm-5">
 					<select name="type" class="form-control input-sm mb15">
@@ -53,6 +57,53 @@
 						<option value="team">Team</option>
 						<option value="admin">Admin</option>
 					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Company</label>
+				<div class="col-sm-6">
+					<input name="company" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Team Group</label>
+				<div class="col-sm-6">
+					<select name="group" class="form-control input-sm mb15">
+						<option value="support">Portafolio support</option>
+						<option value="distribution">Distribution</option>
+						<option value="investment">Investment</option>
+						<option value="managment">Managment</option>
+					<select/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Title</label>
+				<div class="col-sm-6">
+					<input name="title" type="text" class="form-control">
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Bio</label>
+				<div class="col-sm-6">
+					<textarea name="bio" class="form-control" rows="5">{{angelListUser.bio}}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Location</label>
+				<div class="col-sm-6">
+					<input name="location" type="text" class="form-control" value="{{angelListUser.location}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Link</label>
+				<div class="col-sm-6">
+					<input name="link" type="text" class="form-control" value="{{angelListUser.link}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Expertise</label>
+				<div class="col-sm-6">
+					<input name="expertise" class="form-control form-tags" placeholder="Add expertise"/>
 				</div>
 			</div>			
 			<legend>Profiles</legend>
@@ -86,7 +137,16 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function () {
+	$('#create-user').on('submit', function (e) {
+		var $avatarUploader = $('#create-user #uploader-avatar');
 
+		if($avatarUploader.val() === ''){
+			$avatarUploader.remove();
+		}
+	});
+});
 </script>
 {% endblock %}

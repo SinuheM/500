@@ -1,6 +1,10 @@
 'use strict';
 var controller = require('stackers'),
-	db = require('../lib/db');
+	db = require('../lib/db'),
+	Busboy = require('busboy'),
+	path = require('path'),
+	_ = require('underscore'),
+	fs = require('fs');
 
 var User = db.model('user');
 var Slug = db.model('slug');
@@ -103,52 +107,141 @@ adminUsersController.get('/:currentUser', function (req, res) {
 });
 
 adminUsersController.post('/new', function (req, res) {
-	var saveHandler = function(err){
-		if(err){ return res.sendError(500, err); }
-		req.flash('message', 'Saved sucessfully');
-		res.redirect('/admin/users/' + user.id );
-	};
+	var busboy = new Busboy({ headers: req.headers });
+	var fields = {};
+	var useLocalLogo, extension;
 
-	var user = new User({
-		bio : req.body.bio,
-		type : req.body.type,
-		displayName : req.body.displayName,
-		slugStr : req.body.slug,
-		username: req.body.email
+	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+		if(fieldname === 'avatar' && filename !== 'undefined') {
+			var extensionArray = filename.split('.');
+			extension      = _.last(extensionArray);
+
+			var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + startup._id.toString() +  '.' + extension );
+			useLocalLogo = true;
+
+			file.pipe(fs.createWriteStream(avatarFilePath));
+		}
 	});
 
-	user.profiles.push({provider:'twitter', url:req.body.twitter});
-	user.profiles.push({provider:'facebook', url:req.body.facebook});
-	user.profiles.push({provider:'github', url:req.body.github});
-	user.profiles.push({provider:'linkedin', url:req.body.linkedin});
-	user.profiles.push({provider:'aboutme', url:req.body.aboutme});
-	user.profiles.push({provider:'blog', url:req.body.blog});
+	busboy.on('field', function(fieldname, val) {
+		console.log('field', fieldname, val);
+		fields[fieldname] = val;
+	});
 
-	if(req.body.angelListId){
-		angelListApi.getUserInfo(req.body.angelListId, function(err, data){
+	busboy.on('finish', function() {
+		var saveHandler = function(err){
 			if(err){ return res.sendError(500, err); }
+			req.flash('message', 'Saved sucessfully');
+			res.redirect('/admin/users/' + user.id );
+		};
 
-			user.angelListData = data.angelListData;
-			user.save(saveHandler);
+		var user = new User({
+			bio : fields.bio,
+			type : fields.type,
+			group : fields.group,
+			title : fields.title,
+			displayName : fields.displayName,
+			companyName : fields.company,
+			slugStr : fields.slug,
+			username: fields.email,
+			location: fields.location,
+			link: fields.link,
+			active : false,
+			publish : false
 		});
-	}else{
-		user.save(saveHandler);
-	}
+
+		user.profiles.push({provider:'twitter', url:fields.twitter});
+		user.profiles.push({provider:'facebook', url:fields.facebook});
+		user.profiles.push({provider:'github', url:fields.github});
+		user.profiles.push({provider:'linkedin', url:fields.linkedin});
+		user.profiles.push({provider:'aboutme', url:fields.aboutme});
+		user.profiles.push({provider:'blog', url:fields.blog});
+
+		if(useLocalLogo){
+			user.avatar = path.join('/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
+		}else{
+			user.avatar = fields.remoteLogoUrl;
+		}
+
+		if(fields.expertise){
+			user.expertise = fields.expertise.split(',');
+		}
+
+		if(fields.angelListId){
+			angelListApi.getUserInfo(fields.angelListId, function(err, data){
+				if(err){ return res.sendError(500, err); }
+
+				user.angelListData = data.angelListData;
+				user.save(saveHandler);
+			});
+		}else{
+			user.save(saveHandler);
+		}
+	});
+
+	req.pipe(busboy);
+
 });
 
 adminUsersController.post('/:currentUser/edit', function (req, res) {
+	var busboy = new Busboy({ headers: req.headers });
+	var fields = {};
 	var currentUser = res.data.currentUser;
+	var useLocalLogo, extension;
 
-	currentUser.type = req.body.type;
-	currentUser.bio = req.body.bio;
-	currentUser.displayName = req.body.displayName;
+	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+		if(fieldname === 'avatar' && filename !== 'undefined') {
+			var extensionArray = filename.split('.');
+			extension      = _.last(extensionArray);
 
-	currentUser.save(function(err){
-		if(err){return res.sendError(500, err);}
+			var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
+			useLocalLogo = true;
 
-		req.flash('message', 'user updated');
-		res.redirect('/admin/users/' + currentUser.id);
+			file.pipe(fs.createWriteStream(avatarFilePath));
+		}
 	});
+
+	busboy.on('field', function(fieldname, val) {
+		console.log('field', fieldname, val);
+		fields[fieldname] = val;
+	});
+
+	busboy.on('finish', function() {
+		currentUser.bio = fields.bio;
+		currentUser.type = fields.type;
+		currentUser.group = fields.group;
+		currentUser.title = fields.title;
+		currentUser.displayName = fields.displayName;
+		currentUser.companyName = fields.company;
+		currentUser.slugStr = fields.slug;
+		currentUser.username= fields.email;
+		currentUser.location= fields.location;
+		currentUser.link= fields.link;
+
+		currentUser.profiles = [];
+		currentUser.profiles.push({provider:'twitter', url:fields.twitter});
+		currentUser.profiles.push({provider:'facebook', url:fields.facebook});
+		currentUser.profiles.push({provider:'github', url:fields.github});
+		currentUser.profiles.push({provider:'linkedin', url:fields.linkedin});
+		currentUser.profiles.push({provider:'aboutme', url:fields.aboutme});
+		currentUser.profiles.push({provider:'blog', url:fields.blog});
+
+		if(useLocalLogo){
+			currentUser.avatar = path.join('/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
+		}
+
+		if(fields.expertise){
+			currentUser.expertise = fields.expertise.split(',');
+		}
+
+		currentUser.save(function(err){
+			if(err){ return res.sendError(500, err); }
+			req.flash('message', 'Updated sucessfully');
+			res.redirect('/admin/users/' + currentUser.id );
+		});
+	});
+
+	req.pipe(busboy);
 });
 
 adminUsersController.post('/search', function(req, res){

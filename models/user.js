@@ -7,8 +7,7 @@ var Slug = require('./slug');
 var userSchema = schema({
 	username    : {type : String, lowercase: true},
 	password    : {type : String},
-	type        : {type : String, default: 'regular'},
-	active      : {type : Boolean, default: false},
+	type        : {type : String, default: 'regular'}, // admin, team, 
 	group       : {type : String}, // Managment, Investment, portafolio support, distribution
 
 	angelListData : schema.Types.Mixed,
@@ -27,7 +26,10 @@ var userSchema = schema({
 	profiles : [{
 		provider : {type : String},
 		url      : {type : String},
-	}]
+	}],
+
+	active  : {type : Boolean, default: false},
+	publish : {type : Boolean}
 });
 
 userSchema.plugin(Slug.plugIt, {type: 'user', slugFrom : 'displayName' });

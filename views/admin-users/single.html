@@ -3,6 +3,7 @@
 {% block title %}User list{% endblock %}
 
 {% block head %}
+	<link rel="stylesheet" href="/css/jquery.tagsinput.css" />
 {% endblock %}
 
 {% block header %}
@@ -26,17 +27,65 @@
 </div>
 {% endif %}
 <div class="panel panel-dark">
-	<form class="form-horizontal form-bordered" method="post" action="/admin/users/{{currentUser.id}}/edit">
+	<form id="update-user" class="form-horizontal form-bordered" method="post" action="/admin/users/{{currentUser.id}}/edit"  enctype="multipart/form-data">
 		<div class="panel-heading">
 			<h4 class="panel-title">Edit user information</h4>
 		</div>
 		<div class="panel-body panel-body-nopadding">
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Display name</label>
+				<label class="col-sm-3 control-label">Name</label>
 				<div class="col-sm-6">
 					<input name="displayName" type="text" class="form-control" value="{{currentUser.displayName}}">
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Avatar</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="avatar">
+						<img src="{{currentUser.avatar}}"/>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Email</label>
+				<div class="col-sm-6">
+					<input name="email" type="text" class="form-control" value="{{currentUser.username}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Type</label>
+				<div class="col-sm-5">
+					<select name="type" class="form-control input-sm mb15">
+						<option value="founder" {% if currentUser.type == "founder"%}selected{% endif %}>Founder</option>
+						<option value="mentor" {% if currentUser.type == "mentor"%}selected{% endif %}>Mentor</option>
+						<option value="team" {% if currentUser.type == "team"%}selected{% endif %}>Team</option>
+						<option value="admin" {% if currentUser.type == "admin"%}selected{% endif %}>Admin</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Company</label>
+				<div class="col-sm-6">
+					<input name="company" type="text" class="form-control" value="{{currentUser.companyName}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Team Group</label>
+				<div class="col-sm-6">
+					<select name="group" class="form-control input-sm mb15">
+						<option value="support" {% if currentUser.group == "support"%}selected{% endif %}>Portafolio support</option>
+						<option value="distribution" {% if currentUser.group == "distribution"%}selected{% endif %}>Distribution</option>
+						<option value="investment" {% if currentUser.group == "investment"%}selected{% endif %}>Investment</option>
+						<option value="managment" {% if currentUser.group == "managment"%}selected{% endif %}>Managment</option>
+					<select/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Title</label>
+				<div class="col-sm-6">
+					<input name="title" type="text" class="form-control" value="{{currentUser.title}}">
+				</div>
+			</div>				
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Bio</label>
 				<div class="col-sm-6">
@@ -44,18 +93,25 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Type</label>
-				<div class="col-sm-5">
-					<select name="type" class="form-control input-sm mb15">
-						<option value="admin" {% if currentUser.type === 'admin' %}selected{% endif %}>Admin</option>
-						<option value="team" {% if currentUser.type === 'team' %}selected{% endif %}>Team</option>
-						<option value="founder" {% if currentUser.type === 'founder' %}selected{% endif %}>Founder</option>
-						<option value="mentor" {% if currentUser.type === 'mentor' %}selected{% endif %}>Mentor</option>
-					</select>
+				<label class="col-sm-3 control-label">Location</label>
+				<div class="col-sm-6">
+					<input name="location" type="text" class="form-control" value="{{currentUser.location}}">
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Link</label>
+				<div class="col-sm-6">
+					<input name="link" type="text" class="form-control" value="{{currentUser.link}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Expertise</label>
+				<div class="col-sm-6">
+					<input name="expertise" class="form-control form-tags" placeholder="Add expertise" value="{{currentUser.expertise|join(',')}}"/>
+				</div>
+			</div>			
 			<legend>Profiles</legend>
-			{% for profile in currentUser.socialContacts %}
+			{% for profile in currentUser.profiles %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">{{ profile.provider }}</label>
 				{% if profile.provider !== 'blog' %}
@@ -86,7 +142,16 @@
 
 {% block js %}
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function () {
+	$('#update-user').on('submit', function (e) {
+		var $avatarUploader = $('#update-user #uploader-avatar');
 
+		if($avatarUploader.val() === ''){
+			$avatarUploader.remove();
+		}
+	});
+});
 </script>
 {% endblock %}
