@@ -282,6 +282,42 @@ section#portfolio.accelerator-top .questions {text-align: center; padding: 1rem 
 section#portfolio.accelerator-top .questions h4 {}
 section#portfolio.accelerator-top .questions p {}
 section#portfolio.accelerator-top .questions a {color: #b43322; text-decoration: underline;}
+section#blogpost {}
+section#blogpost .center {position: relative; z-index: 1; padding-bottom: 4rem}
+section#blogpost .content {text-align: center; color: #fff; padding: 10rem 0 1rem; position: relative; background-repeat: no-repeat; background-size: cover; min-height: 40rem}
+section#blogpost .content .center {padding: 0 2rem}
+section#blogpost .content .tag-announcement {font-weight: 300; background-color: #b43425; display: inline; padding: 0.25rem 1rem; font-size: 0.85rem;}
+section#blogpost .content h1 {color: #FFF; line-height: 4.5rem; font-size: 4rem; margin: 2rem 0}
+section#blogpost .content p.subtitle {font-family: 'PT Serif', 'serif'; font-style: italic; font-size: 1.5rem}
+section#blogpost .content .meta {margin-top: 8rem; font-weight: 300}
+section#blogpost .content .meta .author {}
+section#blogpost .content .meta .date {font-size: 0.7rem; margin-top: 0.7rem;}
+section#blogpost .content .top-shadow {position: absolute; top: 0; width: 100%; min-height: 160px;}
+section#blogpost .content .bottom-shadow {position: absolute; bottom: 0; width: 100%; height: 420px;}
+section#blogpost .post {padding-top: 4rem}
+section#blogpost .post h1, section#blogpost .post h2, section#blogpost .post h3, section#blogpost .post h4, section#blogpost .post h5 {font-family: 'Exo 2', sans-serif; font-weight: 800; margin: 1rem 0}
+section#blogpost .post h1 {font-size: 5rem}
+section#blogpost .post h2 {font-size: 4rem}
+section#blogpost .post h3 {font-size: 3rem}
+section#blogpost .post h4 {font-size: 2rem}
+section#blogpost .post h5 {font-size: 1.5rem}
+section#blogpost .post p {font-size: 1rem}
+section#blogpost .post .paragraph {padding: 0 10rem}
+section#blogpost .post .phrase {text-align: center; margin: 4rem 0; font-family: 'PT Serif', 'serif'; font-style: italic; font-size: 1.5rem}
+section#blogpost .post figure {margin: 2rem 0}
+section#blogpost .post figure img {width: 100%}
+section#blogpost .post figure figcaption {font-size: 0.75rem; text-align: right; margin-top: 0.5rem;}
+section#blogpost .post .bottom {background-color: #f2f2f2; padding: 5rem 0 0}
+section#blogpost .post .bottom .author {float: left; max-width: 60%}
+section#blogpost .post .bottom .author img {display: inline-block; width: 12.5%; vertical-align: top;}
+section#blogpost .post .bottom .author .info {display: inline-block; width: 60%; vertical-align: top; margin-left: 1rem}
+section#blogpost .post .bottom .author .info h5 {font-family: 'Open Sans', sans-serif; font-size: 1.25rem; color: #808080; font-weight: 400; margin: 0}
+section#blogpost .post .bottom .author .info h5 span {color: #222}
+section#blogpost .post .bottom .author .info p {}
+section#blogpost .post .bottom .social {float: right; margin: 2rem 0 0; list-style: none;}
+section#blogpost .post .bottom .social li {display: inline-block; margin-left: 0.5rem}
+section#blogpost .post .bottom .social li a {display: block;}
+section#blogpost .post .bottom .social li a img {}
 
 body.layer-single {background-color: #f2f2f2}
 header#int.simple {background-color: transparent;}
