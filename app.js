@@ -22,7 +22,7 @@ db.loadModels(['slug', 'user', 'startup', 'activity', 'batch']);
 
 // Load renderes for reserved slugs
 var renderer = require('./lib/renderer');
-renderer.load(['startups', 'startup', 'home', 'legal']);
+renderer.load(['startups', 'startup', 'home', 'legal', 'team']);
 
 var Slug = db.model('slug');
 

@@ -8,7 +8,7 @@ var render = function (req, res) {
 	.sort('-updatedDate')
 	.populate('batch')
 	.exec(function(err, startups){
-		if(err){ return res.send(err);}
+		if(err){ return res.send(500, err);}
 
 		res.render('renderers/startups', {
 			startups : startups,

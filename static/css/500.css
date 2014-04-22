@@ -194,6 +194,11 @@ section#portfolio #mentors ul li img {}
 section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0.75rem}
 section#portfolio #mentors ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
 section#portfolio #mentors ul li .content p.role {color: #666; text-transform: uppercase; font-size: 0.55rem;}
+section#portfolio .team500 h6{clear:both;}
+
+section#portfolio .team500 .card{height: 294px;margin: 0;}
+section#portfolio .team500 img{width: 219px;height: 219px;}
+
 section#mentor-single {padding-top: 11em}
 section#mentor-single .center {width: 50%; position: relative;}
 section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}

@@ -149,5 +149,6 @@ Slug.reserve('admin');
 Slug.reserve('startups');
 Slug.reserve('blog');
 Slug.reserve('legal');
+Slug.reserve('team');
 
 module.exports = Slug;

@@ -12,7 +12,7 @@ var render = function (req, res, data) {
 
 	if(startup.batch){
 		Batch.findOne({_id:startup.batch}, function(err, batch){
-			console.log(startup.markets.length);
+			if(err){ return res.send(500, err);}
 
 			res.render('renderers/startup', {
 				startup : startup,
