@@ -1,6 +1,4 @@
 $(document).ready(function () {
-	console.log('Edit url added');
-
 	$('.edit-link').on('click', function(){
 		$('.subheaderbar').slideDown();
 		$('.edit-link').fadeOut();

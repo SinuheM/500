@@ -48,11 +48,11 @@
 					<input name="email" type="text" class="form-control">
 				</div>
 			</div>
-			{% if !type %}
+			{% if type == "user" %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Type</label>
-				<div class="col-sm-5">
-					<select name="type" class="form-control input-sm mb15">
+				<div class="col-sm-6">
+					<select id="type" name="type" class="form-control input-sm mb15">
 						<option value="founder">Founder</option>
 						<option value="mentor">Mentor</option>
 						<option value="team">Team</option>
@@ -61,13 +61,16 @@
 				</div>
 			</div>
 			{% endif %}
-			<div class="form-group">
+			{% if type == "mentor" || type == "user" %}
+			<div class="form-group partial-fields" data-types="mentor">
 				<label class="col-sm-3 control-label">Company</label>
 				<div class="col-sm-6">
 					<input name="company" type="text" class="form-control">
 				</div>
 			</div>
-			<div class="form-group">
+			{% endif %}
+			{% if type == "staff-member" || type == "user" %}
+			<div class="form-group partial-fields" data-types="team, admin">
 				<label class="col-sm-3 control-label">Team Group</label>
 				<div class="col-sm-6">
 					<select name="group" class="form-control input-sm mb15">
@@ -78,6 +81,7 @@
 					<select/>
 				</div>
 			</div>
+			{% endif %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Title</label>
 				<div class="col-sm-6">
@@ -102,12 +106,14 @@
 					<input name="link" type="text" class="form-control" value="{{angelListUser.link}}">
 				</div>
 			</div>
-			<div class="form-group">
+			{% if type == "mentor" || type == "user" %}
+			<div class="form-group partial-fields" data-types="mentor">
 				<label class="col-sm-3 control-label">Expertise</label>
 				<div class="col-sm-6">
 					<input name="expertise" class="form-control form-tags" placeholder="Add expertise"/>
 				</div>
-			</div>			
+			</div>
+			{% endif %}
 			<legend>Profiles</legend>
 			{% for profile in angelListUser.socialContacts %}
 			<div class="form-group">
@@ -149,6 +155,26 @@ $(document).ready(function () {
 			$avatarUploader.remove();
 		}
 	});
+
+	{% if type == "user" %}
+	var typeHandler = function(e){
+		var $this = $('#type'),
+			value = $this.val();
+
+		$('.partial-fields').each(function(i, item){
+			var $item = $(item),
+				allowedTypes = $item.data('types');
+
+			if(allowedTypes.indexOf(value) >= 0){
+				$item.show();
+			}else{
+				$item.hide();
+			};
+		});
+	};
+	$('#type').on('change', typeHandler)
+	typeHandler();
+	{% endif %}	
 });
 </script>
 {% endblock %}

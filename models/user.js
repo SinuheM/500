@@ -8,7 +8,7 @@ var userSchema = schema({
 	username    : {type : String, lowercase: true},
 	password    : {type : String},
 	type        : {type : String, default: 'regular'}, // admin, team, 
-	group       : {type : String}, // Managment, Investment, portafolio support, distribution
+	group       : {type : String}, // Just team ** Managment, Investment, portafolio support, distribution
 
 	angelListData : schema.Types.Mixed,
 

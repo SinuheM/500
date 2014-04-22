@@ -30,33 +30,41 @@ var breadcrumbs = function(req, res, next){
 
 	next();
 };
-
 adminMentorsController.beforeEach(breadcrumbs);
 adminUsersController.beforeEach(breadcrumbs);
 adminStaffController.beforeEach(breadcrumbs);
 
-adminUsersController.param('currentUser', function (currentUserId, done) {
-	User.findOne({_id: db.Types.ObjectId(currentUserId)}, done);
-});
-adminMentorsController.param('currentUser', function (currentUserId, done) {
-	User.findOne({_id: db.Types.ObjectId(currentUserId), type:'mentor'}, done);
-});
-adminStaffController.param('currentUser', function (currentUserId, done) {
-	User.findOne({_id: db.Types.ObjectId(currentUserId), type:'team'}, done);
-});
-
 var labels = {
 	plurals : {
-		mentor : 'Mentors'
+		mentor : 'Mentors',
+		'staff-member' : 'Staff members'
 	},
 	single : {
-		mentor : 'Mentor'
+		mentor : 'Mentor',
+		'staff-member' : 'Staff member'
 	},
 	queryBy : {
 		mentor : 'mentor',
 		'staff-member' : 'team'
 	}
 };
+
+var beforeEach = function(type){
+	return function (currentUserId, done) {
+		var query = {_id: db.Types.ObjectId(currentUserId)};
+		if(type){
+			query.type = labels.queryBy[type];
+		}
+
+		console.log('type', type);
+		console.log(query);
+
+		User.findOne(query, done);
+	};
+};
+adminUsersController.param('currentUser', beforeEach());
+adminMentorsController.param('currentUser', beforeEach('mentor'));
+adminStaffController.param('currentUser', beforeEach('staff-member'));
 
 var indexRoute = function(type){
 	return function (req, res) {
@@ -151,9 +159,10 @@ adminStaffController.get('/new', newUserRoute('staff-member'));
 
 var userRoute = function (type) {
 	return function (req, res) {
+		var label = type ? labels.plurals[type] : '';
 		res.data.breadcrumbs.push({
-			label : 'User managment',
-			url : '/admin/users'
+			label : label || 'User managment',
+			url : '/admin/'+(type||'user')+'s'
 		});
 		res.data.breadcrumbs.push({
 			label : res.data.currentUser.displayName
@@ -208,7 +217,7 @@ var createRoute = function (type) {
 			user.title = fields.title;
 			user.displayName = fields.displayName;
 			user.companyName = fields.company;
-			user.slugStr = fields.slug;
+			user.slugStr = fields.slug || Slug.slugify(fields.displayName);
 			user.username= fields.email;
 			user.location= fields.location;
 			user.link= fields.link;

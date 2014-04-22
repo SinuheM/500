@@ -8,7 +8,7 @@ var db = require('../lib/db'),
 var Slug = require('./slug');
 
 var startupSchema = schema({
-	name        : {type : String},
+	name        : {type : String, require: true},
 	url         : {type : String},
 	logo        : {type : String},
 	excerpt     : {type : String, max: 64},
