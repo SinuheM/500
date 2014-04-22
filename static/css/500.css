@@ -226,14 +226,14 @@ section#mentor-single .next-mentor a:hover {background-color: #ccc}
 section#mentor-single .next-mentor a img {height: 100%; width: 100%;}
 section#staff-member {position: relative;}
 section#staff-member .content {color: #FFF; padding-bottom: 5rem; padding-top: 8rem; position: relative; z-index: 5; width: 45%}
-section#staff-member .content h1 {color: #fff; line-height: 4.5rem}
-section#staff-member .content h4 {color: #fff; font-size: 1.25rem}
+section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
+section#staff-member .content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
 section#staff-member .content h5 {color: #fff; font-size: 1.1rem}
 section#staff-member .content p {font-size: 1rem; margin-bottom: 2.5rem}
 section#staff-member .content ul.meta {list-style: none; margin: 2.5rem 0 2.5rem 1.25rem}
 section#staff-member .content ul.meta li {}
 section#staff-member .content ul.meta li a {color: #fff; font-weight: 300}
-section#staff-member .content ul.meta li.city {list-style-image: url(../img/pin.png);}
+section#staff-member .content ul.meta li.city {list-style-image: url(../img/pin.png); text-transform: capitalize;}
 section#staff-member .content ul.meta li.mail {list-style-image: url(../img/mail.png);}
 section#staff-member .content ul.meta li.web {list-style-image: url(../img/web.png);}
 section#staff-member .content ul.social {margin: 0; list-style: none;}

@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500.co</title>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" href="/css/500.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+	{% include "../partials/navbar.html" %}
+    <section id="portfolio" class="team">
+        <div id="search">
+            <div class="center">
+                <div class="container">
+                    <h4>Meet our awesome, diverse and colorful team</h4>
+                    <p>This is an introductory text that talks about the staff and how awesome it is, where it comes from and how it will change the world.</p>
+                    <h6>MANAGEMENT TEAM</h6>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div id="mentors" class="team500">
+            <div class="center">
+                <ul class="up">
+                	{% for member in team.managment %}
+                    <li>
+                        <a class="card" href="/{{member.slugStr}}">
+                            <img src="{{member.avatar}}">
+                            <div class="content">
+                                <p class="name">{{member.displayName}}</p>
+                                <p class="role">{{member.title}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="clearfix"></div>
+                <h6>INVESTMENT</h6>
+				<ul class="up">
+                	{% for member in team.investment %}
+                    <li>
+                        <a class="card" href="/{{member.slugStr}}">
+                            <img src="{{member.avatar}}">
+                            <div class="content">
+                                <p class="name">{{member.displayName}}</p>
+                                <p class="role">{{member.title}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="clearfix"></div>
+                <h6>FINANCIAL, LEGAL, MARKETING AND PORTAFOLIO SUPPORT</h6>
+				<ul class="up">
+                	{% for member in team.support %}
+                    <li>
+                        <a class="card" href="/{{member.slugStr}}">
+                            <img src="{{member.avatar}}">
+                            <div class="content">
+                                <p class="name">{{member.displayName}}</p>
+                                <p class="role">{{member.title}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>          
+                <div class="clearfix"></div>   
+                <h6>DISTRIBUTION TEAM</h6>
+                <ul class="up">
+                	{% for member in team.distribution %}
+                    <li>
+                        <a class="card" href="/{{member.slugStr}}">
+                            <img src="{{member.avatar}}">
+                            <div class="content">
+                                <p class="name">{{member.displayName}}</p>
+                                <p class="role">{{member.title}}</p>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    {% include "../partials/footer.html" %}
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
+</body>
+</html>
