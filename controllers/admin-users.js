@@ -14,253 +14,318 @@ var adminUsersController = controller({
 	path : '/users'
 });
 
-adminUsersController.beforeEach(function(req, res, next){
+var adminMentorsController = controller({
+	path : '/mentors'
+});
+
+var breadcrumbs = function(req, res, next){
 	res.data.breadcrumbs = [{
 		label : 'Dashboard',
 		url : '/admin'
 	}];
 
 	next();
-});
+};
+
+adminMentorsController.beforeEach(breadcrumbs);
+adminUsersController.beforeEach(breadcrumbs);
 
 adminUsersController.param('currentUser', function (currentUserId, done) {
 	User.findOne({_id: db.Types.ObjectId(currentUserId)}, done);
 });
-
-adminUsersController.get('', function (req, res) {
-	res.data.breadcrumbs.push({
-		label : 'User managment'
-	});
-
-	User.find({}, function(err, users){
-		if(err){res.sendError(500, err);}
-
-		res.render('admin-users/list',{users: users});
-	});
+adminMentorsController.param('currentUser', function (currentUserId, done) {
+	User.findOne({_id: db.Types.ObjectId(currentUserId), type:'mentor'}, done);
 });
 
-adminUsersController.get('/add-from-angellist', function (req, res) {
-	res.data.breadcrumbs.push({
-		label : 'User managment',
-		url : '/admin/users'
-	});
-	res.data.breadcrumbs.push({
-		label : 'Add from Angellist'
-	});
-
-	res.render('admin-users/angelListSearch');
-});
-
-adminUsersController.get('/new', function (req, res) {
-	res.data.breadcrumbs.push({
-		label : 'User managment',
-		url : '/admin/users'
-	});
-	res.data.breadcrumbs.push({
-		label : 'Add user'
-	});
-
-	console.log('angelListId', req.query.angelListId);
-
-	if(req.query.angelListId){
-		angelListApi.getUserInfo(req.query.angelListId, function(err, data){
-			if(err){return res.sendError(500, err);}
-			console.log('angellistData', data);
-
-			data.slug = Slug.slugify(data.displayName);
-			data.angelListId = req.query.angelListId;
-
-			console.log(data);
-			res.render('admin-users/new', {angelListUser : data});
-		});
-	}else{
-		res.render('admin-users/new', {
-			angelListUser : {
-				socialContacts : [
-					{provider:'twitter'},
-					{provider:'facebook'},
-					{provider:'github'},
-					{provider:'aboutme'},
-					{provider:'linkedin'},
-					{provider:'blog'}
-				]
-			}
-		});
+var labels = {
+	plurals : {
+		mentor : 'Mentors'
+	},
+	single : {
+		mentor : 'Mentor'
 	}
-});
+};
 
-adminUsersController.get('/:currentUser', function (req, res) {
-	res.data.breadcrumbs.push({
-		label : 'User managment',
-		url : '/admin/users'
-	});
-	res.data.breadcrumbs.push({
-		label : res.data.currentUser.displayName
-	});
-	var message = req.flash('message');
-	console.log('message', message);
+var indexRoute = function(type){
+	return function (req, res) {
+		var label = type ? labels.plurals[type] : '';
+		res.data.breadcrumbs.push({
+			label : label || 'User managment'
+		});
 
-	res.render('admin-users/single',{
-		currentUser : res.data.currentUser,
-		message : message[0]
-	});
-});
-
-adminUsersController.post('/new', function (req, res) {
-	var busboy = new Busboy({ headers: req.headers });
-	var fields = {};
-	var useLocalLogo, extension;
-
-	var user = new User({});
-
-	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-		if(fieldname === 'avatar' && filename !== 'undefined') {
-			var extensionArray = filename.split('.');
-			extension      = _.last(extensionArray);
-
-			var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
-			useLocalLogo = true;
-
-			file.pipe(fs.createWriteStream(avatarFilePath));
-		}
-	});
-
-	busboy.on('field', function(fieldname, val) {
-		console.log('field', fieldname, val);
-		fields[fieldname] = val;
-	});
-
-	busboy.on('finish', function() {
-		var saveHandler = function(err){
-			if(err){ return res.sendError(500, err); }
-			req.flash('message', 'Saved sucessfully');
-			res.redirect('/admin/users/' + user.id );
-		};
-
-		user.bio = fields.bio;
-		user.type = fields.type;
-		user.group = fields.group;
-		user.title = fields.title;
-		user.displayName = fields.displayName;
-		user.companyName = fields.company;
-		user.slugStr = fields.slug;
-		user.username= fields.email;
-		user.location= fields.location;
-		user.link= fields.link;
-		user.active = false;
-		user.publish = false;
-		
-		user.profiles.push({provider:'twitter', url:fields.twitter});
-		user.profiles.push({provider:'facebook', url:fields.facebook});
-		user.profiles.push({provider:'github', url:fields.github});
-		user.profiles.push({provider:'linkedin', url:fields.linkedin});
-		user.profiles.push({provider:'aboutme', url:fields.aboutme});
-		user.profiles.push({provider:'blog', url:fields.blog});
-
-		if(useLocalLogo){
-			user.avatar = path.join('/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
-		}else{
-			user.avatar = fields.remoteLogoUrl;
+		var query;
+		if(type){
+			query = {type:type};
 		}
 
-		if(fields.expertise){
-			user.expertise = fields.expertise.split(',');
-		}
+		User.find(query || {}, function(err, users){
+			if(err){res.sendError(500, err);}
 
-		if(fields.angelListId){
-			angelListApi.getUserInfo(fields.angelListId, function(err, data){
-				if(err){ return res.sendError(500, err); }
+			res.render('admin-users/list',{
+				users: users,
+				title  : labels.plurals[type] || 'Users managment',
+				single : labels.single[type]  || 'User',
+				type   : type || 'user'
+			});
+		});
+	};
+};
+adminUsersController  .get('', indexRoute());
+adminMentorsController.get('', indexRoute('mentor'));
 
-				user.angelListData = data.angelListData;
-				user.save(saveHandler);
+var fromAngelListRoute = function (type) {
+	return  function (req, res) {
+		var label = type ? labels.plurals[type] : '';
+		res.data.breadcrumbs.push({
+			label : label || 'User managment',
+			url : '/admin/'+ (type || 'users') +'s'
+		});
+		res.data.breadcrumbs.push({
+			label : 'Add from Angellist'
+		});
+
+		res.render('admin-users/angelListSearch',{
+			title  : labels.plurals[type] || 'Users managment',
+			single : labels.single[type]  || 'User',
+			type   : type || 'user'
+		});
+	};
+};
+adminUsersController  .get('/add-from-angellist', fromAngelListRoute());
+adminMentorsController.get('/add-from-angellist', fromAngelListRoute('mentor'));
+
+var newUserRoute = function (type) {
+	return function (req, res) {
+		var label = type ? labels.plurals[type] : '';
+		res.data.breadcrumbs.push({
+			label : label || 'User managment',
+			url : '/admin/'+ (type || 'user') +'s'
+		});
+		res.data.breadcrumbs.push({
+			label : 'Add ' + (type || 'user')
+		});
+
+		if(req.query.angelListId){
+			angelListApi.getUserInfo(req.query.angelListId, function(err, data){
+				if(err){return res.sendError(500, err);}
+
+				data.slug = Slug.slugify(data.displayName);
+				data.angelListId = req.query.angelListId;
+
+				res.render('admin-users/new', {angelListUser : data, type: type});
 			});
 		}else{
-			user.save(saveHandler);
+			res.render('admin-users/new', {
+				angelListUser : {
+					socialContacts : [
+						{provider:'twitter'},
+						{provider:'facebook'},
+						{provider:'github'},
+						{provider:'aboutme'},
+						{provider:'linkedin'},
+						{provider:'blog'}
+					]
+				},
+				type: type
+			});
 		}
-	});
+	};
+};
+adminUsersController  .get('/new', newUserRoute());
+adminMentorsController.get('/new', newUserRoute('mentor'));
 
-	req.pipe(busboy);
-});
-
-adminUsersController.post('/:currentUser/edit', function (req, res) {
-	var busboy = new Busboy({ headers: req.headers });
-	var fields = {};
-	var currentUser = res.data.currentUser;
-	var useLocalLogo, extension;
-
-	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-		if(fieldname === 'avatar' && filename !== 'undefined') {
-			debugger;
-			var extensionArray = filename.split('.');
-			extension      = _.last(extensionArray);
-
-			var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
-			useLocalLogo = true;
-
-			file.pipe(fs.createWriteStream(avatarFilePath));
-		}
-	});
-
-	busboy.on('field', function(fieldname, val) {
-		console.log('field', fieldname, val);
-		fields[fieldname] = val;
-	});
-
-	busboy.on('finish', function() {
-		currentUser.bio = fields.bio;
-		currentUser.type = fields.type;
-		currentUser.group = fields.group;
-		currentUser.title = fields.title;
-		currentUser.displayName = fields.displayName;
-		currentUser.companyName = fields.company;
-		currentUser.slugStr = fields.slug;
-		currentUser.username= fields.email;
-		currentUser.location= fields.location;
-		currentUser.link= fields.link;
-
-		currentUser.profiles = [];
-		currentUser.profiles.push({provider:'twitter', url:fields.twitter});
-		currentUser.profiles.push({provider:'facebook', url:fields.facebook});
-		currentUser.profiles.push({provider:'github', url:fields.github});
-		currentUser.profiles.push({provider:'linkedin', url:fields.linkedin});
-		currentUser.profiles.push({provider:'aboutme', url:fields.aboutme});
-		currentUser.profiles.push({provider:'blog', url:fields.blog});
-
-		debugger;
-		if(useLocalLogo){
-			currentUser.avatar = path.join('/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
-		}
-
-		if(fields.expertise){
-			currentUser.expertise = fields.expertise.split(',');
-		}
-
-		currentUser.save(function(err){
-			if(err){ return res.sendError(500, err); }
-			req.flash('message', 'Updated sucessfully');
-			res.redirect('/admin/users/' + currentUser.id );
+var userRoute = function (type) {
+	return function (req, res) {
+		res.data.breadcrumbs.push({
+			label : 'User managment',
+			url : '/admin/users'
 		});
-	});
+		res.data.breadcrumbs.push({
+			label : res.data.currentUser.displayName
+		});
+		var message = req.flash('message');
 
-	req.pipe(busboy);
-});
+		res.render('admin-users/single',{
+			currentUser : res.data.currentUser,
+			message : message[0],
+			type : type || 'user'
+		});
+	};
+};
+adminUsersController  .get('/:currentUser', userRoute());
+adminMentorsController.get('/:currentUser', userRoute('mentor'));
 
-adminUsersController.post('/search', function(req, res){
-	User.search({query: '*' + req.body.search + '*'}, {hydrate:true}, function(err, results) {
-		console.log(err, results);
+var createRoute = function (type) {
+	return function (req, res) {
+		var busboy = new Busboy({ headers: req.headers });
+		var fields = {};
+		var useLocalLogo, extension;
 
-		if(err){return res.sendError(500, err);}
-		res.send(results);
-	});
-});
+		var user = new User({});
+
+		busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+			if(fieldname === 'avatar' && filename !== 'undefined') {
+				var extensionArray = filename.split('.');
+				extension      = _.last(extensionArray);
+
+				var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
+				useLocalLogo = true;
+
+				file.pipe(fs.createWriteStream(avatarFilePath));
+			}
+		});
+
+		busboy.on('field', function(fieldname, val) {
+			fields[fieldname] = val;
+		});
+
+		busboy.on('finish', function() {
+			var saveHandler = function(err){
+				if(err){ return res.sendError(500, err); }
+				req.flash('message', 'Saved sucessfully');
+				res.redirect('/admin/'+ (type || 'user') +'s/' + user.id );
+			};
+
+			user.bio = fields.bio;
+			user.type = type || fields.type;
+			user.group = fields.group;
+			user.title = fields.title;
+			user.displayName = fields.displayName;
+			user.companyName = fields.company;
+			user.slugStr = fields.slug;
+			user.username= fields.email;
+			user.location= fields.location;
+			user.link= fields.link;
+			user.active = false;
+			user.publish = false;
+			
+			user.profiles.push({provider:'twitter', url:fields.twitter});
+			user.profiles.push({provider:'facebook', url:fields.facebook});
+			user.profiles.push({provider:'github', url:fields.github});
+			user.profiles.push({provider:'linkedin', url:fields.linkedin});
+			user.profiles.push({provider:'aboutme', url:fields.aboutme});
+			user.profiles.push({provider:'blog', url:fields.blog});
+
+			if(useLocalLogo){
+				user.avatar = path.join('/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
+			}else{
+				user.avatar = fields.remoteLogoUrl;
+			}
+
+			if(fields.expertise){
+				user.expertise = fields.expertise.split(',');
+			}
+
+			if(fields.angelListId){
+				angelListApi.getUserInfo(fields.angelListId, function(err, data){
+					if(err){ return res.sendError(500, err); }
+
+					user.angelListData = data.angelListData;
+					user.save(saveHandler);
+				});
+			}else{
+				user.save(saveHandler);
+			}
+		});
+
+		req.pipe(busboy);
+	};
+};
+adminUsersController  .post('/new', createRoute());
+adminMentorsController.post('/new', createRoute('mentor'));
+
+var updateUserRoute = function (type) {
+	return function (req, res) {
+		var busboy = new Busboy({ headers: req.headers });
+		var fields = {};
+		var currentUser = res.data.currentUser;
+		var useLocalLogo, extension;
+
+		busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+			if(fieldname === 'avatar' && filename !== 'undefined') {
+				var extensionArray = filename.split('.');
+				extension      = _.last(extensionArray);
+
+				var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
+				useLocalLogo = true;
+
+				file.pipe(fs.createWriteStream(avatarFilePath));
+			}
+		});
+
+		busboy.on('field', function(fieldname, val) {
+			fields[fieldname] = val;
+		});
+
+		busboy.on('finish', function() {
+			currentUser.bio = fields.bio;
+			currentUser.type = type || fields.type;
+			currentUser.group = fields.group;
+			currentUser.title = fields.title;
+			currentUser.displayName = fields.displayName;
+			currentUser.companyName = fields.company;
+			currentUser.slugStr = fields.slug;
+			currentUser.username= fields.email;
+			currentUser.location= fields.location;
+			currentUser.link= fields.link;
+
+			currentUser.profiles = [];
+			currentUser.profiles.push({provider:'twitter', url:fields.twitter});
+			currentUser.profiles.push({provider:'facebook', url:fields.facebook});
+			currentUser.profiles.push({provider:'github', url:fields.github});
+			currentUser.profiles.push({provider:'linkedin', url:fields.linkedin});
+			currentUser.profiles.push({provider:'aboutme', url:fields.aboutme});
+			currentUser.profiles.push({provider:'blog', url:fields.blog});
+
+			if(useLocalLogo){
+				currentUser.avatar = path.join('/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
+			}
+
+			if(fields.expertise){
+				currentUser.expertise = fields.expertise.split(',');
+			}
+
+			currentUser.save(function(err){
+				if(err){ return res.sendError(500, err); }
+				req.flash('message', 'Updated sucessfully');
+				res.redirect('/admin/'+ (type||'user') +'s/' + currentUser.id );
+			});
+		});
+
+		req.pipe(busboy);
+	};
+		
+};
+adminUsersController  .post('/:currentUser/edit', updateUserRoute());
+adminMentorsController.post('/:currentUser/edit', updateUserRoute('mentor'));
+
+var searchRoute = function (type) {
+	var query = {};
+
+	if(type){
+		query.type = type;
+	}
+
+	return function(req, res){
+		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query} }, function(err, results) {
+			if(err){return res.sendError(500, err);}
+			
+			var users = _.filter(results.hits, function(item){return item.displayName;});
+			res.send(users);
+		});
+	};
+};
+adminUsersController  .post('/search', searchRoute());
+adminMentorsController.post('/search', searchRoute('mentor'));
 
 adminUsersController.post('/searchAngelList', function(req, res){
 	angelListApi.searchUser(req.body.search, function(err, results){
-		console.log(err, results);
-
 		if(err){return res.sendError(500, err);}
 		res.send(results);
 	});
 });
 
-module.exports = adminUsersController;
+module.exports = {
+	main    : adminUsersController,
+	mentors : adminMentorsController
+};

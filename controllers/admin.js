@@ -34,7 +34,8 @@ var adminSlugsController = require('./admin-slugs');
 var adminStartUpsController = require('./admin-startups');
 var adminActivitiesController = require('./admin-activities');
 
-adminController.attach(adminUsersController);
+adminController.attach(adminUsersController.main);
+adminController.attach(adminUsersController.mentors);
 adminController.attach(adminSlugsController);
 adminController.attach(adminStartUpsController);
 adminController.attach(adminActivitiesController);

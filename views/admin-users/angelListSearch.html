@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block header %}
-	<i class="fa fa-users"></i>User managment
+	<i class="fa fa-users"></i>{{title}}
 {% endblock %}
 
 {% block content %}
 <div class="row list-header">
 	<div class="col-xs-12">
-		<p class="title">User list.</p>
+		<p class="title">{{single}} list.</p>
 	</div>
 </div>
 <div class="row list-header">
@@ -42,13 +42,13 @@
 				<div>
 					<h4><%= item.name %></h4>
 					<p><a href="<%= item.url %>"><%= item.url %></a></p>
-					<a href="/admin/users/new?angelListId=<%= item.id %>" class="add-btn btn btn-success">Add</a>
+					<a href="/admin/{{type}}s/new?angelListId=<%= item.id %>" class="add-btn btn btn-success">Add</a>
 				</div>
 			</div>
 			<% }else{ %>
 			<div class="col-xs-12">
 				<h4><%= item.name %></h4>
-				<a href="/admin/users/new?angelListId=<%= item.id %>" class="add-btn btn btn-success">Add</a>
+				<a href="/admin/{{type}}s/new?angelListId=<%= item.id %>" class="add-btn btn btn-success">Add</a>
 			</div>				
 			<% }%>
 		</div>

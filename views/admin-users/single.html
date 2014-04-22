@@ -27,7 +27,7 @@
 </div>
 {% endif %}
 <div class="panel panel-dark">
-	<form id="update-user" class="form-horizontal form-bordered" method="post" action="/admin/users/{{currentUser.id}}/edit"  enctype="multipart/form-data">
+	<form id="update-user" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}s/{{currentUser.id}}/edit"  enctype="multipart/form-data">
 		<div class="panel-heading">
 			<h4 class="panel-title">Edit user information</h4>
 		</div>

@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block header %}
-	<i class="fa fa-users"></i>User managment
+	<i class="fa fa-users"></i>{{title}}
 {% endblock %}
 
 {% block content %}
 <div class="row list-header">
 	<div class="col-xs-6">
-		<p class="title">User list.</p>
+		<p class="title">{{single}} list.</p>
 	</div>
 	<div class="col-xs-6">
 		<div class="input-group stand-alone">
@@ -48,7 +48,9 @@ $(document).ready(function () {
 			<tr>
 				<th>Name</th>
 				<th>Email</th>
+				{% if !type %}
 				<th>Type</th>
+				{% endif %}
 				<th>Active</th>
 			</tr>
 		</thead>
@@ -63,7 +65,9 @@ $(document).ready(function () {
 <script type="text/template" id="tableRowTemplate">
 	<td><%= item.displayName %></td>
 	<td><%= item.username %></td>
+	{% if !type %}
 	<td><%= item.type %></td>
+	{% endif %}
 	<td><%= item.active %></td>
 </script>
 <script type="text/template" id="listItemTemplate">
@@ -101,7 +105,7 @@ $(document).ready(function(){
 		itemTemplate : '#tableRowTemplate',
 		itemTagName : 'tr',
 		goTo : function() {
-			window.location = '/admin/users/' + this.model.get('_id');
+			window.location = '/admin/{{ type || user }}/' + this.model.get('_id');
 		}
 	});
 	userList.render().$el.appendTo('#userTable');
@@ -119,10 +123,10 @@ $(document).ready(function(){
 			window.widgets.userList.empty();
 
 			if($this.val()){
-				var xhrSearch = $.post('/admin/users/search',{search: $this.val() });
+				var xhrSearch = $.post('/admin/{{ type || user }}s/search',{search: $this.val() });
 
 				xhrSearch.done(function(data){
-					window.widgets.userList.fill(data.hits);
+					window.widgets.userList.fill(data);
 				});
 			}else{
 				window.widgets.userList.fill(window.users);

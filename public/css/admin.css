@@ -20,6 +20,9 @@ body > section .logopanel img {
   border: 0;
   cursor: pointer;
 }
+.pageheader .breadcrumb li {
+  text-transform: capitalize;
+}
 .subheaderbar {
   display: none;
   padding: 15px;
