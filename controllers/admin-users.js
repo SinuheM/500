@@ -18,6 +18,10 @@ var adminMentorsController = controller({
 	path : '/mentors'
 });
 
+var adminStaffController = controller({
+	path : '/staff-members'
+});
+
 var breadcrumbs = function(req, res, next){
 	res.data.breadcrumbs = [{
 		label : 'Dashboard',
@@ -29,12 +33,16 @@ var breadcrumbs = function(req, res, next){
 
 adminMentorsController.beforeEach(breadcrumbs);
 adminUsersController.beforeEach(breadcrumbs);
+adminStaffController.beforeEach(breadcrumbs);
 
 adminUsersController.param('currentUser', function (currentUserId, done) {
 	User.findOne({_id: db.Types.ObjectId(currentUserId)}, done);
 });
 adminMentorsController.param('currentUser', function (currentUserId, done) {
 	User.findOne({_id: db.Types.ObjectId(currentUserId), type:'mentor'}, done);
+});
+adminStaffController.param('currentUser', function (currentUserId, done) {
+	User.findOne({_id: db.Types.ObjectId(currentUserId), type:'team'}, done);
 });
 
 var labels = {
@@ -43,6 +51,10 @@ var labels = {
 	},
 	single : {
 		mentor : 'Mentor'
+	},
+	queryBy : {
+		mentor : 'mentor',
+		'staff-member' : 'team'
 	}
 };
 
@@ -55,7 +67,7 @@ var indexRoute = function(type){
 
 		var query;
 		if(type){
-			query = {type:type};
+			query = {type:labels.queryBy[type]};
 		}
 
 		User.find(query || {}, function(err, users){
@@ -72,6 +84,7 @@ var indexRoute = function(type){
 };
 adminUsersController  .get('', indexRoute());
 adminMentorsController.get('', indexRoute('mentor'));
+adminStaffController.get('', indexRoute('staff-member'));
 
 var fromAngelListRoute = function (type) {
 	return  function (req, res) {
@@ -93,6 +106,7 @@ var fromAngelListRoute = function (type) {
 };
 adminUsersController  .get('/add-from-angellist', fromAngelListRoute());
 adminMentorsController.get('/add-from-angellist', fromAngelListRoute('mentor'));
+adminStaffController.get('/add-from-angellist', fromAngelListRoute('staff-member'));
 
 var newUserRoute = function (type) {
 	return function (req, res) {
@@ -112,7 +126,7 @@ var newUserRoute = function (type) {
 				data.slug = Slug.slugify(data.displayName);
 				data.angelListId = req.query.angelListId;
 
-				res.render('admin-users/new', {angelListUser : data, type: type});
+				res.render('admin-users/new', {angelListUser : data, type: type || 'user'});
 			});
 		}else{
 			res.render('admin-users/new', {
@@ -126,13 +140,14 @@ var newUserRoute = function (type) {
 						{provider:'blog'}
 					]
 				},
-				type: type
+				type: type || 'user'
 			});
 		}
 	};
 };
 adminUsersController  .get('/new', newUserRoute());
 adminMentorsController.get('/new', newUserRoute('mentor'));
+adminStaffController.get('/new', newUserRoute('staff-member'));
 
 var userRoute = function (type) {
 	return function (req, res) {
@@ -154,6 +169,7 @@ var userRoute = function (type) {
 };
 adminUsersController  .get('/:currentUser', userRoute());
 adminMentorsController.get('/:currentUser', userRoute('mentor'));
+adminStaffController.get('/:currentUser', userRoute('staff-member'));
 
 var createRoute = function (type) {
 	return function (req, res) {
@@ -233,6 +249,7 @@ var createRoute = function (type) {
 };
 adminUsersController  .post('/new', createRoute());
 adminMentorsController.post('/new', createRoute('mentor'));
+adminStaffController.post('/new', createRoute('staff-member'));
 
 var updateUserRoute = function (type) {
 	return function (req, res) {
@@ -294,10 +311,10 @@ var updateUserRoute = function (type) {
 
 		req.pipe(busboy);
 	};
-		
 };
 adminUsersController  .post('/:currentUser/edit', updateUserRoute());
 adminMentorsController.post('/:currentUser/edit', updateUserRoute('mentor'));
+adminStaffController.post('/:currentUser/edit', updateUserRoute('staff-member'));
 
 var searchRoute = function (type) {
 	var query = {};
@@ -317,6 +334,7 @@ var searchRoute = function (type) {
 };
 adminUsersController  .post('/search', searchRoute());
 adminMentorsController.post('/search', searchRoute('mentor'));
+adminStaffController.post('/search', searchRoute('staff-member'));
 
 adminUsersController.post('/searchAngelList', function(req, res){
 	angelListApi.searchUser(req.body.search, function(err, results){
@@ -327,5 +345,6 @@ adminUsersController.post('/searchAngelList', function(req, res){
 
 module.exports = {
 	main    : adminUsersController,
-	mentors : adminMentorsController
+	mentors : adminMentorsController,
+	staffMembers : adminStaffController
 };

@@ -105,7 +105,7 @@ $(document).ready(function(){
 		itemTemplate : '#tableRowTemplate',
 		itemTagName : 'tr',
 		goTo : function() {
-			window.location = '/admin/{{ type || user }}/' + this.model.get('_id');
+			window.location = '/admin/{{ type || "user" }}s/' + this.model.get('_id');
 		}
 	});
 	userList.render().$el.appendTo('#userTable');

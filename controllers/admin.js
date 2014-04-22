@@ -36,6 +36,7 @@ var adminActivitiesController = require('./admin-activities');
 
 adminController.attach(adminUsersController.main);
 adminController.attach(adminUsersController.mentors);
+adminController.attach(adminUsersController.staffMembers);
 adminController.attach(adminSlugsController);
 adminController.attach(adminStartUpsController);
 adminController.attach(adminActivitiesController);
