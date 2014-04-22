@@ -203,7 +203,7 @@ var createRoute = function (type) {
 			};
 
 			user.bio = fields.bio;
-			user.type = type || fields.type;
+			user.type = labels.queryBy[type] || fields.type;
 			user.group = fields.group;
 			user.title = fields.title;
 			user.displayName = fields.displayName;
@@ -276,7 +276,7 @@ var updateUserRoute = function (type) {
 
 		busboy.on('finish', function() {
 			currentUser.bio = fields.bio;
-			currentUser.type = type || fields.type;
+			currentUser.type = labels.queryBy[type] || fields.type;
 			currentUser.group = fields.group;
 			currentUser.title = fields.title;
 			currentUser.displayName = fields.displayName;
