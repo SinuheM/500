@@ -27,13 +27,13 @@ var helpers = function(swig){
 		if(provider === 'twitter'){
 			return 'http://twitter.com/' + url;
 		}else if(provider === 'facebook'){
-			return 'facebook.com/';
+			return 'http://facebook.com/'+ url;
 		}else if(provider === 'github'){
-			return 'github.com/';
+			return 'http://github.com/'+ url;
 		}else if(provider === 'linkedin'){
-			return 'www.linkedin.com/in/';
+			return 'http://www.linkedin.com/in/' + url;
 		}else if(provider === 'aboutme'){
-			return 'aboutme.com/';
+			return 'http://aboutme.com/' + url;
 		}else if(provider === 'angellist'){
 			return 'https://angel.co/' + url;
 		}else if(provider === 'crunchbase'){
@@ -45,9 +45,42 @@ var helpers = function(swig){
 		}
 	});
 
-	swig.setFilter('socialEmoticon', function (provider) {
+	swig.setFilter('socialEmoticon', function (provider, color) {
 		if(provider === 'twitter'){
-			return '/img/startup-twitter.png';
+			if(color === 'white'){
+				return '/imgs/social-icons/twitter.png';
+			}
+			return '/imgs/social-icons/twitter_dark.png';
+		}else if(provider === 'facebook'){
+			if(color === 'white'){
+				return '/imgs/social-icons/facebook.png';
+			}
+			return '/imgs/social-icons/facebook.png';
+		}else if(provider === 'github'){
+			if(color === 'white'){
+				return '/imgs/social-icons/github.png';
+			}
+			return '/imgs/social-icons/github.png';
+		}else if(provider === 'github'){
+			if(color === 'white'){
+				return '/imgs/social-icons/github.png';
+			}
+			return '/imgs/social-icons/github.png';
+		}else if(provider === 'github'){
+			if(color === 'white'){
+				return '/imgs/social-icons/github.png';
+			}
+			return '/imgs/social-icons/github.png';
+		}else if(provider === 'linkedin'){
+			if(color === 'white'){
+				return '/imgs/social-icons/linkedin.png';
+			}
+			return '/imgs/social-icons/linkedin.png';
+		}else if(provider === 'blog'){
+			if(color === 'white'){
+				return '/imgs/social-icons/blog.png';
+			}
+			return '/imgs/social-icons/blog.png';
 		}else if(provider === 'crunchbase'){
 			return '/img/startup-cb.png';
 		}else if(provider === 'angellist'){
