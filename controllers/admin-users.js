@@ -56,9 +56,6 @@ var beforeEach = function(type){
 			query.type = labels.queryBy[type];
 		}
 
-		console.log('type', type);
-		console.log(query);
-
 		User.findOne(query, done);
 	};
 };
@@ -184,19 +181,30 @@ var createRoute = function (type) {
 	return function (req, res) {
 		var busboy = new Busboy({ headers: req.headers });
 		var fields = {};
-		var useLocalLogo, extension;
+		var useLocalLogo, extension, hasBackground;
 
 		var user = new User({});
 
 		busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+			var extensionArray;
 			if(fieldname === 'avatar' && filename !== 'undefined') {
-				var extensionArray = filename.split('.');
+				extensionArray = filename.split('.');
 				extension      = _.last(extensionArray);
 
 				var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + user._id.toString() +  '.' + extension );
 				useLocalLogo = true;
 
 				file.pipe(fs.createWriteStream(avatarFilePath));
+			}
+
+			if(fieldname === 'backgroundImage' && filename !== 'undefined') {
+				extensionArray = filename.split('.');
+				extension      = _.last(extensionArray);
+
+				var backgroundFilePath   = path.join(process.cwd(), '/public/uploads/', 'background-' + user._id.toString() +  '.' + extension );
+				hasBackground = true;
+
+				file.pipe(fs.createWriteStream(backgroundFilePath));
 			}
 		});
 
@@ -237,6 +245,10 @@ var createRoute = function (type) {
 				user.avatar = fields.remoteLogoUrl;
 			}
 
+			if(hasBackground){
+				user.background = path.join('/uploads/', 'background-' + user._id.toString() +  '.' + extension );
+			}
+
 			if(fields.expertise){
 				user.expertise = fields.expertise.split(',');
 			}
@@ -265,17 +277,28 @@ var updateUserRoute = function (type) {
 		var busboy = new Busboy({ headers: req.headers });
 		var fields = {};
 		var currentUser = res.data.currentUser;
-		var useLocalLogo, extension;
+		var useLocalLogo, hasBackground, extension;
 
 		busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+			var extensionArray;
 			if(fieldname === 'avatar' && filename !== 'undefined') {
-				var extensionArray = filename.split('.');
+				extensionArray = filename.split('.');
 				extension      = _.last(extensionArray);
 
 				var avatarFilePath   = path.join(process.cwd(), '/public/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
 				useLocalLogo = true;
 
 				file.pipe(fs.createWriteStream(avatarFilePath));
+			}
+
+			if(fieldname === 'backgroundImage' && filename !== 'undefined') {
+				extensionArray = filename.split('.');
+				extension      = _.last(extensionArray);
+
+				var backgroundFilePath   = path.join(process.cwd(), '/public/uploads/', 'background-' + currentUser._id.toString() +  '.' + extension );
+				hasBackground = true;
+
+				file.pipe(fs.createWriteStream(backgroundFilePath));
 			}
 		});
 
@@ -304,6 +327,10 @@ var updateUserRoute = function (type) {
 
 			if(useLocalLogo){
 				currentUser.avatar = path.join('/uploads/', 'avatar-' + currentUser._id.toString() +  '.' + extension );
+			}
+
+			if(hasBackground){
+				currentUser.background = path.join('/uploads/', 'background-' + currentUser._id.toString() +  '.' + extension );
 			}
 
 			if(fields.expertise){

@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			{% endif %}
-			{% if type == "staff-member" || type == "user" %}
+			{% if type == "staff-member" || type == "user" || type=="admin" %}
 			<div class="form-group partial-fields" data-types="team, admin">
 				<label class="col-sm-3 control-label">Team Group</label>
 				<div class="col-sm-6">
@@ -82,6 +82,16 @@
 				</div>
 			</div>
 			{% endif %}
+			{% if type == 'staff-member' || type == "user" || type=="admin" %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Background image</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="backgroundImage">
+						<img src="{{currentUser.background}}"/>
+					</div>
+				</div>
+			</div>			
+			{% endif %}			
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Title</label>
 				<div class="col-sm-6">

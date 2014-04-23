@@ -18,6 +18,7 @@ var userSchema = schema({
 	location    : {type : String},
 	link        : {type : String},
 	avatar      : {type : String},
+	background  : {type : String},// Just staff members
 	bio         : {type : String, es_indexed:true},
 
 	expertise   : [{type : String}], // Just mentors

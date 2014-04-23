@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="over-shadow" style="background-image: url(/img/over-staff-member.png)"></div>
-        <div class="staff-cover" style="background-image: url(/img/staff-member/cesar-salazar.jpg);"></div>
+        <div class="staff-cover" style="background-image: url({% if staffMember.background %}{{staffMember.background}}{% else %}/img/staff-member/cesar-salazar.jpg{% endif %});"></div>
     </section>
 
 <script src="/js/vendor/jquery.js"></script>
