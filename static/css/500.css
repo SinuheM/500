@@ -323,6 +323,14 @@ section#blogpost .post .bottom .social {float: right; margin: 2rem 0 0; list-sty
 section#blogpost .post .bottom .social li {display: inline-block; margin-left: 0.5rem}
 section#blogpost .post .bottom .social li a {display: block;}
 section#blogpost .post .bottom .social li a img {}
+section#error404 {padding: 2rem 0 5rem}
+section#error404 .center {}
+section#error404 .top {}
+section#error404 .top .image-404 {display: inline-block; margin-left: 4rem}
+section#error404 .top .image-404 img {}
+section#error404 .top h5 {display: inline-block; vertical-align: bottom; font-size: 2rem; margin-left: 3rem;}
+section#error404 nav {text-align: center; margin-top: 3rem}
+section#error404 nav a {margin: 0 1.25rem}
 
 body.layer-single {background-color: #f2f2f2}
 header#int.simple {background-color: transparent;}
