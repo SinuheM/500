@@ -48,17 +48,17 @@ section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 section#entrepreneurs {text-align: center; padding: 8em 0 5em;}
 section#entrepreneurs iframe {margin: 2em 0; max-width: 785px; width: 95%}
-section#team {padding: 5em 0 1em;}
-section#team ul#date-500 {max-width: 960px; margin: 0 auto; list-style: none; text-align: center;}
-section#team ul#date-500 li {float: left; width: 33%;}
-section#team ul {}
-section#team ul li {}
-section#team ul li a {color: #b43322; font-size: 0.7rem; text-decoration: underline;}
-section#team #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative;}
-section#team #team-list .center {position: relative; z-index: 10}
-section#team #team-list ul {margin: 0; list-style: none; position: absolute; top: 0;}
-section#team #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
-section#team #team-list ul li img {width: 100%}
+section#team-home {padding: 5em 0 1em;}
+section#team-home ul#date-500 {max-width: 960px; margin: 0 auto; list-style: none; text-align: center;}
+section#team-home ul#date-500 li {float: left; width: 33%;}
+section#team-home ul {}
+section#team-home ul li {}
+section#team-home ul li a {color: #b43322; font-size: 0.7rem; text-decoration: underline;}
+section#team-home #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative;}
+section#team-home #team-list .center {position: relative; z-index: 10}
+section#team-home #team-list ul {margin: 0; list-style: none; position: absolute; top: 0;}
+section#team-home #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
+section#team-home #team-list ul li img {width: 100%}
 section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0;}
 section#help-startups h5 {margin-left: 1rem}
 section#help-startups p {font-size: 1rem}
@@ -178,7 +178,7 @@ section#startup #detail .founders ul li .perfil {display: inline-block; width: 7
 section#startup #detail .founders ul li h5 {margin: 0.25em 0; line-height: 1em; font-size: 1.1em}
 section#startup #detail .founders ul li h6 {color: #666}
 section#portfolio.mentors #search {padding: 10rem 0;}
-section#portfolio.team #search {padding: 10rem 0 8rem;}
+section#portfolio.team #search {padding: 10rem 0 9rem;}
 section#portfolio.team #search p {line-height: 1.5rem}
 section#portfolio.team #search h6 {margin: 4em 0 0}
 section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
@@ -194,6 +194,22 @@ section#portfolio #mentors ul li img {}
 section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0.75rem}
 section#portfolio #mentors ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
 section#portfolio #mentors ul li .content p.role {color: #666; text-transform: uppercase; font-size: 0.55rem;}
+section#portfolio .team500 h6{clear:both;}
+
+section#portfolio #team {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
+section#portfolio #team.team500 {padding: 3rem 0 10rem}
+section#portfolio #team h6 {text-align: center; position: relative; padding: 8rem 0 2rem}
+section#portfolio #team h6.top {top: -2rem; padding: 0}
+section#portfolio #team ul {margin: 0; position: relative; list-style: none; z-index: 10}
+section#portfolio #team ul.up {top: -10rem}
+section#portfolio #team ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
+section#portfolio #team ul li a {display: block;}
+section#portfolio #team ul li a:hover {background-color: #252525; color: #FFF}
+section#portfolio #team ul li a:hover p.role {color: #ccc}
+section#portfolio #team ul li img {}
+section#portfolio #team ul li .content {text-align: center; padding: 1rem 0 0.75rem}
+section#portfolio #team ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
+section#portfolio #team ul li .content p.role {color: #666; text-transform: uppercase; font-size: 0.55rem;}
 section#portfolio .team500 h6{clear:both;}
 
 section#portfolio .team500 .card{height: 294px;margin: 0;}
