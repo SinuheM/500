@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
-        <div id="mentors" class="team500">
+        <div id="team" class="team500">
             <div class="center">
                 <ul class="up">
                 	{% for member in team.managment %}
@@ -38,9 +38,8 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <div class="clearfix"></div>
-                <h6>INVESTMENT</h6>
-				<ul class="up">
+                <h6 class="top">INVESTMENT</h6>
+				<ul>
                 	{% for member in team.investment %}
                     <li>
                         <a class="card" href="/{{member.slugStr}}">
@@ -53,9 +52,8 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <div class="clearfix"></div>
                 <h6>FINANCIAL, LEGAL, MARKETING AND PORTAFOLIO SUPPORT</h6>
-				<ul class="up">
+				<ul>
                 	{% for member in team.support %}
                     <li>
                         <a class="card" href="/{{member.slugStr}}">
@@ -68,9 +66,8 @@
                     </li>
                     {% endfor %}
                 </ul>          
-                <div class="clearfix"></div>   
                 <h6>DISTRIBUTION TEAM</h6>
-                <ul class="up">
+                <ul>
                 	{% for member in team.distribution %}
                     <li>
                         <a class="card" href="/{{member.slugStr}}">
