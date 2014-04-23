@@ -231,8 +231,6 @@ adminStartUpsController.post('/new', function (req, res) {
 
 		startup.funding = JSON.parse(fields.investments);
 
-		return res.send(fields);
-
 		startup.save(function(err){
 			if(err){ return res.sendError(500, err); }
 			req.flash('message', 'Saved sucessfully');

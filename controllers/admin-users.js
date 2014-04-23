@@ -290,7 +290,6 @@ var updateUserRoute = function (type) {
 			currentUser.title = fields.title;
 			currentUser.displayName = fields.displayName;
 			currentUser.companyName = fields.company;
-			currentUser.slugStr = fields.slug;
 			currentUser.username= fields.email;
 			currentUser.location= fields.location;
 			currentUser.link= fields.link;
