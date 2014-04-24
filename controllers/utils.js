@@ -4,6 +4,7 @@ var controller = require('stackers'),
 	_ = require('underscore');
 
 var Startup = db.model('startup');
+var User = db.model('user');
 
 var utilsController = controller({
 	path : '/utils'
@@ -15,6 +16,15 @@ utilsController.post('/startups/search', function(req, res){
 
 		var startups = _.filter(results.hits, function(item){return item.name;});
 		res.send(startups);
+	});
+});
+
+utilsController.post('/mentors/search', function(req, res){
+	User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor'}}}, function(err, results) {
+		if(err){return res.sendError(500, err);}
+
+		var mentors = _.filter(results.hits, function(item){return item.displayName;});
+		res.send(mentors);
 	});
 });
 

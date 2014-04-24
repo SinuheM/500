@@ -150,5 +150,6 @@ Slug.reserve('startups');
 Slug.reserve('blog');
 Slug.reserve('legal');
 Slug.reserve('team');
+Slug.reserve('mentors');
 
 module.exports = Slug;

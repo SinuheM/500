@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500.co</title>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" href="/css/500.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    {% include "../partials/navbar.html" %}
+    <section id="portfolio" class="mentors">
+        <div id="search">
+            <div class="center">
+                <div class="container">
+                    <h4>Search the 200+ mentors in our family</h4>
+                    <input id="searchbox" type="search" placeholder="search">
+                    <p><span>Try Christine Herron, Facebook, ecommerce</span></p>
+                    <ul id="filter" style="display:none">
+                        <li>Filter results by:</li>
+                        <li class="drop">
+                            <span>Expertise</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                        <li class="drop">
+                            <span>Location</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                        <li>Order results by:</li>
+                        <li class="drop">
+                            <span>New Mentors first</span>
+                            <ul class="submain">
+                                <li><a href="">one</a></li>
+                                <li><a href="">two</a></li>
+                                <li><a href="">three</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div id="mentors">
+        </div>
+    </section>
+    {% include "../partials/footer.html" %}
+<script type="text/template" id="listTemplate">
+    <ul class="up list-container">
+    </ul>
+    <div class="clearfix"></div>
+</script>
+<script type="text/template" id="listItemTemplate">
+    <li>
+        <a href="/<%= item.slugStr %>">
+            <img src="<%= item.avatar %>">
+            <div class="content">
+                <p class="name"><%= item.displayName %></p>
+                <p class="role"><%= item.title %></p>
+            </div>
+        </a>
+    </li>
+</script>
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/vendors/underscore.js"></script>
+<script src="/js/vendors/backbone.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/widgets/list.js"></script>
+<script src="/js/app/mentors.js"></script>    
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/foundation.min.js"></script>
+<script src="/js/public.js"></script>
+<script>
+    {% autoescape false %}
+    window.mentors = {{mentors|json}};
+    {% endautoescape %}
+
+    $(document).foundation();
+</script>
+</body>
+</html>
