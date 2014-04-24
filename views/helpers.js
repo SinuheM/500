@@ -96,6 +96,16 @@ var helpers = function(swig){
 				return '/imgs/social-icons/youtube.png';
 			}
 			return '/imgs/social-icons/youtube_dark.png';
+		}else if(provider === 'aboutme'){
+			if(color === 'white'){
+				return '/imgs/social-icons/aboutme.png';
+			}
+			return '/imgs/social-icons/aboutme_dark.png';
+		}else if(provider === 'googleplus'){
+			if(color === 'white'){
+				return '/imgs/social-icons/googleplus.png';
+			}
+			return '/imgs/social-icons/googleplus_dark.png';
 		}else{
 			return '';
 		}
