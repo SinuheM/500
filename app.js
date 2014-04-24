@@ -22,7 +22,7 @@ db.loadModels(['slug', 'user', 'startup', 'activity', 'batch']);
 
 // Load renderes for reserved slugs
 var renderer = require('./lib/renderer');
-renderer.load(['startups', 'startup', 'home', 'legal', 'team', 'staff', 'mentors']);
+renderer.load(['startups', 'startup', 'home', 'legal', 'team', 'staff', 'mentors', 'mentor']);
 
 var Slug = db.model('slug');
 
@@ -109,16 +109,16 @@ app.get('/:slug', function (req, res) {
 		}
 
 		if(data.type === 'user'){
-			// if(data.resource.type === 'mentor'){
-			// 	render = renderer.get('mentor');
-			// 	return render(req, res, data);
-			// }
+			if(data.resource.type === 'mentor'){
+				render = renderer.get('mentor');
+				return render(req, res, data);
+			}
 
 			if(data.resource.type === 'admin' || data.resource.type === 'team'){
 				render = renderer.get('staff');
 				return render(req, res, data);
 			}
-		}		
+		}
 
 		if(data.type === 'activity'){
 			return res.redirect(data.resource.url);

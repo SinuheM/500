@@ -28,4 +28,12 @@ utilsController.post('/mentors/search', function(req, res){
 	});
 });
 
+utilsController.get('/mentors/random', function(req, res){
+	User.random(function (err, mentor) {
+		if(err){return res.sendError(500, err);}
+
+		res.redirect('/'+mentor.slugStr);
+	});
+});
+
 module.exports = utilsController;

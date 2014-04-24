@@ -36,6 +36,17 @@ var userSchema = schema({
 userSchema.plugin(Slug.plugIt, {type: 'user', slugFrom : 'displayName' });
 userSchema.plugin(mongoosastic);
 
+userSchema.statics.random = function(callback) {
+	this.count({type:'mentor'},function(err, count) {
+		if (err) {
+			return callback(err);
+		}
+
+		var rand = Math.floor(Math.random() * count);
+		this.findOne({type:'mentor'}).skip(rand).exec(callback);
+	}.bind(this));
+};
+
 var User = db.model('user', userSchema);
 
 module.exports = User;

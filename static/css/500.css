@@ -220,10 +220,10 @@ section#mentor-single .center {width: 50%; position: relative;}
 section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
 section#mentor-single .archive .head-info {position: relative; top: -2.5em}
 section#mentor-single .archive .head-info .image-container {display: inline-block; width: 30%; vertical-align: top;}
-section#mentor-single .archive .head-info .image-container img {}
+section#mentor-single .archive .head-info .image-container img {width: 100%}
 section#mentor-single .archive .head-info .name {display: inline-block; width: 68%; vertical-align: bottom; padding-left: 1rem;}
-section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em}
-section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #ccc; font-size: 1rem; font-weight: 600; margin: 0;}
+section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
+section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #ccc; font-size: 1rem; font-weight: 600; margin: 0; text-transform: uppercase;}
 section#mentor-single .archive .info {font-weight: 300}
 section#mentor-single .archive .info li {}
 section#mentor-single .archive .info li.location {list-style-image: url(../img/black-pin.png);}
@@ -348,7 +348,9 @@ section#error404 .top h5 {display: inline-block; vertical-align: bottom; font-si
 section#error404 nav {text-align: center; margin-top: 3rem}
 section#error404 nav a {margin: 0 1.25rem}
 
-body.layer-single {background-color: #f2f2f2}
+body.layer-single {background-color: #f2f2f2; height:100%;}
+body.layer-single #mentor-single, body.layer-single #mentor-single .center, body.layer-single #mentor-single .center .archive{height:100%;}
+
 header#int.simple {background-color: transparent;}
 
 .line {height: 8em}
