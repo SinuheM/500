@@ -55,36 +55,47 @@ var helpers = function(swig){
 			if(color === 'white'){
 				return '/imgs/social-icons/facebook.png';
 			}
-			return '/imgs/social-icons/facebook.png';
+			return '/imgs/social-icons/facebook_dark.png';
 		}else if(provider === 'github'){
 			if(color === 'white'){
 				return '/imgs/social-icons/github.png';
 			}
-			return '/imgs/social-icons/github.png';
+			return '/imgs/social-icons/github_dark.png';
 		}else if(provider === 'github'){
 			if(color === 'white'){
 				return '/imgs/social-icons/github.png';
 			}
-			return '/imgs/social-icons/github.png';
+			return '/imgs/social-icons/github_dark.png';
 		}else if(provider === 'github'){
 			if(color === 'white'){
 				return '/imgs/social-icons/github.png';
 			}
-			return '/imgs/social-icons/github.png';
+			return '/imgs/social-icons/github_dark.png';
 		}else if(provider === 'linkedin'){
 			if(color === 'white'){
 				return '/imgs/social-icons/linkedin.png';
 			}
-			return '/imgs/social-icons/linkedin.png';
+			return '/imgs/social-icons/linkedin_dark.png';
 		}else if(provider === 'blog'){
 			if(color === 'white'){
 				return '/imgs/social-icons/blog.png';
 			}
-			return '/imgs/social-icons/blog.png';
+			return '/imgs/social-icons/blog_dark.png';
 		}else if(provider === 'crunchbase'){
-			return '/img/startup-cb.png';
+			if(color === 'white'){
+				return '/imgs/social-icons/crunchbase.png';
+			}
+			return '/imgs/social-icons/crunchbase_dark.png';
 		}else if(provider === 'angellist'){
-			return '/img/startup-hi.png';
+			if(color === 'white'){
+				return '/imgs/social-icons/angellist.png';
+			}
+			return '/imgs/social-icons/angellist_dark.png';
+		}else if(provider === 'youtube'){
+			if(color === 'white'){
+				return '/imgs/social-icons/youtube.png';
+			}
+			return '/imgs/social-icons/youtube_dark.png';
 		}else{
 			return '';
 		}

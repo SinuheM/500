@@ -29,7 +29,9 @@
                     {% for profile in startup.socialProfiles %}
                         {% if profile.url %}
                         <li>
-                            <a href="{{profile.url|socialUrl(profile.provider)}}"><img src="{{profile.provider|socialEmoticon}}" alt="{{profile.provider}}"></a>
+                            <a href="{{profile.url|socialUrl(profile.provider)}}">
+                                <img class="has-retina" src="{{profile.provider|socialEmoticon}}" alt="{{profile.provider}}">
+                            </a>
                         </li>                    
                         {% endif %}
                     {% endfor%}
@@ -134,6 +136,7 @@
     {% include "../partials/footer.html" %}
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/foundation.min.js"></script>
+<script src="/js/public.js"></script>
 <script>
     $(document).foundation();
 </script>
