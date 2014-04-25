@@ -13,12 +13,14 @@ var activitySchema = schema({
 	description : {type : String},
 	image       : {type : String},
 	uploader    : {type : schema.Types.ObjectId, ref: 'user'},
-	imagePool   : schema.Types.Mixed
+	imagePool   : schema.Types.Mixed,
+	type        : {type : String, default: 'on the web' },
 });
 
 activitySchema.plugin(Slug.plugIt, {type: 'activity', slugFrom : function(item){
 	return 'activity' + item._id;
 }});
+
 activitySchema.plugin(mongoosastic);
 
 var Activity = db.model('activity', activitySchema);

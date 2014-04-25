@@ -19,7 +19,8 @@
     "underscore.string": "~2.3.3",
     "mongoosastic": "~0.2.6",
     "busboy": "~0.2.3",
-    "mkdirp": "~0.3.5"
+    "mkdirp": "~0.3.5",
+    "moment": "~2.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

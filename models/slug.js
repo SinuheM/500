@@ -147,9 +147,11 @@ Slug.prototype.change = function (newSlug, callback) {
 
 Slug.reserve('admin');
 Slug.reserve('startups');
-Slug.reserve('blog');
 Slug.reserve('legal');
 Slug.reserve('team');
 Slug.reserve('mentors');
+
+Slug.reserve('blog');
+Slug.reserve('activity');
 
 module.exports = Slug;

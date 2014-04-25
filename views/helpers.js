@@ -1,4 +1,5 @@
-var url = require('url');
+var url = require('url'),
+	moment = require('moment');
 
 var helpers = function(swig){
 	swig.setFilter('slugPlaceholder', function (provider) {
@@ -115,6 +116,16 @@ var helpers = function(swig){
 		var location = url.parse(urlStr);
 
 		return location.hostname.toLowerCase();
+	});
+
+	swig.setFilter('ago', function (date) {
+		var time = moment(date);
+ 
+		return moment.duration( time.diff(new Date())  ).humanize();
+	});
+
+	swig.setFilter('dateToString', function (date) { 
+		return moment(date).format();
 	});
 };
 

@@ -76,12 +76,13 @@ section#legal p {font-size: 1rem; margin-bottom: 2rem}
 section#activity {padding: 10rem 0 0}
 section#activity #activity-list {margin: 5rem 0 0; list-style: none; background-image: url(../img/activity-line.jpg); background-repeat: repeat-y; background-position: left center; padding-bottom: 6rem}
 section#activity #activity-list .load {color: #e5e5e5; position: relative; left: 20%; width: 8rem; font-weight: 300; bottom: -2rem}
-section#activity #activity-list li {display: inline-block; margin-bottom: 3rem; width: 100%}
+section#activity #activity-list li {display: inline-block; margin-bottom: 3rem; width: 100%;margin-left: 1px;}
 section#activity #activity-list li .row-2 {text-align: center; position: relative;}
 section#activity #activity-list li .row-2 span {font-size: 0.85rem; font-weight: 400;}
 section#activity #activity-list li .row-2 span.tag {font-weight: 300;}
-section#activity #activity-list li .row-2 span.icon {float: right;}
-section#activity #activity-list li .row-2 span img {}
+section#activity #activity-list li .row-2 span.icon {float: right;width: 28px;height: 28px;background: #e6e6e6;}
+section#activity #activity-list li .row-2 span img {height: 16px;width: 16px;margin-top: 4px;background: white;}
+section#activity #activity-list li h5 {margin-top: 0px}
 section#activity #activity-list li h5 span {font-size: 0.85rem}
 section#activity #activity-list li h5 span a {text-decoration: underline; color: #000 !important}
 section#activity #activity-list li .info {}
@@ -116,7 +117,7 @@ section#activity #activity-list li.blog .row-10 {padding-top: 2rem}
 section#activity #activity-list li.blog .info .image {float: none; width: 100%; overflow: hidden; max-height: 13rem}
 section#activity #activity-list li.blog .info img {width: 100%}
 section#activity #activity-list li.blog .info .detail {float: none; width: 100%}
-section#activity ul.filter {margin: 3rem 0; list-style: none; font-size: 0.95rem}
+section#activity ul.filter {margin: 3rem auto; list-style: none; font-size: 0.95rem;width: 858px;}
 section#activity ul.filter li {float: left; font-weight: 400}
 section#activity ul.filter li a {border: solid 1px #000; display: block; padding: 0.5rem 1.5rem; margin: 0 0.5rem;}
 section#activity ul.filter li a:hover, section#activity ul.filter li.active a {background-color: #000; color: #fff}
@@ -219,9 +220,9 @@ section#mentor-single {padding-top: 11em}
 section#mentor-single .center {width: 50%; position: relative;}
 section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
 section#mentor-single .archive .head-info {position: relative; top: -2.5em}
-section#mentor-single .archive .head-info .image-container {display: inline-block; width: 30%; vertical-align: top;}
+section#mentor-single .archive .head-info .image-container {display: inline-block; width: 23%; vertical-align: top;}
 section#mentor-single .archive .head-info .image-container img {width: 100%}
-section#mentor-single .archive .head-info .name {display: inline-block; width: 68%; vertical-align: bottom; padding-left: 1rem;}
+section#mentor-single .archive .head-info .name {display: inline-block; width: 76%; vertical-align: bottom; padding-left: 1rem;}
 section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
 section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #ccc; font-size: 1rem; font-weight: 600; margin: 0; text-transform: uppercase;}
 section#mentor-single .archive .info {font-weight: 300}
@@ -380,9 +381,9 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 .card li .image-container {height: 200px;display: table-cell;vertical-align: middle;width: 190px;}
 .card li img {}
 .card li p {font-size: 0.85rem}
-.card li p.title {font-size: 1rem; font-weight: 600}
-.card li p.detail {font-size: 0.65rem;margin-bottom: .8em; font-weight: bold; text-transform: capitalize;}
-.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 900;position: absolute;bottom: 20px;left: 0;width: 100%;}
+.card li p.title {font-size: 1rem; font-weight: 800; margin-top: 30px; text-transform: uppercase;}
+.card li p.detail {font-size: 0.65rem;margin-bottom: .8em; font-weight: 300; text-transform: capitalize;min-height: 16px}
+.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;position: absolute;bottom: 20px;left: 0;width: 100%;}
 .startup-card li .content: {height: 420px}
 
 .amazing-partners {margin: 1rem 0 6rem; list-style: none;}
@@ -406,3 +407,4 @@ footer .row-4 p {font-size: 0.85rem}
 
 /* utils */
 .block{display: block}
+.text-center{text-align: center;}
