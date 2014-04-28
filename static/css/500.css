@@ -20,6 +20,7 @@ a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-tr
 
 header {font-weight: 300; position: absolute; z-index: 100; bottom: 0; padding-left: 1.25em; margin: 1.25em 0; height: 65px; border-left-style: solid; border-left-width: 8px; border-left-color: #FFF; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 header#int {position: absolute; top: 0}
+header#int.normal {border-color: #222;}
 header#int nav a:hover, header#int nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem;}
 header#staff {position: absolute; top: 0; width: 100%; z-index: 99}
 header#staff nav a {color: #FFF}

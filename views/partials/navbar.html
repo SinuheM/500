@@ -11,7 +11,7 @@
             <a href="/accelerator">ACCELERATOR</a>
             <a href="/startups">PORTFOLIO</a>
             <a href="/mentors">MENTORS</a>
-            <a href="/events">EVENTS</a>
+            <a style="display:none" href="/events">EVENTS</a>
             <a href="/activity">ACTIVITY</a>
         </nav>
     </header>
@@ -27,12 +27,12 @@
             <a href="/accelerator" {% if currentPage == "accelerator" %}class="active"{% endif %}>ACCELERATOR</a>
             <a href="/startups" {% if currentPage == "portfolio" %}class="active"{% endif %}>PORTFOLIO</a>
             <a href="/mentors" {% if currentPage == "mentors" %}class="active"{% endif %}>MENTORS</a>
-            <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
+            <a style="display:none" href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
             <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
         </nav>
     </header>
 {% elseif currentPage == "mentor" %}
-    <header id="int" class="simple fixed">
+    <header id="int" class="simple fixed normal">
         <div id="logo">
             <a href="/">
                 <img class="black" src="/img/500-black.png" alt="500">
@@ -43,12 +43,12 @@
             <a href="/accelerator" {% if currentPage == "accelerator" %}class="active"{% endif %}>ACCELERATOR</a>
             <a href="/startups" {% if currentPage == "portfolio" %}class="active"{% endif %}>PORTFOLIO</a>
             <a href="/mentors" {% if currentPage == "mentor" %}class="active"{% endif %}>MENTORS</a>
-            <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
+            <a style="display:none" href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
             <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
         </nav>
     </header>   
 {% else %}
-    <header id="int" class="fixed">
+    <header id="int" class="fixed normal">
         <div id="logo">
             <a href="/">
                 <img class="black" src="img/500-black.png" alt="500">
@@ -59,7 +59,7 @@
             <a href="/accelerator" {% if currentPage == "accelerator" %}class="active"{% endif %}>ACCELERATOR</a>
             <a href="/startups" {% if currentPage == "portfolio" %}class="active"{% endif %}>PORTFOLIO</a>
             <a href="/mentors" {% if currentPage == "mentors" %}class="active"{% endif %}>MENTORS</a>
-            <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
+            <a style="display:none" href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
             <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
         </nav>
     </header>
