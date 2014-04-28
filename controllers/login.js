@@ -12,7 +12,8 @@ passport.use(new LocalStrategy({
 	passwordField: 'password'
 }, function (username, password, done) {
 	User.findOne({username: username}, function (err, user) {
-		if (err) {done(err); }
+		if (err) {return done(err); }
+		if (!user) {return done('No user with that email');}
 		if (passwordHash.verify(password, user.password)) {
 			done(null, {id: user._id.toString()});
 		} else {
@@ -49,7 +50,6 @@ loginController.get('/logout', function (req, res) {
 });
 
 loginController.post('/signup', function (req, res) {
-	console.log('signup', req.body);
 	if (!(req.body.email && req.body.displayName && req.body.password && req.body.password === req.body.repassword)) {
 		res.send('invalid user');
 	}
@@ -66,7 +66,6 @@ loginController.post('/signup', function (req, res) {
 			type     : 'team'
 		});
 
-		console.log('new user', user);
 		user.save(function (err, data) {
 			console.log('saved', err, data);
 			if (err) { return res.send(500, err); }

@@ -26,7 +26,8 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'public/css/main.css': 'public/stylus/main.styl',
-					'public/css/admin.css': 'public/stylus/admin.styl'
+					'public/css/admin.css': 'public/stylus/admin.styl',
+					'public/css/login.css': 'public/stylus/login.styl'
 				}
 			}
 		},

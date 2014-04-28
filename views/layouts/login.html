@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="/favicon.ico">
+
+		<title>{% block title %}Marble Block{% endblock %}</title>
+		<link rel="stylesheet" href="/css/vendors/bootstrap.css">
+		<link rel="stylesheet" href="/css/login.css">
+		{% block head %}{% endblock %}
+	</head>
+<body>
+	<div class="container">
+		{% block content %}{% endblock %}
+	</div>
+	<script type="text/javascript" src="/js/vendors/jquery.js"></script>
+	<script type="text/javascript" src="/js/vendors/bootstrap.js"></script>
+</body>
+</html>
