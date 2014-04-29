@@ -171,3 +171,21 @@ body > section .logopanel img {
   background: #eee;
   margin: 0 30px 5px;
 }
+.order-label {
+  background: #eee;
+  margin: 0 30px 5px;
+}
+.ui-autocomplete.ui-front {
+  background: #fff;
+  border-left: 1px solid #d3d3d3;
+  border-right: 1px solid #d3d3d3;
+}
+.autocomplete-item {
+  background: #fff;
+  padding: 5px;
+  border-bottom: 1px solid #d3d3d3;
+}
+.autocomplete-item img {
+  width: 30px;
+  margin-right: 8px;
+}

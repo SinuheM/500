@@ -279,7 +279,7 @@ section#portfolio.accelerator-top #mentors.accelerator button#view-all {margin-t
 section#portfolio.accelerator-top #mentors.accelerator ul.area {}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li {width: 30%; margin: 1rem; padding: 1.5rem; text-align: left; height: 25rem}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container {text-align: right;}
-section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px; width: inherit; height: inherit;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li p {font-size: 0.85rem; margin: 0.25rem 0.25rem 1.25rem;}
 section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 3rem 0; text-align: center;}

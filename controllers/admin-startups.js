@@ -297,6 +297,7 @@ adminStartUpsController.post('/searchAngelList', function(req, res){
 });
 
 adminStartUpsController.post('/search', function(req, res){
+	console.log('search',req.body.search);
 	Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {active:true}}}, function(err, results) {
 		if(err){return res.sendError(500, err);}
 

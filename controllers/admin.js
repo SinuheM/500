@@ -31,6 +31,7 @@ adminController.get('', function (req, res) {
 
 var adminUsersController = require('./admin-users');
 var adminSlugsController = require('./admin-slugs');
+var adminPagesController = require('./admin-pages');
 var adminStartUpsController = require('./admin-startups');
 var adminActivitiesController = require('./admin-activities');
 
@@ -38,6 +39,7 @@ adminController.attach(adminUsersController.main);
 adminController.attach(adminUsersController.mentors);
 adminController.attach(adminUsersController.staffMembers);
 adminController.attach(adminSlugsController);
+adminController.attach(adminPagesController);
 adminController.attach(adminStartUpsController);
 adminController.attach(adminActivitiesController);
 
