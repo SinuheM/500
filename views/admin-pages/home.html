@@ -20,11 +20,39 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Acceleration</label>
 				<div class="col-sm-6">
-					<input id="acceleration" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups">
+					<input id="acceleration" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#acceleration-startups">
 				</div>
 			</div>
 			<div id="acceleration-startups" class="form-group">
 			{% for startups in acceleration %}
+				<div class="order-label alert" data-slug="{{startups.slugStr}}">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					{{startups.name}}
+				</div>
+			{% endfor %}
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Seed</label>
+				<div class="col-sm-6">
+					<input id="seed" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#seed-startups">
+				</div>
+			</div>
+			<div id="seed-startups" class="form-group">
+			{% for startups in seed %}
+				<div class="order-label alert" data-slug="{{startups.slugStr}}">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					{{startups.name}}
+				</div>
+			{% endfor %}
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Rising stars</label>
+				<div class="col-sm-6">
+					<input id="stars" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#stars-startups">
+				</div>
+			</div>
+			<div id="stars-startups" class="form-group">
+			{% for startups in stars %}
 				<div class="order-label alert" data-slug="{{startups.slugStr}}">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 					{{startups.name}}
@@ -38,6 +66,8 @@
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3 text-right">
 					<input id="acceleration-values" name="acceleration" type="hidden">
+					<input id="seed-values" name="seed" type="hidden">
+					<input id="stars-values" name="stars" type="hidden">
 					<button class="btn btn-primary">Save</button>
 				</div>
 			</div>
@@ -55,11 +85,10 @@ $(document).ready(function () {
 	$('#acceleration-startups').sortable();
     $('#acceleration-startups').disableSelection();
 
-	$('#acceleration').on('keyup', function (e) {
+	$('#acceleration, #seed, #stars').on('keyup', function (e) {
 		var $this = $(this);
 
 		if( e.which === 13 && $this.val() && window.startups[$this.val()] ){
-
 			var $startupLabel = $('<div class="order-label alert">' +
 				'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
 				$this.val() +
@@ -67,18 +96,25 @@ $(document).ready(function () {
 
 			$startupLabel.data('slug', window.startups[$this.val()].name );
 
-			$('#acceleration').val('');
-			$('#acceleration-startups').append($startupLabel);
+			$this.val('');
+			$($this.data('list')).append($startupLabel);
 		}
 	});
 
 	$('#home').on('submit', function (e) {
-
 		var accelerationStartups = $('#acceleration-startups .order-label').map(function(i, item){
 			return $(item).data('slug');
 		}).toArray();
+		var seedStartups = $('#seed-startups .order-label').map(function(i, item){
+			return $(item).data('slug');
+		}).toArray();
+		var starsStartups = $('#stars-startups .order-label').map(function(i, item){
+			return $(item).data('slug');
+		}).toArray();		
 
 		$('#acceleration-values').val(accelerationStartups.join(','));
+		$('#seed-values').val(seedStartups.join(','));
+		$('#stars-values').val(starsStartups.join(','));
 	});
 });
 
