@@ -189,7 +189,7 @@ section#portfolio.mentors #search {padding: 10rem 0;}
 section#portfolio.team #search {padding: 10rem 0 9rem;}
 section#portfolio.team #search p {line-height: 1.5rem}
 section#portfolio.team #search h6 {margin: 4em 0 0}
-section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
+section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 5em; position: relative;}
 section#portfolio #mentors.team500 {padding: 3rem 0 10rem}
 section#portfolio #mentors h6 {text-align: center; position: relative; top: -2rem}
 section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 10}
