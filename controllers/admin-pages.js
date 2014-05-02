@@ -4,6 +4,7 @@ var controller = require('stackers'),
 
 var Page = db.model('page');
 var Startup = db.model('startup');
+var User = db.model('user');
 
 var adminPagesController = controller({
 	path : '/pages'
@@ -50,6 +51,10 @@ adminPagesController.get('/home', ensureExists('home'),function (req, res) {
 		var seed = _.filter(startups, function(item){ if(page.data.seed.split(',').indexOf(item.slugStr) >=0 ){return item;} });
 		var stars = _.filter(startups, function(item){ if(page.data.stars.split(',').indexOf(item.slugStr) >=0 ){return item;} });
 
+		acceleration = _.sortBy(acceleration, function(item){return page.data.acceleration.split(',').indexOf(item.slugStr);});
+		seed = _.sortBy(seed, function(item){return page.data.seed.split(',').indexOf(item.slugStr);});
+		stars = _.sortBy(stars, function(item){return page.data.stars.split(',').indexOf(item.slugStr);});
+
 		res.render('admin-pages/home',{
 			page : res.data.page,
 			acceleration : acceleration,
@@ -71,12 +76,41 @@ adminPagesController.post('/home', ensureExists('home'),function (req, res) {
 		if(err){return res.sendError(500, err);}
 		res.redirect('/admin/pages/home');
 	});
-
 });
 
 adminPagesController.get('/accelerator', ensureExists('accelerator'), function (req, res) {
-	res.render('admin-pages/accelerator',{
-		page : res.data.page
+	var page = res.data.page;
+	var startupSlugs = [];
+	var mentorSlugs = [];
+
+	if(!page.data){page.data = {};}
+	if(page.data.startups){startupSlugs = startupSlugs.concat(page.data.startups.split(','));}
+	if(page.data.mentors){mentorSlugs = mentorSlugs.concat(page.data.mentors.split(','));}
+
+	Startup.find({slugStr:{$in:startupSlugs}}, function (err, startups) {
+		User.find({slugStr:{$in:mentorSlugs}, type:'mentor'}, function(err, mentors){
+			mentors = _.sortBy(mentors, function(item){return page.data.mentors.split(',').indexOf(item.slugStr);});
+			startups = _.sortBy(startups, function(item){return page.data.startups.split(',').indexOf(item.slugStr);});
+
+			res.render('admin-pages/accelerator',{
+				page : res.data.page,
+				mentors : mentors,
+				startups : startups
+			});
+		});
+	});
+});
+
+adminPagesController.post('/accelerator', ensureExists('accelerator'), function (req, res) {
+	var page = res.data.page;
+	if(req.body.mentors){req.body.mentors = req.body.mentors.toLowerCase();}
+	if(req.body.startups){req.body.startups = req.body.startups.toLowerCase();}
+
+	page.data = req.body;
+
+	page.save(function (err) {
+		if(err){return res.sendError(500, err);}
+		res.redirect('/admin/pages/accelerator');
 	});
 });
 

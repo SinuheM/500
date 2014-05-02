@@ -23,7 +23,7 @@
 					<input id="acceleration" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#acceleration-startups">
 				</div>
 			</div>
-			<div id="acceleration-startups" class="form-group">
+			<div id="acceleration-startups" class="form-group sortable">
 			{% for startups in acceleration %}
 				<div class="order-label alert" data-slug="{{startups.slugStr}}">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -37,7 +37,7 @@
 					<input id="seed" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#seed-startups">
 				</div>
 			</div>
-			<div id="seed-startups" class="form-group">
+			<div id="seed-startups" class="form-group sortable">
 			{% for startups in seed %}
 				<div class="order-label alert" data-slug="{{startups.slugStr}}">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -51,7 +51,7 @@
 					<input id="stars" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#stars-startups">
 				</div>
 			</div>
-			<div id="stars-startups" class="form-group">
+			<div id="stars-startups" class="form-group sortable">
 			{% for startups in stars %}
 				<div class="order-label alert" data-slug="{{startups.slugStr}}">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -82,22 +82,23 @@
 <script type="text/javascript">
 window.startups = {};
 $(document).ready(function () {
-	$('#acceleration-startups').sortable();
-    $('#acceleration-startups').disableSelection();
+	$('.sortable').sortable();
+    $('.sortable').disableSelection();
 
 	$('#acceleration, #seed, #stars').on('keyup', function (e) {
 		var $this = $(this);
+		var store = $this.data('store');
 
-		if( e.which === 13 && $this.val() && window.startups[$this.val()] ){
-			var $startupLabel = $('<div class="order-label alert">' +
+		if( e.which === 13 && $this.val() && window[store][$this.val()] ){
+			var $label = $('<div class="order-label alert">' +
 				'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
 				$this.val() +
 			'</div>');	
 
-			$startupLabel.data('slug', window.startups[$this.val()].slugStr );
+			$label.data('slug', window[store][$this.val()].slugStr );
 
 			$this.val('');
-			$($this.data('list')).append($startupLabel);
+			$($this.data('list')).append($label);
 		}
 	});
 
@@ -117,7 +118,5 @@ $(document).ready(function () {
 		$('#stars-values').val(starsStartups.join(','));
 	});
 });
-
-
 </script>
 {% endblock %}

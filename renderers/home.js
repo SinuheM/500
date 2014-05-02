@@ -16,7 +16,9 @@ var render = function (req, res) {
 		if(page.data.stars){startupSlugs = startupSlugs.concat(page.data.stars.split(','));}
 
 		var query = {
-			slugStr:{$in:startupSlugs}
+			slugStr:{$in:startupSlugs},
+			active:true,
+			publish:true
 		};
 
 		Startup.find(query, function (err, startups) {
@@ -24,6 +26,10 @@ var render = function (req, res) {
 			var acceleration = _.filter(startups, function(item){ if(page.data.acceleration.split(',').indexOf(item.slugStr) >=0 ){return item.toJSON();} });
 			var seed = _.filter(startups, function(item){ if(page.data.seed.split(',').indexOf(item.slugStr) >=0 ){return item.toJSON();} });
 			var stars = _.filter(startups, function(item){ if(page.data.stars.split(',').indexOf(item.slugStr) >=0 ){return item.toJSON();} });
+
+			acceleration = _.sortBy(acceleration, function(item){return page.data.acceleration.split(',').indexOf(item.slugStr);});
+			seed = _.sortBy(seed, function(item){return page.data.seed.split(',').indexOf(item.slugStr);});
+			stars = _.sortBy(stars, function(item){return page.data.stars.split(',').indexOf(item.slugStr);});
 
 			res.render('renderers/home',{
 				page : page,
@@ -34,8 +40,6 @@ var render = function (req, res) {
 			});
 		});
 	});
-
-
 };
 
 module.exports = render;

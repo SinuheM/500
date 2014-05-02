@@ -1,6 +1,5 @@
 $(document).ready(function () {
 	$('.page-autocomplete').each(function (i, item) {
-		console.log(item);
 		var $item = $(item);
 		var url = $item.data('url');
 
@@ -8,9 +7,10 @@ $(document).ready(function () {
 			source: function( request, response ) {
 				$.post( url, {search: request.term }, function( data ) {
 					var store = $item.data('store');
+					var attr = $item.data('attr') || 'name';
 					var items = $.map(data,function (item) {
-						if(window[store]){window[store][item.name] = item;}
-						return item.name;
+						if(window[store]){window[store][item[attr]] = item;}
+						return item[attr];
 					});
 
 					response( items );

@@ -3,6 +3,7 @@
 {% block title %}Accelerator page{% endblock %}
 
 {% block head %}
+<link rel="stylesheet" href="/css/vendors/bootstrap-wysihtml5.css" />
 {% endblock %}
 
 {% block header %}
@@ -10,7 +11,127 @@
 {% endblock %}
 
 {% block content %}
+<div class="panel panel-dark">
+	<div class="form-horizontal form-bordered">
+		<div class="panel-heading">
+			<h4 class="panel-title">Acceleration page information</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Mentor network</label>
+				<div class="col-sm-6">
+					<input id="mentors" type="text" class="form-control page-autocomplete" data-url="/admin/mentors/search" data-store="mentors" data-list="#mentors-list" data-attr="displayName">
+				</div>
+			</div>
+			<div id="mentors-list" class="form-group sortable">
+			{% for mentor in mentors %}
+				<div class="order-label alert" data-slug="{{mentor.slugStr}}">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					{{mentor.displayName}}
+				</div>
+			{% endfor %}
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Accelerator companies</label>
+				<div class="col-sm-6">
+					<input id="startups" type="text" class="form-control page-autocomplete" data-url="/admin/startups/search" data-store="startups" data-list="#startups-list">
+				</div>
+			</div>
+			<div id="startups-list" class="form-group sortable">
+			{% for startups in startups %}
+				<div class="order-label alert" data-slug="{{startups.slugStr}}">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					{{startups.name}}
+				</div>
+			{% endfor %}
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Apply Mountain View</label>
+				<div class="col-sm-6">
+					<textarea id="mountain-view" class="form-control" rows="10">{% if page.data['mountain-view'] %}{{page.data['mountain-view']}}{% endif %}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Apply San Francisco</label>
+				<div class="col-sm-6">
+					<textarea id="san-francisco" class="form-control" rows="10">{% if page.data['san-francisco'] %}{{page.data['san-francisco']}}{% endif %}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Apply México City</label>
+				<div class="col-sm-6">
+					<textarea id="mexico-city" class="form-control" rows="10">{% if page.data['mexico-city'] %}{{page.data['mexico-city']}}{% endif %}</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form id="home" class="form-horizontal form-bordered" method="post" action="/admin/pages/accelerator">
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<input id="mentors-values" name="mentors" type="hidden">
+					<input id="startups-values" name="startups" type="hidden">
+					<input id="mountain-view-values" name="mountain-view" type="hidden">
+					<input id="san-francisco-values" name="san-francisco" type="hidden">
+					<input id="mexico-city-values" name="mexico-city" type="hidden">
+					<button class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>			
+	</form>
+</div>
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="/js/vendors/wysihtml5-0.3.0.min.js"></script>
+<script type="text/javascript" src="/js/vendors/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="/js/admin/page.js"></script>
+<script type="text/javascript">
+window.startups = {};
+window.mentors = {};
+
+$(document).ready(function () {
+	$('.sortable').sortable();
+    $('.sortable').disableSelection();
+
+    $('#mountain-view, #san-francisco, #mexico-city').wysihtml5({
+    	"font-styles": false,
+    	"lists": false,
+    	"image": false
+    });
+
+	$('#mentors, #startups').on('keyup', function (e) {
+		var $this = $(this);
+		var store = $this.data('store');
+
+		if( e.which === 13 && $this.val() && window[store][$this.val()] ){
+			var $label = $('<div class="order-label alert">' +
+				'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+				$this.val() +
+			'</div>');
+
+			$label.data('slug', window[store][$this.val()].slugStr );
+
+			$this.val('');
+			$($this.data('list')).append($label);
+		}
+	});
+
+	$('#home').on('submit', function (e) {
+		var mentors = $('#mentors-list .order-label').map(function(i, item){
+			return $(item).data('slug');
+		}).toArray();
+		var startups = $('#startups-list .order-label').map(function(i, item){
+			return $(item).data('slug');
+		}).toArray();		
+
+		$('#mentors-values').val(mentors.join(','));
+		$('#startups-values').val(startups.join(','));
+		$('#mountain-view-values').val($('#mountain-view').val());
+		$('#san-francisco-values').val($('#san-francisco').val());
+		$('#mexico-city-values').val($('#mexico-city').val());
+	});
+});
+</script>
 {% endblock %}
