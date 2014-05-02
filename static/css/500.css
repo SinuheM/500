@@ -2,7 +2,6 @@
 	Autor: Manu Uribe
 		   manucrea.com
 */
-
 body {font-family: 'Open Sans', sans-serif;}
 h1 {font-size: 5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
 h2 {font-size: 4.5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
@@ -49,7 +48,7 @@ section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 section#entrepreneurs {text-align: center; padding: 8em 0 5em;}
 section#entrepreneurs iframe {margin: 2em 0; max-width: 785px; width: 95%}
-section#team-home {padding: 5em 0 1em;}
+section#team-home {padding: 5em 0 6em;}
 section#team-home ul#date-500 {max-width: 960px; margin: 0 auto; list-style: none; text-align: center;}
 section#team-home ul#date-500 li {float: left; width: 33%;}
 section#team-home ul {}
@@ -60,6 +59,8 @@ section#team-home #team-list .center {position: relative; z-index: 10}
 section#team-home #team-list ul {margin: 0; list-style: none; position: absolute; top: 0;}
 section#team-home #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
 section#team-home #team-list ul li img {width: 100%}
+section#team-home .button-container {text-align: center;}
+
 section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0;}
 section#help-startups h5 {margin-left: 1rem}
 section#help-startups p {font-size: 1rem}
@@ -68,6 +69,11 @@ section#help-startups ul li {float: left; width: 33.33%; margin-bottom: 3rem; fo
 section#help-startups a {color: #b43322; text-decoration: underline;}
 section#help-startups .clearfix {margin: 5rem 0}
 section#help-startups h4 {margin-bottom: 4rem}
+section#help-startups .row-7 ul {height: 200px}
+section#help-startups .row-7 ul li {height: 100px}
+section#help-startups .row-7 ul li a {color: inherit; text-decoration: inherit;}
+section#help-startups .row-7 ul li img {width: 55px; margin-bottom: 10px}
+
 section#amazing {text-align: center; padding: 4rem 0; margin: 1rem 0}
 section#amazing p.sub {margin-top: 3rem; font-size: 1rem}
 section#legal {background-image: url(../img/bg-legal.jpg); background-repeat: repeat-x; background-position: top center; background-color: #f2f2f2; padding: 10rem 0}

@@ -94,7 +94,7 @@ $(document).ready(function () {
 				$this.val() +
 			'</div>');	
 
-			$startupLabel.data('slug', window.startups[$this.val()].name );
+			$startupLabel.data('slug', window.startups[$this.val()].slugStr );
 
 			$this.val('');
 			$($this.data('list')).append($startupLabel);

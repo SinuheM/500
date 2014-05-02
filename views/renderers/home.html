@@ -17,13 +17,13 @@
         <div class="center">
             <h1>WE ARE 500 STRONG</h1>
             <p>Meet the most badass, global family of startup founders, mentors and investors</p>
-            <button>YOUR MOVE</button>
+            <button id="your-move">YOUR MOVE</button>
         </div>
     </section>
     <section id="entrepreneurs">
         <div class="center">
             <h4>500 Startups is a seed fund and accelerator founded in 2010. We're based in Silicon Valley, but the 500 Family exists all over the world.</h4>
-            <iframe src="http://player.vimeo.com/video/73616070" width="785" height="441" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <iframe width="785" height="442" src="//www.youtube.com/embed/oy--ub2jMHs?list=PL571BAAD2DFD8F8C7" frameborder="0" allowfullscreen></iframe>
             <p>We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
             <p>We're based in Silicon Valley, but our 500 family exists all over the world.</p>
         </div>
@@ -49,13 +49,19 @@
             </li>
         </ul>
         <div class="clearfix"></div>
+        <div class="center button-container">
+            <form action="/startups">
+                <button class="outline">SEE ALL OUR STARTUPS</button>
+            </form>
+        </div>
+        <div class="clearfix"></div>
         <div id="team-list">
             <div class="center">
-                            <button class="outline">SEE ALL OUR STARTUPS</button>
-            
                 <p>Our #500Strong family is diverse, colorful, and awesome. </p>
                 <p>No matter where you’re from or who you are, we’ll welcome you with open arms.</p>
-                <button class="outline">GET TO KNOW OUR TEAM</button>
+                <form action="/team">
+                    <button class="outline">GET TO KNOW OUR TEAM</button>
+                </form>
             </div>
             <ul>
                 <li><img src="/img/team/team-1.jpg"></li>
@@ -119,16 +125,18 @@
                 <h5>Acceleration</h5>
                 <p>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</p>
                 <p>Work alongside other smart, talented founders from around the world, and finish your time in the program by pitching to top-notch investors at demo days.</p>
-                <button>LEARN MORE</button>
+                <form action="/accelerator">
+                    <button>LEARN MORE</button>
+                </form>
             </div>
             <div class="row-7">
                 <p>These startups went through our acceleration program</p>
                 <ul>
                 {% for startup in acceleration %}
-                    <li><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></li>
+                    <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></a></li>
                 {% endfor %}
                 </ul>
-                <a href="">Browse more</a>
+                <a href="/startups?investmentType=acceleration">Browse more</a>
             </div>
             <div class="clearfix"></div>
             <div class="row-5">
@@ -141,10 +149,10 @@
                 <p>These startups receieved seed funding from 500 startups</p>
                 <ul>
                     {% for startup in seed %}
-                    <li><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></li>
+                    <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></a></li>
                     {% endfor %}
                 </ul>
-                <a href="">Browse more</a>
+                <a href="/startups?investmentType=seed">Browse more</a>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -156,15 +164,17 @@
             <ul class="card">
                 {% for startup in seed %}
                 <li>
-                    <div class="content">
-                        <div class="image-container"><img src="{{startup.logo}}"></div>
-                        <p class="title">{{startup.name}}</p>
-                        <p class="detail">{{startup.investmentType}}</p>
-                        <p>{{startup.excerpt}}</p>
-                        {% if startup.batch %}
-                        <p class="footer">{{startup.batch.name}}</p>
-                        {% endif %}
-                    </div>
+                    <a href="/{{startup.slugStr}}">
+                        <div class="content">
+                            <div class="image-container"><img src="{{startup.logo}}"></div>
+                            <p class="title">{{startup.name}}</p>
+                            <p class="detail">{{startup.investmentType}}</p>
+                            <p>{{startup.excerpt}}</p>
+                            {% if startup.batch %}
+                            <p class="footer">{{startup.batch.name}}</p>
+                            {% endif %}
+                        </div>
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
@@ -195,6 +205,7 @@
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/foundation.min.js"></script>
 <script src="/js/public.js"></script>
+<script src="/js/vendors/jquery.scrollTo.min.js"></script>
 <script>
     $(document).foundation();
 </script>

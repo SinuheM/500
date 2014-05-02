@@ -10,4 +10,8 @@ $(document).ready(function () {
 			$item.attr('src', $item.attr('src').replace('.png', '@2x.png').replace('.jpg', '@2x.jpg') );
 		});
 	}
+
+	$('#your-move').on('click',function(){
+		$.scrollTo('#entrepreneurs', 800);
+	});
 });
