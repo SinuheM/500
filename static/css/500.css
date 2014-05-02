@@ -350,6 +350,24 @@ section#error404 .top h5 {display: inline-block; vertical-align: bottom; font-si
 section#error404 nav {text-align: center; margin-top: 3rem}
 section#error404 nav a {margin: 0 1.25rem}
 
+section#events {}
+section#events #top {border-top-style: solid; border-top-width: 8rem;}
+section#events .content {color: #FFF; position: relative;}
+section#events .content .center{height: 620px; position: relative;}
+section#events .content .info {float: right; width: 50%; position: relative; z-index: 10; margin-top: 20px;}
+section#events .content .info h1 {color: #fff; line-height: 4.5rem; margin: 0; word-break: break-all;}
+section#events .content .info h6 {color: #fff; margin: 2.5rem 0 0 0.5rem; font-size: 1.35rem}
+section#events .content .info p {font-size: 1rem; margin-top: 1rem}
+section#events .content .info a {font-weight: 300; background-color: #fff; padding: 0.85rem 2rem; margin-top: 4rem; display: inline-block; font-size: 0.85rem;}
+section#events .content .image-event {position: absolute; right: 400px; top: 0;}
+section#events .content .image-event img {height: 620px; max-width: inherit;}
+section#events #subscribe {text-align: center; padding: 3rem 0}
+section#events #subscribe h5 {font-size: 2rem}
+section#events #subscribe #form {width: 60%; margin: 2rem auto 0}
+section#events #subscribe #form input[type="text"] {display: inline-block; border: solid 2px #222; font-weight: 300; font-size: 1.25rem; height: 3rem; width: 75%}
+section#events #subscribe #form input[type="submit"] {display: inline-block; border: solid 2px #b43322; font-weight: 300; font-size: 1.25rem; height: 3rem; color: #b43322; background-color: transparent; cursor: pointer; width: 24%}
+section#events #subscribe #form input[type="submit"]:hover {background-color: #b43322; color: #fff}
+
 body.layer-single {background-color: #f2f2f2; height:100%;}
 body.layer-single #mentor-single, body.layer-single #mentor-single .center, body.layer-single #mentor-single .center .archive{height:100%;}
 
