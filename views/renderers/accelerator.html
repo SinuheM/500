@@ -54,42 +54,17 @@
                 <h4>200+ Mentors Network</h4>
                 <p>Mentors help our startups by 1:1 mentoring, office hours,<br>doing talks at the 500 office and more...</p>
                 <ul class="mentors-network">
+                    {% for mentor in mentors %}
                     <li>
-                        <a href="/mentor-single.html">
-                            <img src="/img/mentors/mentor-1.jpg">
+                        <a href="/{{ mentor.slugStr }}">
+                            <img src="{{ mentor.avatar }}">
                             <div class="content">
-                                <p class="name">Dave McClure</p>
-                                <p class="role">Founding Partner</p>
+                                <p class="name">{{ mentor.displayName }}</p>
+                                <p class="role">{{ mentor.title }}</p>
                             </div>
                         </a>
                     </li>
-                     <li>
-                        <a href="/mentor-single.html">
-                            <img src="/img/mentors/mentor-2.jpg">
-                            <div class="content">
-                                <p class="name">Christine Tsai</p>
-                                <p class="role">Partner</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mentor-single.html">
-                            <img src="/img/mentors/mentor-3.jpg">
-                            <div class="content">
-                                <p class="name">Christen O´Brien</p>
-                                <p class="role">Partner</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mentor-single.html">
-                            <img src="/img/mentors/mentor-4.jpg">
-                            <div class="content">
-                                <p class="name">George Kellerman</p>
-                                <p class="role">Partner</p>
-                            </div>
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <div class="clearfix"></div>
                 <form action="/mentors">
@@ -158,13 +133,13 @@
                 </dl>
                 <div class="tabs-content">
                     <div class="content active" id="apply1">
-                        <h4>This copy explains when to apply and how</h4>
+                        <h4>{{page.data['mountain-view']|safe}}</h4>
                     </div>
                     <div class="content" id="apply2">
-                        <h4>Text for San Francisco</h4>
+                        <h4>{{page.data['san-francisco']|safe}}</h4>
                     </div>
                     <div class="content" id="apply3">
-                        <h4>Text for México</h4>
+                        <h4>{{page.data['mexico-city']|safe}}</h4>
                     </div>
                 </div>
             </div>
@@ -174,42 +149,21 @@
                 <h4>Accelerator companies</h4>
                 <p>These startups survived our 3-month program</p>
                 <ul class="card">
+                    {% for startup in startups %}
                     <li>
-                        <div class="content">
-                            <div class="image-container"><img src="/img/startups/wildfire.jpg"></div>
-                            <p class="title">WILDFIRE</p>
-                            <p class="detail">Acquired by Google</p>
-                            <p>Connecting people who need a service with professionals...</p>
-                            <p class="footer">WINTER 2013</p>
-                        </div>
+                        <a href="/{{ startup.slugStr }}">
+                            <div class="content">
+                                <div class="image-container"><img src="{{ startup.logo }}"></div>
+                                <p class="title">{{ startup.name }}</p>
+                                <p class="detail">{{ startup.investmentType }}</p>
+                                <p>{{ startup.excerpt }}</p>
+                                {% if startup.batch %}
+                                <p class="footer">{{startup.batch.name}}</p>
+                                {% endif %}
+                            </div>
+                        </a>
                     </li>
-                    <li>
-                        <div class="content">
-                            <div class="image-container"><img src="/img/startups/makerbot.jpg"></div>
-                            <p class="title">WILDFIRE</p>
-                            <p class="detail">Acquired by Google</p>
-                            <p>Connecting people who need a service with professionals...</p>
-                            <p class="footer">WINTER 2013</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content">
-                            <div class="image-container"><img src="/img/startups/viki.jpg"></div>
-                            <p class="title">WILDFIRE</p>
-                            <p class="detail">Acquired by Google</p>
-                            <p>Connecting people who need a service with professionals...</p>
-                            <p class="footer">WINTER 2013</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content">
-                            <div class="image-container"><img src="/img/startups/wildfire.jpg"></div
-                            <p class="title">WILDFIRE</p>
-                            <p class="detail">Acquired by Google</p>
-                            <p>Connecting people who need a service with professionals...</p>
-                            <p class="footer">WINTER 2013</p>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <div class="clearfix"></div>
             </div>
