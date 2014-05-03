@@ -115,6 +115,7 @@ var eventUpdate = function (req, res) {
 		vent.link = fields.link;
 		vent.description = fields.description;
 		vent.color = fields.color;
+		vent.backgroundColor = fields.backgroundColor;
 
 		if(fields.action === 'publish'){
 			vent.active = true;

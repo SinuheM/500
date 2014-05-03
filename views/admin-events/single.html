@@ -3,6 +3,7 @@
 {% block title %}{% if event %}{{event.name}}{% else %}New event{% endif %}{% endblock %}
 
 {% block head %}
+<link rel="stylesheet" href="/css/colorpicker.css" />
 {% endblock %}
 
 {% block header %}
@@ -61,11 +62,23 @@
 				</div>
 			</div>			
 			<div class="form-group">
+				<label class="col-sm-3 control-label">Color</label>
+				<div class="col-sm-6">
+					<input id="color" type="text" name="color" class="form-control colorpicker-input" value="{{ event.color || '#ffffff'}}"/>
+					<span class="colorselector" data-input="#color" data-color="{{ event.color || '#ffffff'}}">
+						<span></span>
+					</span>					
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-sm-3 control-label">Background color</label>
 				<div class="col-sm-6">
-					<input name="color" type="text" class="form-control" value="{{ event.color }}">
+					<input id="backgroundColor" type="text" name="backgroundColor" class="form-control colorpicker-input" value="{{ event.backgroundColor || '#00000'}}"/>
+					<span class="colorselector" data-input="#backgroundColor" data-color="{{ event.backgroundColor || '#000000'}}">
+						<span></span>
+					</span>					
 				</div>
-			</div>			
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Background image</label>
 				<div class="col-sm-6">
@@ -111,8 +124,34 @@
 {% endblock %}
 
 {% block js %}
+<script src="/js/vendors/colorpicker.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('.colorselector').each(function(i, item){
+		var $item = $(item);
+		var colorpicker = $item.ColorPicker({
+			color: $item.data('color'),
+			onShow: function (colpkr) {
+				jQuery(colpkr).fadeIn(500);
+				return false;
+			},
+			onHide: function (colpkr) {
+				jQuery(colpkr).fadeOut(500);
+				return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+				var data = this.data('colorpicker');
+				var $el = $(data.el);
+				var $input = $($el.data('input'));
+
+				$el.find('span').css('backgroundColor', '#' + hex);
+				$input.val('#'+hex);
+			}
+		});
+
+		$item.find('span').css('backgroundColor',  $item.data('color') );
+	})
+
 	$('#event-form').on('submit', function (e) {
 		var $imageUploader = $('#uploader-image');
 

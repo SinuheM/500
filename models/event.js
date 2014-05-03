@@ -8,6 +8,7 @@ var eventSchema = schema({
 	link  : {type : String},
 	description : {type : String},
 	color : {type : String},
+	backgroundColor : {type : String},
 	image : {type : String},
 	active : {type : Boolean, default: false}
 });
