@@ -54,7 +54,8 @@ section#team-home ul#date-500 li {float: left; width: 33%;}
 section#team-home ul {}
 section#team-home ul li {}
 section#team-home ul li a {color: #b43322; font-size: 0.7rem; text-decoration: underline;}
-section#team-home #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative;}
+section#team-home #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative; background: #000; color: #FFF;}
+section#team-home #team-list button.outline{color:#FFF;border:solid 1px #FFF;}
 section#team-home #team-list .center {position: relative; z-index: 10}
 section#team-home #team-list ul {margin: 0; list-style: none; position: absolute; top: 0;}
 section#team-home #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
@@ -62,7 +63,6 @@ section#team-home #team-list ul li img {width: 100%}
 section#team-home .button-container {text-align: center;}
 
 section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0;}
-section#help-startups h5 {margin-left: 1rem}
 section#help-startups p {font-size: 1rem}
 section#help-startups ul {margin: 3rem 0; list-style: none;}
 section#help-startups ul li {float: left; width: 33.33%; margin-bottom: 3rem; font-size: 0.75rem}
@@ -83,7 +83,7 @@ section#legal p {font-size: 1rem; margin-bottom: 2rem}
 section#activity {padding: 10rem 0 0}
 section#activity #activity-list {margin: 5rem 0 0; list-style: none; background-image: url(../img/activity-line.jpg); background-repeat: repeat-y; background-position: left center; padding-bottom: 6rem}
 section#activity #activity-list .load {color: #e5e5e5; position: relative; left: 20%; width: 8rem; font-weight: 300; bottom: -2rem}
-section#activity #activity-list li {display: inline-block; margin-bottom: 3rem; width: 100%;margin-left: 1px;}
+section#activity #activity-list li {display: inline-block; margin-bottom: 100px; width: 100%;margin-left: 1px;}
 section#activity #activity-list li .row-2 {text-align: center; position: relative;}
 section#activity #activity-list li .row-2 span {font-size: 0.85rem; font-weight: 400;}
 section#activity #activity-list li .row-2 span.tag {font-weight: 300;}
@@ -131,7 +131,7 @@ section#activity ul.filter li a:hover, section#activity ul.filter li.active a {b
 section#portfolio {}
 section#portfolio #search {padding: 10rem 0 0;}
 section#portfolio #search .container {text-align: center;}
-section#portfolio #search .container input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 80%; margin: 3rem auto 0; padding: 0.5rem 0.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
+section#portfolio #search .container input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 80%; margin: 3rem auto 0; padding: 0.5rem 1.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
 section#portfolio #search .container p {margin: 0.5rem auto 0; line-height: 1rem; width: 80%}
 section#portfolio #search .container p span {float: right; font-size: 0.85em; color: #ccc}
 section#portfolio #search .container #filter {margin: 6rem 0 0; list-style: none; text-align: left; position: relative; font-size: 0.95rem}
@@ -268,10 +268,11 @@ section#staff-member .over-shadow {position: fixed; top: 0; z-index: 1; height: 
 section#staff-member .staff-cover {position: fixed; top: 0; z-index: 0; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat;}
 section#portfolio.accelerator-top #search {padding: 10rem 0 2rem;}
 section#portfolio.accelerator-top #search h4 {}
-section#portfolio.accelerator-top #search p {line-height: 1.5rem; margin: 1rem auto 3rem;}
+section#portfolio.accelerator-top #search p {line-height: 1.9rem; margin: 1rem auto 3rem;}
 section#portfolio.accelerator-top #search button {margin: 3rem 0 1.25rem;}
 section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padding: 1rem 0 6rem}
 section#portfolio.accelerator-top #mentors.accelerator h4 {margin-top: 5rem}
+section#portfolio.accelerator-top #mentors.accelerator h4:first-child {margin-top: 5rem}
 section#portfolio.accelerator-top #mentors.accelerator p {}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations {margin-top: 2rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; border-right: solid 1px #000; padding: 0.5rem 1rem}
@@ -289,26 +290,27 @@ section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-contain
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px; width: inherit; height: inherit;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li p {font-size: 0.85rem; margin: 0.25rem 0.25rem 1.25rem;}
-section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 3rem 0; text-align: center;}
+section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 62px 0; text-align: center;}
 section#portfolio.accelerator-top .deal h4 {color: #fff}
 section#portfolio.accelerator-top .deal dl#deal-tabs {margin: 2rem 0 1rem !important}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd:last-child {border: none;}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd.active a, section#portfolio.accelerator-top .deal dl#deal-tabs dd a:hover {background-color: #fff; color: #7ac364}
-section#portfolio.accelerator-top .deal dl#deal-tabs .tabs-content {}
-section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 3rem 0}
+section#portfolio.accelerator-top .deal .tabs-content {margin-bottom: 0px;}
+section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 62px 0}
 section#portfolio.accelerator-top .apply h4 {color: #fff}
+section#portfolio.accelerator-top .apply h4 a {color: #fff; text-decoration: underline;}
 section#portfolio.accelerator-top .apply dl#apply-tabs {margin: 2rem 0 1rem !important}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd:last-child {border: none;}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd.active a, section#portfolio.accelerator-top .apply dl#apply-tabs dd a:hover {background-color: #fff; color: #000}
-section#portfolio.accelerator-top .apply dl#apply-tabs .tabs-content {}
+section#portfolio.accelerator-top .apply .tabs-content {margin-bottom: 0px}
 section#portfolio.accelerator-top .apply dl#apply-tabs .tabs-content h4 {}
-section#portfolio.accelerator-top #special-bg {text-align: center; padding: 5rem 0; position: relative;}
+section#portfolio.accelerator-top #special-bg {text-align: center; padding: 5rem 0 0; position: relative;}
 section#portfolio.accelerator-top #special-bg .bg {background-color: #f2f2f2; position: absolute; width: 100%; height: 30rem; left: 0; top: 0; z-index: -1;}
-section#portfolio.accelerator-top .questions {text-align: center; padding: 1rem 0 4rem}
+section#portfolio.accelerator-top .questions {text-align: center; padding: 96px 0 96px}
 section#portfolio.accelerator-top .questions h4 {}
 section#portfolio.accelerator-top .questions p {}
 section#portfolio.accelerator-top .questions a {color: #b43322; text-decoration: underline;}
@@ -420,7 +422,7 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 #social li {float: left; margin: 0 0.5rem}
 #social li a {}
 
-footer {background-color: #222; color: #FFF; padding: 5rem 0 3rem}
+footer {background-color: #000; color: #FFF; padding: 5rem 0 3rem}
 footer nav {font-size: 1rem}
 footer nav a {color: #FFF; display: block; margin-bottom: 1.5rem; font-weight: 300}
 footer a:hover {color: #888; text-decoration: underline;}
