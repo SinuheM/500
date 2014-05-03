@@ -40,7 +40,6 @@ adminEventsController.get('', function (req, res) {
 				var orderBy = page.data.order;
 				events = _.sortBy(events, function(item){
 					var order = orderBy.indexOf(item.id);
-					console.log('order', order, item.name);
 					if(order === -1){
 						return orderBy.length;
 					}else{

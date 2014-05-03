@@ -151,6 +151,7 @@ Slug.reserve('legal');
 Slug.reserve('team');
 Slug.reserve('mentors');
 Slug.reserve('accelerator');
+Slug.reserve('events');
 
 Slug.reserve('blog');
 Slug.reserve('activity');
