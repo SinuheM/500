@@ -1,0 +1,53 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}Events{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+<i class="fa fa-bitbucket"></i> Events
+{% endblock %}
+
+{% block content %}
+<ul class="event-list">
+	{% for event in events %}
+	<li class="event row" data-id="{{event.id}}">
+		<div class="col-sm-3"><i class="fa fa-arrows-v drag-handler"></i> {{event.name}}</div>
+		<div class="col-sm-9">{{event.description}}</div>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$( ".event-list" ).sortable({
+		handle: ".drag-handler",
+		update: function(){
+			var order = $('.event').map(function(i, item){
+				return $(item).data('id');
+			}).toArray();
+
+			$.post('/admin/pages/events', {order: order});
+		}
+	});
+
+	$('.event').on('click', function(e){
+		var $item = $(this);
+
+		if($item.hasClass('.drag-handler')){return;}
+
+		if($item.hasClass('event')){
+			var $vent = $item;
+		}else{
+			var $vent = $item.closest('.event');
+		}
+
+		window.location = '/admin/events/' + $vent.data('id');
+	});
+});
+</script>
+{% endblock %}

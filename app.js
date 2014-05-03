@@ -18,7 +18,7 @@ Controller.on('error', function (statusCode, error) {
 
 // Connects with db and load models
 var db = require('./lib/db');
-db.loadModels(['slug', 'user', 'startup', 'activity', 'batch', 'page']);
+db.loadModels(['slug', 'user', 'startup', 'activity', 'batch', 'page', 'event']);
 
 // Load renderes for reserved slugs
 var renderer = require('./lib/renderer');
@@ -131,5 +131,6 @@ app.get('/:slug', function (req, res) {
 // Create upload folder if it doesnt exist
 var mkdirp = require('mkdirp');
 mkdirp('./public/uploads');
+mkdirp('./public/events');
 
 app.listen(3000);

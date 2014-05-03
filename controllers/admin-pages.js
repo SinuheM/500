@@ -26,7 +26,7 @@ var ensureExists = function (pageName) {
 			newPage.save(function (err) {
 				if(err){return res.sendError(500, err);}
 
-				res.data.page = page;
+				res.data.page = newPage;
 				next();
 			});
 		});
@@ -111,6 +111,16 @@ adminPagesController.post('/accelerator', ensureExists('accelerator'), function 
 	page.save(function (err) {
 		if(err){return res.sendError(500, err);}
 		res.redirect('/admin/pages/accelerator');
+	});
+});
+
+adminPagesController.post('/events', ensureExists('events'), function (req, res) {
+	var page = res.data.page;
+	page.data = req.body;
+
+	page.save(function (err) {
+		if(err){return res.send(500, err);}
+		res.send(page);
 	});
 });
 

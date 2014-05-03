@@ -189,3 +189,24 @@ body > section .logopanel img {
   width: 30px;
   margin-right: 8px;
 }
+.event-list {
+  list-style: none;
+  padding: 0;
+}
+.event-list .event {
+  background: #eee;
+  margin: 0 30px 5px;
+  padding: 7px 3px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 3px #d3d3d3;
+  cursor: pointer;
+}
+.event-list .event .drag-handler {
+  cursor: move;
+  margin-right: 5px;
+  width: 20px;
+  text-align: center;
+}
+.event-list > a {
+  color: #000;
+}
