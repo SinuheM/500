@@ -26,6 +26,7 @@
             <div class="clearfix"></div>
             <ul id="activity-list">
             	{% for activity in activities %}
+                {% if activity.type != 'post'%}
                 <li>
                     <div class="row-2">
                         <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
@@ -47,6 +48,7 @@
                         </div>
                     </div>
                 </li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <div class="clearfix"></div>
