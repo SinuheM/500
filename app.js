@@ -134,5 +134,6 @@ app.get('/:slug', function (req, res) {
 var mkdirp = require('mkdirp');
 mkdirp('./public/uploads');
 mkdirp('./public/events');
+mkdirp('./public/blog-uploads');
 
 app.listen(3000);

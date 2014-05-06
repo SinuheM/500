@@ -11,10 +11,14 @@ var activitySchema = schema({
 	provider    : {type : String},
 	title       : {type : String},
 	description : {type : String},
+	content     : {type : String},
 	image       : {type : String},
 	uploader    : {type : schema.Types.ObjectId, ref: 'user'},
 	imagePool   : schema.Types.Mixed,
 	type        : {type : String, default: 'on the web' },
+	announcement: {type : String},
+	active      : {type : Boolean, default: false},
+	deleted     : {type : Boolean, default: false},
 });
 
 activitySchema.plugin(Slug.plugIt, {type: 'activity', slugFrom : function(item){

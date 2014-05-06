@@ -1,0 +1,163 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}{% if post %}{{post.name}}{% else %}New blogpost{% endif %}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/css/bootstrap-timepicker.min.css" />
+{% endblock %}
+
+{% block subheader %}
+	{% include "../partials/slug-change.html" with post only %}
+{% endblock %}
+
+
+{% block header %}
+{% if post %}
+	<i class="fa fa-file-o"></i>{{post.title}} 
+	<span><a class="resorce-slug" href="/{{currectActivity.slugStr}}" target="_blank">500.co/{{post.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
+{% else %}
+	<i class="fa fa-file-o"></i> Add blogpost
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if message %}
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Saved!</strong> {{message}}.
+</div>
+{% endif %}
+<div class="panel panel-dark">
+	{% if post %}
+	<form id="post-form" class="form-horizontal form-bordered" method="post" action="/admin/blog/{{post.id}}/edit" enctype="multipart/form-data">
+	{% else %}
+	<form id="post-form" class="form-horizontal form-bordered" method="post" action="/admin/blog/new" enctype="multipart/form-data">
+	{% endif %}
+		<div class="panel-heading">
+			{% if post %}
+			<h4 class="panel-title">Edit blogpost</h4>
+			{% else %}
+			<h4 class="panel-title">Create blogpost</h4> 
+			{% endif %}
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Title</label>
+				<div class="col-sm-6">
+					<input name="title" type="text" class="form-control" value="{{ post.title }}">
+				</div>
+			</div>
+			{% if !post %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Slug</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">500.co/</span>
+						<input name="slugStr" type="text" placeholder="" class="input-slug form-control">
+					</div>					
+				</div>
+			</div>
+			{% endif %}			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Date</label>
+				<div class="col-sm-5">
+					<input id="date" name="date" type="text" class="form-control" value="{{ date }}">
+				</div>
+				<div class="col-sm-3">
+					<div class="input-group mb15">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+						<div class="bootstrap-timepicker"><input id="timepicker" type="text" class="form-control" value="{{ time }}"/></div>
+					</div>				
+				</div>				
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Excerpt</label>
+				<div class="col-sm-8">
+					<textarea name="description" class="form-control" rows="7">{{ post.description }}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Post</label>
+				<div class="col-sm-8">
+					<textarea id="post" name="content" class="form-control" rows="7">{{ post.content }}</textarea>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Background image</label>
+				<div class="col-sm-8">
+					<div class="image-uploader" name="image">
+						<img src="{{post.image}}"/>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Announcement</label>
+				<div class="col-sm-6">
+					<div class="checkbox block"><label><input name="announcement" type="checkbox" {% if post.announcement %}checked{% endif %}></label></div>
+				</div>
+			</div>			
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button name="action" value="update" class="btn btn-success">Update</button>
+					{% if post.active %}
+					<button name="action" value="unpublish" class="btn btn-primary">Unpublish</button>
+					{% else %}
+					<button name="action" value="publish" class="btn btn-primary">Publish</button>
+					{% endif %}
+				</div>
+			</div>
+		</div>		
+	</form>
+</div>
+
+{% if  post && user.type == 'admin' %}
+<div class="panel panel-danger">
+	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/blog/{{post.id}}/delete">
+		<div class="panel-heading">
+			<h4 class="panel-title">Delete post</h4>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<label class="col-sm-9">This action will delete this startup</label>
+				<div class="col-sm-3 text-right">
+					<button class="btn btn-danger">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</form>	
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="/js/vendors/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="/js/vendors/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/js/vendors/ckeditor/adapters/jquery.js"></script>
+<script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#date').datepicker();
+	$('#timepicker').timepicker();
+
+	config = {};
+	config.toolbar =[
+		[ 'Bold', 'Italic', 'Format', 'Link','Unlink', 'Image','NumberedList','BulletedList', 'Blockquote' ],
+	];
+	config.filebrowserUploadUrl = '/admin/blog/image-upload';
+
+	jQuery('#post').ckeditor(config);	
+
+	$('#post-form').on('submit', function (e) {
+		var $imageUploader = $('#uploader-image');
+
+		if($imageUploader.val() === ''){
+			$imageUploader.remove();
+		}
+	});
+});
+</script>
+{% endblock %}

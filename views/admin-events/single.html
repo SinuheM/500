@@ -28,7 +28,11 @@
 	<form id="event-form" class="form-horizontal form-bordered" method="post" action="/admin/events/new" enctype="multipart/form-data">
 	{% endif %}
 		<div class="panel-heading">
-			<h4 class="panel-title">Edit user information</h4>
+			{% if event %}
+			<h4 class="panel-title">Edit event information</h4>
+			{% else %}
+			<h4 class="panel-title">Create event</h4> 
+			{% endif %}
 		</div>
 		<div class="panel-body panel-body-nopadding">
 			<div class="form-group">

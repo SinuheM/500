@@ -403,7 +403,6 @@ adminStartUpsController.post('/:currentStartup/delete', function (req, res) {
 			});
 		});
 	});
-
 });
 
 module.exports = adminStartUpsController;
