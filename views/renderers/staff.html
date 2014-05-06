@@ -23,7 +23,6 @@
                     {% if staffMember.link %}<li class="web"><a href="{{staffMember.link}}" target="_black">{{staffMember.link}}</a></li>{% endif %}
                 </ul>
                 <p>{{staffMember.bio}}</p>
-                <h5>{{staffMember.displayName}} is also on</h5>
                 <ul class="social">
                 {% for profile in staffMember.profiles %}
                     {% if profile.url %}

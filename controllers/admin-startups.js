@@ -223,6 +223,10 @@ adminStartUpsController.post('/new', function (req, res) {
 			startup.logo = fields.remoteLogoUrl;
 		}
 
+		if(fields.action === 'publish'){
+			startup.publish = true;
+		}
+
 		startup.socialProfiles.push({provider:'twitter', url:fields.twitter});
 		startup.socialProfiles.push({provider:'crunchbase', url:fields.crunchbase});
 		startup.socialProfiles.push({provider:'angellist', url:fields.angellist});

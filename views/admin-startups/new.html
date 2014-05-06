@@ -56,7 +56,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Excerpt</label>
 				<div class="col-sm-6">
-					<textarea name="excerpt" data-max-size='64' class="char-counter form-control validate[maxSize[64]]" rows="5">{{angelListStartUp.excerpt}}</textarea>
+					<textarea name="excerpt" data-max-size='60' class="char-counter form-control validate[maxSize[60]]" rows="5">{{angelListStartUp.excerpt}}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -146,7 +146,8 @@
 		<div class="panel-footer">
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3 text-right">
-					<button class="btn btn-primary">Submit</button>
+					<button name="action" value="update" class="btn btn-success">Create</button>
+					<button name="action" value="publish" class="btn btn-primary">Publish</button>
 				</div>
 			</div>
 		</div>
@@ -159,6 +160,7 @@
 <script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#create-startup').validationEngine('attach', {scroll: false});
 	$('#create-startup').on('submit', function (e) {
 		var $logoUploader = $('#create-startup #uploader-logo');
 
