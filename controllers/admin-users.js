@@ -52,8 +52,11 @@ var labels = {
 var beforeEach = function(type){
 	return function (currentUserId, done) {
 		var query = {_id: db.Types.ObjectId(currentUserId)};
-		if(type){
-			query.type = labels.queryBy[type];
+
+		if(type === 'staff-member'){
+			query = {type:{$in:['team', 'admin']} };
+		}else if(type){
+			query = {type:labels.queryBy[type]};
 		}
 
 		User.findOne(query, done);
@@ -71,7 +74,9 @@ var indexRoute = function(type){
 		});
 
 		var query;
-		if(type){
+		if(type === 'staff-member'){
+			query = {type:{$in:['team', 'admin']} };
+		}else if(type){
 			query = {type:labels.queryBy[type]};
 		}
 
