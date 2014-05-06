@@ -14,8 +14,8 @@ p {font-size: 1.25rem; margin: 0.25rem; font-weight: 300;}
 a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 .clearfix {clear: both;}
 
-::selection {background: #b43322; color: #F0F0F0;}
-::-moz-selection {background: #b43322; color: #F0F0F0;}
+::selection {background: #000000; color: #F0F0F0;}
+::-moz-selection {background: #000000; color: #F0F0F0;}
 
 header {font-weight: 300; position: absolute; z-index: 100; bottom: 0; padding-left: 1.25em; margin: 1.25em 0; height: 65px; border-left-style: solid; border-left-width: 8px; border-left-color: #FFF; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 header#int {position: absolute; top: 0}
