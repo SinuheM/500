@@ -54,9 +54,9 @@ var beforeEach = function(type){
 		var query = {_id: db.Types.ObjectId(currentUserId)};
 
 		if(type === 'staff-member'){
-			query = {type:{$in:['team', 'admin']} };
+			query.type = {$in:['team', 'admin']};
 		}else if(type){
-			query = {type:labels.queryBy[type]};
+			query.type = labels.queryBy[type];
 		}
 
 		User.findOne(query, done);
@@ -258,6 +258,10 @@ var createRoute = function (type) {
 				user.expertise = fields.expertise.split(',');
 			}
 
+			if(fields.action === 'publish'){
+				user.publish = true;
+			}
+
 			if(fields.angelListId){
 				angelListApi.getUserInfo(fields.angelListId, function(err, data){
 					if(err){ return res.sendError(500, err); }
@@ -313,7 +317,9 @@ var updateUserRoute = function (type) {
 
 		busboy.on('finish', function() {
 			currentUser.bio = fields.bio;
-			currentUser.type = labels.queryBy[type] || fields.type;
+			if(!type){
+				currentUser.type = fields.type;
+			}
 			currentUser.group = fields.group;
 			currentUser.title = fields.title;
 			currentUser.displayName = fields.displayName;
@@ -340,6 +346,14 @@ var updateUserRoute = function (type) {
 
 			if(fields.expertise){
 				currentUser.expertise = fields.expertise.split(',');
+			}
+
+			if(fields.action === 'publish'){
+				currentUser.publish = true;
+			}
+
+			if(fields.action === 'unpublish'){
+				currentUser.publish = false;
 			}
 
 			currentUser.save(function(err){

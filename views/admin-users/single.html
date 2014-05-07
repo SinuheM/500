@@ -150,7 +150,12 @@
 		<div class="panel-footer">
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3 text-right">
-					<button class="btn btn-primary">Submit</button>
+					<button name="action" value="update" class="btn btn-success">Update</button>
+					{% if currentUser.publish %}
+					<button name="action" value="unpublish" class="btn btn-primary">Unpublish</button>
+					{% else %}
+					<button name="action" value="publish" class="btn btn-primary">Publish</button>
+					{% endif %}					
 				</div>
 			</div>
 		</div>
@@ -174,7 +179,7 @@ $(document).ready(function () {
 
 		if($backgroundImageUploader.val() === ''){
 			$backgroundImageUploader.remove();
-		}		
+		}
 	});
 
 	{% if type == "user" %}
