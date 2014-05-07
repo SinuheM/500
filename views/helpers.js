@@ -91,7 +91,7 @@ var helpers = function(swig){
 			if(color === 'white'){
 				return '/imgs/social-icons/angellist.png';
 			}
-			return '/imgs/social-icons/angellist_dark.png';
+			return '/imgs/social-icons/Angellist_dark.png';
 		}else if(provider === 'youtube'){
 			if(color === 'white'){
 				return '/imgs/social-icons/youtube.png';
