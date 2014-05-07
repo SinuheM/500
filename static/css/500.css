@@ -197,8 +197,7 @@ section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; 
 section#portfolio #mentors ul.up {top: -10rem}
 section#portfolio #mentors ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #mentors ul li a {display: block;height: 294px;}
-section#portfolio #mentors ul li a:hover {background-color: #252525; color: #FFF}
-section#portfolio #mentors ul li a:hover p.role {color: #ccc}
+section#portfolio #mentors ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #mentors ul li img {width: 219px;height: 219px;}
 section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0.75rem}
 section#portfolio #mentors ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
@@ -213,8 +212,7 @@ section#portfolio #team ul {margin: 0; position: relative; list-style: none; z-i
 section#portfolio #team ul.up {top: -10rem}
 section#portfolio #team ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #team ul li a {display: block;}
-section#portfolio #team ul li a:hover {background-color: #252525; color: #FFF}
-section#portfolio #team ul li a:hover p.role {color: #ccc}
+section#portfolio #team ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #team ul li img {}
 section#portfolio #team ul li .content {text-align: center; padding: 1rem 0 0.75rem}
 section#portfolio #team ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
@@ -406,7 +404,8 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 
 .card {margin: 2rem 0; list-style: none; text-align: center;}
 .card li {float: left; padding: 0.5rem; width: 25%; position: relative;}
-.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;height: 410px;}
+.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;height: 410px; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+.card li .content:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 .card li .image-container {height: 200px;display: table-cell;vertical-align: middle;width: 190px;}
 .card li img {}
 .card li p {font-size: 0.85rem}
