@@ -101,6 +101,10 @@ app.get('/:slug', function (req, res) {
 		var render;
 
 		if(data.type === 'reserved'){
+			if(req.params.slug === 'portafolio'){
+				return res.redirect(301, '/startups');
+			}
+
 			render = renderer.get(req.params.slug);
 			return render(req, res);
 		}
