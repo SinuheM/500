@@ -4,7 +4,7 @@ var db = require('../lib/db'),
 var User = db.model('user');
 
 var render = function (req, res) {
-	User.find({type:'mentor'})
+	User.find({type:'mentor', publish:true})
 	.exec(function (err, mentors) {
 		if(err){ return res.send(500, err);}
 

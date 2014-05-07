@@ -37,13 +37,13 @@ userSchema.plugin(Slug.plugIt, {type: 'user', slugFrom : 'displayName' });
 userSchema.plugin(mongoosastic);
 
 userSchema.statics.random = function(callback) {
-	this.count({type:'mentor'},function(err, count) {
+	this.count({type:'mentor', publish:true},function(err, count) {
 		if (err) {
 			return callback(err);
 		}
 
 		var rand = Math.floor(Math.random() * count);
-		this.findOne({type:'mentor'}).skip(rand).exec(callback);
+		this.findOne({type:'mentor', publish:true}).skip(rand).exec(callback);
 	}.bind(this));
 };
 

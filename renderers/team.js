@@ -4,7 +4,7 @@ var db = require('../lib/db'),
 var User = db.model('user');
 
 var render = function (req, res) {
-	User.find({type:{$in:['team', 'admin']}})
+	User.find({type:{$in:['team', 'admin']},publish:true})
 	.sort('group')
 	.exec(function (err, staffMembers) {
 		if(err){ return res.send(500, err);}

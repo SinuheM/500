@@ -20,7 +20,7 @@ utilsController.post('/startups/search', function(req, res){
 });
 
 utilsController.post('/mentors/search', function(req, res){
-	User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor'}}}, function(err, results) {
+	User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor', publish:true}}}, function(err, results) {
 		if(err){return res.sendError(500, err);}
 
 		var mentors = _.filter(results.hits, function(item){return item.displayName;});

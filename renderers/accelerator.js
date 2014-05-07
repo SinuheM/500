@@ -16,8 +16,8 @@ var render = function (req, res) {
 		if(page.data.startups){startupSlugs = startupSlugs.concat(page.data.startups.split(','));}
 		if(page.data.mentors){mentorSlugs = mentorSlugs.concat(page.data.mentors.split(','));}
 
-		Startup.find({slugStr:{$in:startupSlugs}}).populate('batch').exec(function (err, startups) {
-			User.find({slugStr:{$in:mentorSlugs}, type:'mentor'}, function(err, mentors){
+		Startup.find({slugStr:{$in:startupSlugs}, publish:true, active:true}).populate('batch').exec(function (err, startups) {
+			User.find({slugStr:{$in:mentorSlugs}, publish:true, type:'mentor'}, function(err, mentors){
 				mentors = _.sortBy(mentors, function(item){return page.data.mentors.split(',').indexOf(item.slugStr);});
 				startups = _.sortBy(startups, function(item){return page.data.startups.split(',').indexOf(item.slugStr);});
 
