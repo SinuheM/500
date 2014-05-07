@@ -147,7 +147,7 @@ Slug.prototype.change = function (newSlug, callback) {
 
 Slug.reserve('admin');
 Slug.reserve('startups');
-Slug.reserve('portafolio');
+Slug.reserve('portfolio');
 Slug.reserve('legal');
 Slug.reserve('team');
 Slug.reserve('mentors');
