@@ -79,6 +79,7 @@ var indexRoute = function(type){
 		}else if(type){
 			query = {type:labels.queryBy[type]};
 		}
+		query.deleted = false;
 
 		User.find(query || {}, function(err, users){
 			if(err){res.sendError(500, err);}
@@ -170,6 +171,8 @@ var userRoute = function (type) {
 			label : res.data.currentUser.displayName
 		});
 		var message = req.flash('message');
+
+		if(res.data.currentUser.deleted){return res.send(404, 'not found');}
 
 		res.render('admin-users/single',{
 			currentUser : res.data.currentUser,
@@ -396,6 +399,32 @@ adminUsersController.post('/searchAngelList', function(req, res){
 		res.send(results);
 	});
 });
+
+var deleteUser = function(type){
+	return function (req, res) {
+		var user = res.data.currentUser;
+
+		user.publish = false;
+		user.active = true;
+		user.deleted = true;
+
+		user.save(function(err){
+			if(err){ return res.sendError(500, err); }
+			Slug.findOne({_id: user.slug},function(err, slug){
+				if(err){ return res.sendError(500, err); }
+				if(user.slugStr === 'user-'+user.id){return res.redirect('/admin/'+ type +'s/');}
+
+				slug.change('user-'+user.id, function(err){
+					if(err){ return res.sendError(500, err); }
+					res.redirect('/admin/'+ type +'s/');
+				});
+			});
+		});
+	};
+};
+adminUsersController  .post('/:currentUser/delete', deleteUser());
+adminMentorsController.post('/:currentUser/delete', deleteUser('mentor'));
+adminStaffController  .post('/:currentUser/delete', deleteUser('staff-member'));
 
 module.exports = {
 	main    : adminUsersController,

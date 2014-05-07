@@ -399,7 +399,7 @@ adminStartUpsController.post('/:currentStartup/delete', function (req, res) {
 		if(err){ return res.sendError(500, err); }
 		Slug.findOne({_id: startup.slug},function(err, slug){
 			if(err){ return res.sendError(500, err); }
-			if(startup.slugStr === 'startup-'+startup.id){res.redirect('/admin/startups/');}
+			if(startup.slugStr === 'startup-'+startup.id){return res.redirect('/admin/startups/');}
 
 			slug.change('startup-'+startup.id, function(err){
 				if(err){ return res.sendError(500, err); }

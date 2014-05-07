@@ -30,7 +30,8 @@ var userSchema = schema({
 	}],
 
 	active  : {type : Boolean, default: false},
-	publish : {type : Boolean}
+	publish : {type : Boolean},
+	deleted : {type : Boolean, default: false}
 });
 
 userSchema.plugin(Slug.plugIt, {type: 'user', slugFrom : 'displayName' });
