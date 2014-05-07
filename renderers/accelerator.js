@@ -6,7 +6,7 @@ var Page = db.model('page');
 var User = db.model('user');
 
 var render = function (req, res) {
-	Page.findOne({name:'accelerator'}).populate('batch').exec(function(err, page){
+	Page.findOne({name:'accelerator'},function(err, page){
 		if(err){ return res.send(500, err);}
 
 		var startupSlugs = [];
@@ -16,7 +16,7 @@ var render = function (req, res) {
 		if(page.data.startups){startupSlugs = startupSlugs.concat(page.data.startups.split(','));}
 		if(page.data.mentors){mentorSlugs = mentorSlugs.concat(page.data.mentors.split(','));}
 
-		Startup.find({slugStr:{$in:startupSlugs}}, function (err, startups) {
+		Startup.find({slugStr:{$in:startupSlugs}}).populate('batch').exec(function (err, startups) {
 			User.find({slugStr:{$in:mentorSlugs}, type:'mentor'}, function(err, mentors){
 				mentors = _.sortBy(mentors, function(item){return page.data.mentors.split(',').indexOf(item.slugStr);});
 				startups = _.sortBy(startups, function(item){return page.data.startups.split(',').indexOf(item.slugStr);});

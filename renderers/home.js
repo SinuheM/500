@@ -21,7 +21,7 @@ var render = function (req, res) {
 			publish:true
 		};
 
-		Startup.find(query, function (err, startups) {
+		Startup.find(query).populate('batch').exec(function (err, startups) {
 			if(err){ return res.send(500, err);}
 			var acceleration = _.filter(startups, function(item){ if(page.data.acceleration.split(',').indexOf(item.slugStr) >=0 ){return item.toJSON();} });
 			var seed = _.filter(startups, function(item){ if(page.data.seed.split(',').indexOf(item.slugStr) >=0 ){return item.toJSON();} });
