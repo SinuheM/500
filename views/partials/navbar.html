@@ -15,7 +15,7 @@
             <a href="/activity">ACTIVITY</a>
         </nav>
     </header>
-{% elseif currentPage == "staff" || currentPage == "events" %}
+{% elseif currentPage == "staff" || currentPage == "events" || currentPage == "post" %}
     <header id="staff">
         <div id="logo">
             <a href="/">
@@ -28,7 +28,7 @@
             <a href="/startups" {% if currentPage == "portfolio" %}class="active"{% endif %}>STARTUPS</a>
             <a href="/mentors" {% if currentPage == "mentors" %}class="active"{% endif %}>MENTORS</a>
             <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
-            <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
+            <a href="/activity" {% if currentPage == "post" %}class="active"{% endif %}>ACTIVITY</a>
         </nav>
     </header>
 {% elseif currentPage == "mentor" %}

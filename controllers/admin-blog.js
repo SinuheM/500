@@ -38,9 +38,9 @@ adminBlogController.get('/', function (req, res) {
 
 	Activity.find({
 		type : 'post',
-		deleted : false
+		deleted : false,
 	})
-	.sort('createdDate')
+	.sort('-createdDate')
 	.populate('uploader')
 	.exec(function(err, posts){
 		if(err){ return res.sendError(500, err); }
@@ -64,13 +64,7 @@ adminBlogController.get('/new', function (req, res) {
 });
 
 adminBlogController.get('/:currentBlogpost', function (req, res) {
-	res.data.breadcrumbs.push({
-		label : 'Blog',
-		url : '/admin/blog/'
-	});
-	res.data.breadcrumbs.push({
-		label : res.data.currentBlogpost.title
-	});
+	res.data.breadcrumbs = [];
 
 	var date = moment(res.data.currentBlogpost.createdDate);
 	var message = req.flash('message');
@@ -109,6 +103,7 @@ var blogpostUpdate = function (req, res) {
 	busboy.on('finish', function() {
 		post.name = fields.name;
 		post.title = fields.title;
+		post.subtitle = fields.subtitle;
 		post.createdDate = moment(fields.date + ' ' + fields.hour + ':' + fields.minute + fields.meridian, 'DD/MM/YY hh:mm a').toDate();
 		post.link = fields.link;
 		post.description = fields.description;

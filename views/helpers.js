@@ -124,7 +124,11 @@ var helpers = function(swig){
 		return moment.duration( time.diff(new Date())  ).humanize();
 	});
 
-	swig.setFilter('dateToString', function (date) { 
+	swig.setFilter('prettyDate', function (date) {
+		return moment(date).format('LL');
+	});
+
+	swig.setFilter('dateToString', function (date) {
 		return moment(date).format();
 	});
 };

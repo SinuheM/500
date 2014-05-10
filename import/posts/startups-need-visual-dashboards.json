@@ -1,0 +1,30 @@
+{
+    "title": "Why Your Startup Needs a Visual Dashboard ",
+    "slug": "startups-need-visual-dashboards",
+    "date": "2011-02-16T08:13:12.000Z",
+    "url": "http://blog.500startups.com/?p=1116715012",
+    "uri": "http://500.co/2011/02/16/startups-need-visual-dashboards/",
+    "postId": "1116715012",
+    "description": "",
+    "images": [
+        "http://mygengo-talk.s3.amazonaws.com/blog/1297743226-dashes-thumb.png",
+        "http://mygengo-talk.s3.amazonaws.com/blog/container-ship-stack.jpg"
+    ],
+    "creator": "",
+    "categories": [
+        "analytics",
+        "conversion",
+        "customers",
+        "dashboard",
+        "guest-posts",
+        "kpis",
+        "metrics",
+        "mygengo",
+        "performance",
+        "robert-laing",
+        "visual-reporting"
+    ],
+    "content": "<em>This post was originally published by <a href=\"http://twitter.com/#!/robert_laing\">Robert Laing</a> on the <a href=\"http://mygengo.com/talk/blog/why-your-startup-needs-a-visual-dashboard/\" target=\"_blank\">mygengo blog</a>. Robert and mygengo are part of the 500 Startups family. You may remember Robert from his <a href=\"http://500.co/2011/01/24/how-to-create-a-successful-startup-in-japan-in-10-easy-steps/\" target=\"_blank\">recent guest post on doing a startup in Japan</a>.</em>\n\n<em>Since this is a long post (albeit very informative), we've chosen to publish an excerpt of the post here and link to the rest of the post.</em>\n\n<img class=\"alignnone\" title=\"Dashboard\" src=\"/backup/1297743226-dashes-thumb-2011-02-16-11-02-13.png\" alt=\"\" width=\"220\" height=\"137\" />\n\nThis post will tell you why you need to start visual reporting for your startup, and how to go about putting together a basic dashboard.\n\n<strong>You already know this: </strong>What gets measured, gets done.\n<strong> You already know this too:</strong> Humans instinctively respond to visual cues\n<strong> So do this:</strong> Use visual dashboards for your startup\n\nI’m going to start this post by saying that myGengo doesn’t have a perfect track record in choosing <a href=\"http://en.wikipedia.org/wiki/Performance_indicator\" target=\"_blank\">KPIs</a> (Key Performance Indicators) or “key metrics”, we don’t have the world’s best dashboards, and we don’t display data to customers and <a href=\"http://mygengo.com/translator\" target=\"_blank\">translators </a>perfectly :) But we know this, we know what we should be doing, and we’re getting there. So it’s worth sharing our knowledge to date.\n\n<strong><em>Contents of this post:\n</em></strong> Why &amp; what to measure\n<ul>\n\t<li>Why you need visual reporting</li>\n\t<li>Why you need to share the dashboard</li>\n\t<li>Choosing what to measure</li>\n\t<li>Choosing time periods</li>\n</ul>\nHow to do it\n<ul>\n\t<li>Why visual reporting was hard</li>\n\t<li>How we did it wrong</li>\n\t<li>Designing data</li>\n</ul>\nTools &amp; Services\n<ul>\n\t<li>How to do it: External tools</li>\n\t<li>How to do it: Do-it-yourself</li>\n</ul>\n<strong><em>Why you need visual reporting:\n</em></strong>Data is, by nature, kinda dull. It’s very hard to do the following in numerical data:\n<ul>\n\t<li>See trends</li>\n\t<li>See progress towards targets</li>\n\t<li>Compare/correlate values</li>\n\t<li>Demonstrate ‘danger’ or ‘success’</li>\n\t<li>See groupings</li>\n\t<li>Scan quickly</li>\n</ul>\nAll of which I would argue you gotta do if you’re going to steer the startup ship. Visual reporting allows you to communicate quite complex data in a few instants, which means more people in the company understand things, and spend less time wondering.\n\n[caption id=\"\" align=\"alignnone\" width=\"690\" caption=\"A visual cue that something might be wrong\"]<img title=\"something is wrong\" src=\"/backup/container-ship-stack-2011-02-16-11-02-13.jpg\" alt=\"\" width=\"690\" height=\"473\" />[/caption]\n\nTo read the rest of this post, visit the <a href=\"http://mygengo.com/talk/blog/why-your-startup-needs-a-visual-dashboard/\">original version on the mygengo blog</a>.",
+    "type": "post",
+    "path": "/2011/02/16/startups-need-visual-dashboards/"
+}

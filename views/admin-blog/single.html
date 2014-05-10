@@ -6,18 +6,17 @@
 <link rel="stylesheet" href="/css/bootstrap-timepicker.min.css" />
 {% endblock %}
 
-{% block subheader %}
-	{% include "../partials/slug-change.html" with post only %}
-{% endblock %}
-
-
 {% block header %}
 {% if post %}
 	<i class="fa fa-file-o"></i>{{post.title}} 
-	<span><a class="resorce-slug" href="/{{currectActivity.slugStr}}" target="_blank">500.co/{{post.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
+	<span><a class="resorce-slug" href="/{{post.slugStr}}" target="_blank">500.co/{{post.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
 {% else %}
 	<i class="fa fa-file-o"></i> Add blogpost
 {% endif %}
+{% endblock %}
+
+{% block subheader %}
+	{% include "../partials/slug-change.html" with post only %}
 {% endblock %}
 
 {% block content %}
@@ -47,6 +46,12 @@
 					<input name="title" type="text" class="form-control" value="{{ post.title }}">
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Subtitle</label>
+				<div class="col-sm-6">
+					<input name="subtitle" type="text" class="form-control" value="{{ post.subtitle }}">
+				</div>
+			</div>			
 			{% if !post %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Slug</label>

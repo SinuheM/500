@@ -1,0 +1,27 @@
+{
+    "title": "Google Friday",
+    "slug": "google-field-trip",
+    "date": "2011-12-14T05:47:35.000Z",
+    "url": "http://500.co/?p=1116719093",
+    "uri": "http://500.co/2011/12/13/google-field-trip/",
+    "postId": "1116719093",
+    "description": "",
+    "images": [
+        "http://500.co/wp-content/uploads/2011/12/google0-225x300.jpg",
+        "http://500.co/wp-content/uploads/2011/12/google1-300x224.jpg",
+        "http://500.co/wp-content/uploads/2011/12/google2-300x225.jpg"
+    ],
+    "creator": "",
+    "categories": [
+        "accelerator",
+        "devrel",
+        "distribution",
+        "google",
+        "google-developer-relations",
+        "google-devrel",
+        "platforms"
+    ],
+    "content": "After a fun field trip to Facebook, next up was Google! The 500 Accelerator batch spent last Friday morning at Building 1950 on the Google campus in Mountain View, CA. We were hosted by the Google Developer Relations team. Thanks <a href=\"http://twitter.com/#!/stephliu\">Stephanie Liu</a>, <a href=\"https://twitter.com/#!/martinomander\">Martin Omander</a>, and all the <a href=\"http://code.google.com/team/\">DevRel team members</a> who took time out of their busy schedules to spend time with us.\n\n<a href=\"http://500.co/2011/12/13/google-field-trip/google0/\" rel=\"attachment wp-att-1116719131\"><img class=\"alignnone size-medium wp-image-1116719131\" title=\"google0\" src=\"/backup/google0-225x300-2011-12-13-11-23-47.jpg\" alt=\"\" width=\"225\" height=\"300\" /></a>\n\nAfter some caffeine and food, the day kicked off with lightning presentations from each Google speaker. In about an hour, we zipped through the following topics:\n\n<a href=\"https://twitter.com/#!/iein\">Iein Valdez</a> opened the show with an overview of how Google views the Cloud, and App Engine\n\n<a href=\"https://twitter.com/#!/petele\">Pete LePage </a>spoke on Chrome, HTML5 and shared tips and tricks for getting featured in Chrome WebStore.\n\n<a href=\"https://twitter.com/#!/retomeier\">Reto Meier</a> wow'd us with some amazing stats and tips for Android and Android Market.  We learned there are 200MM Android devices out in the wild, 550K new daily activations, and 10B downloads from Android Market.\n\n<a href=\"https://twitter.com/#!/paul_saxman\">Paul Saxman</a> made us realize we spend far too much time watching TV and how developers can take advantage of that with Google TV.\n\nCircles, pages, and hangouts - <a href=\"https://plus.google.com/113751353481962008916/posts\">Timothy Jordan</a> regaled us with info on Google+ and how startups should be using the various features.\n\nPaid acquisition works! <a href=\"https://plus.google.com/108202943648832138976/posts\">Carl Damerow</a> from the AdWords team shared several examples of how to effectively use AdWords, including putting 500 company <a href=\"http://switchcam.com\">Switchcam</a> in the hot seat.\n\n<a href=\"https://plus.google.com/112976464453422312311/posts\">Nick Mihailovski</a> of the Analytics team talked about how to use Google Analytics in your day-to-day operations.\n\n40MM active users and 4MM+ businesses can't be wrong. <a href=\"https://twitter.com/#!/ryguyrg\">Ryan Boyd</a> covered building for Google Apps and Auth.\n\n<a href=\"https://twitter.com/#!/brendankenny\">Brendan Kenny</a> of the Geo team shared best practices for the Google Places API.\n\nMoney money money! <a href=\"https://twitter.com/#!/mihaiionescu\">Mihai Ionescu </a>delivered an overview of ways you can monetize your apps with Google.\n\nFinally, <a href=\"https://twitter.com/#!/derekslater\">Derek Slater</a> from Google's policy team ended the morning with a BANG talking about fundraising regulations in the U.S., <a href=\"http://www.engineadvocacy.com/\">EngineAdvocacy</a>, and putting an end to SOPA/PIPA.\n\n<a href=\"http://500.co/2011/12/13/google-field-trip/google1/\" rel=\"attachment wp-att-1116719132\"><img class=\"alignnone size-medium wp-image-1116719132\" title=\"google1\" src=\"/backup/google1-300x224-2011-12-13-11-23-47.jpg\" alt=\"\" width=\"300\" height=\"224\" /></a>\n\nAfter an educational morning, we were treated to a 5-star lunch at Nourish, one of Google's many cafes. Great food and great 1:1 Q&amp;A/discussion with the speakers ensued.\n\n<a href=\"http://500.co/2011/12/13/google-field-trip/google2/\" rel=\"attachment wp-att-1116719133\"><img class=\"alignnone size-medium wp-image-1116719133\" title=\"google2\" src=\"/backup/google2-300x225-2011-12-13-11-23-47.jpg\" alt=\"\" width=\"300\" height=\"225\" /></a>\n\nThanks to the <a href=\"developers.google.com/startups  \">Google DevRel team</a> for making this happen!",
+    "type": "post",
+    "path": "/2011/12/13/google-field-trip/"
+}

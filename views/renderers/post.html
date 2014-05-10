@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500.co</title>
+    <link rel="stylesheet" href="/css/foundation.css" />
+    <link rel="stylesheet" href="/css/500.css" />
+    <script src="/js/vendor/modernizr.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif:400italic,700italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    {% include "../partials/navbar.html" %}
+    <section id="blogpost">
+        <div class="content" {% if post.image %}style="background-image: url({{ post.image }});"{% endif %}>
+            <div class="center">
+                {% if post.announcement %}
+                <div class="tag-announcement">OFFICIAL ANNOUNCEMENT</div>
+                {% endif %}
+                <h1>{{ post.title }}</h1>
+                <p class="subtitle">{{ post.subtitle }}</p>
+                <div class="clearfix"></div>
+            </div>
+            <div class="meta">
+                {% if post.author %}
+                <div class="author">by <span>Mark Saldaña</span></div>
+                {% endif %}
+                <div class="date">PUBLISHED {{post.createdDate|prettyDate}}</div>
+            </div>
+            <div class="top-shadow" style="background-image: url(/img/top-shadow.png)"></div>
+            <div class="bottom-shadow" style="background-image: url(/img/bottom-shadow.png)"></div>
+        </div>
+        <div class="post">
+            <div class="center">
+                <div class="paragraph">
+                    {{ post.content|safe }}
+                </div>
+            </div>
+            {% if post.author %}
+            <div class="bottom">
+                <div class="center">
+                    <div class="author">
+                        <img src="/img/founders/founder1.png">
+                        <div class="info">
+                            <h5>Published by <span>Mark Saldaña</span></h5>
+                            <p>Cesar was born and raised in a small remote town where he went to school and received a basic education. 140 characters limit</p>
+                        </div>
+                    </div>
+
+
+                    <ul class="social">
+                        <li>Share on</li>
+                        <li><a href="#"><img src="/img/social-facebook.png"></a></li>
+                        <li><a href="#"><img src="/img/social-twitter.png"></a></li>
+                        <li><a href="#"><img src="/img/social-gplus.png"></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    {% include "../partials/footer.html" %}
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+    $(document).ready(function(){
+        $('.paragraph img').each(function(i, img){
+            var $img = $(img); 
+            $img.wrap('<div style="width:100%; text-align:center"></div>');
+        });
+    });
+</script>
+</body>
+</html>

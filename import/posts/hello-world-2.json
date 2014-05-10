@@ -1,0 +1,17 @@
+{
+    "title": "Hello World!",
+    "slug": "hello-world-2",
+    "date": "2010-09-08T00:11:00.000Z",
+    "url": "http://blog.500startups.com/post/1082284994",
+    "uri": "http://500.co/2010/09/07/hello-world-2/",
+    "postId": "1082284994",
+    "description": "",
+    "images": [],
+    "creator": "",
+    "categories": [
+        "announcements"
+    ],
+    "content": "Welcome to the 500 Startups blog! We’ll be using this blog to broadcast updates, musings, announcements, and more related to 500 Startups and our portfolio companies.",
+    "type": "post",
+    "path": "/2010/09/07/hello-world-2/"
+}

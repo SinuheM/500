@@ -1,0 +1,29 @@
+{
+    "title": "Facebook Custom Audiences 101",
+    "slug": "facebook-custom-audiences-101",
+    "date": "2013-07-16T20:05:49.000Z",
+    "url": "http://500.co/?p=1116728477",
+    "uri": "http://500.co/2013/07/16/facebook-custom-audiences-101/",
+    "postId": "1116728477",
+    "description": "",
+    "images": [
+        "http://500.co/wp-content/uploads/2013/07/slatergif.gif",
+        "https://lh6.googleusercontent.com/CbOMPyr-dMC7mKob4NY2rHFarBDV7yguAfdG2sffVOi6bL33mDI0ns-PUwnh-yNZ9QEc2HvnIByX4BZCx45BS7FSzlExuZn2wc34mnyEU_s4M2yfKNnIyJkG",
+        "https://lh6.googleusercontent.com/qnvpEy7aywGrGhJzlNNIMgRASR5KwXsZPUmpcqxYPJ-lRtSO1ZGCD58xQfD1Ssy8LpEWLjK-8iRNfsTzlh_Pu82Vx0pTWNbInRnenMBqrYVsgJwRvBDhiq0V",
+        "https://lh3.googleusercontent.com/YwCU1FOMGgbqY4-q6gAcX386O_LTXBiIUemTbENGdbALG8JEjrYAwqzaMhBoYrPn6LVkutAMGsfH25sECWVFg8EjOpoOFK5Nl43aSSBQs7wZHkSzAkmFP3mS",
+        "https://lh3.googleusercontent.com/umeUmcoG1txPTs-ob_Fp9RFlMlYeLNxZXUVkie1XnqwMiL2meBkLhrZggEnlFe64SyvXhSNf1cmW--mkK3EWPgq5QQ1IlxJ2TR-VQzY0ASzX_lpS38Rd5l0W"
+    ],
+    "creator": "",
+    "categories": [
+        "ads",
+        "distribution",
+        "distribution-tuesday",
+        "facebook",
+        "growth",
+        "marketing",
+        "retargeting"
+    ],
+    "content": "<p style=\"text-align: left;\"><em>This post is part of the ongoing Distribution Tuesday series. Every week the <a href=\"http://500.co/distribution/?utm_source=500Blog&amp;utm_campaign=DistributionTuesday\" target=\"_blank\">500 Distribution Team</a> highlights actionable resources for marketing your startup. Get even more tips by following @<a href=\"https://twitter.com/500Distribution\" target=\"_blank\">500Distribution</a> on Twitter and subscribing to our <a href=\"http://500.us7.list-manage2.com/subscribe?u=79dc9a3284790af0567d6845f&amp;id=b52998a3a5\" target=\"_blank\">email newsletter</a>.</em></p>\n<p dir=\"ltr\" style=\"text-align: left;\"><strong>What are custom audiences?</strong></p>\n<p dir=\"ltr\">Custom audiences is one of the most powerful features found in Facebook Ads. A custom audience is a set of “users” that you upload (usually in the form of email addresses) in a CSV or Excel file to Facebook. Facebook then looks at their users and tries to find the users in the set you uploaded to make a match. If a match is found, they place that user into the custom audience. From there, you can target any of your ad types specifically to this custom audience.</p>\n<p dir=\"ltr\"><strong>Why is this awesome?</strong></p>\n<p dir=\"ltr\">Custom audiences allows you to upload your own email lists to facebook and run advertising on their platform to those users. There’s a few really interesting things you can do with this feature.</p>\n<p dir=\"ltr\"><a href=\"/backup/slatergif-2013-07-16-13-15-05.gif\"><img class=\"alignleft size-full wp-image-1116728483\" alt=\"slatergif\" src=\"/backup/slatergif-2013-07-16-13-15-05.gif\" width=\"480\" height=\"359\" /></a></p>\n<p dir=\"ltr\"><em>It's almost as awesome as Slater. Almost.</em></p>\n<p dir=\"ltr\">First, this is a really simple form of retargeting. You can upload a set of your users who signed up but then never used your product/service to try to get them to come back. If you are good at email list building for potential customers, you can use this method to show ads to your lists.</p>\n<p dir=\"ltr\">Upselling is another cool way to use this. Let’s say you have a set of users that purchased product A and you have a complimentary product B, you can show ads for product B to users who purchased product A with very relevant ad copy. There’s plenty you can do with custom audiences with a little thought.</p>\n<p dir=\"ltr\"><strong>How do I get started?</strong></p>\n<p dir=\"ltr\">The custom audiences feature can only be found in the power editor and is located in the “audiences” tab.</p>\n<p dir=\"ltr\"><img alt=\"\" src=\"https://lh6.googleusercontent.com/CbOMPyr-dMC7mKob4NY2rHFarBDV7yguAfdG2sffVOi6bL33mDI0ns-PUwnh-yNZ9QEc2HvnIByX4BZCx45BS7FSzlExuZn2wc34mnyEU_s4M2yfKNnIyJkG\" width=\"217px;\" height=\"224px;\" /></p>\n<p dir=\"ltr\">The only thing you need to setup a custom audience in Facebook Ads is a list of users. The list of users can be based on their email address, UIDs, phone numbers, or even app user IDs. Since most websites collect their customer’s email addresses, I’ve found this option to be the easiest.</p>\nOnce you have a list of your customer’s email addresses, go to the power editor, then the audiences tab, and click Create Audience and then Custom Audience.\n\n<img alt=\"\" src=\"https://lh6.googleusercontent.com/qnvpEy7aywGrGhJzlNNIMgRASR5KwXsZPUmpcqxYPJ-lRtSO1ZGCD58xQfD1Ssy8LpEWLjK-8iRNfsTzlh_Pu82Vx0pTWNbInRnenMBqrYVsgJwRvBDhiq0V\" width=\"374px;\" height=\"174px;\" /><img alt=\"\" src=\"https://lh3.googleusercontent.com/YwCU1FOMGgbqY4-q6gAcX386O_LTXBiIUemTbENGdbALG8JEjrYAwqzaMhBoYrPn6LVkutAMGsfH25sECWVFg8EjOpoOFK5Nl43aSSBQs7wZHkSzAkmFP3mS\" width=\"NaN\" height=\"NaN\" />\n\nFrom there, select the file with your user’s email addresses and upload. It takes a little while for Facebook to look through their users to find the users on your email list.\n\n<img alt=\"\" src=\"https://lh3.googleusercontent.com/umeUmcoG1txPTs-ob_Fp9RFlMlYeLNxZXUVkie1XnqwMiL2meBkLhrZggEnlFe64SyvXhSNf1cmW--mkK3EWPgq5QQ1IlxJ2TR-VQzY0ASzX_lpS38Rd5l0W\" width=\"467px;\" height=\"409px;\" />\n\nStart using this feature today to get more customers FAST. Have you already used it to boost your distribution efforts? Share your tips, tricks and stories below in the comments.",
+    "type": "post",
+    "path": "/2013/07/16/facebook-custom-audiences-101/"
+}

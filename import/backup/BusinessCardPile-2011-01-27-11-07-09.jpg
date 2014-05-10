@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="google-site-verification" content="vyVXVdZfv9yp-bTdZ0aEKRZ8gcWr0pj5aQKfRYbk9Hw" />
+
+<title>Page Not Found | K9 Ventures</title>
+
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="http://www.k9ventures.com/wp-content/themes/blankslate/favicon.ico" />
+  
+<link rel="stylesheet" type="text/css" href="http://www.k9ventures.com/wp-content/themes/blankslate/grid.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://www.k9ventures.com/wp-content/themes/blankslate/reset.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://www.k9ventures.com/wp-content/themes/blankslate/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://www.k9ventures.com/wp-content/themes/blankslate/pages.css" media="screen" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://www.k9ventures.com/wp-content/themes/blankslate/js/parallax.js"></script>
+<script src="http://www.k9ventures.com/wp-content/themes/blankslate/js/bootstrap.js"></script>
+
+<script>
+// set wrapper to height of page so there's no blank space below content
+$(function(){
+    $('#wrapper').css({'height':($(document).height())+'px'});
+
+    $(window).resize(function(){
+    $('#wrapper').css({'height':($(document).height())+'px'});
+    });
+});
+
+// hide url bar on iphone
+window.addEventListener("load",function() {
+	// Set a timeout...
+	setTimeout(function(){
+		// Hide the address bar!
+		window.scrollTo(0, 0);
+	}, 0);
+});
+
+// nav menu, for desktop only
+$(window).resize(function() {
+	if ($(this).width() > 1024) {
+   	
+		$("nav").mouseenter(function() {
+			  var el = $("body");
+			  var timeoutId = setTimeout(function() {
+ 				   el.addClass("shownav");
+				  }, 400);
+				  $("nav").mouseleave(function() {
+  				  clearTimeout(timeoutId);
+ 				  el.removeClass("shownav");
+ 			 });
+		});
+
+	}
+	$(document).ready(function() {
+		$(".hero").addClass("loaded");
+	});
+});
+$(document).ready(function() {
+   $(window).resize();
+});
+
+// nav menu links
+$(document).ready(function(){
+	$("nav a").click(function() {
+   		$("body").removeClass("shownav");
+ 		var href = $(this).attr('href');
+
+		// Delay setting the location for one second
+		setTimeout(function() {window.location = href}, 300);
+		return false;
+	});
+});
+
+// nav menu button
+$(document).ready(function(){
+	$(".menu-button").click(function() {
+		$("body").toggleClass("shownav");
+	});
+});
+</script>
+
+
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.5.2.8 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="object" />
+<meta property="og:title" content="Page Not Found - K9 Ventures" />
+<meta property="og:site_name" content="K9 Ventures" />
+<meta property="article:publisher" content="http://facebook.com/k9ventures" />
+<meta property="fb:admins" content="517004290" />
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="K9 Ventures &raquo; Feed" href="http://www.k9ventures.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="K9 Ventures &raquo; Comments Feed" href="http://www.k9ventures.com/comments/feed/" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.5 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-550342-6']);
+				            _gaq.push(['_trackPageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer]);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel='stylesheet' id='jetpack_likes-css'  href='http://www.k9ventures.com/wp-content/plugins/jetpack/modules/likes/style.css?ver=2.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-subscriptions-css'  href='http://www.k9ventures.com/wp-content/plugins/jetpack/modules/subscriptions/subscriptions.css?ver=3.9' type='text/css' media='all' />
+<link rel='stylesheet' id='wordpress-popular-posts-css'  href='http://www.k9ventures.com/wp-content/plugins/wordpress-popular-posts/style/wpp.css?ver=2.3.7' type='text/css' media='all' />
+<link rel='stylesheet' id='ssbaFont-css'  href='//fonts.googleapis.com/css?family=Indie+Flower&#038;ver=3.9' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack-widgets-css'  href='http://www.k9ventures.com/wp-content/plugins/jetpack/modules/widgets/widgets.css?ver=20121003' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.k9ventures.com/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>
+<script type='text/javascript' src='http://www.k9ventures.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://www.k9ventures.com/wp-content/plugins/jetpack/_inc/postmessage.js?ver=2.9.3'></script>
+<script type='text/javascript' src='http://www.k9ventures.com/wp-content/plugins/jetpack/_inc/jquery.inview.js?ver=2.9.3'></script>
+<script type='text/javascript' src='http://www.k9ventures.com/wp-content/plugins/jetpack/_inc/jquery.jetpack-resize.js?ver=2.9.3'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.k9ventures.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.k9ventures.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.9" />
+<style type="text/css">	.ssba {
+											
+											
+											
+											
+										}
+										.ssba img		
+										{ 	
+											width: 32px !important;
+											padding: 6px;
+											border:  0;
+											box-shadow: none !important;
+											display: inline !important;
+											vertical-align: middle;
+										}
+										.ssba, .ssba a		
+										{
+											text-decoration:none;
+											background: none;
+											font-family: Indie Flower;
+											font-size: 	20px;
+											
+											
+										}</style></head>
+<body class="error404">
+
+
+<nav>
+			
+	<div id="search" class="hide-on-desktop">
+		<form class="hide-on-mobile" method="get" id="searchform" action="http://www.k9ventures.com/">
+<div id="search-inputs">
+<input type="text" value="" name="s" id="s" placeholder="SEARCH" />
+</div>
+</form>
+
+<form class="show-on-mobile" method="get" id="searchform" action="http://www.k9ventures.com/">
+<div id="search-inputs">
+<input type="text" value="" name="s" id="s" placeholder="Search" />
+</div>
+</form>	</div>		
+			
+	<div class="menu"><ul><li class="page_item page-item-499"><a href="http://www.k9ventures.com/directions/">Directions</a></li><li class="page_item page-item-47"><a href="http://www.k9ventures.com/">Home</a></li><li class="page_item page-item-2"><a href="http://www.k9ventures.com/about/">About K9</a></li><li class="page_item page-item-11"><a href="http://www.k9ventures.com/team/">Team</a></li><li class="page_item page-item-9"><a href="http://www.k9ventures.com/criteria/">Criteria</a></li><li class="page_item page-item-43"><a href="http://www.k9ventures.com/startups/">Startups</a></li><li class="page_item page-item-46 current_page_parent"><a href="http://www.k9ventures.com/blog/">Blog</a></li><li class="page_item page-item-44"><a href="http://www.k9ventures.com/contact/">Contact</a></li></ul></div>
+	
+	<ul class="social clearfix">
+		<li class="twitter"><a href="http://www.twitter.com/k9ventures" target="_blank"><em>Twitter</em></a></li>
+		<li class="facebook"><a href="http://www.facebook.com/k9ventures" target="_blank"><em>Facebook</em></a></li>
+		<li class="linkedin"><a href="http://www.linkedin.com/company/k9-ventures" target="_blank"><em>LinkedIn</em></a></li>
+		<li class="googleplus"><a href="http://plus.google.com/118313253354990945971" target="_blank"><em>Google+</em></a></li>
+		<li class="rss"><a href="http://k9ventures.com/feed/" target="_blank"><em>RSS</em></a></li>
+	</ul>
+	
+	<ul class="misc clearfix">
+		<li><a href="/media">Media</a></li>
+		<li><a href="/legal">Legal</a></li>
+	</ul>
+	
+	<span class="copyright">&copy; 2008- K9 Ventures, LLC</span>
+</nav>
+
+
+<div id="wrapper">
+	<header>
+		<div class="grid-container">
+			<div class="grid-100">
+				<div id="search" class="show-on-desktop">
+					<form class="hide-on-mobile" method="get" id="searchform" action="http://www.k9ventures.com/">
+<div id="search-inputs">
+<input type="text" value="" name="s" id="s" placeholder="SEARCH" />
+</div>
+</form>
+
+<form class="show-on-mobile" method="get" id="searchform" action="http://www.k9ventures.com/">
+<div id="search-inputs">
+<input type="text" value="" name="s" id="s" placeholder="Search" />
+</div>
+</form>				</div>
+
+				<div class="menu-button"></div>
+
+				<a class="logo" href="/">
+					<h1>K9 Ventures</h1>
+				</a>
+			</div>
+		</div>
+	</header>
+
+
+
+
+  <div class="hero" data-type="background" data-speed="2.5">
+    <div class="parallax-content">
+      <div class="grid-container">
+        <div class="grid-100">
+          <h1>Hunting for something?</h1>
+          <p> I couldn't find:  </p>
+          <p>Perhaps a search will help you find what you&#39;re looking for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script type="text/javascript">
+adroll_adv_id = "OH3RE6RD6FEM7PSXXCA6IL";
+adroll_pix_id = "EHWBWLTAZZCMHHQ7AQ2JOQ";
+(function () {
+var oldonload = window.onload;
+window.onload = function(){
+  __adroll_loaded=true;
+  var scr = document.createElement("script");
+  var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+  scr.setAttribute('async', 'true');
+  scr.type = "text/javascript";
+  scr.src = host + "/j/roundtrip.js";
+  ((document.getElementsByTagName('head') || [null])[0] ||
+    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+  if(oldonload){oldonload()}};
+}());
+</script>
+	<script src="http://stats.wordpress.com/e-201419.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:2.9.3',blog:'64330723',post:'0',tz:'0'});
+	var load_cmc = function(){linktracker_init(64330723,0,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>

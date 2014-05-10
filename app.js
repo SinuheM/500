@@ -24,7 +24,7 @@ db.loadModels(['slug', 'user', 'startup', 'activity', 'batch', 'page', 'event'])
 var renderer = require('./lib/renderer');
 renderer.load(['startups', 'startup', 'home', 'legal', 'team',
 	'staff', 'mentors', 'mentor', 'activity', 'accelerator',
-	'events']);
+	'events', 'post']);
 
 var Slug = db.model('slug');
 
@@ -33,6 +33,7 @@ app.use(express.static('./public'));
 app.use('/css',express.static('./static/css'));
 app.use('/js',express.static('./static/js'));
 app.use('/img',express.static('./static/img'));
+app.use('/backup',express.static('../import/backup'));
 
 // Template engine
 var swigHelpers = require('./views/helpers');
@@ -127,6 +128,11 @@ app.get('/:slug', function (req, res) {
 		}
 
 		if(data.type === 'activity'){
+			if(data.resource.type === 'post'){
+				render = renderer.get('post');
+				return render(req, res, data);
+			}
+
 			return res.redirect(data.resource.url);
 		}
 
