@@ -45,6 +45,7 @@ adminController.attach(adminPagesController);
 adminController.attach(adminStartUpsController);
 adminController.attach(adminActivitiesController);
 adminController.attach(adminEventsController);
-adminController.attach(adminBlogController);
+adminController.attach(adminBlogController.blog);
+adminController.attach(adminBlogController.podcast);
 
 module.exports = adminController;

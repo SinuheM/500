@@ -6,16 +6,16 @@
 {% endblock %}
 
 {% block header %}
-	<i class="fa fa-file-o"></i>Activities
+	<i class="fa fa-file-o"></i>{{type|capitalize}}s
 {% endblock %}
 
 {% block content %}
 <div class="row list-header">
 	<div class="col-xs-6">
-		<p class="title">Activity list.</p>
+		<p class="title">{{type|capitalize}} list.</p>
 	</div>
 	<div class="col-xs-6">
-		<a href="/admin/blog/new" class="btn btn-success-alt pull-right">Add new</a>
+		<a href="/admin/{{type}}/new" class="btn btn-success-alt pull-right">Add new</a>
 	</div>
 </div>
 <div>
@@ -45,7 +45,7 @@ $(document).ready(function () {
 		var $item = $(this);
 		var id = $item.data('id');
 
-		window.location = '/admin/blog/' + id;
+		window.location = '/admin/{{type}}/' + id;
 	});
 });
 </script>

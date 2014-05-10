@@ -1,6 +1,6 @@
 {% extends '../layouts/admin.html' %}
 
-{% block title %}{% if post %}{{post.title}}{% else %}New blogpost{% endif %}{% endblock %}
+{% block title %}{% if post %}{{post.title}}{% else %}New {{label}}{% endif %}{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/css/bootstrap-timepicker.min.css" />
@@ -11,7 +11,7 @@
 	<i class="fa fa-file-o"></i>{{post.title}} 
 	<span><a class="resorce-slug" href="/{{post.slugStr}}" target="_blank">500.co/{{post.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
 {% else %}
-	<i class="fa fa-file-o"></i> Add blogpost
+	<i class="fa fa-file-o"></i> Add {{label}}
 {% endif %}
 {% endblock %}
 
@@ -28,15 +28,15 @@
 {% endif %}
 <div class="panel panel-dark">
 	{% if post %}
-	<form id="post-form" class="form-horizontal form-bordered" method="post" action="/admin/blog/{{post.id}}/edit" enctype="multipart/form-data">
+	<form id="post-form" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}/{{post.id}}/edit" enctype="multipart/form-data">
 	{% else %}
-	<form id="post-form" class="form-horizontal form-bordered" method="post" action="/admin/blog/new" enctype="multipart/form-data">
+	<form id="post-form" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}/new" enctype="multipart/form-data">
 	{% endif %}
 		<div class="panel-heading">
 			{% if post %}
-			<h4 class="panel-title">Edit blogpost</h4>
+			<h4 class="panel-title">Edit {{label}}</h4>
 			{% else %}
-			<h4 class="panel-title">Create blogpost</h4> 
+			<h4 class="panel-title">Create {{label}}</h4> 
 			{% endif %}
 		</div>
 		<div class="panel-body panel-body-nopadding">
@@ -51,7 +51,7 @@
 				<div class="col-sm-6">
 					<input name="subtitle" type="text" class="form-control" value="{{ post.subtitle }}">
 				</div>
-			</div>			
+			</div>		
 			{% if !post %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Slug</label>
@@ -95,12 +95,14 @@
 					</div>
 				</div>
 			</div>
+			{% if type == "post" %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Announcement</label>
 				<div class="col-sm-6">
 					<div class="checkbox block"><label><input name="announcement" type="checkbox" {% if post.announcement %}checked{% endif %}></label></div>
 				</div>
 			</div>			
+			{% endif %}
 		</div>
 		<div class="panel-footer">
 			<div class="row">
