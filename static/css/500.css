@@ -333,6 +333,7 @@ section#blogpost .post h4 {font-size: 2rem}
 section#blogpost .post h5 {font-size: 1.5rem}
 section#blogpost .post p {font-size: 1rem}
 section#blogpost .post .paragraph {padding: 0 10rem}
+section#blogpost .post .paragraph a {text-decoration: underline;}
 section#blogpost .post .phrase {text-align: center; margin: 4rem 0; font-family: 'PT Serif', 'serif'; font-style: italic; font-size: 1.5rem}
 section#blogpost .post figure {margin: 2rem 0}
 section#blogpost .post figure img {width: 100%}

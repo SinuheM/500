@@ -128,7 +128,7 @@ app.get('/:slug', function (req, res) {
 		}
 
 		if(data.type === 'activity'){
-			if(data.resource.type === 'post'){
+			if(data.resource.type === 'post' || data.resource.type === 'podcast'){
 				render = renderer.get('post');
 				return render(req, res, data);
 			}

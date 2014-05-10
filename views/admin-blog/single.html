@@ -51,7 +51,15 @@
 				<div class="col-sm-6">
 					<input name="subtitle" type="text" class="form-control" value="{{ post.subtitle }}">
 				</div>
-			</div>		
+			</div>
+			{% if type == "podcast" %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">iTunes Link</label>
+				<div class="col-sm-6">
+					<input name="link" type="text" class="form-control" value="{{ post.url }}">
+				</div>
+			</div>			
+			{% endif %}
 			{% if !post %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Slug</label>
@@ -62,7 +70,7 @@
 					</div>					
 				</div>
 			</div>
-			{% endif %}			
+			{% endif %}		
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Date</label>
 				<div class="col-sm-5">
@@ -75,18 +83,26 @@
 					</div>				
 				</div>				
 			</div>
+			{% if type == "post" %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Excerpt</label>
 				<div class="col-sm-8">
 					<textarea name="description" class="form-control" rows="7">{{ post.description }}</textarea>
 				</div>
 			</div>
+			{% endif %}
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Post</label>
+				<label class="col-sm-3 control-label">
+				{% if type == "podcast" %}
+					Content
+				{% else %}
+					Post
+				{% endif %}
+				</label>
 				<div class="col-sm-8">
-					<textarea id="post" name="content" class="form-control" rows="7">{{ post.content }}</textarea>
+					<textarea id="post" name="content" class="form-control" rows="20">{{ post.content|safe }}</textarea>
 				</div>
-			</div>			
+			</div>	
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Background image</label>
 				<div class="col-sm-8">
@@ -152,9 +168,11 @@ $(document).ready(function(){
 
 	config = {};
 	config.toolbar =[
-		[ 'Bold', 'Italic', 'Format', 'Link','Unlink', 'Image','NumberedList','BulletedList', 'Blockquote' ],
+		[ 'Bold', 'Italic', 'Format', 'Link','Unlink', 'Image','NumberedList','BulletedList', 'Blockquote', 'Source' ]
 	];
 	config.filebrowserUploadUrl = '/admin/blog/image-upload';
+	config.extraAllowedContent = 'iframe[*]';
+	config.height = '500px';
 
 	jQuery('#post').ckeditor(config);	
 
