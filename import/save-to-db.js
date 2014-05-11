@@ -27,7 +27,8 @@ files.forEach(function(filename){
 			createdDate : info.date,
 			description : info.description,
 			content : content,
-			image : info.backgroundImage
+			image : info.backgroundImage,
+			active : true
 		});
 
 		activity.save(done);

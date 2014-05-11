@@ -29,7 +29,7 @@ adminActivitiesController.get('', function (req, res) {
 		label : 'Activities'
 	});
 
-	Activity.find({})
+	Activity.find({type:{$in:['video', 'on the web']}})
 	.populate('uploader')
 	.sort('-createdDate')
 	.exec(function(err, activities){
@@ -66,9 +66,21 @@ adminActivitiesController.post('/new', function (req, res) {
 	if(req.body['image-pool']){
 		req.body.imagePool = JSON.parse(req.body['image-pool']);
 	}
+	if(req.body.author){
+		req.body.author = JSON.parse(req.body.author);
+	}
 	req.body.uploader  = res.user;
 	
 	var activity = new Activity(req.body);
+
+	if(req.body.mediaType === 'video'){
+		activity.type = 'video';
+		activity.media = req.body.mediaContent;
+	}
+
+	if(req.body.action === 'publish'){
+		activity.active = true;
+	}
 
 	activity.save(function(err){
 		if(err){ return res.sendError(500, err); }
@@ -93,6 +105,14 @@ adminActivitiesController.post('/:currectActivity/edit', function (req, res) {
 	currectActivity.title       = req.body.title;
 	currectActivity.description = req.body.description;
 	currectActivity.image       = req.body.image;
+
+	if(req.body.action === 'publish'){
+		currectActivity.active = true;
+	}
+
+	if(req.body.action === 'unpublish'){
+		currectActivity.active = false;
+	}	
 
 	currectActivity.save(function(err){
 		if(err){ return res.sendError(500, err); }

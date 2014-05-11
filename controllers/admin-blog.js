@@ -108,7 +108,7 @@ var single = function(type){
 
 		res.render('admin-blog/single',{
 			post :res.data.currentBlogpost,
-			date : date.format('DD/MM/YYYY'),
+			date : date.format('MM/DD/YYYY'),
 			time : date.format('HH:MM A'),
 			message : message[0],
 			type : (type === 'podcast' ? 'podcast' : 'blog'),
@@ -147,12 +147,15 @@ var blogpostUpdate = function (type) {
 			post.name = fields.name;
 			post.title = fields.title;
 			post.subtitle = fields.subtitle;
-			post.createdDate = moment(fields.date + ' ' + fields.hour + ':' + fields.minute + fields.meridian, 'DD/MM/YY hh:mm a').toDate();
+			post.createdDate = moment(fields.date + ' ' + fields.hour + ':' + fields.minute + fields.meridian, 'MM/DD/YYYY hh:mm a').toDate();
 			post.url = fields.link;
 			post.description = fields.description;
 			post.content = fields.content;
 			post.type = type;
-			post.uploader = res.data.user;
+
+			if(!res.data.currentBlogpost){
+				post.uploader = res.data.user;
+			}
 
 			if(fields.announcement === 'on'){
 				post.announcement = true;
@@ -216,25 +219,29 @@ adminBlogController.post('/image-upload', function(req,res){
 	req.pipe(busboy);
 });
 
-adminBlogController.post('/:currentBlogpost/delete', function (req, res) {
-	var post = res.data.currentBlogpost;
+var deletePost = function(type){
+	return function (req, res) {
+		var post = res.data.currentBlogpost;
 
-	post.deleted = true;
-	post.active  = false;
+		post.deleted = true;
+		post.active  = false;
 
-	post.save(function(err){
-		if(err){ return res.sendError(500, err); }
-		Slug.findOne({_id: post.slug},function(err, slug){
+		post.save(function(err){
 			if(err){ return res.sendError(500, err); }
-			if(post.slugStr === 'post-'+post.id){res.redirect('/admin/blog/');}
-
-			slug.change('post-'+post.id, function(err){
+			Slug.findOne({_id: post.slug},function(err, slug){
 				if(err){ return res.sendError(500, err); }
-				res.redirect('/admin/blog/');
+				if(post.slugStr === 'post-'+post.id){res.redirect('/admin/blog/');}
+
+				slug.change('post-'+post.id, function(err){
+					if(err){ return res.sendError(500, err); }
+					res.redirect('/admin/'+ (type === 'podcast' ? 'podcast' : 'blog') +'/');
+				});
 			});
 		});
-	});
-});
+	};
+};
+adminBlogController.post('/:currentBlogpost/delete', deletePost('post'));
+adminPodcastController.post('/:currentBlogpost/delete', deletePost('podcast'));
 
 module.exports = {
 	blog : adminBlogController,

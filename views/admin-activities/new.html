@@ -67,7 +67,11 @@
 		<div class="panel-footer">
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3 text-right">
-					<button class="btn btn-primary">Submit</button>
+					<input class="media-type" name="mediaType" type="hidden">
+					<input class="media-content" name="mediaContent" type="hidden">
+					<input class="author" name="author" type="hidden">
+					<button name="action" value="update" class="btn btn-success">Create</button>
+					<button name="action" value="publish" class="btn btn-primary">Create & Publish</button>
 				</div>
 			</div>
 		</div>		
@@ -111,6 +115,15 @@ $(document).ready(function () {
 				$('#providerDisplay').html(data.provider_display);
 			}
 
+			if(data.media && data.media.type === 'video'){			
+				$('.media-type').val('video')
+				$('.media-content').val(data.media.html);
+			}
+
+			debugger;
+			if(data.provider_display === 'twitter.com'){
+				$('.author').val( JSON.stringify(data.authors[0]) );
+			}
 
 			if(data.images && data.images.length){
 				$('.image-group').show();

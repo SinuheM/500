@@ -20,7 +20,9 @@ var activitySchema = schema({
 	announcement: {type : Boolean, default: false},
 	active      : {type : Boolean, default: false},
 	deleted     : {type : Boolean, default: false},
-	oldPath     : {type : String}
+	oldPath     : {type : String},
+	media		: {type : String},
+	author      : schema.Types.Mixed
 });
 
 activitySchema.plugin(Slug.plugIt, {type: 'activity', slugFrom : function(item){
