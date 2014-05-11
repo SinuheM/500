@@ -29,7 +29,9 @@ var render = function (req, res, filter) {
 		res.render('renderers/activity', {
 			activities  : activities,
 			currentPage : 'activity',
-			filter : filter
+			filter : filter,
+			page : 1,
+			hasNext : true
 		});
 	});
 };

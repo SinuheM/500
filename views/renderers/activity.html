@@ -146,6 +146,12 @@
                     {% endif %}
                 {% endif %}
                 {% endfor %}
+
+                {% if hasNext %}
+                <li>
+                    <a class="jscroll-next" href="/utils/next-activities?page={{page}}&type={{filter}}">More...</a>
+                </li>
+                {% endif %}
             </ul>
             <div class="clearfix"></div>
         </div>
@@ -154,10 +160,10 @@
 <script src="/js/vendors/moment.min.js"></script>
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/foundation.min.js"></script>
+<script src="/js/vendors/jquery.jscroll.min.js"></script>
 <script src="/js/app/activity.js"></script>
 <script>
-    $(document).foundation();
-    $(document).ready(function () {
+    window.calculateSizes = function(){
         $('.announcement .image img, .blog .image img').each(function(i, img){
             var $img = $(img);
             $img.css('top', -1 * (($img.height() / 2) - 100) )
@@ -170,7 +176,27 @@
             $iframe.css('width', '100%');
             $iframe.css('height', $iframe.width() * aspectRatio);
         });
+    }
+
+    $(document).foundation();
+    $(document).ready(function () {
+        window.calculateSizes();
+
+        {% if hasNext %}
+        $('#activity-list').jscroll({
+            loadingHtml: '<div class="load">LOADING...</div>',
+            nextSelector: 'a.jscroll-next',
+            contentSelector: '#activity-list li',
+            callback : function(){
+                $('#activity-list img').each(function(i, img){
+                    $(img).on('load', window.calculateSizes);
+                });
+            }
+        });
+        {% endif %}
     });
+
+    $(window).resize(window.calculateSizes);
 </script>
 </body>
 </html>
