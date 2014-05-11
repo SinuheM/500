@@ -156,5 +156,10 @@ Slug.reserve('events');
 
 Slug.reserve('blog');
 Slug.reserve('activity');
+Slug.reserve('podcast');
+Slug.reserve('videos');
+Slug.reserve('announcements');
+Slug.reserve('on-the-web');
+
 
 module.exports = Slug;

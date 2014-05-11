@@ -16,12 +16,12 @@
         <div class="center">
             <h4 class="text-center">The latest news and updates from 500!</h4>
             <ul class="filter">
-                <li class="active"><a href="">ALL</a></li>
-                <li><a href="">ANNOUNCEMENTS</a></li>
-                <li><a href="">BLOG POSTS</a></li>
-                <li><a href="">PODCASTS</a></li>
-                <li><a href="">VIDEOS</a></li>
-                <li><a href="">ON THE WEB</a></li>
+                <li {% if !filter %}class="active"{% endif %}><a href="">ALL</a></li>
+                <li {% if filter == 'announcements' %}class="active"{% endif %}><a href="/announcements">ANNOUNCEMENTS</a></li>
+                <li {% if filter == 'post' %}class="active"{% endif %}><a href="/blog">BLOG POSTS</a></li>
+                <li {% if filter == 'podcast' %}class="active"{% endif %}><a href="/podcast">PODCASTS</a></li>
+                <li {% if filter == 'video' %}class="active"{% endif %}><a href="/videos">VIDEOS</a></li>
+                <li><a href="/on-the-web">ON THE WEB</a></li>
             </ul>
             <div class="clearfix"></div>
             <ul id="activity-list">
@@ -103,7 +103,7 @@
                     {% if activity.provider == "twitter.com"%}
                     <li class="twitt">
                         <div class="row-2">
-                            <span>2 hours ago</span>
+                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
                             <span class="icon"><img src="{{ activity.favicon }}"></span>
                         </div>
                         <div class="row-10">

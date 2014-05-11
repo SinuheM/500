@@ -50,9 +50,7 @@ adminActivitiesController.get('/new', function (req, res) {
 adminActivitiesController.get('/:currectActivity', function (req, res) {
 	if(!res.data.currectActivity){return res.sendError(404, 'no activity found');}
 
-	res.data.breadcrumbs.push({
-		label : res.data.currectActivity.title
-	});
+	res.data.breadcrumbs = [];
 
 	var message = req.flash('message');
 
@@ -120,6 +118,5 @@ adminActivitiesController.post('/:currectActivity/edit', function (req, res) {
 		res.redirect('/admin/activities/' + currectActivity.id );
 	});
 });
-
 
 module.exports = adminActivitiesController;

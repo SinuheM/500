@@ -106,6 +106,11 @@ app.get('/:slug', function (req, res) {
 				return res.redirect(301, '/startups');
 			}
 
+			if(['blog', 'activity', 'podcast', 'videos', 'on-the-web', 'announcements'].indexOf(req.params.slug) >=0){
+				render = renderer.get('activity');
+				return render(req, res, req.params.slug);
+			}
+
 			render = renderer.get(req.params.slug);
 			return render(req, res);
 		}
