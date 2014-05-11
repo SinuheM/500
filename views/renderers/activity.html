@@ -65,7 +65,7 @@
                         <span class="tag">PODCAST</span>
                     </div>
                     <div class="row-10">
-                        <h5>{{ activity.title }}</h5>
+                        <a href="/{{ activity.slugStr }}"><h5>{{ activity.title }}</h5></a>
                         <div class="info">
                             {{activity.content|safe}}
                         </div>
