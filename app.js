@@ -34,7 +34,7 @@ app.use(express.static('./public'));
 app.use('/css',express.static('./static/css'));
 app.use('/js',express.static('./static/js'));
 app.use('/img',express.static('./static/img'));
-app.use('/backup',express.static('../import/backup'));
+app.use('/backup',express.static('./import/backup'));
 
 // Template engine
 var swigHelpers = require('./views/helpers');
