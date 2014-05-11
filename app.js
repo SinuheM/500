@@ -4,7 +4,8 @@ var express  = require('express.io'),
 	swig     = require('swig'),
 	passport = require('passport'),
 	flash = require('connect-flash'),
-	Controller = require('stackers');
+	Controller = require('stackers'),
+	fs = require('fs');
 
 // Load conf
 var conf = require('./conf');
@@ -90,14 +91,18 @@ adminController(app);
 utilsController(app);
 
 app.get('/', function (req, res) {
+	Controller.extendResponse(res);
+
 	var render = renderer.get('home');
 	render(req, res);
 });
 
 app.get('/:slug', function (req, res) {
+	Controller.extendResponse(res);
+
 	Slug.getResourceBySlug(req.params.slug, function(err, data){
-		if(err) {return res.send(500, err);}
-		if(!data) {return res.send(404, 'not found');}
+		if(err) {return res.sendError(500, err);}
+		if(!data) {return res.sendError(404, 'not found');}
 
 		var render;
 
@@ -106,7 +111,7 @@ app.get('/:slug', function (req, res) {
 				return res.redirect(301, '/startups');
 			}
 
-			if(['blog', 'activity', 'podcast', 'videos', 'on-the-web', 'announcements'].indexOf(req.params.slug) >=0){
+			if(['blog', 'podcast', 'videos', 'on-the-web', 'announcements'].indexOf(req.params.slug) >=0){
 				render = renderer.get('activity');
 				return render(req, res, req.params.slug);
 			}
@@ -144,6 +149,36 @@ app.get('/:slug', function (req, res) {
 		res.send(data);
 	});
 });
+
+// Configure error handlers for app
+// Requires to do res.sendError
+Controller.conf({env:conf.env});
+Controller.on('error', function () {});
+Controller.errorHandler(404, function (res) {
+	fs.readFile('./views/errors/404.html', {encoding:'utf8'}, function (err, data) {
+		res.send(404, data);
+	});
+});
+Controller.errorHandler(403, function (res) {
+	fs.readFile('./views/errors/403.html', {encoding:'utf8'}, function (err, data) {
+		res.send(403, data);
+	});
+});
+
+Controller.errorHandler(500, function (res) {
+	fs.readFile('./views/errors/500.html', {encoding:'utf8'}, function (err, data) {
+		res.send(500, data);
+	});
+});
+
+Controller.errorHandler(function (res, statusCode) {
+	fs.readFile('./views/errors/generic.html', {encoding:'utf8'}, function (err, data) {
+		res.send(statusCode, data);
+	});
+});
+
+app.use( Controller.utils.errorHandler );
+app.all('*', Controller.utils.undefinedRouteHandler(Controller));
 
 // Create upload folder if it doesnt exist
 var mkdirp = require('mkdirp');
