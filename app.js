@@ -28,6 +28,7 @@ renderer.load(['startups', 'startup', 'home', 'legal', 'team',
 	'events', 'post']);
 
 var Slug = db.model('slug');
+var Activity = db.model('activity');
 
 // Static assets
 app.use(express.static('./public'));
@@ -178,6 +179,15 @@ Controller.errorHandler(function (res, statusCode) {
 });
 
 app.use( Controller.utils.errorHandler );
+app.all('*', function(req, res, next){
+	Activity.findOne({oldPath : req.path}, function(err, activity){
+		if(activity){
+			return res.redirect(301, '/' + activity.slugStr);
+		}
+
+		next();
+	});
+});
 app.all('*', Controller.utils.undefinedRouteHandler(Controller));
 
 // Create upload folder if it doesnt exist
