@@ -24,7 +24,7 @@ header#int nav a:hover, header#int nav a.active {color: #222; border-bottom: sol
 header#staff {position: absolute; top: 0; width: 100%; z-index: 99}
 header#staff nav a {color: #FFF}
 header#staff nav a:hover, header#staff nav a.active {color: #FFF; border-bottom: solid 4px #FFF; padding-bottom: 0.5rem;}
-header#fixadent {bottom: 0;}
+header#fixadent {bottom: 0; position: fixed; z-index: 16}
 header #logo {float: left;}
 header #logo a {display: block;}
 header#fixadent #logo .black {display: none;}
@@ -43,7 +43,7 @@ section {}
 #fixadent.fixed #logo .black {display: block;}
 header nav a:hover, header nav a.active {color: #f2f2f2; border-bottom: solid 4px #f2f2f2; padding-bottom: 0.5rem;}
 
-section#home {background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center;}
+section#home {background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; position: fixed; z-index: 15}
 section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 section#entrepreneurs {text-align: center; padding: 8em 0 5em;}
