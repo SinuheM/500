@@ -110,12 +110,24 @@ adminActivitiesController.post('/:currectActivity/edit', function (req, res) {
 
 	if(req.body.action === 'unpublish'){
 		currectActivity.active = false;
-	}	
+	}
 
 	currectActivity.save(function(err){
 		if(err){ return res.sendError(500, err); }
 		req.flash('message', 'Updated sucessfully');
 		res.redirect('/admin/activities/' + currectActivity.id );
+	});
+});
+
+adminActivitiesController.post('/:currectActivity/delete', function (req, res) {
+	if(res.data.user.type !== 'admin'){return res.send(403);}
+
+	var currectActivity = res.data.currectActivity;
+
+	currectActivity.remove(function(err){
+		if(err){ return res.sendError(500, err); }
+		req.flash('message', 'Deleted sucessfully');
+		res.redirect('/admin/activities/');
 	});
 });
 

@@ -73,7 +73,25 @@
 		</div>
 	</form>
 </div>
+{% if user.type == 'admin' %}
+<div class="panel panel-danger">
+	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/activities/{{currectActivity.id}}/delete">
+		<div class="panel-heading">
+			<h4 class="panel-title">Delete activity</h4>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<label class="col-sm-9">This action will delete this activity</label>
+				<div class="col-sm-3 text-right">
+					<button class="btn btn-danger">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</form>	
+</div>
+{% endif %}
 {% endblock %}
+
 
 {% block js %}
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
