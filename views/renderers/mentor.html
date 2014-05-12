@@ -36,16 +36,23 @@
                 {% endif %}
                 <div class="clearfix"></div>
                 <p>{{mentor.bio}}</p>
-                <h6 style="visibility:hidden">{{mentor.displayName}} is also on:</h6>
-                <ul class="social-connect" style="visibility:hidden">
-                    <li><a href=""><img src="/img/social-twitter.png"></a></li>
-                    <li><a href=""><img src="/img/social-facebook.png"></a></li>
-                    <li><a href=""><img src="/img/social-q.png"></a></li>
-                    <li><a href=""><img src="/img/social-linkedin.png"></a></li>
-                    <li><a href=""><img src="/img/social-github.png"></a></li>
-                    <li><a href=""><img src="/img/social-vimeo.png"></a></li>
-                    <li><a href=""><img src="/img/social-instagram.png"></a></li>
-                    <li><a href=""><img src="/img/social-gplus.png"></a></li>
+                <ul class="social-connect">
+                {% if mentor.angelListData.name %}
+                    <li>
+                        <a target="_blank" href="{{ mentor.angelListData.angellist_url }}">
+                            <img class="has-retina" src="{{"angellist"|socialEmoticon()}}" alt="angellist">
+                        </a>
+                    </li>
+                {% endif %}
+                {% for profile in mentor.profiles %}
+                    {% if profile.url %}
+                    <li>
+                        <a target="_blank" href="{{profile.url|socialUrl(profile.provider)}}">
+                            <img class="has-retina" src="{{profile.provider|socialEmoticon()}}" alt="{{profile.provider}}">
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor%}
                 </ul>
             </div>
             <div class="next-mentor"><a href="/utils/mentors/random"><img src="/img/clear.png"></a></div>
