@@ -62,7 +62,14 @@
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/foundation.min.js"></script>
 <script>
+    var measure = function () {
+        $el = $('body.layer-single #mentor-single .center .archive');
+        $('section#mentor-single .next-mentor a img').height( $el.outerHeight() - 12 );
+    }
     $(document).foundation();
+    $(document).ready(measure);
+    $(window).load(measure);
+    $(window).resize(measure);
 </script>
 </body>
 </html>

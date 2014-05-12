@@ -244,10 +244,10 @@ section#mentor-single .archive .social-connect {margin: 0; line-height: 1rem}
 section#mentor-single .archive .social-connect li {display: inline-block; margin-right: 0.5rem}
 section#mentor-single .archive .social-connect li a {}
 section#mentor-single .archive .social-connect li a img {}
-section#mentor-single .next-mentor {float: right; width: 2%; height: 100%; position: absolute; right: 0; padding-top: 0.75em;}
-section#mentor-single .next-mentor a {display: block; background-color: #fff; border-right: solid 1px #ccc; height: 100%; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;}
+section#mentor-single .next-mentor {float: right; width: 2%; position: absolute; right: 0; padding-top: 0.75em;}
+section#mentor-single .next-mentor a {display: block; background-color: #fff; border-right: solid 1px #ccc; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;}
 section#mentor-single .next-mentor a:hover {background-color: #ccc}
-section#mentor-single .next-mentor a img {height: 100%; width: 100%;}
+section#mentor-single .next-mentor a img {width: 100%;}
 section#staff-member {position: relative;}
 section#staff-member .content {color: #FFF; padding-bottom: 5rem; padding-top: 8rem; position: relative; z-index: 5; width: 45%}
 section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
@@ -379,7 +379,9 @@ section#events #subscribe #form input[type="submit"] {display: inline-block; bor
 section#events #subscribe #form input[type="submit"]:hover {background-color: #b43322; color: #fff}
 
 body.layer-single {background-color: #f2f2f2; height:100%;}
-body.layer-single #mentor-single, body.layer-single #mentor-single .center, body.layer-single #mentor-single .center .archive{height:100%;}
+body.layer-single #mentor-single {height:100%;}
+body.layer-single #mentor-single .center {height:100%;}
+body.layer-single #mentor-single .center .archive{min-height:100%;}
 
 header#int.simple {background-color: transparent;}
 
