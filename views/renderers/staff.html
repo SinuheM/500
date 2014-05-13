@@ -45,8 +45,17 @@
 <script src="/js/foundation.min.js"></script>
 <script src="/js/public.js"></script>
 <script>
+    var positionCenter = function(){
+        var padding = Math.max( ($('#staff-member').height() - $('#staff-member .center').height()) / 2, 100);
+
+        $('#staff-member .center')
+        .css('padding-top', padding)
+        .css('padding-bottom', padding);
+    }
+
     $(document).foundation();
     $(document).ready(function () {
+        positionCenter();
         var imgSrc = '{{staffMember.background}}';
 
         if(!imgSrc){return;}
@@ -58,6 +67,8 @@
 
         $img.attr('src', imgSrc);
     });
+
+    $(window).resize(positionCenter);
 </script>
 </body>
 </html>
