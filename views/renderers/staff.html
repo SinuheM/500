@@ -22,7 +22,7 @@
                     {% if staffMember.username %}<li class="mail">{{staffMember.username}}</li>{% endif %}
                     {% if staffMember.link %}<li class="web"><a href="{{staffMember.link}}" target="_black">{{staffMember.link}}</a></li>{% endif %}
                 </ul>
-                <p>{{staffMember.bio}}</p>
+                <p>{{staffMember.bio|safe}}</p>
                 <ul class="social">
                 {% for profile in staffMember.profiles %}
                     {% if profile.url %}

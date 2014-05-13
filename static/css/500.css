@@ -267,6 +267,7 @@ section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transfo
 section#staff-member .content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
 section#staff-member .content h5 {color: #fff; font-size: 1.1rem}
 section#staff-member .content p {font-size: 1rem; margin-bottom: 2.5rem}
+section#staff-member .content p a {color: #fff; text-decoration: underline;}
 section#staff-member .content ul.meta {list-style: none; margin: 2.5rem 0 2.5rem 1.25rem}
 section#staff-member .content ul.meta li {}
 section#staff-member .content ul.meta li a {color: #fff; font-weight: 300}

@@ -3,6 +3,7 @@
 {% block title %}{{currentUser.displayName}}{% endblock %}
 
 {% block head %}
+	<link rel="stylesheet" href="/css/vendors/bootstrap-wysihtml5.css" />
 	<link rel="stylesheet" href="/css/jquery.tagsinput.css" />
 {% endblock %}
 
@@ -105,7 +106,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Bio</label>
 				<div class="col-sm-6">
-					<textarea name="bio" class="form-control" rows="5">{{currentUser.bio}}</textarea>
+					<textarea id="bio" name="bio" class="form-control" rows="5">{{currentUser.bio}}</textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -183,6 +184,9 @@
 
 {% block js %}
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="/js/vendors/wysihtml5-0.3.0.min.js"></script>
+<script type="text/javascript" src="/js/vendors/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -219,6 +223,12 @@ $(document).ready(function () {
 	$('#type').on('change', typeHandler)
 	typeHandler();
 	{% endif %}
+
+	$('#bio').wysihtml5({
+		"font-styles": false,
+		"lists": false,
+		"image": false
+	});
 });
 </script>
 {% endblock %}
