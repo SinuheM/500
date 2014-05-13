@@ -160,19 +160,20 @@
                 <li><img src="/imgs/partners/rackspace.jpg"></li>
                 <li><img src="/imgs/partners/goco.jpg"></li>
                 <li><img src="/imgs/partners/softlayer.jpg"></li>
-                <li><img src="/imgs/partners/softlayer.jpg"></li>
+                <li><img src="/imgs/partners/sendgrid.png"></li>
             </ul>
             <p class="sub">Gold Annual Partners</p>
             <ul class="amazing-partners">
-                <li><img src="/img/partners/rackspace.jpg"></li>
-                <li><img src="/img/partners/goco.jpg"></li>
-                <li><img src="/img/partners/softlayer.jpg"></li>
+                <li><img src="/imgs/partners/aws_logo.jpg"></li>
+                <li><img src="/imgs/partners/mailchimp_logo.jpg"></li>
+                <li><img src="/imgs/partners/xero_logo.jpg"></li>
+                <li><img src="/imgs/partners/samsung_logo.jpg"></li>
+                <li><img src="/imgs/partners/qualcomm_logo.jpg"></li>
+                <li><img src="/imgs/partners/paypal_logo.jpg"></li>
             </ul>
             <p class="sub">Silver Annual Partners</p>
             <ul class="amazing-partners">
-                <li><img src="/img/partners/rackspace.jpg"></li>
-                <li><img src="/img/partners/goco.jpg"></li>
-                <li><img src="/img/partners/softlayer.jpg"></li>
+                <li><img src="/imgs/partners/gunderson_logo.jpg"></li>
             </ul>
         </div>
     </section>
@@ -197,7 +198,8 @@
 
         $.scrollTo('#entrepreneurs', 0);
         $('#fixadent').fadeOut();
-        $('#home').slideUp(1000, function(){
+
+        $('#home').animate({top: '-1000px'}, 1000, 'linear', function(){
             window.splashHidden = true;
         });
     };

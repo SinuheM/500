@@ -437,8 +437,8 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 .startup-card li .content: {height: 420px}
 
 .amazing-partners {margin: 1rem 0 6rem; list-style: none;}
-.amazing-partners li {display: inline-block;}
-.amazing-partners li img {}
+.amazing-partners li {display: inline-block;margin: 10px 30px;}
+.amazing-partners li img {max-height: 85px}
 
 #social {list-style: none; margin: 0 0 4rem; float: right;}
 #social li {float: left; margin: 0 0.5rem}
