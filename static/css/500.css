@@ -157,11 +157,11 @@ section#portfolio #search .container #filter li .submain li.active a {padding: 0
 section#portfolio #search .container #filter li .submain li a:hover {background-color: #ccc}
 section#portfolio #search .container #filter span {}
 section#portfolio #starters {background-color: #f2f2f2; padding: 3rem 0 6rem}
-section#startup {padding: 10rem 0 0}
+section#startup {padding: 200px 0 0}
 section#startup #top-head {}
 section#startup #top-head .container {text-align: center;}
 section#startup #top-head .container.video {padding-bottom: 15em}
-section#startup #top-head .container .logo {}
+section#startup #top-head .container .logo {max-height: 200px; margin-bottom: 100px;}
 section#startup #top-head .container h4 {}
 section#startup #top-head .container p {}
 section#startup #top-head .container .link {margin: 0 auto; width: auto}
