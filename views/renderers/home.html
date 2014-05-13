@@ -157,9 +157,10 @@
             <h4>Thanks to our amazing partners</h4>
             <p class="sub">Platinum Annual Partners</p>
             <ul class="amazing-partners">
-                <li><img src="/img/partners/rackspace.jpg"></li>
-                <li><img src="/img/partners/goco.jpg"></li>
-                <li><img src="/img/partners/softlayer.jpg"></li>
+                <li><img src="/imgs/partners/rackspace.jpg"></li>
+                <li><img src="/imgs/partners/goco.jpg"></li>
+                <li><img src="/imgs/partners/softlayer.jpg"></li>
+                <li><img src="/imgs/partners/softlayer.jpg"></li>
             </ul>
             <p class="sub">Gold Annual Partners</p>
             <ul class="amazing-partners">
@@ -184,7 +185,7 @@
     window.splashHidden = false;
     window.mapShown = false;
     window.hideSplash = function(e){
-        if($(window).scrollTop() > 780 && !window.mapShown && window.splashHidden){
+        if($(window).scrollTop() > 600 && !window.mapShown && window.splashHidden){
             window.mapShown = true;
 
             $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){
@@ -195,10 +196,10 @@
         if(window.splashHidden){return}
 
         $.scrollTo('#entrepreneurs', 0);
-        $('#fixadent').fadeOut(function(){
+        $('#fixadent').fadeOut();
+        $('#home').slideUp(1000, function(){
             window.splashHidden = true;
         });
-        $('#home').slideUp('slow');
     };
 
     $(document).foundation();

@@ -393,7 +393,7 @@ header#int.simple {background-color: transparent;z-index: 2}
 #map-container {background: #a9c8de; overflow: hidden;}
 #map-container #map {height: 620px; width: 960px; position: relative;margin: 0 auto;}
 #map-container #map img {height: 620px; position: absolute;}
-#map-container #map img#map-dots {top:-960px;}
+#map-container #map img#map-dots {top:-620px;}
 #map-container #map img#map-names {display:none;}
 .separator {border-bottom: solid 1px #ccc; margin: 4rem 0;}
 button.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322;}
