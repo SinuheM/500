@@ -396,6 +396,7 @@ body.layer-single {background-color: #f2f2f2; height:100%;}
 body.layer-single #mentor-single {height:100%;}
 body.layer-single #mentor-single .center {height:100%;}
 body.layer-single #mentor-single .center .archive{min-height:100%;}
+body.layer-single #mentor-single .center .archive a{text-decoration: underline;}
 
 header#int.simple {background-color: transparent;z-index: 2}
 

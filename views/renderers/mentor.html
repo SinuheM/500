@@ -35,7 +35,7 @@
                 </ul>
                 {% endif %}
                 <div class="clearfix"></div>
-                <p>{{mentor.bio}}</p>
+                <p>{{mentor.bio|safe}}</p>
                 <ul class="social-connect">
                 {% if mentor.angelListData.name %}
                     <li>
