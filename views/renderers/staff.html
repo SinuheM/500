@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" id="staff-member-page">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,8 +37,8 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        <div class="over-shadow" style="background-image: url(/img/over-staff-member-lite.png)"></div>
-        <div class="staff-cover" style="background-image: url({% if staffMember.background %}{{staffMember.background}}{% else %}/img/staff-member/cesar-salazar.jpg{% endif %});"></div>
+        <div class="over-shadow" style="background-image: url(/img/over-staff-member-lite.png);"></div>
+        <div class="staff-cover" style="display:none"></div>
     </section>
 
 <script src="/js/vendor/jquery.js"></script>
@@ -46,6 +46,18 @@
 <script src="/js/public.js"></script>
 <script>
     $(document).foundation();
+    $(document).ready(function () {
+        var imgSrc = '{{staffMember.background}}';
+
+        if(!imgSrc){return;}
+        var $img = $('<img/>');
+ 
+        $img.on('load', function(){
+            $('.staff-cover').css('background-image', 'url('+imgSrc+')').fadeIn();
+        });
+
+        $img.attr('src', imgSrc);
+    });
 </script>
 </body>
 </html>
