@@ -117,6 +117,12 @@ section#activity #activity-list li.announcement h5 {color: #b43526}
 section#activity #activity-list li.announcement .info .image {float: none; width: 100%; overflow: hidden; max-height: 13rem; position: relative; height: 200px; border: 4px solid black;}
 section#activity #activity-list li.announcement .info img {width: 100%; position: absolute;}
 section#activity #activity-list li.announcement .info .detail {float: none; width: 100%}
+section#activity #activity-list li.podcast h1,
+section#activity #activity-list li.podcast h2,
+section#activity #activity-list li.podcast h3,
+section#activity #activity-list li.podcast h4,
+section#activity #activity-list li.podcast h5,
+section#activity #activity-list li.podcast h6{font-size: inherit;}
 section#activity #activity-list li.podcast .tag {background-color: #77469a; color: #FFF; font-weight: 300; padding: 0 0.5rem; position: absolute; width: 7rem; right: -5.45rem;}
 section#activity #activity-list li.podcast .row-10 {padding-top: 2rem}
 section#activity #activity-list li.podcast .info a {color: #77469a; font-weight: 300; text-decoration: underline;}
@@ -210,8 +216,11 @@ section#portfolio #team.team500 {padding: 3rem 0 10rem}
 section#portfolio #team h6 {text-align: center; position: relative; padding: 8rem 0 2rem}
 section#portfolio #team h6.top {top: -2rem; padding: 0}
 section#portfolio #team ul {margin: 0; position: relative; list-style: none; z-index: 10}
+section#portfolio #team ul.cards-1 {width: 230px; margin: 0 auto;}
+section#portfolio #team ul.cards-2 {width: 470px; margin: 0 auto;}
+section#portfolio #team ul.cards-3 {width: 705px; margin: 0 auto;}
 section#portfolio #team ul.up {top: -10rem}
-section#portfolio #team ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
+section#portfolio #team ul li {float: left; margin: 0.5rem; width: 219px; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #team ul li a {display: block;}
 section#portfolio #team ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #team ul li img {}
