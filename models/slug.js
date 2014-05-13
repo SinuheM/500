@@ -161,5 +161,7 @@ Slug.reserve('videos');
 Slug.reserve('announcements');
 Slug.reserve('on-the-web');
 
+Slug.reserve('feed');
+
 
 module.exports = Slug;
