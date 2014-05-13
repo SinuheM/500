@@ -78,6 +78,8 @@ var indexRoute = function(type){
 			query = {type:{$in:['team', 'admin']} };
 		}else if(type){
 			query = {type:labels.queryBy[type]};
+		}else{
+			query = {};
 		}
 		query.deleted = false;
 
@@ -151,6 +153,7 @@ var newUserRoute = function (type) {
 						{provider:'blog'}
 					]
 				},
+				single : labels.single[type]  || 'User',
 				type: type || 'user'
 			});
 		}
