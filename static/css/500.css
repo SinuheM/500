@@ -217,7 +217,7 @@ section#portfolio #team h6 {text-align: center; position: relative; padding: 8re
 section#portfolio #team h6.top {top: -2rem; padding: 0}
 section#portfolio #team ul {margin: 0; position: relative; list-style: none; z-index: 10}
 section#portfolio #team ul.cards-1 {width: 230px; margin: 0 auto;}
-section#portfolio #team ul.cards-2 {width: 470px; margin: 0 auto;}
+section#portfolio #team ul.cards-2 {width: 488px; margin: 0 auto;}
 section#portfolio #team ul.cards-3 {width: 705px; margin: 0 auto;}
 section#portfolio #team ul.up {top: -10rem}
 section#portfolio #team ul li {float: left; margin: 0.5rem; width: 219px; position: relative; background-color: #fff; border: solid 1px #ccc;}
@@ -257,7 +257,7 @@ section#mentor-single .next-mentor {float: right; width: 2%; position: absolute;
 section#mentor-single .next-mentor a {display: block; background-color: #fff; border-right: solid 1px #ccc; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;}
 section#mentor-single .next-mentor a:hover {background-color: #ccc}
 section#mentor-single .next-mentor a img {width: 100%;}
-section#staff-member {position: relative;}
+section#staff-member {position: relative;background: #000}
 section#staff-member .content {color: #FFF; padding-bottom: 5rem; padding-top: 8rem; position: relative; z-index: 5; width: 45%}
 section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
 section#staff-member .content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
