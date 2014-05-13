@@ -383,15 +383,18 @@ body.layer-single #mentor-single {height:100%;}
 body.layer-single #mentor-single .center {height:100%;}
 body.layer-single #mentor-single .center .archive{min-height:100%;}
 
-header#int.simple {background-color: transparent;}
+header#int.simple {background-color: transparent;z-index: 2}
 
 .line {height: 8em}
 .line p {float: left; margin: 0; width: 50%}
 .line div {float: left; width: 25%}
 .line div img {display: inline-block;}
 .line div span {display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle;}
-#mapa {}
-#mapa img {width: 100%}
+#map-container {background: #a9c8de; overflow: hidden;}
+#map-container #map {height: 620px; width: 960px; position: relative;margin: 0 auto;}
+#map-container #map img {height: 620px; position: absolute;}
+#map-container #map img#map-dots {top:-960px;}
+#map-container #map img#map-names {display:none;}
 .separator {border-bottom: solid 1px #ccc; margin: 4rem 0;}
 button.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322;}
 button.outline:hover {background-color: #b43322; color: #FFF}

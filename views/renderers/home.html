@@ -30,9 +30,11 @@
             <p>We're based in Silicon Valley, but our 500 family exists all over the world.</p>
         </div>
     </section>
-    <section>
-        <div id="mapa">
-            <img src="/img/mapa.jpg">
+    <section id="map-container">
+        <div id="map">
+            <img id="map-image" src="/imgs/map/map.png">
+            <img id="map-dots" src="/imgs/map/pins.png">
+            <img id="map-names" src="/imgs/map/names.png">
         </div>
     </section>
     <section id="team-home">
@@ -180,7 +182,16 @@
 <script src="/js/vendors/jquery.scrollTo.min.js"></script>
 <script>
     window.splashHidden = false;
-    window.hideSplash = function(){
+    window.mapShown = false;
+    window.hideSplash = function(e){
+        if($(window).scrollTop() > 780 && !window.mapShown && window.splashHidden){
+            window.mapShown = true;
+
+            $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){
+                $('#map-container #map img#map-names').fadeIn()
+            });
+        }
+
         if(window.splashHidden){return}
 
         $.scrollTo('#entrepreneurs', 0);
