@@ -184,10 +184,10 @@
 <script src="/js/public.js"></script>
 <script src="/js/vendors/jquery.scrollTo.min.js"></script>
 <script>
-    window.splashHidden = false;
+    window.splashHidden = true;
     window.mapShown = false;
     window.hideSplash = function(e){
-        if($(window).scrollTop() > 600 && !window.mapShown && window.splashHidden){
+        if($(window).scrollTop() > 1200 && !window.mapShown && window.splashHidden){
             window.mapShown = true;
 
             $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){
