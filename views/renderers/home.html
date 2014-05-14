@@ -21,7 +21,7 @@
             <button id="your-move">YOUR MOVE</button>
         </div>
     </section>
-    {% include "../partials/navbar.html" with {currentPage: 'about'} %}
+    <!-- {% include "../partials/navbar.html" with {currentPage: 'about'} %} -->
     <section id="entrepreneurs">
         <div class="center">
             <h4>500 Startups is a seed fund and accelerator founded in 2010.</h4><br>
@@ -195,14 +195,14 @@
             });
         }
 
-        if(window.splashHidden){return}
+        // if(window.splashHidden){return}
 
-        $.scrollTo('#entrepreneurs', 0);
-        $('#fixadent').fadeOut();
+        // $.scrollTo('#entrepreneurs', 0);
+        // $('#fixadent').fadeOut();
 
-        $('#home').animate({top: '-1000px'}, 1000, 'linear', function(){
-            window.splashHidden = true;
-        });
+        // $('#home').animate({top: '-1000px'}, 1000, 'linear', function(){
+        //     window.splashHidden = true;
+        // });
     };
 
     $(document).foundation();
