@@ -131,8 +131,8 @@ section#activity #activity-list li.blog .row-10 {padding-top: 2rem}
 section#activity #activity-list li.blog .info .image {float: none; width: 100%; overflow: hidden; max-height: 13rem; position: relative; height: 200px;}
 section#activity #activity-list li.blog .info img {width: 100%; position: absolute;}
 section#activity #activity-list li.blog .info .detail {float: none; width: 100%}
-section#activity ul.filter {margin: 3rem auto; list-style: none; font-size: 0.95rem;width: 858px;}
-section#activity ul.filter li {float: left; font-weight: 400}
+section#activity ul.filter {margin: 3rem auto; list-style: none; font-size: 0.95rem; text-align: center;}
+section#activity ul.filter li {display: inline-block; font-weight: 400}
 section#activity ul.filter li a {border: solid 1px #000; display: block; padding: 0.5rem 1.5rem; margin: 0 0.5rem;}
 section#activity ul.filter li a:hover, section#activity ul.filter li.active a {background-color: #000; color: #fff}
 section#portfolio {}
