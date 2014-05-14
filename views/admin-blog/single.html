@@ -77,9 +77,10 @@
 					<input id="date" name="date" type="text" class="form-control" value="{{ date }}">
 				</div>
 				<div class="col-sm-3">
+					{{ time }}
 					<div class="input-group mb15">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-						<div class="bootstrap-timepicker"><input id="timepicker" type="text" class="form-control" value="{{ time }}"/></div>
+						<div class="bootstrap-timepicker"><input id="timepicker" type="text" class="form-control" data-date="{{ post.createdDate|dateToString }}"/></div>
 					</div>				
 				</div>				
 			</div>
@@ -156,6 +157,7 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/moment.min.js"></script>
 <script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="/js/vendors/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="/js/vendors/ckeditor/ckeditor.js"></script>
@@ -164,7 +166,10 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#date').datepicker({"dateFormat": 'mm/dd/yy' });
+	
+	var m = moment(moment($('#timepicker').data('date')));
 	$('#timepicker').timepicker();
+	$('#timepicker').timepicker('setTime', m.format('hh:mm A') );
 
 	config = {};
 	config.toolbar =[

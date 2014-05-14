@@ -19,6 +19,8 @@ var render = function (req, res, filter) {
 		}
 	}
 
+	query.createdDate = { $lte: Date.now() };
+
 	Activity.find(query)
 	.sort('-createdDate')
 	.populate('uploader')
