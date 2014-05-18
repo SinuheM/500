@@ -12,6 +12,7 @@ var render = function (req, res) {
 		var startupSlugs = [];
 		var mentorSlugs = [];
 
+		if(!page){page = {};}
 		if(!page.data){page.data = {};}
 		if(page.data.startups){startupSlugs = startupSlugs.concat(page.data.startups.split(','));}
 		if(page.data.mentors){mentorSlugs = mentorSlugs.concat(page.data.mentors.split(','));}

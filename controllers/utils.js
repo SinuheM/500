@@ -21,12 +21,24 @@ utilsController.post('/startups/search', function(req, res){
 });
 
 utilsController.post('/mentors/search', function(req, res){
-	User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor', publish:true}}}, function(err, results) {
-		if(err){return res.sendError(500, err);}
+	if(req.body.search){
+		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor', publish:true}}}, function(err, results) {
+			if(err){return res.sendError(500, err);}
 
-		var mentors = _.filter(results.hits, function(item){return item.displayName;});
-		res.send(mentors);
-	});
+			var mentors = _.filter(results.hits, function(item){return item.displayName;})
+			.map(function(item){return {displayName:item.displayName, title:item.title, avatar:item.avatar, slugStr:item.slugStr} });
+			res.send(mentors);
+		});
+	}else{
+		User.find({type:'mentor', publish:true})
+		.limit(8)
+		.skip(8*(req.body.page - 1))
+		.exec(function (err, mentors) {
+			if(err){ return res.send(500, err);}
+
+			res.send(mentors);
+		});
+	}
 });
 
 utilsController.get('/mentors/random', function(req, res){

@@ -149,7 +149,7 @@ section#portfolio #search .container #filter li ul li.drop.active a {padding: 0.
 section#portfolio #search .container #filter li.drop {color: #ccc; background-image: url(../img/select-gray.png); background-repeat: no-repeat; background-position: right center}
 section#portfolio #search .container #filter li.drop:hover {color: #222; background-image: url(../img/select-black.png);}
 section#portfolio #search .container #filter li.drop:hover .submain {display: block;}
-section#portfolio #search .container #filter li .submain {top: 25px; display: none; list-style: none; position: absolute; margin: 0; background-color: #FFF; z-index: 10; box-shadow: 0px 1px 5px rgba(0,0,0,0.25); -webkit-box-shadow: 0px 1px 5px rgba(0,0,0,0.25); -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.25); transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+section#portfolio #search .container #filter li .submain {top: 25px; display: none; list-style: none; position: absolute; margin: 0; background-color: #FFF; z-index: 11; box-shadow: 0px 1px 5px rgba(0,0,0,0.25); -webkit-box-shadow: 0px 1px 5px rgba(0,0,0,0.25); -moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.25); transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 section#portfolio #search .container #filter li .submain li {float: none; padding: 0;}
 section#portfolio #search .container #filter li .submain li.active {background-image: none; list-style-image: url(../img/list-active.png); list-style-position: inside;}
 section#portfolio #search .container #filter li .submain li a {padding: 0.5rem 1.5rem;}
@@ -194,7 +194,7 @@ section#startup #detail .founders ul li img {display: inline-block; vertical-ali
 section#startup #detail .founders ul li .perfil {display: inline-block; width: 70%; vertical-align: top; margin-left: 0.5em}
 section#startup #detail .founders ul li h5 {margin: 0.25em 0; line-height: 1em; font-size: 1.1em}
 section#startup #detail .founders ul li h6 {color: #666}
-section#portfolio.mentors #search {padding: 10rem 0;}
+section#portfolio.mentors #search {}
 section#portfolio.team #search {padding: 10rem 0 9rem;}
 section#portfolio.team #search p {line-height: 1.5rem}
 section#portfolio.team #search h6 {margin: 4em 0 0}

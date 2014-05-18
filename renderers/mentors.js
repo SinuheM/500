@@ -4,15 +4,44 @@ var db = require('../lib/db'),
 var User = db.model('user');
 
 var render = function (req, res) {
-	User.find({type:'mentor', publish:true})
-	.exec(function (err, mentors) {
+	var query = req.query.query;
+
+	User.findMentorExpertiseAndLocatons(function(err, data){
 		if(err){ return res.send(500, err);}
 
-		res.render('renderers/mentors',{
-			currentPage : 'mentors',
-			mentors : mentors
+		User.find({type:'mentor', publish:true}, {displayName:1, slugStr:1, avatar:1, title:1})
+		.limit(20)
+		.exec(function (err, mentors) {
+			if(err){ return res.send(500, err);}
+
+			if(!query){
+				res.render('renderers/mentors',{
+					currentPage : 'mentors',
+					mentors : mentors,
+					query : query,
+					expertises : data.expertises,
+					locations : data.locations
+				});
+			}else{
+				User.search({query: '*' + query + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor', publish:true}}}, function(err, results) {
+					if(err){return res.sendError(500, err);}
+
+					var queryMentors = _.filter(results.hits, function(item){return item.displayName;});
+
+					res.render('renderers/mentors',{
+						currentPage : 'mentors',
+						mentors : mentors,
+						queryMentors : queryMentors,
+						query : query,
+						expertises : data.expertises,
+						locations : data.locations
+					});
+				});
+			}
 		});
 	});
+
+
 };
 
 module.exports = render;

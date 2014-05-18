@@ -9,6 +9,7 @@ var render = function (req, res) {
 		if(err){ return res.send(500, err);}
 
 		var startupSlugs = [];
+		if(!page){page = {};}
 		if(!page.data){page.data = {};}
 
 		if(page.data.acceleration){startupSlugs = startupSlugs.concat(page.data.acceleration.split(','));}

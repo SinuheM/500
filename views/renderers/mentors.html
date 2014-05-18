@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
     <script src="/js/vendor/modernizr.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+<!--     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'> -->
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
 </head>
 <body>
@@ -18,24 +18,24 @@
             <div class="center">
                 <div class="container">
                     <h4>Search the 200+ mentors in our family</h4>
-                    <input id="searchbox" type="search" placeholder="search">
+                    <input id="searchbox" type="search" placeholder="search" value="{{ query }}">
                     <p><span>Try Christine Herron, Facebook, ecommerce</span></p>
-                    <ul id="filter" style="display:none">
+                    <ul id="filter">
                         <li>Filter results by:</li>
                         <li class="drop">
                             <span>Expertise</span>
                             <ul class="submain">
-                                <li><a href="">one</a></li>
-                                <li><a href="">two</a></li>
-                                <li><a href="">three</a></li>
+                            {% for expertise in expertises %}
+                                <li><a href="">{{expertise}}</a></li>
+                            {% endfor%}
                             </ul>
                         </li>
                         <li class="drop">
                             <span>Location</span>
                             <ul class="submain">
-                                <li><a href="">one</a></li>
-                                <li><a href="">two</a></li>
-                                <li><a href="">three</a></li>
+                            {% for location in locations %}
+                                <li><a href="">{{location}}</a></li>
+                            {% endfor%}
                             </ul>
                         </li>
                         <li>Order results by:</li>
@@ -64,7 +64,8 @@
 <script type="text/template" id="listItemTemplate">
     <li>
         <a href="/<%= item.slugStr %>">
-            <img src="<%= item.avatar %>">
+            <img src="">
+            <!-- <img src="<%= item.avatar %>"> !-->
             <div class="content">
                 <p class="name"><%= item.displayName %></p>
                 <p class="role"><%= item.title %></p>
@@ -84,6 +85,7 @@
 <script>
     {% autoescape false %}
     window.mentors = {{mentors|json}};
+    window.queryMentors = {{queryMentors|json}};
     {% endautoescape %}
 
     $(document).foundation();

@@ -1,5 +1,6 @@
 var db = require('../lib/db'),
 	mongoosastic = require('mongoosastic'),
+	_ = require('underscore'),
 	schema = db.Schema;
 
 var Slug = require('./slug');
@@ -47,6 +48,34 @@ userSchema.statics.random = function(callback) {
 		this.findOne({type:'mentor', publish:true}).skip(rand).exec(callback);
 	}.bind(this));
 };
+
+userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
+	this.find({type:'mentor'}, {expertise:1, location:1})
+	.exec(function(err, mentors){
+		if (err) {
+			return callback(err);
+		}
+
+		var data = {expertises:{}, locations:{}};
+
+		mentors.forEach(function(item){
+			console.log(item.toJSON());
+
+			item.expertise.forEach(function(expertise){
+				data.expertises[expertise.toLowerCase()] = true;
+			});
+
+			if(item.location){
+				data.locations[item.location.toLowerCase()] = true;
+			}
+		});
+
+		callback(null, {
+			locations:Object.keys(data.locations),
+			expertises:Object.keys(data.expertises)
+		});
+	});
+}
 
 var User = db.model('user', userSchema);
 
