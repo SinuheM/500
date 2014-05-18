@@ -15,7 +15,7 @@
 	{% include "../partials/navbar.html" %}
     <section id="activity">
         <div class="center">
-            <h4 class="text-center">The latest news and updates from 500!</h4>
+            <h3 class="text-center">The latest news and updates from 500!</h3>
             <ul class="filter">
                 <li {% if !filter %}class="active"{% endif %}><a href="">ALL</a></li>
                 <li {% if filter == 'announcements' %}class="active"{% endif %}><a href="/announcements">ANNOUNCEMENTS</a></li>
@@ -37,13 +37,13 @@
                     {% else%}
                     <li class="blog">
                         <div class="row-2">
-                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
+                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}} ago</span>
                             <span class="tag">ON OUR BLOG</span>
                         </div>                    
                     {% endif %}
                         <div class="row-10">
-                            <a href="/{{activity.slugStr}}">
-                                <h5>{{activity.title}}</h5>
+                            <a target="_blank" href="/{{activity.slugStr}}">
+                                <h4>{{activity.title}}</h4>
                                 <div class="info">
                                     <div class="image"><img src="{{ activity.image }}"></div>
                                     <div class="detail">
@@ -62,11 +62,11 @@
                 {% elseif activity.type == 'podcast'%}
                 <li class="podcast">
                     <div class="row-2">
-                        <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
+                        <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}} ago</span>
                         <span class="tag">PODCAST</span>
                     </div>
                     <div class="row-10">
-                        <a href="/{{ activity.slugStr }}"><h5>{{ activity.title }}</h5></a>
+                        <a target="_blank" href="/{{ activity.slugStr }}"><h4>{{ activity.title }}</h4></a>
                         <div class="info">
                             {{activity.content|safe}}
                         </div>
@@ -81,14 +81,14 @@
                 {% elseif activity.type == 'video'%}
                 <li class="video">
                     <div class="row-2">
-                        <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
+                        <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}} ago</span>
                         <span class="icon"><img src="{{ activity.favicon }}"></span>
                     </div>
                     <div class="row-10">
-                        <h5>{{ activity.title }}</h5>
-                        <div class="detail">
+                        <h4>{{ activity.title }}</h4>
+                        <!--div class="detail">
                             <p>{{activity.description}}</p>
-                        </div>                        
+                        </div-->                        
                         <div class="info">
                             <div class="video">{{ activity.media|safe }}</div>
                         </div>
@@ -104,13 +104,13 @@
                     {% if activity.provider == "twitter.com"%}
                     <li class="twitt">
                         <div class="row-2">
-                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
+                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}} ago</span>
                             <span class="icon"><img src="{{ activity.favicon }}"></span>
                         </div>
                         <div class="row-10">
-                            <h5><a class="twitt-body" href="{{ activity.url }}">{{ activity.description }}</a> by <a href="{{ activity.author.url }}">@ {{ activity.author.name }}</a></span></h5>
+                            <h4><a class="twitt-body" target="_blank" href="{{ activity.url }}">" {{ activity.description }} "</a></h4>
                             <div class="">
-                                <div class="image"><img src="{{ activity.image }}"></div>
+                                <div class="image"><img src="{{ activity.image }}"> by <a target="_blank" href="{{ activity.author.url }}">@{{ activity.author.name }}</a></div>
                             </div>                            
                             <div class="clearfix"></div>
                             <div class="meta">
@@ -123,16 +123,17 @@
                     {% else %}
                     <li class="normal">
                         <div class="row-2">
-                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}}</span>
+                            <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}} ago</span>
                             <span class="icon"><img src="{{activity.favicon}}"></span>
                         </div>
                         <div class="row-10">
-                            <h5><a href="{{activity.url}}">{{activity.title}} <span>{{activity.provider}}</span></a></h5>
+                            <h4><a target="_blank" href="{{activity.url}}">{{activity.title}}</a></h4>
                             <div class="info">
-                                <a href="{{activity.url}}">
+                                <a target="_blank" href="{{activity.url}}">
                                     <div class="detail">
                                         <img src="{{activity.image}}">
                                         <p>{{activity.description}}</p>
+                                        <p class="provider">View on {{activity.provider}}</p>
                                     </div>
                                 </a>
                             </div>

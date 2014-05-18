@@ -5,11 +5,11 @@
 body {font-family: 'Open Sans', sans-serif;}
 h1 {font-size: 5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
 h2 {font-size: 4.5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
-h3 {font-size: 2.5rem}
-h4 {font-size: 2rem}
+h3 {font-size: 2.5rem; font-weight:900; letter-spacing:-2px; color:#444444;}
+h4 {font-size: 2rem !important}
 h5 {font-size: 1.3rem}
-h6 {font-size: 1rem}
-h3, h4, h5, h6 {font-family: 'Open Sans', sans-serif;}
+h6 {font-size: 1rem; font-weight:800; color:#444;}
+h3, h4, h5, h6 {font-family: 'Open Sans', sans-serif; }
 p {font-size: 1.25rem; margin: 0.25rem; font-weight: 300;}
 a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 .clearfix {clear: both;}
@@ -34,6 +34,9 @@ header nav a {color: #222; margin: 0 1em;}
 header#fixadent nav a {color: #FFF;}
 header#fixadent.fixed nav a:hover, header#fixadent.fixed nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 
+#splash_text{margin:300px 0 0 200px; padding:0 !important; position:relative;}
+#home .over-shadow {position:absolute; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
+#over-text{position:absolute; z-index:2}
 .center {margin: 0 auto; max-width: 960px;}
 section {}
 
@@ -43,18 +46,21 @@ section {}
 #fixadent.fixed #logo .black {display: block;}
 header nav a:hover, header nav a.active {color: #f2f2f2; border-bottom: solid 4px #f2f2f2; padding-bottom: 0.5rem;}
 
-section#home {background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center;}
+section#home {position:relative; background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; overflow:hidden}
 section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 section#entrepreneurs {text-align: center; padding: 8em 0 5em;}
 section#entrepreneurs iframe {margin: 2em 0; max-width: 785px; width: 95%}
-section#team-home {padding: 5em 0 6em;}
+section#team-home {padding: 5em 0 3em;}
 section#team-home ul#date-500 {max-width: 960px; margin: 0 auto; list-style: none; text-align: center;}
-section#team-home ul#date-500 li {float: left; width: 33%;}
+section#team-home ul#date-500 li {float: left; width: 33%; margin-top:20px}
+section#team-home .date-left{text-align:left}
+section#team-home .date-right{text-align:right}
+section#team-home ul#date-500 li h2{letter-spacing:-2px}
 section#team-home ul {}
 section#team-home ul li {}
 section#team-home ul li a {color: #b43322; font-size: 0.7rem; text-decoration: underline;}
-section#team-home #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative; background: #000; color: #FFF;}
+section#team-home #team-list {text-align: center; margin: 2em 0 1em; padding: 2em 0; position: relative; background: #000; color: #FFF; padding-top:56px}
 section#team-home #team-list button.outline{color:#FFF;border:solid 1px #FFF;}
 section#team-home #team-list .center {position: relative; z-index: 10}
 section#team-home #team-list ul {margin: 0; list-style: none; position: absolute; top: 0;}
@@ -62,8 +68,13 @@ section#team-home #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
 section#team-home #team-list ul li img {width: 100%}
 section#team-home .button-container {text-align: center;}
 
-section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0;}
-section#help-startups p {font-size: 1rem}
+section#themes{padding-bottom:25px}
+section#themes p{text-align:center; padding-bottom:40px}
+section#themes .button-container {text-align: center;}
+
+section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0}
+section#help-startups .subtitle{padding-bottom:92px}
+section#help-startups p {font-size: 1rem; margin:20px 0}
 section#help-startups ul {margin: 3rem 0; list-style: none;}
 section#help-startups ul li {float: left; width: 33.33%; margin-bottom: 3rem; font-size: 0.75rem}
 section#help-startups a {color: #b43322; text-decoration: underline;}
@@ -89,9 +100,9 @@ section#activity #activity-list li .row-2 span {font-size: 0.85rem; font-weight:
 section#activity #activity-list li .row-2 span.tag {font-weight: 300;}
 section#activity #activity-list li .row-2 span.icon {float: right;width: 28px;height: 28px;background: #e6e6e6;}
 section#activity #activity-list li .row-2 span img {height: 16px;width: 16px;margin-top: 4px;background: white;}
-section#activity #activity-list li h5 {margin-top: 0px}
-section#activity #activity-list li h5 span {font-size: 0.85rem}
-section#activity #activity-list li h5 span a {text-decoration: underline; color: #000 !important}
+section#activity #activity-list li h4 {margin-top: 0px}
+section#activity #activity-list li .provider {font-size: 0.85rem; text-decoration:underline; color:#b43322}
+section#activity #activity-list li h4 span a {text-decoration: underline; color: #000 !important}
 section#activity #activity-list li .info {}
 section#activity #activity-list li .info .video {width: 100%; text-align: center}
 section#activity #activity-list li .info p {font-size: 1rem}
@@ -138,9 +149,11 @@ section#activity ul.filter li a:hover, section#activity ul.filter li.active a {b
 section#portfolio {}
 section#portfolio #search {padding: 10rem 0 0;}
 section#portfolio #search .container {text-align: center;}
-section#portfolio #search .container input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 80%; margin: 3rem auto 0; padding: 0.5rem 1.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
-section#portfolio #search .container p {margin: 0.5rem auto 0; line-height: 1rem; width: 80%}
-section#portfolio #search .container p span {float: right; font-size: 0.85em; color: #ccc}
+section#portfolio #search .container h5{width:620px; margin:0 auto}
+section#portfolio input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 620px; margin: -5rem auto 0; padding: 0.5rem 1.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
+section#portfolio p {margin: 0.5rem auto 0; width: 80%}
+section#portfolio p span {float: right; font-size: 0.85em; color: #ccc; margin-right:356px}
+section#portfolio .place_holder_search{margin-bottom:4rem}
 section#portfolio #search .container #filter {margin: 6rem 0 0; list-style: none; text-align: left; position: relative; font-size: 0.95rem}
 section#portfolio #search .container #filter a {display: block;}
 section#portfolio #search .container #filter li {float: left; padding: 0 1.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
@@ -194,7 +207,7 @@ section#startup #detail .founders ul li img {display: inline-block; vertical-ali
 section#startup #detail .founders ul li .perfil {display: inline-block; width: 70%; vertical-align: top; margin-left: 0.5em}
 section#startup #detail .founders ul li h5 {margin: 0.25em 0; line-height: 1em; font-size: 1.1em}
 section#startup #detail .founders ul li h6 {color: #666}
-section#portfolio.mentors #search {padding: 10rem 0;}
+section#portfolio.mentors #search {padding: 10rem 0 7rem;}
 section#portfolio.team #search {padding: 10rem 0 9rem;}
 section#portfolio.team #search p {line-height: 1.5rem}
 section#portfolio.team #search h6 {margin: 4em 0 0}
@@ -203,13 +216,13 @@ section#portfolio #mentors.team500 {padding: 3rem 0 10rem}
 section#portfolio #mentors h6 {text-align: center; position: relative; top: -2rem}
 section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 10}
 section#portfolio #mentors ul.up {top: -10rem}
-section#portfolio #mentors ul li {float: left; margin: 0.5rem; width: 23%; position: relative; background-color: #fff; border: solid 1px #ccc;}
+section#portfolio #mentors ul li {float: left; margin: 10px; width: 220px; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #mentors ul li a {display: block;height: 294px;}
 section#portfolio #mentors ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #mentors ul li img {width: 219px;height: 219px;}
 section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0.75rem}
-section#portfolio #mentors ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
-section#portfolio #mentors ul li .content p.role {color: #666; text-transform: uppercase; font-size: 0.55rem;}
+section#portfolio #mentors ul li .content p.name {font-size: 1rem; font-weight: 600; }
+section#portfolio #mentors ul li .content p.role {color: #888; text-transform: uppercase; font-size: 0.8rem; font-weight:800; }
 section#portfolio .team500 h6{clear:both;}
 
 section#portfolio #team {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
@@ -226,8 +239,8 @@ section#portfolio #team ul li a {display: block;}
 section#portfolio #team ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #team ul li img {}
 section#portfolio #team ul li .content {text-align: center; padding: 1rem 0 0.75rem}
-section#portfolio #team ul li .content p.name {font-size: 0.85rem; font-weight: 600;}
-section#portfolio #team ul li .content p.role {color: #666; text-transform: uppercase; font-size: 0.55rem;}
+section#portfolio #team ul li .content p.name {font-size: 1rem; font-weight: 600;}
+section#portfolio #team ul li .content p.role {color: #888; font-weight:800; text-transform: uppercase; font-size: 0.8rem;}
 section#portfolio .team500 h6{clear:both;}
 
 section#portfolio .team500 .card{height: 294px;margin: 0;}
@@ -236,20 +249,20 @@ section#portfolio .team500 img{width: 219px;height: 219px;}
 section#mentor-single {padding-top: 11em}
 section#mentor-single .center {width: 50%; position: relative;}
 section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
-section#mentor-single .archive .head-info {position: relative; top: -2.5em}
+section#mentor-single .archive .head-info { margin-top: 2.1em}
 section#mentor-single .archive .head-info .image-container {display: inline-block; width: 23%; vertical-align: top;}
 section#mentor-single .archive .head-info .image-container img {width: 100%}
 section#mentor-single .archive .head-info .name {display: inline-block; width: 76%; vertical-align: bottom; padding-left: 1rem;}
 section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
-section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #ccc; font-size: 1rem; font-weight: 600; margin: 0; text-transform: uppercase;}
-section#mentor-single .archive .info {font-weight: 300}
+section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #888; font-size: 1.5rem; font-weight: 600; margin: 0; text-transform: uppercase;}
+section#mentor-single .archive .info {font-weight: 300; margin:30px 0 30px 20px }
 section#mentor-single .archive .info li {}
 section#mentor-single .archive .info li.location {list-style-image: url(../img/black-pin.png);}
 section#mentor-single .archive .info li.web {list-style-image: url(../img/home.png);}
 section#mentor-single .archive h6 {font-family: 'Open Sans', sans-serif; font-size: 1.2rem;}
 section#mentor-single .archive .expertise {margin: 0; list-style: none;}
 section#mentor-single .archive .expertise li {float: left; background-color: #f1f1f1; font-weight: 300; padding: 0.15rem 0.5rem; border: solid 1px #e0e0e0; margin-right: 0.5rem;}
-section#mentor-single .archive p {font-size: 1rem; margin: 2rem 0.25rem}
+section#mentor-single .archive p {font-size: 1rem; margin: 2rem 0.25rem; width:620px}
 section#mentor-single .archive .social-connect {margin: 0; line-height: 1rem}
 section#mentor-single .archive .social-connect li {display: inline-block; margin-right: 0.5rem}
 section#mentor-single .archive .social-connect li a {}
@@ -281,12 +294,12 @@ section#staff-member .over-shadow {position: fixed; top: 0; z-index: 1; height: 
 section#staff-member .staff-cover {position: fixed; top: 0; z-index: 0; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat;}
 section#portfolio.accelerator-top #search {padding: 10rem 0 2rem;}
 section#portfolio.accelerator-top #search h4 {}
-section#portfolio.accelerator-top #search p {line-height: 1.9rem; margin: 1rem auto 3rem;}
+section#portfolio.accelerator-top #search p {line-height: 1.9rem; margin: 1rem auto 3rem; width:620px}
 section#portfolio.accelerator-top #search button {margin: 3rem 0 1.25rem;}
-section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padding: 1rem 0 6rem}
+section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padding: 6rem 0 6rem}
 section#portfolio.accelerator-top #mentors.accelerator h4 {margin-top: 5rem}
 section#portfolio.accelerator-top #mentors.accelerator h4:first-child {margin-top: 5rem}
-section#portfolio.accelerator-top #mentors.accelerator p {}
+section#portfolio.accelerator-top #mentors.accelerator p{text-align:center; width:620px; margin:0 auto}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations {margin-top: 2rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; border-right: solid 1px #000; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd:last-child {border: none;}
@@ -296,24 +309,25 @@ section#portfolio.accelerator-top #mentors.accelerator .tabs-content {margin-top
 section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations {}
 section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations img {}
 section#portfolio.accelerator-top #mentors.accelerator .mentors-network {margin-top: 4rem}
-section#portfolio.accelerator-top #mentors.accelerator button#view-all {margin-top: 3rem}
-section#portfolio.accelerator-top #mentors.accelerator ul.area {}
+section#portfolio.accelerator-top #mentors.accelerator button#view-all {margin-top: 3rem; margin-bottom:3rem}
+section#portfolio.accelerator-top #mentors.accelerator ul.area {margin-top:3rem;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li {width: 30%; margin: 1rem; padding: 1.5rem; text-align: left; height: 25rem}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container {text-align: right;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px; width: inherit; height: inherit;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800}
-section#portfolio.accelerator-top #mentors.accelerator ul.area li p {font-size: 0.85rem; margin: 0.25rem 0.25rem 1.25rem;}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li p {width:100%; text-align:left; font-size: 0.85rem; margin: 0.25rem 0.25rem 1.25rem;}
 section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 62px 0; text-align: center;}
-section#portfolio.accelerator-top .deal h4 {color: #fff}
+section#portfolio.accelerator-top .deal h3 {color: #fff}
 section#portfolio.accelerator-top .deal dl#deal-tabs {margin: 2rem 0 1rem !important}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd:last-child {border: none;}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd.active a, section#portfolio.accelerator-top .deal dl#deal-tabs dd a:hover {background-color: #fff; color: #7ac364}
 section#portfolio.accelerator-top .deal .tabs-content {margin-bottom: 0px;}
+section#portfolio.accelerator-top .deal .tabs-content h3{font-weight:300}
 section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 62px 0}
-section#portfolio.accelerator-top .apply h4 {color: #fff}
-section#portfolio.accelerator-top .apply h4 a {color: #fff; text-decoration: underline;}
+section#portfolio.accelerator-top .apply h3 {color: #fff}
+section#portfolio.accelerator-top .apply h3 a {color: #fff; text-decoration: underline;}
 section#portfolio.accelerator-top .apply dl#apply-tabs {margin: 2rem 0 1rem !important}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd:last-child {border: none;}
@@ -393,9 +407,9 @@ section#events #subscribe #form input[type="submit"] {display: inline-block; bor
 section#events #subscribe #form input[type="submit"]:hover {background-color: #b43322; color: #fff}
 
 body.layer-single {background-color: #f2f2f2; height:100%;}
-body.layer-single #mentor-single {height:100%;}
+body.layer-single #mentor-single {}
 body.layer-single #mentor-single .center {height:100%;}
-body.layer-single #mentor-single .center .archive{min-height:100%;}
+body.layer-single #mentor-single .center .archive{min-height:80%; margin-bottom:100px}
 body.layer-single #mentor-single .center .archive a{text-decoration: underline;}
 
 header#int.simple {background-color: transparent;z-index: 2}
@@ -404,12 +418,16 @@ header#int.simple {background-color: transparent;z-index: 2}
 .line p {float: left; margin: 0; width: 50%}
 .line div {float: left; width: 25%}
 .line div img {display: inline-block;}
-.line div span {display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle;}
+.line div span {display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle; line-height:20px; text-transform:uppercase; letter-spacing:-1px; font-weight:900}
 #map-container {background: #a9c8de; overflow: hidden;}
+#map-container h4{text-align:center; padding-top:3rem; color:#FFF}
 #map-container #map {height: 620px; width: 960px; position: relative;margin: 0 auto;}
 #map-container #map img {height: 620px; position: absolute;}
 #map-container #map img#map-dots {top:-620px;}
 #map-container #map img#map-names {display:none;}
+#map-container .center{text-align:center; color:#FFF}
+#map-container button.outline{background-color: transparent; color: #FFF; border: solid 1px #FFF}
+#map-container button.outline:hover{background-color: #FFF; color: #a9c8de}
 .separator {border-bottom: solid 1px #ccc; margin: 4rem 0;}
 button.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322;}
 button.outline:hover {background-color: #b43322; color: #FFF}
@@ -425,7 +443,7 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 .row-7 a {float: right; margin-right: 2.5rem}
 
 .card {margin: 2rem 0; list-style: none; text-align: center;}
-.card li {float: left; padding: 0.5rem; width: 25%; position: relative;}
+.card li {float: left; padding: 10px; width: 240px; position: relative;}
 .card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;height: 410px; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 .card li .content:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 .card li .image-container {height: 200px;display: table-cell;vertical-align: middle;width: 190px;}
@@ -436,8 +454,8 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 .card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;position: absolute;bottom: 20px;left: 0;width: 100%;}
 .startup-card li .content: {height: 420px}
 
-.amazing-partners {margin: 1rem 0 6rem; list-style: none;}
-.amazing-partners li {display: inline-block;margin: 10px 30px;}
+.amazing-partners {margin: 1rem 0; list-style: none;}
+.amazing-partners li {display: inline-block;margin: 10px 45px}
 .amazing-partners li img {max-height: 85px}
 
 #social {list-style: none; margin: 0 0 4rem; float: right;}
@@ -446,10 +464,11 @@ button.outline:hover {background-color: #b43322; color: #FFF}
 
 footer {background-color: #000; color: #FFF; padding: 5rem 0 3rem}
 footer nav {font-size: 1rem}
-footer nav a {color: #FFF; display: block; margin-bottom: 1.5rem; font-weight: 300}
-footer a:hover {color: #888; text-decoration: underline;}
+footer nav a {color: #FFF; display: block; margin-bottom: 1.5rem; font-weight: 600; letter-spacing:-1px}
+footer a:hover {text-decoration: underline;}
 footer .pin {}
 footer .pin li {list-style-image: url(../img/pin.png); margin-bottom: 2rem}
+footer .pin li .city_title{font-weight:600}
 footer .pin li p {font-size: 0.8rem; line-height: 1rem; margin-bottom: 0.5rem}
 footer a {color: #FFF}
 footer .row-4 {text-align: right;}

@@ -25,7 +25,7 @@ db.loadModels(['slug', 'user', 'startup', 'activity', 'batch', 'page', 'event'])
 var renderer = require('./lib/renderer');
 renderer.load(['startups', 'startup', 'home', 'legal', 'team',
 	'staff', 'mentors', 'mentor', 'activity', 'accelerator',
-	'events', 'post', 'feed']);
+	'events', 'post']);
 
 var Slug = db.model('slug');
 var Activity = db.model('activity');
