@@ -419,7 +419,7 @@ header#int.simple {background-color: transparent;z-index: 2}
 .line div {float: left; width: 25%}
 .line div img {display: inline-block;}
 .line div span {display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle; line-height:20px; text-transform:uppercase; letter-spacing:-1px; font-weight:900}
-#map-container {background: #a9c8de; overflow: hidden;}
+#map-container {background: #a9c8de; overflow: hidden}
 #map-container h4{text-align:center; padding-top:3rem; color:#FFF}
 #map-container #map {height: 620px; width: 960px; position: relative;margin: 0 auto;}
 #map-container #map img {height: 620px; position: absolute;}
@@ -431,6 +431,9 @@ header#int.simple {background-color: transparent;z-index: 2}
 .separator {border-bottom: solid 1px #ccc; margin: 4rem 0;}
 button.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322;}
 button.outline:hover {background-color: #b43322; color: #FFF}
+#info_square{width:620px; height:60px; margin:40px auto 0 auto}
+#info_square img{float:left; margin-left:46px}
+#info_square p{float:left; font-size:16px; margin-top:-4px}
 
 .row-2, .row-3, .row-4, .row-5, .row-7, .row-10 {float: left; vertical-align: top;}
 .row-2 {width: 16.6%}

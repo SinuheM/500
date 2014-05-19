@@ -10,12 +10,4 @@ $(document).ready(function () {
 			$item.attr('src', $item.attr('src').replace('.png', '@2x.png').replace('.jpg', '@2x.jpg') );
 		});
 	}
-
-	$('#your-move').on('click',function(){
-		var e_pos = $('#entrepreneurs').position();
-		$('html , body').animate( {scrollTop : e_pos.top+'px'},350,function(){
-			//$('#home').fadeOut();
-		});
-		
-	})
 });

@@ -24,7 +24,7 @@
         </div>
         <div class="over-shadow" style="background-image: url(/img/over-staff-member-lite.png);"></div>
     </section>
-    <!-- {% include "../partials/navbar.html" with {currentPage: 'about'} %} -->
+    {% include "../partials/navbar.html" with {currentPage: 'about'} %}
     <section id="entrepreneurs">
         <div class="center">
             <h3>500 Startups is a seed fund and accelerator founded</h3><br>
@@ -41,6 +41,11 @@
             <img id="map-names" src="/imgs/map/names.png">
         </div>
         <div class="center">
+            <div id="info_square">
+                <img src="/img/people.png"><p>People</p>
+                <img src="/img/primary.png"><p>Primary Geographies</p>
+                <img src="/img/countries.png"><p>Countries where we’ve invested</p>
+            </div>
             <p>Our #500Strong family is diverse, colorful, and awesome. </p>
             <p>No matter where you’re from or who you are, we’ll welcome you with open arms.</p>
             <form action="/team">
@@ -51,9 +56,9 @@
     <section id="team-home">
 
         <ul id="date-500">
-            <h3>TITULO</h3>
+            <h3>This is a title</h3>
             <p>We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
-            <li class="date-left">
+            <!--li class="date-left">
                 <h2>500+</h2>
                 <p>funded companies</p>
             </li>
@@ -64,7 +69,7 @@
             <li class="date-right">
                 <h2>1000+</h2>
                 <p>entrepreneurs funded</p>
-            </li>
+            </li-->
         </ul>
         
         <!--div id="team-list">
@@ -80,7 +85,6 @@
     </section>
     <section id="themes">
         <div class="center">
-            <p>We invest in companies that focus on. We invest in companies that focus on:</p>
             <div class="line">
                 <div><img src="/img/icons-consumer.png"> <span>consumer<br>commerce</span></div>
                 <div><img src="/img/icons-education.png"> <span>family tech<br>and education</span></div>
@@ -197,10 +201,29 @@
 <script src="/js/public.js"></script>
 <script src="/js/vendors/jquery.scrollTo.min.js"></script>
 <script>
+    //MOVE SCROLL BUTTON
+    $('body').css('overflow','hidden');
+    $('#int').fadeOut(0);
+
+    $('#your-move').on('click',function(){
+        $('body').css('overflow','auto');
+        var e_pos = $('#entrepreneurs').position();
+        $('html , body').animate( {scrollTop : e_pos.top+'px'},400,function(){
+            $('body').scrollTop(scroll-e_pos.top);
+        });
+        $('#home').fadeOut();
+        $('#fixadent').fadeOut();
+        $('#int').fadeIn(400);        
+    })
+
     window.splashHidden = true;
     window.mapShown = false;
     window.hideSplash = function(e){
-        if($(window).scrollTop() > 1200 && !window.mapShown && window.splashHidden){
+
+        
+        var entrepreneurs = $('#entrepreneurs').position();
+
+        if($(window).scrollTop() > entrepreneurs.top+200 && !window.mapShown && window.splashHidden){
             window.mapShown = true;
 
             $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){
