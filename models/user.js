@@ -59,8 +59,6 @@ userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
 		var data = {expertises:{}, locations:{}};
 
 		mentors.forEach(function(item){
-			console.log(item.toJSON());
-
 			item.expertise.forEach(function(expertise){
 				data.expertises[expertise.toLowerCase()] = true;
 			});
@@ -75,7 +73,7 @@ userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
 			expertises:Object.keys(data.expertises)
 		});
 	});
-}
+};
 
 var User = db.model('user', userSchema);
 

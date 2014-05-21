@@ -1,3 +1,16 @@
+window.getQueryValues = function(){
+	var query = {};
+	$('.drop').each(function(){
+		var $item = $(this);
+
+		var $active = $item.find('li.active');
+
+		$active.each(function(i, item){
+			console.log(item, $(item).data('value'));
+		});
+	});
+}
+
 $(document).ready(function () {
 	var stoppedTyping, lastSearch, loading, page = 1;
 	var list = new window.Widgets.List({});
@@ -53,6 +66,23 @@ $(document).ready(function () {
 					loading = false;
 				}
 			});
+		}
+	});
+
+	$('.submain a').on('click', function(e){
+		e.preventDefault();
+
+		console.log('click');
+
+		$(this).closest('li').toggleClass('active');
+
+		var $list = $(this).closest('ul');
+		var $listItems = $list.find('li.active');
+
+		if($listItems.length){
+			$(this).closest('.drop').addClass('active');
+		}else{
+			$(this).closest('.drop').removeClass('active');
 		}
 	});
 });

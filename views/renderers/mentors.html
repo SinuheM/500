@@ -26,7 +26,7 @@
                             <span>Expertise</span>
                             <ul class="submain">
                             {% for expertise in expertises %}
-                                <li><a href="">{{expertise}}</a></li>
+                                <li data-value="{{expertise}}"><a href="">{{expertise}}</a></li>
                             {% endfor%}
                             </ul>
                         </li>
@@ -34,7 +34,7 @@
                             <span>Location</span>
                             <ul class="submain">
                             {% for location in locations %}
-                                <li><a href="">{{location}}</a></li>
+                                <li data-value="{{location}}"><a href="">{{location}}</a></li>
                             {% endfor%}
                             </ul>
                         </li>
