@@ -29,7 +29,7 @@
                     <p><span>Try Christine Herron, Facebook, ecommerce</span></p>                    
                     <ul id="filter">
                         <li>Filter results by:</li>
-                        <li class="drop">
+                        <li class="drop" data-name="expertise">
                             <span>Expertise</span>
                             <ul class="submain">
                             {% for expertise in expertises %}
@@ -37,9 +37,9 @@
                             {% endfor%}
                             </ul>
                         </li>
-                        <li class="drop">
+                        <li class="drop" data-name="location">
                             <span>Location</span>
-                            <ul class="submain">
+                            <ul class="submain" >
                             {% for location in locations %}
                                 <li data-value="{{location}}"><a href="">{{location}}</a></li>
                             {% endfor%}

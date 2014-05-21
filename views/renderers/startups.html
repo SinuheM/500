@@ -20,7 +20,9 @@
                 <div class="container">
                     <h3>Search all the companies in the 500 family</h3>
                     <h5>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</h5>
-                    <ul id="filter" style="visibility: hidden;">
+                    <input id="searchbox" type="search" placeholder="search">
+                    <p class="place_holder_search"><span>Try makerbot, education, China</span></p>
+                    <ul id="filter">
                         <li>Filter results by:</li>
                         <li class="drop">
                             <span>Investment Themes</span>
@@ -77,8 +79,6 @@
             </div>
         </div>
         <div id="starters">
-            <input id="searchbox" type="search" placeholder="search">
-            <p class="place_holder_search"><span>Try makerbot, education, China</span></p>
             {% if false %}
             <div class="center">
                 <ul class="card">

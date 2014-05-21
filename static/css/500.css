@@ -150,7 +150,7 @@ section#portfolio {}
 section#portfolio #search {padding: 10rem 0 0;}
 section#portfolio #search .container {text-align: center;}
 section#portfolio #search .container h5{width:620px; margin:0 auto}
-section#portfolio input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 620px; margin: -5rem auto 0; padding: 0.5rem 1.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
+section#portfolio input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 620px; margin: 5rem auto 0; padding: 0.5rem 1.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
 section#portfolio p {margin: 0.5rem auto 0; width: 80%}
 section#portfolio p span {float: right; font-size: 0.85em; color: #ccc; margin-right:356px}
 section#portfolio .place_holder_search{margin-bottom:4rem}

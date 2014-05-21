@@ -5,11 +5,29 @@ window.getQueryValues = function(){
 
 		var $active = $item.find('li.active');
 
-		$active.each(function(i, item){
-			console.log(item, $(item).data('value'));
-		});
+		if($active.length){
+			query[$item.data('name')] = $active.data('value');
+		}
 	});
-}
+
+	console.log(query);
+	return query;
+};
+
+window.Widgets.List.prototype.search = function(){
+	var query = window.getQueryValues();
+	var self = this;
+	console.log('searching for ', query, self);
+
+	query.search = $('#searchbox').val();
+
+	var xhr = $.post('/utils/mentors/search',query);
+
+	xhr.done(function(data){
+		self.fill(data);
+		window.loading = true;
+	});
+};
 
 $(document).ready(function () {
 	var stoppedTyping, lastSearch, loading, page = 1;
@@ -72,17 +90,22 @@ $(document).ready(function () {
 	$('.submain a').on('click', function(e){
 		e.preventDefault();
 
-		console.log('click');
-
-		$(this).closest('li').toggleClass('active');
-
 		var $list = $(this).closest('ul');
 		var $listItems = $list.find('li.active');
 
+		$listItems.removeClass('active');
+
+		if($listItems.data('value') !== $(this).closest('li').data('value')){
+			$(this).closest('li').addClass('active');
+		}
+
+		$listItems = $list.find('li.active');
 		if($listItems.length){
 			$(this).closest('.drop').addClass('active');
 		}else{
 			$(this).closest('.drop').removeClass('active');
 		}
+
+		window.widgets.list.search();
 	});
 });
