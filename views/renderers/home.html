@@ -15,32 +15,50 @@
 <body>
     {% include "../partials/navbar.html" %}
     <section id="home">
-        <div class="center">
-            <h1>WE ARE 500 STRONG</h1>
-            <p>Meet the most badass, global family of startup founders, mentors and investors</p>
-            <button id="your-move">YOUR MOVE</button>
+        <div id="splash_text" class="center">
+            <div id="over-text">
+                <h1>WE ARE 500 STRONG</h1>
+                <p>Meet the most badass, global family of startup founders, mentors and investors</p>
+                <button id="your-move">YOUR MOVE</button>
+            </div>
         </div>
+        <div class="over-shadow" style="background-image: url(/img/over-staff-member-lite.png);"></div>
     </section>
-    <!-- {% include "../partials/navbar.html" with {currentPage: 'about'} %} -->
+    {% include "../partials/navbar.html" with {currentPage: 'about'} %}
     <section id="entrepreneurs">
         <div class="center">
-            <h4>500 Startups is a seed fund and accelerator founded in 2010.</h4><br>
-            <h4>We're based in Silicon Valley,<br> but the 500 Family exists all over the world.</h4>
-            <iframe width="785" height="442" src="//www.youtube.com/embed/oy--ub2jMHs?list=PL571BAAD2DFD8F8C7" frameborder="0" allowfullscreen></iframe>
+            <h3>500 Startups is a seed fund and accelerator founded</h3><br>
             <p>We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
             <p>We're based in Silicon Valley, but our 500 family exists all over the world.</p>
+            <iframe width="785" height="442" src="//www.youtube.com/embed/oy--ub2jMHs?list=PL571BAAD2DFD8F8C7" frameborder="0" allowfullscreen></iframe>
         </div>
     </section>
     <section id="map-container">
+        <h4>We're based in Silicon Valley,<br> but the 500 Family exists all over the world.</h4>
         <div id="map">
             <img id="map-image" src="/imgs/map/map.png">
             <img id="map-dots" src="/imgs/map/pins.png">
             <img id="map-names" src="/imgs/map/names.png">
         </div>
+        <div class="center">
+            <div id="info_square">
+                <img src="/img/people.png"><p>People</p>
+                <img src="/img/primary.png"><p>Primary Geographies</p>
+                <img src="/img/countries.png"><p>Countries where we’ve invested</p>
+            </div>
+            <p>Our #500Strong family is diverse, colorful, and awesome. </p>
+            <p>No matter where you’re from or who you are, we’ll welcome you with open arms.</p>
+            <form action="/team">
+                <button class="outline">GET TO KNOW OUR TEAM</button>
+            </form>
+        </div>
     </section>
     <section id="team-home">
+
         <ul id="date-500">
-            <li>
+            <h3>This is a title</h3>
+            <p>We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
+            <!--li class="date-left">
                 <h2>500+</h2>
                 <p>funded companies</p>
             </li>
@@ -48,19 +66,13 @@
                 <h2>40+</h2>
                 <p>over 40 countries</p>
             </li>
-            <li>
+            <li class="date-right">
                 <h2>1000+</h2>
                 <p>entrepreneurs funded</p>
-            </li>
+            </li-->
         </ul>
-        <div class="clearfix"></div>
-        <div class="center button-container">
-            <form action="/startups">
-                <button class="outline">SEE ALL OUR STARTUPS</button>
-            </form>
-        </div>
-        <div class="clearfix"></div>
-        <div id="team-list">
+        
+        <!--div id="team-list">
             <div class="center">
                 <p>Our #500Strong family is diverse, colorful, and awesome. </p>
                 <p>No matter where you’re from or who you are, we’ll welcome you with open arms.</p>
@@ -68,36 +80,41 @@
                     <button class="outline">GET TO KNOW OUR TEAM</button>
                 </form>
             </div>
-        </div>
+        </div-->
         <div class="clearfix"></div>
     </section>
-    <section>
+    <section id="themes">
         <div class="center">
             <div class="line">
-                <p>We invest in companies that focus on:</p>
                 <div><img src="/img/icons-consumer.png"> <span>consumer<br>commerce</span></div>
                 <div><img src="/img/icons-education.png"> <span>family tech<br>and education</span></div>
-            </div>
-            <div class="line">
                 <div><img src="/img/icons-design.png"> <span>design</span></div>
                 <div><img src="/img/icons-cloud.png"> <span>smb productivity<br>& cloud services</span></div>
-                <div><img src="/img/icons-international.png"> <span>international /<br>emerging markets</span></div>
-                <div><img src="/img/icons-food.png"> <span>food tech +<br>digital healthcare</span></div>
             </div>
             <div class="line">
+                <div><img src="/img/icons-international.png"> <span>international /<br>emerging markets</span></div>
+                <div><img src="/img/icons-food.png"> <span>food tech +<br>digital healthcare</span></div>
                 <div><img src="/img/icons-mobile.png"> <span>mobile + tablet<br>(ios and android)</span></div>
                 <div><img src="/img/icons-payments.png"> <span>payments and <br>financial services</span></div>
+            </div>
+            <div class="line">
                 <div><img src="/img/icons-online.png"> <span>online video</span></div>
                 <div><img src="/img/icons-bitcoin.png"> <span>Bitcoin</span></div>
             </div>
+            <div class="center button-container">
+            <form action="/startups">
+                <button class="outline">SEE ALL OUR STARTUPS</button>
+            </form>
+        </div>
             <div class="clearfix"></div>
         </div>
     </section>
     <section id="help-startups">
         <div class="center">
-            <h4>How we help startups</h4>
+            <h3>How we help startups</h3>
+            <p class="subtitle">We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
             <div class="row-5">
-                <h5>Acceleration</h5>
+                <h3>Acceleration</h3>
                 <p>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</p>
                 <p>Work alongside other smart, talented founders from around the world, and finish your time in the program by pitching to top-notch investors at demo days.</p>
                 <form action="/accelerator">
@@ -115,7 +132,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="row-5">
-                <h5>Seed fund</h5>
+                <h3>Seed fund</h3>
                 <p>We fund companies outside our accelerator program, with investments in ranging from $25K - $250K. </p>
                 <p>Become part of the 500 family and get access to our awesome (and expansive) community of mentors, founders, and partners. </p>
                 <button class="outline">GET MONEY</button>
@@ -134,7 +151,7 @@
     </section>
     <section id="amazing">
         <div class="center">
-            <h4>Rising stars</h4>
+            <h3>Rising stars</h3>
             <p>Just a few companies in our current batch</p>
             <ul class="card">
                 {% for startup in stars %}
@@ -155,7 +172,7 @@
             </ul>
             <div class="clearfix"></div>
             <div class="separator"></div>
-            <h4>Thanks to our amazing partners</h4>
+            <h3>Thanks to our amazing partners</h3>
             <p class="sub">Platinum Annual Partners</p>
             <ul class="amazing-partners">
                 <li><img src="/imgs/partners/rackspace.jpg"></li>
@@ -184,10 +201,29 @@
 <script src="/js/public.js"></script>
 <script src="/js/vendors/jquery.scrollTo.min.js"></script>
 <script>
+    //MOVE SCROLL BUTTON
+    $('body').css('overflow','hidden');
+    $('#int').fadeOut(0);
+
+    $('#your-move').on('click',function(){
+        $('body').css('overflow','auto');
+        var e_pos = $('#entrepreneurs').position();
+        $('html , body').animate( {scrollTop : e_pos.top+'px'},400,function(){
+            $('body').scrollTop(scroll-e_pos.top);
+        });
+        $('#home').fadeOut();
+        $('#fixadent').fadeOut();
+        $('#int').fadeIn(400);        
+    })
+
     window.splashHidden = true;
     window.mapShown = false;
     window.hideSplash = function(e){
-        if($(window).scrollTop() > 1200 && !window.mapShown && window.splashHidden){
+
+        
+        var entrepreneurs = $('#entrepreneurs').position();
+
+        if($(window).scrollTop() > entrepreneurs.top+200 && !window.mapShown && window.splashHidden){
             window.mapShown = true;
 
             $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){

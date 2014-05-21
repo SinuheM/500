@@ -17,9 +17,16 @@
         <div id="search">
             <div class="center">
                 <div class="container">
-                    <h4>Search the 200+ mentors in our family</h4>
+                    <h3>Search the 200+ mentors in our family</h3>
+                    <ul class="amazing-partners">
+                        <li><img src="/imgs/partners/rackspace.jpg"></li>
+                        <li><img src="/imgs/partners/goco.jpg"></li>
+                        <li><img src="/imgs/partners/softlayer.jpg"></li>
+                        <li><img src="/imgs/partners/sendgrid.png"></li>
+                    </ul>
+                    <h5>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</h5>
                     <input id="searchbox" type="search" placeholder="search" value="{{ query }}">
-                    <p><span>Try Christine Herron, Facebook, ecommerce</span></p>
+                    <p><span>Try Christine Herron, Facebook, ecommerce</span></p>                    
                     <ul id="filter">
                         <li>Filter results by:</li>
                         <li class="drop">
@@ -64,8 +71,7 @@
 <script type="text/template" id="listItemTemplate">
     <li>
         <a href="/<%= item.slugStr %>">
-            <img src="">
-            <!-- <img src="<%= item.avatar %>"> !-->
+            <img src="<%= item.avatar %>">
             <div class="content">
                 <p class="name"><%= item.displayName %></p>
                 <p class="role"><%= item.title %></p>

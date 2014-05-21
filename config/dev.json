@@ -2,7 +2,6 @@
 	"redis" : {
 		"secret" : "something secret",
 		"options" : {
-			"port" : 6380
 		}
 	},
 	"mongo" : {
