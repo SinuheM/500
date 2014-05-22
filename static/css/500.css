@@ -1,7 +1,3 @@
-/*
-	Autor: Manu Uribe
-		   manucrea.com
-*/
 body {font-family: 'Open Sans', sans-serif;}
 h1 {font-size: 5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
 h2 {font-size: 4.5rem; font-family: 'Exo 2', sans-serif; font-weight: 800}
@@ -46,7 +42,7 @@ section {}
 #fixadent.fixed #logo .black {display: block;}
 header nav a:hover, header nav a.active {color: #f2f2f2; border-bottom: solid 4px #f2f2f2; padding-bottom: 0.5rem;}
 
-section#home {position:relative; background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; overflow:hidden}
+section#home {position:fixed; background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; overflow:hidden; z-index:100;}
 section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 section#entrepreneurs {text-align: center; padding: 8em 0 5em;}

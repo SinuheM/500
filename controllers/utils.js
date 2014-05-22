@@ -21,6 +21,8 @@ utilsController.post('/startups/search', function(req, res){
 });
 
 utilsController.post('/mentors/search', function(req, res){
+	console.log(req.body);
+
 	if(req.body.search){
 		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor', publish:true}}}, function(err, results) {
 			if(err){return res.sendError(500, err);}
@@ -30,7 +32,16 @@ utilsController.post('/mentors/search', function(req, res){
 			res.send(mentors);
 		});
 	}else{
-		User.find({type:'mentor', publish:true})
+		var query = {type:'mentor', publish:true};
+		if(req.body.expertise){
+			query.expertise = req.body.expertise;
+		}
+
+		if(req.body.location){
+			query.location = req.body.location;
+		}		
+
+		User.find(query)
 		.limit(8)
 		.skip(8*(req.body.page - 1))
 		.exec(function (err, mentors) {

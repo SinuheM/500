@@ -13,8 +13,8 @@
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
 </head>
 <body>
-    {% include "../partials/navbar.html" %}
     <section id="home">
+        {% include "../partials/navbar.html" %}
         <div id="splash_text" class="center">
             <div id="over-text">
                 <h1>WE ARE 500 STRONG</h1>
@@ -201,50 +201,39 @@
 <script src="/js/public.js"></script>
 <script src="/js/vendors/jquery.scrollTo.min.js"></script>
 <script>
-    //MOVE SCROLL BUTTON
-    $('body').css('overflow','hidden');
-    $('#int').fadeOut(0);
-
-    $('#your-move').on('click',function(){
-        $('body').css('overflow','auto');
-        var e_pos = $('#entrepreneurs').position();
-        $('html , body').animate( {scrollTop : e_pos.top+'px'},400,function(){
-            $('body').scrollTop(scroll-e_pos.top);
-        });
-        $('#home').fadeOut();
-        $('#fixadent').fadeOut();
-        $('#int').fadeIn(400);        
-    })
-
-    window.splashHidden = true;
     window.mapShown = false;
-    window.hideSplash = function(e){
-
-        
+    window.mapAnimation = function(e){
         var entrepreneurs = $('#entrepreneurs').position();
 
-        if($(window).scrollTop() > entrepreneurs.top+200 && !window.mapShown && window.splashHidden){
+        if($(window).scrollTop() > entrepreneurs.top+200 && !window.mapShown){
             window.mapShown = true;
 
             $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){
                 $('#map-container #map img#map-names').fadeIn()
             });
         }
-
-        // if(window.splashHidden){return}
-
-        // $.scrollTo('#entrepreneurs', 0);
-        // $('#fixadent').fadeOut();
-
-        // $('#home').animate({top: '-1000px'}, 1000, 'linear', function(){
-        //     window.splashHidden = true;
-        // });
     };
 
     $(document).foundation();
     $(document).ready(function () {
-        $('#home').on('click',window.hideSplash);
-        $(window).on('scroll', window.hideSplash);
+        //MOVE SCROLL BUTTON
+        $('body').css('overflow','hidden');
+        $('#int').fadeOut(0);
+
+        $('#your-move').on('click',function(){
+            window.scrollTo(0,0);
+            $('body').css('overflow','auto');
+            $('#home').css('position', 'relative');
+            var e_pos = $('#entrepreneurs').position();
+            $('html , body').animate( {scrollTop : e_pos.top+'px'},400,function(){
+                $('body').scrollTop(scroll-e_pos.top);
+            });
+            $('#home').fadeOut();
+            $('#fixadent').fadeOut();
+            $('#int').fadeIn(400);        
+        });
+
+        $(window).on('scroll', window.mapAnimation);
     });
 </script>
 <!-- <script src="/js/500.js"></script> -->
