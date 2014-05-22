@@ -298,6 +298,7 @@ section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padd
 section#portfolio.accelerator-top #mentors.accelerator h4 {margin-top: 5rem}
 section#portfolio.accelerator-top #mentors.accelerator h4:first-child {margin-top: 5rem}
 section#portfolio.accelerator-top #mentors.accelerator p{text-align:center; width:620px; margin:0 auto}
+section#portfolio.accelerator-top #mentors.accelerator .content p{width: 100%}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations {margin-top: 2rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; border-right: solid 1px #000; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd:last-child {border: none;}
@@ -425,10 +426,16 @@ header#int.simple {background-color: transparent;z-index: 2}
 #map-container #map img#map-names {display:none;}
 #map-container .center{text-align:center; color:#FFF}
 #map-container button.outline{background-color: transparent; color: #FFF; border: solid 1px #FFF}
+#map-container a.outline{background-color: transparent; color: #FFF; border: solid 1px #FFF; margin: 1.25rem 0;display: inline-block;padding-top: 1rem;padding-right: 2rem;padding-bottom: 1.0625rem;padding-left: 2rem;font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 1rem;}
 #map-container button.outline:hover{background-color: #FFF; color: #a9c8de}
+#map-container a.outline:hover{background-color: #FFF; color: #a9c8de}
 .separator {border-bottom: solid 1px #ccc; margin: 4rem 0;}
 button.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322;}
 button.outline:hover {background-color: #b43322; color: #FFF}
+a.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322; margin: 1.25rem 0;display: inline-block;padding-top: 1rem;padding-right: 2rem;padding-bottom: 1.0625rem;padding-left: 2rem;font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 1rem;}
+a.outline:hover {background-color: #b43322; color: #FFF}
+section#help-startups a.btn-accelerator{color:white;border-style: solid;border-width: 0px;cursor: pointer;font-family: 'Open Sans', sans-serif;font-weight: 600;line-height: normal;margin: 1.25rem 0;position: relative;text-decoration: none;text-align: center;-webkit-appearance: none;-webkit-border-radius: 0;display: inline-block;padding-top: 1rem;padding-right: 2rem;padding-bottom: 1.0625rem;padding-left: 2rem;font-size: 1rem;background-color: #b43322;border-color: #90291b;color: white;transition: background-color 300ms ease-out;}
+section#help-startups a.btn-accelerator:hover{background-color: #891e1b;color: white;}
 #info_square{width:620px; height:60px; margin:40px auto 0 auto}
 #info_square img{float:left; margin-left:46px}
 #info_square p{float:left; font-size:16px; margin-top:-4px}
