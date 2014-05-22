@@ -261,7 +261,7 @@ var createRoute = function (type) {
 			}
 
 			if(fields.expertise){
-				user.expertise = fields.expertise.split(',');
+				user.expertise = fields.expertise.toLowerCase().split(',');
 			}
 
 			if(fields.action === 'publish'){
@@ -351,7 +351,7 @@ var updateUserRoute = function (type) {
 			}
 
 			if(fields.expertise){
-				currentUser.expertise = fields.expertise.split(',');
+				currentUser.expertise = fields.expertise.toLowerCase().split(',');
 			}
 
 			if(fields.action === 'publish'){

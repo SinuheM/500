@@ -16,13 +16,13 @@ var userSchema = schema({
 	displayName : {type : String, es_indexed:true},
 	title       : {type : String},
 	companyName : {type : String}, // Just mentors
-	location    : {type : String},
+	location    : {type : String, lowercase: true},
 	link        : {type : String},
 	avatar      : {type : String},
 	background  : {type : String},// Just staff members
 	bio         : {type : String, es_indexed:true},
 
-	expertise   : [{type : String}], // Just mentors
+	expertise   : [{type : String, lowercase: true}], // Just mentors
 	
 	// twitter, facebook, quora, linkedin, github, vimeo, youtube, instagram, googleplus
 	profiles : [{

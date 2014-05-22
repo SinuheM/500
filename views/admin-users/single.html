@@ -112,7 +112,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Location</label>
 				<div class="col-sm-6">
-					<input name="location" type="text" class="form-control" value="{{currentUser.location}}">
+					<input id="location" name="location" type="text" class="form-control" value="{{currentUser.location}}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -183,12 +183,36 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="/js/vendors/underscore.js"></script>
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,geometry&sensor=false&callback=gMapsCallback"></script>
 <script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="/js/vendors/wysihtml5-0.3.0.min.js"></script>
 <script type="text/javascript" src="/js/vendors/bootstrap-wysihtml5.js"></script>
 <script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript">
+window.placeToObject = function (place) {
+	var o = {};
+
+
+	if( !(place.geometry && place.formatted_address) ){return o;}
+	var city = _(place.address_components).find(function(item){return item.types[0] === 'locality'});
+	var county = _(place.address_components).find(function(item){return item.types[0] === 'administrative_area_level_2'});
+
+	if(city.long_name){
+		o.city = city.long_name;
+	}else{
+		o.city = county.long_name
+	}
+
+	o.country = _(place.address_components).find(function(item){return item.types[0] === 'country'}).long_name;
+	o.state = _(place.address_components).find(function(item){return item.types[0] === 'administrative_area_level_1'}).short_name;
+
+	return o;
+};
+
+window.gMapsCallback = function(){};
+
 $(document).ready(function () {
 	$('#update-user').on('submit', function (e) {
 		var $avatarUploader = $('#update-user #uploader-avatar');
@@ -229,6 +253,27 @@ $(document).ready(function () {
 		"lists": false,
 		"image": false
 	});
+
+	$('#location').on('keypress', function(e){
+		if(e.which === 13){
+			e.preventDefault();
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({address:$('#location').val()}, function(results, status){
+				var address = results[0];
+				var place = window.placeToObject(address);
+
+				if(!place.country){
+					$('$location').val('');
+				}
+
+				if(place.country === "United States"){
+					setTimeout(function(){$('#location').val(place.city + ', ' + place.state)});
+				}else{
+					setTimeout(function(){$('#location').val(place.city + ', ' + place.country)});
+				}
+			});
+		}
+	});	
 });
 </script>
 {% endblock %}

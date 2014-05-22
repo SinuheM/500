@@ -39,9 +39,9 @@ utilsController.post('/mentors/search', function(req, res){
 
 		if(req.body.location){
 			query.location = req.body.location;
-		}		
+		}
 
-		User.find(query)
+		User.find(query, {displayName:1, slugStr:1, avatar:1, title:1})
 		.limit(8)
 		.skip(8*(req.body.page - 1))
 		.exec(function (err, mentors) {
