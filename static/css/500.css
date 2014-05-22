@@ -42,7 +42,7 @@ section {}
 #fixadent.fixed #logo .black {display: block;}
 header nav a:hover, header nav a.active {color: #f2f2f2; border-bottom: solid 4px #f2f2f2; padding-bottom: 0.5rem;}
 
-section#home {position:fixed; background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; overflow:hidden; z-index:100;}
+section#home {position:fixed; background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; overflow:hidden; z-index:100; background-color: #000}
 section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 section#entrepreneurs {text-align: center; padding: 8em 0 5em;}
