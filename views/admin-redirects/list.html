@@ -15,10 +15,6 @@
 		<p class="title">Redirects list.</p>
 	</div>
 	<div class="col-xs-6">
-		<div class="input-group stand-alone">
-			<span class="input-group-addon"><i class="fa fa-search"></i></span>
-			<input type="text" placeholder="Search" class="form-control searchbar">
-		</div>
 	</div>
 </div>
 <div id="startupsTable">
@@ -26,7 +22,7 @@
 </div>
 <div class="row">
 	<div class="col-xs-12 text-right">
-		<a href="/admin/activities/new" class="btn btn-success-alt">Add new</a>
+		<a href="/admin/redirects/new" class="btn btn-success-alt">Add new</a>
 	</div>
 </div>
 {% endblock %}
@@ -58,7 +54,7 @@ $(document).ready(function(){
 	window.redirects = {{redirects|json}};
 	{% endautoescape %}
 
-	var activityList = new window.Widgets.List({
+	var redirectList = new window.Widgets.List({
 		template : '#tableTemplate',
 		itemTemplate : '#tableRowTemplate',
 		itemTagName : 'tr',
@@ -66,31 +62,10 @@ $(document).ready(function(){
 			window.location = '/admin/redirects/' + this.model.get('_id');
 		}
 	});
-	activityList.render().$el.appendTo('#startupsTable');
-	activityList.fill(window.redirects);
+	redirectList.render().$el.appendTo('#startupsTable');
+	redirectList.fill(window.redirects);
 
-	window.widgets.activityList = activityList;
-
-	var stoppedTyping;
-	$('.searchbar').on('keyup', function(e){
-		var $this = $(this);
-		
-		if (stoppedTyping) clearTimeout(stoppedTyping);
-
-		stoppedTyping = setTimeout(function(){
-			window.widgets.activityList.empty();
-
-			if($this.val()){
-				var xhrSearch = $.post('/admin/users/search',{search: $this.val() });
-
-				xhrSearch.done(function(data){
-					window.widgets.activityList.fill(data.hits);
-				});
-			}else{
-				window.widgets.activityList.fill(window.users);
-			}
-		}, 500);
-	});
+	window.widgets.redirectList = redirectList;
 });
 </script>
 {% endblock %}
