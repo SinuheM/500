@@ -1,0 +1,97 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}{% if redirect %}{{redirect.title}}{% else %}New {{label}}{% endif %}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/css/bootstrap-timepicker.min.css" />
+{% endblock %}
+
+{% block header %}
+{% if redirect %}
+	<i class="fa fa-file-o"></i>{{redirect.url}} 
+	<span><a class="resorce-slug" href="/{{redirect.slugStr}}" target="_blank">500.co/{{redirect.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
+{% else %}
+	<i class="fa fa-file-o"></i> Add Redirect
+{% endif %}
+{% endblock %}
+
+{% block subheader %}
+	{% include "../partials/slug-change.html" with redirect only %}
+{% endblock %}
+
+{% block content %}
+{% if message %}
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Saved!</strong> {{message}}.
+</div>
+{% endif %}
+<div class="panel panel-dark">
+	{% if redirect %}
+	<form id="redirect-form" class="form-horizontal form-bordered" method="post" action="/admin/redirects/{{redirect.id}}/edit">
+	{% else %}
+	<form id="redirect-form" class="form-horizontal form-bordered" method="post" action="/admin/redirects/new">
+	{% endif %}
+		<div class="panel-heading">
+			{% if post %}
+			<h4 class="panel-title">Edit Redirect</h4>
+			{% else %}
+			<h4 class="panel-title">Create Redirect</h4> 
+			{% endif %}
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			{% if !redirect %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Slug</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">500.co/</span>
+						<input name="slugStr" type="text" placeholder="" class="input-slug form-control">
+					</div>					
+				</div>
+			</div>
+			{% endif %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Redirect to</label>
+				<div class="col-sm-6">
+					<input name="to" type="text" class="form-control" value="{{ redirect.url }}">
+				</div>
+			</div>			
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					{% if redirect %}
+					<button class="btn btn-success">Update</button>
+					{% else %}
+					<button class="btn btn-success">Create</button>
+					{% endif %}
+				</div>
+			</div>
+		</div>		
+	</form>
+</div>
+
+{% if redirect && user.type == 'admin' %}
+<div class="panel panel-danger">
+	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/redirects/{{redirect.id}}/delete">
+		<div class="panel-heading">
+			<h4 class="panel-title">Delete post</h4>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<label class="col-sm-9">This redirect will  be deleted</label>
+				<div class="col-sm-3 text-right">
+					<button class="btn btn-danger">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</form>	
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/admin/edit-url.js"></script>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}Activity list{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+	<i class="fa fa-file-o"></i>Redirects
+{% endblock %}
+
+{% block content %}
+<div class="row list-header">
+	<div class="col-xs-6">
+		<p class="title">Redirects list.</p>
+	</div>
+	<div class="col-xs-6">
+		<div class="input-group stand-alone">
+			<span class="input-group-addon"><i class="fa fa-search"></i></span>
+			<input type="text" placeholder="Search" class="form-control searchbar">
+		</div>
+	</div>
+</div>
+<div id="startupsTable">
+	
+</div>
+<div class="row">
+	<div class="col-xs-12 text-right">
+		<a href="/admin/activities/new" class="btn btn-success-alt">Add new</a>
+	</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/template" id="tableTemplate">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Slug</th>
+				<th>To</th>
+			</tr>
+		</thead>
+		<tbody class="list-container">			
+		</tbody>
+	</table>
+</script>
+<script type="text/template" id="tableRowTemplate">
+	<td><%= item.slugStr %></td>
+	<td><%= item.url %></td>
+</script>
+<script type="text/javascript" src="/js/vendors/underscore.js"></script>
+<script type="text/javascript" src="/js/vendors/backbone.js"></script>
+<script type="text/javascript" src="/js/init.js"></script>
+<script type="text/javascript" src="/js/widgets/list.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	{% autoescape false %}
+	window.redirects = {{redirects|json}};
+	{% endautoescape %}
+
+	var activityList = new window.Widgets.List({
+		template : '#tableTemplate',
+		itemTemplate : '#tableRowTemplate',
+		itemTagName : 'tr',
+		goTo : function() {
+			window.location = '/admin/redirects/' + this.model.get('_id');
+		}
+	});
+	activityList.render().$el.appendTo('#startupsTable');
+	activityList.fill(window.redirects);
+
+	window.widgets.activityList = activityList;
+
+	var stoppedTyping;
+	$('.searchbar').on('keyup', function(e){
+		var $this = $(this);
+		
+		if (stoppedTyping) clearTimeout(stoppedTyping);
+
+		stoppedTyping = setTimeout(function(){
+			window.widgets.activityList.empty();
+
+			if($this.val()){
+				var xhrSearch = $.post('/admin/users/search',{search: $this.val() });
+
+				xhrSearch.done(function(data){
+					window.widgets.activityList.fill(data.hits);
+				});
+			}else{
+				window.widgets.activityList.fill(window.users);
+			}
+		}, 500);
+	});
+});
+</script>
+{% endblock %}

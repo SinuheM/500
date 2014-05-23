@@ -34,6 +34,7 @@ var adminSlugsController = require('./admin-slugs');
 var adminPagesController = require('./admin-pages');
 var adminStartUpsController = require('./admin-startups');
 var adminActivitiesController = require('./admin-activities');
+var adminRedirectsController = require('./admin-redirects');
 var adminEventsController = require('./admin-events');
 var adminBlogController = require('./admin-blog');
 
@@ -44,6 +45,7 @@ adminController.attach(adminSlugsController);
 adminController.attach(adminPagesController);
 adminController.attach(adminStartUpsController);
 adminController.attach(adminActivitiesController);
+adminController.attach(adminRedirectsController);
 adminController.attach(adminEventsController);
 adminController.attach(adminBlogController.blog);
 adminController.attach(adminBlogController.podcast);
