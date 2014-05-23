@@ -25,8 +25,8 @@
                 <div class="clearfix"></div>
             </div>
             <div class="meta">
-                {% if post.author %}
-                <div class="author">by <span>Mark Saldaña</span></div>
+                {% if uploader %}
+                <div class="author">by <span>{{uploader.displayName}}</span></div>
                 {% endif %}
                 <div class="date">PUBLISHED {{post.createdDate|prettyDate}}</div>
             </div>
@@ -39,23 +39,28 @@
                     {{ post.content|safe }}
                 </div>
             </div>
-            {% if post.author %}
+            {% if uploader %}
             <div class="bottom">
                 <div class="center">
                     <div class="author">
-                        <img src="/img/founders/founder1.png">
+                        <img src="{{ uploader.avatar }}">
                         <div class="info">
-                            <h5>Published by <span>Mark Saldaña</span></h5>
-                            <p>Cesar was born and raised in a small remote town where he went to school and received a basic education. 140 characters limit</p>
+                            <h5>Published by <span>{{ uploader.displayName }}</span></h5>
+                            <p>{{uploader.bio|safe}}</p>
                         </div>
                     </div>
 
 
                     <ul class="social">
-                        <li>Share on</li>
-                        <li><a href="#"><img src="/img/social-facebook.png"></a></li>
-                        <li><a href="#"><img src="/img/social-twitter.png"></a></li>
-                        <li><a href="#"><img src="/img/social-gplus.png"></a></li>
+                        {% for profile in uploader.profiles %}
+                            {% if profile.url %}
+                            <li>
+                                <a target="_blank" href="{{profile.url|socialUrl(profile.provider)}}">
+                                    <img class="has-retina" src="{{profile.provider|socialEmoticon()}}" alt="{{profile.provider}}">
+                                </a>
+                            </li>                    
+                            {% endif %}
+                        {% endfor%}
                     </ul>
                     <div class="clearfix"></div>
                 </div>

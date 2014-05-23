@@ -90,6 +90,7 @@ var newPost = function(type){
 			res.data.breadcrumbs.push({
 				label : 'Add Blogpost'
 			});
+			type = 'blog';
 			label = 'blogpost';
 		}
 
