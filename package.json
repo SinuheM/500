@@ -21,7 +21,8 @@
     "busboy": "~0.2.3",
     "mkdirp": "~0.3.5",
     "moment": "~2.6.0",
-    "feed": "~0.2.6"
+    "feed": "~0.2.6",
+    "mixpanel": "0.0.20"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

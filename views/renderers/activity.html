@@ -85,10 +85,7 @@
                         <span class="icon"><img src="{{ activity.favicon }}"></span>
                     </div>
                     <div class="row-10">
-                        <h4>{{ activity.title }}</h4>
-                        <!--div class="detail">
-                            <p>{{activity.description}}</p>
-                        </div-->                        
+                        <h4>{{ activity.title }}</h4>                    
                         <div class="info">
                             <div class="video">{{ activity.media|safe }}</div>
                         </div>
@@ -108,7 +105,7 @@
                             <span class="icon"><img src="{{ activity.favicon }}"></span>
                         </div>
                         <div class="row-10">
-                            <h4><a class="twitt-body" target="_blank" href="{{ activity.url }}">" {{ activity.description }} "</a></h4>
+                            <h4><a class="twitt-body" target="_blank" href="{{ activity.slugStr }}">" {{ activity.description }} "</a></h4>
                             <div class="">
                                 <div class="image"><img src="{{ activity.image }}"> by <a target="_blank" href="{{ activity.author.url }}">@{{ activity.author.name }}</a></div>
                             </div>                            
@@ -127,9 +124,9 @@
                             <span class="icon"><img src="{{activity.favicon}}"></span>
                         </div>
                         <div class="row-10">
-                            <h4><a target="_blank" href="{{activity.url}}">{{activity.title}}</a></h4>
+                            <h4><a target="_blank" href="{{activity.slugStr}}">{{activity.title}}</a></h4>
                             <div class="info">
-                                <a target="_blank" href="{{activity.url}}">
+                                <a target="_blank" href="{{activity.slugStr}}">
                                     <div class="detail">
                                         <img src="{{activity.image}}">
                                         <p>{{activity.description}}</p>

@@ -12,6 +12,7 @@ var conf = require('./conf');
 console.log('Running app.js in', conf.env, 'environment');
 
 var app = express();
+var mixpanel = require('./lib/mixpanel');
 
 Controller.on('error', function (statusCode, error) {
 	console.log(statusCode, error);
@@ -144,6 +145,7 @@ app.get('/:slug', function (req, res) {
 				return render(req, res, data);
 			}
 
+			mixpanel.track('redirect', {url:data.resource.url});
 			return res.redirect(data.resource.url);
 		}
 
