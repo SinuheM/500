@@ -50,7 +50,7 @@ userSchema.statics.random = function(callback) {
 };
 
 userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
-	this.find({type:'mentor'}, {expertise:1, location:1})
+	this.find({type:'mentor', publish:true}, {expertise:1, location:1})
 	.exec(function(err, mentors){
 		if (err) {
 			return callback(err);

@@ -10,14 +10,12 @@ window.getQueryValues = function(){
 		}
 	});
 
-	console.log(query);
 	return query;
 };
 
 window.Widgets.List.prototype.search = function(){
 	var query = window.getQueryValues();
 	var self = this;
-	console.log('searching for ', query, self);
 
 	query.search = $('#searchbox').val();
 
@@ -49,17 +47,31 @@ $(document).ready(function () {
 		var $this = $(this);
 
 		stoppedTyping = setTimeout(function(){
+			var query, xhr;
 			if($this.val()){
 				if($this.val() === lastSearch){return;}
-				var xhr = $.post('/utils/mentors/search',{search: $this.val() });
+				query = window.getQueryValues();
+				query.search = $('#searchbox').val();
+
+				xhr = $.post('/utils/mentors/search',query);
 
 				xhr.done(function(data){
 					list.fill(data);
 					loading = true;
 				});
 			}else{
-				list.fill(window.mentors);
-				loading = false;
+				if ( window._.isEmpty( window.getQueryValues() ) ) {
+					list.fill(window.mentors);
+					loading = false;
+				}else{
+					query = window.getQueryValues();
+					xhr = $.post('/utils/mentors/search',query);
+
+					xhr.done(function(data){
+						list.fill(data);
+						window.loading = true;
+					});
+				}
 			}
 
 			lastSearch = $this.val();
@@ -69,9 +81,11 @@ $(document).ready(function () {
 
 	$(window).on('scroll', function(){
 		if($('footer').offset().top - window.scrollY - window.innerHeight < 0 && !loading){
+			if(!_.isEmpty(window.getQueryValues())){return;}
+
 			loading = true;
 			page++;
-			console.log('fetch more', page);
+
 
 			var xhr = $.post('/utils/mentors/search',{
 				search: $('#searchbox').val(),

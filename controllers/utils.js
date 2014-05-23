@@ -21,18 +21,9 @@ utilsController.post('/startups/search', function(req, res){
 });
 
 utilsController.post('/mentors/search', function(req, res){
-	console.log(req.body);
-
 	if(req.body.search){
-		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {type:'mentor', publish:true}}}, function(err, results) {
-			if(err){return res.sendError(500, err);}
-
-			var mentors = _.filter(results.hits, function(item){return item.displayName;})
-			.map(function(item){return {displayName:item.displayName, title:item.title, avatar:item.avatar, slugStr:item.slugStr} });
-			res.send(mentors);
-		});
-	}else{
 		var query = {type:'mentor', publish:true};
+
 		if(req.body.expertise){
 			query.expertise = req.body.expertise;
 		}
@@ -41,10 +32,33 @@ utilsController.post('/mentors/search', function(req, res){
 			query.location = req.body.location;
 		}
 
-		User.find(query, {displayName:1, slugStr:1, avatar:1, title:1})
-		.limit(8)
-		.skip(8*(req.body.page - 1))
-		.exec(function (err, mentors) {
+		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query}}, function(err, results) {
+			if(err){return res.sendError(500, err);}
+
+			var mentors = _.filter(results.hits, function(item){return item.displayName;})
+			.map(function(item){return {displayName:item.displayName, title:item.title, avatar:item.avatar, slugStr:item.slugStr} });
+			res.send(mentors);
+		});
+	}else{
+		var query = {type:'mentor', publish:true};
+		var paginate = true;
+		if(req.body.expertise){
+			query.expertise = req.body.expertise;
+			paginate = false;
+		}
+
+		if(req.body.location){
+			query.location = req.body.location;
+			paginate = false;
+		}
+
+		var queryObject = User.find(query, {displayName:1, slugStr:1, avatar:1, title:1});
+
+		if(paginate){
+			queryObject.limit(20).skip(20*(req.body.page - 1));
+		}
+
+		queryObject.exec(function (err, mentors) {
 			if(err){ return res.send(500, err);}
 
 			res.send(mentors);
