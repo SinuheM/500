@@ -152,8 +152,10 @@ $(document).ready(function () {
 		$('#splash-title-label').val( $('#splash-title').val() );
 		$('#splash-subtitle-label').val( $('#splash-subtitle').val() );
 
-		$el = $('#uploader-backgroundImage').css({width:1, height:1});
-		$el.detach().appendTo('form#home');
+		if($('#uploader-backgroundImage').val()){
+			$el = $('#uploader-backgroundImage').css({width:1, height:1});
+			$el.detach().appendTo('form#home');
+		}
 	});
 });
 </script>

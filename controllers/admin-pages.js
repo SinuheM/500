@@ -98,6 +98,8 @@ adminPagesController.post('/home', ensureExists('home'),function (req, res) {
 
 		if(hasImage){
 			fields.backgroundImage = backgroundImagePath;
+		}else{
+			fields.backgroundImage = page.data.backgroundImage;
 		}
 		page.data = fields;
 
