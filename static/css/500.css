@@ -99,6 +99,7 @@ section#activity #activity-list li .row-2 span img {height: 16px;width: 16px;mar
 section#activity #activity-list li h4 {margin-top: 0px}
 section#activity #activity-list li .provider {font-size: 0.85rem; text-decoration:underline; color:#b43322}
 section#activity #activity-list li h4 span a {text-decoration: underline; color: #000 !important}
+section#activity #activity-list li a.added-by {color: inherit !important;}
 section#activity #activity-list li .info {}
 section#activity #activity-list li .info .video {width: 100%; text-align: center}
 section#activity #activity-list li .info p {font-size: 1rem}

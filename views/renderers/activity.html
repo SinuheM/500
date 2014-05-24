@@ -53,7 +53,7 @@
                                 <div class="clearfix"></div>
                                 <div class="meta">
                                     {% if activity.uploader %}
-                                    <span>ADDED BY</span> {{activity.uploader.displayName}}
+                                    <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                                     {% endif %}
                                 </div>
                             </a>
@@ -73,7 +73,7 @@
                         <div class="clearfix"></div>
                         <div class="meta">
                             {% if activity.uploader %}
-                            <span>ADDED BY</span> {{activity.uploader.displayName}}
+                            <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                             {% endif %}
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <div class="clearfix"></div>
                         <div class="meta">
                             {% if activity.uploader %}
-                            <span>ADDED BY</span> {{activity.uploader.displayName}}
+                            <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                             {% endif %}
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             <div class="clearfix"></div>
                             <div class="meta">
                                 {% if activity.uploader %}
-                                <span>ADDED BY</span> {{activity.uploader.displayName}}
+                                <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                             <div class="clearfix"></div>
                             <div class="meta">
                                 {% if activity.uploader %}
-                                <span>ADDED BY</span> {{activity.uploader.displayName}}
+                                <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                                 {% endif %}
                             </div>
                         </div>
