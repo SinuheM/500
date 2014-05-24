@@ -31,6 +31,8 @@ header#fixadent nav a {color: #FFF;}
 header#fixadent.fixed nav a:hover, header#fixadent.fixed nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 
 #splash_text{margin:300px 0 0 200px; padding:0 !important; position:relative;}
+#splash_text #your-move{text-transform: uppercase;}
+#splash_text h1{text-transform: uppercase;}
 #home .over-shadow {position:absolute; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
 #over-text{position:absolute; z-index:2}
 .center {margin: 0 auto; max-width: 960px;}

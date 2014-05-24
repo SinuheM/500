@@ -1,6 +1,9 @@
 var controller = require('stackers'),
 	db = require('../lib/db'),
-	_ = require('underscore');
+	Busboy = require('busboy'),
+	path = require('path'),
+	_ = require('underscore'),
+	fs = require('fs');
 
 var Page = db.model('page');
 var Startup = db.model('startup');
@@ -65,17 +68,48 @@ adminPagesController.get('/home', ensureExists('home'),function (req, res) {
 });
 
 adminPagesController.post('/home', ensureExists('home'),function (req, res) {
-	var page = res.data.page;
-	if(req.body.acceleration){req.body.acceleration = req.body.acceleration.toLowerCase();}
-	if(req.body.seed){req.body.seed = req.body.seed.toLowerCase();}
-	if(req.body.stars){req.body.stars = req.body.stars.toLowerCase();}
+	var busboy = new Busboy({ headers: req.headers });
+	var fields = {};
+	var hasImage, extension;
 
-	page.data = req.body;
+	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+		if(fieldname === 'backgroundImage' && filename !== 'undefined') {
+			var extensionArray = filename.split('.');
+			extension = _.last(extensionArray);
 
-	page.save(function (err) {
-		if(err){return res.sendError(500, err);}
-		res.redirect('/admin/pages/home');
+			var backgroundImagePath = path.join(process.cwd(), '/public/uploads/', 'home-background.' + extension );
+			hasImage = true;
+
+			file.pipe(fs.createWriteStream(backgroundImagePath));
+		}
 	});
+
+	busboy.on('field', function(fieldname, val) {
+		fields[fieldname] = val;
+	});
+
+	busboy.on('finish', function() {
+		var backgroundImagePath = path.join('/uploads/', 'home-background.' + extension );
+
+		var page = res.data.page;
+		if(req.body.acceleration){fields.acceleration = fields.acceleration.toLowerCase();}
+		if(fields.seed){fields.seed = fields.seed.toLowerCase();}
+		if(fields.stars){fields.stars = fields.stars.toLowerCase();}
+
+		if(hasImage){
+			fields.backgroundImage = backgroundImagePath;
+		}
+		page.data = fields;
+
+		page.save(function (err) {
+			if(err){return res.sendError(500, err);}
+			res.redirect('/admin/pages/home');
+		});
+	});
+
+	req.pipe(busboy);
+	return;
+
 });
 
 adminPagesController.get('/accelerator', ensureExists('accelerator'), function (req, res) {

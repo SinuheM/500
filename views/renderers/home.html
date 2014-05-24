@@ -11,15 +11,18 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
+    {% if page.data.backgroundImage %}
+    <style type="text/css">section#home{background-image: url({{page.data.backgroundImage}}) }</style>
+    {% endif %}
 </head>
 <body>
     <section id="home">
         {% include "../partials/navbar.html" %}
         <div id="splash_text" class="center">
             <div id="over-text">
-                <h1>WE ARE 500 STRONG</h1>
-                <p>Meet the most badass, global family of startup founders, mentors and investors</p>
-                <button id="your-move">YOUR MOVE</button>
+                <h1>{{ page.data.splashTitle }}</h1>
+                <p>{{ page.data.splashSubtitle }}</p>
+                <button id="your-move">{{ page.data.splashButton }}</button>
             </div>
         </div>
         <div class="over-shadow" style="background-image: url(/img/over-staff-member-lite.png);"></div>

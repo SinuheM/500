@@ -17,6 +17,34 @@
 			<h4 class="panel-title">Startup information</h4>
 		</div>
 		<div class="panel-body panel-body-nopadding">
+			<legend>Splash</legend>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Splash title</label>
+				<div class="col-sm-6">
+					<input id="splash-title" type="text" class="form-control" value="{{ page.data.splashTitle }}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Splash subtitle</label>
+				<div class="col-sm-6">
+					<input id="splash-subtitle" type="text" class="form-control" value="{{ page.data.splashSubtitle }}">
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Splash button</label>
+				<div class="col-sm-6">
+					<input id="splash-button" type="text" class="form-control" value="{{ page.data.splashButton }}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Background image</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="backgroundImage">
+						<img src="{{page.data.backgroundImage}}"/>
+					</div>
+				</div>
+			</div>		
+			<legend>Startups</legend>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Acceleration</label>
 				<div class="col-sm-6">
@@ -61,13 +89,16 @@
 			</div>
 		</div>
 	</div>
-	<form id="home" class="form-horizontal form-bordered" method="post" action="/admin/pages/home">
+	<form id="home" class="form-horizontal form-bordered" method="post" action="/admin/pages/home" enctype="multipart/form-data">
 		<div class="panel-footer">
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3 text-right">
 					<input id="acceleration-values" name="acceleration" type="hidden">
 					<input id="seed-values" name="seed" type="hidden">
 					<input id="stars-values" name="stars" type="hidden">
+					<input id="splash-button-label" name="splashButton" type="hidden">
+					<input id="splash-title-label" name="splashTitle" type="hidden">
+					<input id="splash-subtitle-label" name="splashSubtitle" type="hidden">
 					<button class="btn btn-primary">Save</button>
 				</div>
 			</div>
@@ -116,6 +147,13 @@ $(document).ready(function () {
 		$('#acceleration-values').val(accelerationStartups.join(','));
 		$('#seed-values').val(seedStartups.join(','));
 		$('#stars-values').val(starsStartups.join(','));
+
+		$('#splash-button-label').val( $('#splash-button').val() );
+		$('#splash-title-label').val( $('#splash-title').val() );
+		$('#splash-subtitle-label').val( $('#splash-subtitle').val() );
+
+		$el = $('#uploader-backgroundImage').css({width:1, height:1});
+		$el.detach().appendTo('form#home');
 	});
 });
 </script>
