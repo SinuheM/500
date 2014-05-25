@@ -128,7 +128,6 @@ adminProfileController.post('/edit-password', function (req, res) {
 		user.save(function(){
 			req.flash('message', 'Password Updated!');
 			res.redirect('/admin/profile/');
-			res.send(req.body);
 		});
 	}else{
 		req.flash('error', 'Password doesnt match! Please try again');

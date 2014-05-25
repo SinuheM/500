@@ -32,7 +32,10 @@ var userSchema = schema({
 
 	active  : {type : Boolean, default: false},
 	publish : {type : Boolean},
-	deleted : {type : Boolean, default: false}
+	deleted : {type : Boolean, default: false},
+
+	token : {type : String},
+	tokenExpiration : {type:Date}
 });
 
 userSchema.plugin(Slug.plugIt, {type: 'user', slugFrom : 'displayName' });

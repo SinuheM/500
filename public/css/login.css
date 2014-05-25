@@ -32,3 +32,10 @@ body {
 .container .btn {
   border-radius: 0;
 }
+.container .forgot-password {
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  border-top: 1px solid #d3d3d3;
+}

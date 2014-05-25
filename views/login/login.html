@@ -16,6 +16,15 @@
 		<strong>Error!</strong> {{error}}.
 	</div>
 	{% endif %}
+	{% if message %}
+	<div class="alert alert-success">
+		<button class="close" data-dismiss="alert">
+			×
+		</button>
+		<i class="fa-fw fa fa-times"></i>
+		<strong>Success!</strong> {{message}}.
+	</div>
+	{% endif %}	
 	<div class="logo">
 		<img class="white" src="/img/500-white.png" alt="500">
 	</div>
@@ -26,5 +35,6 @@
 		<input type="password" name="password" class="form-control" placeholder="Password" required="">
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 	</form>
+	<a class="forgot-password" href="/forgot-password">Forgot your password?</a>
 </div>
 {% endblock %}

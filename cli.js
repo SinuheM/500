@@ -4,6 +4,7 @@ var db = require('./lib/db');
 var inquirer = require('inquirer');
 var _ = require('underscore');
 var util = require('util');
+var passwordHash = require('password-hash');
 
 db.loadModels(['user', 'startup']);
 var angelListApi = require('./lib/angelListApi');
@@ -196,25 +197,27 @@ if(taskName === 'searchUser'){
 			process.exit();
 		});
 	});
-}else if(taskName === 'setAsAdmin'){
+}else if(taskName === 'createAdmin'){
 	if(! (argv.email ) ){
 		console.log('FAIL!!! setAsAdmin requires a email');
-		console.log('SAMPLE: node cli.js setAsAdmin --email siedrix@gmail.com');
+		console.log('SAMPLE: node cli.js createAdmin --email siedrix@gmail.com --password foo --name "siedrix"');
 		process.exit();
 	}
 
-	User.findOne({username : argv.email}, function(err, user){
-		if(err){console.log('FAIL!!! setAsAdmin failed with error', err);process.exit();}
-		if(!user){console.log('FAIL!!! setAsAdmin. No user on found');process.exit();}
+	var password = passwordHash.generate(argv.password);
 
-		user.type = 'admin';
+	var user = new User({
+		username : argv.email,
+		password : password,
+		slugStr : argv.name,
+		type : 'admin'
+	});
 
-		user.save(function(err){
-			if(err){console.log('FAIL!!! setAsAdmin failed with error', err);process.exit();}
+	user.save(function(err){
+		if(err){console.log('FAIL!!! createAdmin failed with error', err);process.exit();}
 
-			console.log('User set as admin successfully');
-			process.exit();
-		});
+		console.log('Create admin was successfully');
+		process.exit();
 	});
 }else if(taskName === 'getUrlInfo'){
 	if(! (argv.url ) ){

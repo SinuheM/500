@@ -3,7 +3,10 @@ var controller = require('stackers'),
 	db = require('../lib/db'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local').Strategy,
-	passwordHash = require('password-hash');
+	passwordHash = require('password-hash'),
+	uuid = require('uuid'),
+	moment = require('moment'),
+	conf = require('../conf');
 
 var User = db.model('user');
 
@@ -32,15 +35,11 @@ loginController.get('/login', function (req, res) {
 	}
 
 	var error = req.flash('error');
-	res.render('login/login', {error: error[0]});
-});
-
-loginController.get('/signup', function (req, res) {
-	if (req.session && req.session.passport && req.session.passport.user) {
-		return res.redirect('/admin');
-	}
-
-	res.render('login/signup');
+	var message = req.flash('message');
+	res.render('login/login', {
+		error: error[0],
+		message: message[0]
+	});
 });
 
 loginController.get('/logout', function (req, res) {
@@ -49,34 +48,39 @@ loginController.get('/logout', function (req, res) {
 	res.redirect('/');
 });
 
-loginController.post('/signup', function (req, res) {
-	if (!(req.body.email && req.body.displayName && req.body.password && req.body.password === req.body.repassword)) {
-		res.send('invalid user');
+loginController.get('/forgot-password', function(req, res){
+	if (req.session && req.session.passport && req.session.passport.user) {
+		return res.redirect('/admin');
 	}
 
-	User.findOne({username: req.body.email}, function (err, user) {
-		if (err) { return res.send(500, err); }
-		if (user) { return res.send(400, {error: 'User already exist'}); }
+	var error = req.flash('forgot-error');
+	var message = req.flash('forgot-message');
+	res.render('login/forgot-password', {
+		error: error[0],
+		message: message[0]
+	});
+});
 
-		user = new User({
-			displayName : req.body.displayName,
-			username : req.body.email,
-			password : passwordHash.generate(req.body.password),
-			active   : true,
-			type     : 'team'
-		});
+loginController.get('/reset-password', function(req, res){
+	if(!req.query.token){
+		return res.render('login/reset-password',{error:'You need a reset token, get a new one'});
+	}
 
-		user.save(function (err, data) {
-			console.log('saved', err, data);
-			if (err) { return res.send(500, err); }
-			if (!req.session.passport) { req.session.passport = {}; }
+	User.findOne({token:req.query.token}, function(err, user){
+		if(err){return res.sendError(500, err);}
+		if(!user){
+			return res.render('login/reset-password',{error:'invalid token, get a new one'});
+		}
 
-			req.session.passport.user = {
-				id : data._id
-			};
-
-			res.redirect('/admin');
-		});
+		if( (moment(user.tokenExpiration) - moment()) > 0){
+			var softError = req.flash('reset-soft-error');
+			res.render('login/reset-password',{
+				token:user.token,
+				softError:softError[0]
+			});
+		}else{
+			res.render('login/reset-password',{error:'token has expire, get a new one'});
+		}
 	});
 });
 
@@ -85,5 +89,55 @@ loginController.post('/login', passport.authenticate('local', {
 	failureRedirect: '/login?error=true',
 	failureFlash: true
 }));
+
+loginController.post('/forgot-password', function(req, res){
+	User.findOne({username:req.body.email}, function(err, user){
+		if(err){return res.sendError(500, err);}
+		if(!user){
+			req.flash('forgot-error', 'No user found');
+
+			return res.redirect('/forgot-password');
+		}
+
+		user.token = uuid.v4();
+		user.tokenExpiration = moment().add('days', 1).toDate();
+
+		user.save(function(err){
+			if(err){return res.sendError(500, err);}
+			req.flash('forgot-message', 'Password reset has been send to you email');
+			res.redirect('/forgot-password');
+			// res.send(conf.baseUrl + '/reset-password/?token=' + user.token);
+		});
+	});
+});
+
+loginController.post('/reset-password', function(req, res){
+	if(!req.body.token){
+		req.flash('reset-error', 'No user found');
+		return res.redirect('/reset-password');
+	}
+
+	User.findOne({token:req.body.token}, function(err, user){
+		if(err){return res.sendError(500, err);}
+		if(!user){
+			req.flash('reset-error', 'No user found');
+			return res.redirect('/reset-password');
+		}
+
+		if(req.body.password === req.body.confirm){
+			user.password = passwordHash.generate(req.body.password);
+			user.token = null;
+			user.tokenExpiration = null;
+
+			user.save(function(){
+				req.flash('message', 'Password Updated!');
+				res.redirect('/login');
+			});
+		}else{
+			req.flash('reset-soft-error', 'Passwords doesnt match');
+			return res.redirect('/reset-password?token='+ user.token);
+		}
+	});
+});
 
 module.exports = loginController;
