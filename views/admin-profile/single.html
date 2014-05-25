@@ -1,0 +1,273 @@
+{% extends '../layouts/admin.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block head %}
+	<link rel="stylesheet" href="/css/vendors/bootstrap-wysihtml5.css" />
+	<link rel="stylesheet" href="/css/jquery.tagsinput.css" />
+{% endblock %}
+
+{% block header %}
+	<img class="avatar" src="{{currentUser.avatar}}">
+	{{currentUser.displayName}} <span><a class="resorce-slug" href="/{{currentUser.slugStr}}" target="_blank">500.co/{{currentUser.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
+{% endblock %}
+
+{% block subheader %}
+	{% include "../partials/slug-change.html" with currentUser only %}
+{% endblock %}
+
+{% block content %}
+{% if error %}
+<div class="alert alert-danger">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Error!</strong> {{error}}.
+</div>
+{% endif %}
+{% if message %}
+<div class="alert alert-success">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	<strong>Saved!</strong> {{message}}.
+</div>
+{% endif %}
+<div class="panel panel-dark">
+	<form id="update-user" class="form-horizontal form-bordered" method="post" action="/admin/profile/edit"  enctype="multipart/form-data">
+		<div class="panel-heading">
+			<h4 class="panel-title">Edit your profile information</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Name</label>
+				<div class="col-sm-6">
+					<input name="displayName" type="text" class="form-control" value="{{currentUser.displayName}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Avatar</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="avatar">
+						<img src="{{currentUser.avatar}}"/>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Email</label>
+				<div class="col-sm-6">
+					<input name="email" type="text" class="form-control" value="{{currentUser.username}}">
+				</div>
+			</div>
+			{% if type == "user" %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Type</label>
+				<div class="col-sm-6">
+					<select id="type" name="type" class="form-control input-sm mb15">
+						<option value="founder" {% if currentUser.type == "founder"%}selected{% endif %}>Founder</option>
+						<option value="mentor" {% if currentUser.type == "mentor"%}selected{% endif %}>Mentor</option>
+						<option value="team" {% if currentUser.type == "team"%}selected{% endif %}>Team</option>
+						<option value="admin" {% if currentUser.type == "admin"%}selected{% endif %}>Admin</option>
+					</select>
+				</div>
+			</div>
+			{% endif %}
+			{% if type == 'mentor' || type == "user" %}
+			<div class="form-group partial-fields" data-types="mentor">
+				<label class="col-sm-3 control-label">Company</label>
+				<div class="col-sm-6">
+					<input name="company" type="text" class="form-control" value="{{currentUser.companyName}}">
+				</div>
+			</div>
+			{% endif %}
+			{% if type == 'staff-member' || type == "user" || type=="admin" %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Background image</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="backgroundImage">
+						<img src="{{currentUser.background}}"/>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Title</label>
+				<div class="col-sm-6">
+					<input name="title" type="text" class="form-control" value="{{currentUser.title}}">
+				</div>
+			</div>				
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Bio</label>
+				<div class="col-sm-6">
+					<textarea id="bio" name="bio" class="form-control" rows="5">{{currentUser.bio}}</textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Location</label>
+				<div class="col-sm-6">
+					<input id="location" name="location" type="text" class="form-control" value="{{currentUser.location}}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Link</label>
+				<div class="col-sm-6">
+					<input name="link" type="text" class="form-control" value="{{currentUser.link}}">
+				</div>
+			</div>
+			{% if type == 'mentor' || type == "user" %}
+			<div class="form-group partial-fields" data-types="mentor">
+				<label class="col-sm-3 control-label">Expertise</label>
+				<div class="col-sm-6">
+					<input name="expertise" class="form-control form-tags" placeholder="Add expertise" value="{{currentUser.expertise|join(',')}}"/>
+				</div>
+			</div>
+			{% endif %}		
+			<legend>Profiles</legend>
+			{% for profile in currentUser.profiles %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">{{ profile.provider }}</label>
+				{% if profile.provider !== 'blog' %}
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span class="input-group-addon">{{profile.provider|slugPlaceholder}}</span>
+						<input name="{{profile.provider}}" type="text" placeholder="select-a-slug" class="input-slug form-control" value="{{profile.url}}">
+					</div>					
+				</div>
+				{% else %}
+				<div class="col-sm-6">
+					<input name="{{profile.provider}}" type="text" class="form-control" value="{{profile.url}}">
+				</div>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button name="action" value="update" class="btn btn-success">Update</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="panel panel-dark">
+	<form id="update-password" class="form-horizontal form-bordered" method="post" action="/admin/profile/edit-password">
+		<div class="panel-heading">
+			<h4 class="panel-title">Change your password</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Type password</label>
+				<div class="col-sm-6">
+					<input name="password" type="password" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Confirm password</label>
+				<div class="col-sm-6">
+					<input name="repassword" type="password" class="form-control">
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<button class="btn btn-success">Change password</button>
+				</div>
+			</div>
+		</div>		
+	</form>
+</div>			
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/vendors/underscore.js"></script>
+<script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,geometry&sensor=false&callback=gMapsCallback"></script>
+<script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript" src="/js/vendors/wysihtml5-0.3.0.min.js"></script>
+<script type="text/javascript" src="/js/vendors/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
+<script type="text/javascript">
+window.placeToObject = function (place) {
+	var o = {};
+
+
+	if( !(place.geometry && place.formatted_address) ){return o;}
+	var city = _(place.address_components).find(function(item){return item.types[0] === 'locality'});
+	var county = _(place.address_components).find(function(item){return item.types[0] === 'administrative_area_level_2'});
+
+	if(city.long_name){
+		o.city = city.long_name;
+	}else{
+		o.city = county.long_name
+	}
+
+	o.country = _(place.address_components).find(function(item){return item.types[0] === 'country'}).long_name;
+	o.state = _(place.address_components).find(function(item){return item.types[0] === 'administrative_area_level_1'}).short_name;
+
+	return o;
+};
+
+window.gMapsCallback = function(){};
+
+$(document).ready(function () {
+	$('#update-user').on('submit', function (e) {
+		var $avatarUploader = $('#update-user #uploader-avatar');
+
+		if($avatarUploader.val() === ''){
+			$avatarUploader.remove();
+		}
+
+		var $backgroundImageUploader = $('#update-user #uploader-backgroundImage');
+
+		if($backgroundImageUploader.val() === ''){
+			$backgroundImageUploader.remove();
+		}
+	});
+
+	{% if type == "user" %}
+	var typeHandler = function(e){
+		var $this = $('#type'),
+			value = $this.val();
+
+		$('.partial-fields').each(function(i, item){
+			var $item = $(item),
+				allowedTypes = $item.data('types');
+
+			if(allowedTypes.indexOf(value) >= 0){
+				$item.show();
+			}else{
+				$item.hide();
+			};
+		});
+	};
+	$('#type').on('change', typeHandler)
+	typeHandler();
+	{% endif %}
+
+	$('#bio').wysihtml5({
+		"font-styles": false,
+		"lists": false,
+		"image": false
+	});
+
+	$('#location').on('keypress', function(e){
+		if(e.which === 13){
+			e.preventDefault();
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode({address:$('#location').val()}, function(results, status){
+				var address = results[0];
+				var place = window.placeToObject(address);
+
+				if(!place.country){
+					$('$location').val('');
+				}
+
+				if(place.country === "United States"){
+					setTimeout(function(){$('#location').val(place.city + ', ' + place.state)});
+				}else{
+					setTimeout(function(){$('#location').val(place.city + ', ' + place.country)});
+				}
+			});
+		}
+	});	
+});
+</script>
+{% endblock %}

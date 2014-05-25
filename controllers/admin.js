@@ -37,6 +37,7 @@ var adminActivitiesController = require('./admin-activities');
 var adminRedirectsController = require('./admin-redirects');
 var adminEventsController = require('./admin-events');
 var adminBlogController = require('./admin-blog');
+var adminProfileController = require('./admin-profile');
 
 adminController.attach(adminUsersController.main);
 adminController.attach(adminUsersController.mentors);
@@ -49,5 +50,6 @@ adminController.attach(adminRedirectsController);
 adminController.attach(adminEventsController);
 adminController.attach(adminBlogController.blog);
 adminController.attach(adminBlogController.podcast);
+adminController.attach(adminProfileController);
 
 module.exports = adminController;
