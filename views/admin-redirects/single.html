@@ -46,7 +46,7 @@
 				<div class="col-sm-6">
 					<div class="input-group">
 						<span class="input-group-addon">500.co/</span>
-						<input name="slugStr" type="text" placeholder="" class="input-slug form-control">
+						<input id="slug" name="slugStr" type="text" placeholder="" class="input-slug form-control validate[required]">
 					</div>					
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Redirect to</label>
 				<div class="col-sm-6">
-					<input name="to" type="text" class="form-control" value="{{ redirect.url }}">
+					<input name="to" type="text" class="form-control validate[required]" value="{{ redirect.url }}">
 				</div>
 			</div>			
 		</div>
@@ -94,4 +94,9 @@
 
 {% block js %}
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#redirect-form').validationEngine('attach', {scroll: false});
+});
+</script>
 {% endblock %}

@@ -40,7 +40,7 @@
 				<div class="col-sm-6">
 					<div class="input-group">
 						<span class="input-group-addon">500.co/</span>
-						<input name="slugStr" type="text" placeholder="leave empty to have a generic slug" class="input-slug form-control" value="{{angelListUser.slug}}">
+						<input id="slug" name="slugStr" type="text" placeholder="leave empty to have a generic slug" class="input-slug form-control" value="{{angelListUser.slug}}">
 					</div>					
 				</div>
 			</div>		
@@ -120,7 +120,6 @@ $(document).ready(function () {
 				$('.media-content').val(data.media.html);
 			}
 
-			debugger;
 			if(data.provider_display === 'twitter.com'){
 				$('.author').val( JSON.stringify(data.authors[0]) );
 			}

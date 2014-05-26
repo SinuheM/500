@@ -12,6 +12,19 @@ adminSlugsController.param('slug', function (resourceIdId, done) {
 	Slug.findOne({resourceId: db.Types.ObjectId(resourceIdId)}, done);
 });
 
+adminSlugsController.post('/available', function (req, res) {
+	Slug.findOne({slug: req.body.slug}, function(err, slug){
+		if(err){return res.sendError(500, err);}
+
+		console.log(slug);
+		if(slug){
+			res.send({status:'taken'});
+		}else{
+			res.send({status:'available'});
+		}
+	});
+});
+
 adminSlugsController.post('/:slug/change', function (req, res) {
 	if(!res.data.slug){
 		return res.sendError(404, 'no slug for that resourceId');

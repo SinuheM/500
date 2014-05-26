@@ -67,4 +67,58 @@ $(document).ready(function () {
 			});
 		});
 	});
+
+	window.validSlug = true;
+	var checkSlug = function(){
+		var $slug = $('#slug');
+		var $inputGroup = $slug.parent();
+
+		if(!$slug.val()){
+			$('#validating-slug').remove();
+			window.validSlug = true;
+			return;
+		}
+		$('#validating-slug').remove();
+		$('<div id="validating-slug"><i class="fa fa-spinner fa-spin"></i> Checking</div>').insertAfter($inputGroup);
+
+		var xhr = $.post('/admin/slugs/available',{slug:$slug.val()});
+
+		xhr.done(function(data){
+			if(data.status === 'available'){
+				console.log('slug available', data.status);
+				$('#validating-slug').html('Slug available').css('color', '#3c763d');
+				window.validSlug = true;
+			}else{
+				console.log('slug taken', data.status);
+				$('#validating-slug').html('Slug taken').css('color', '#a94442');
+				window.validSlug = false;
+			}
+		});
+
+		xhr.fail(function(){
+			window.validSlug = false;
+			console.log(arguments);
+		});
+	};
+
+	$('#slug').on('blur', checkSlug);
+	$('#slug').on('keypress', function(e){
+		if(e.which === 13){
+			e.preventDefault();
+
+			checkSlug();
+		}
+	});
+
+	$('#slug').closest('form').on('submit', function(e){
+		if(!window.validSlug){
+			e.preventDefault();
+			$('#slug').focus();
+		}
+	});
+
+	if($('#slug').val()){
+		checkSlug();
+	}
+
 });
