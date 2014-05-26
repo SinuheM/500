@@ -6,7 +6,8 @@ var controller = require('stackers'),
 	passwordHash = require('password-hash'),
 	uuid = require('uuid'),
 	moment = require('moment'),
-	conf = require('../conf');
+	conf = require('../conf'),
+	mailer = require('../lib/mailer');
 
 var User = db.model('user');
 
@@ -104,9 +105,17 @@ loginController.post('/forgot-password', function(req, res){
 
 		user.save(function(err){
 			if(err){return res.sendError(500, err);}
-			req.flash('forgot-message', 'Password reset has been send to you email');
-			res.redirect('/forgot-password');
-			// res.send(conf.baseUrl + '/reset-password/?token=' + user.token);
+
+			mailer.send({
+				to:       'siedrix@gmail.com',
+				from:     'siedrix@gmail.com',
+				subject:  'Password reset',
+				html:     'To reset you password click on this link<br><a href="' + conf.baseUrl + '/reset-password/?token=' + user.token + '">' + conf.baseUrl + '/reset-password/?token=' + user.token + '</a>.'
+			}, function(err) {
+				if(err){return res.sendError(500, err);}
+				req.flash('forgot-message', 'Password reset has been send to you email');
+				res.redirect('/forgot-password');
+			});
 		});
 	});
 });
