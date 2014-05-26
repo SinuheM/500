@@ -164,6 +164,7 @@ loginController.post('/reset-password', function(req, res){
 			user.password = passwordHash.generate(req.body.password);
 			user.token = null;
 			user.tokenExpiration = null;
+			user.active = true;
 
 			user.save(function(){
 				req.flash('message', 'Password Updated!');
@@ -189,11 +190,17 @@ loginController.post('/complete-registration', function(req, res){
 			return res.redirect('/complete-registration');
 		}
 
+		if(user.active){
+			req.flash('error', 'Your user is already active, please log in');
+			return res.redirect('/login');
+		}
+
 		if( (moment(user.tokenExpiration) - moment()) > 0){
 			if(req.body.password === req.body.confirm){
 				user.password = passwordHash.generate(req.body.password);
 				user.token = null;
 				user.tokenExpiration = null;
+				user.active = true;
 
 				user.save(function(){
 					req.flash('message', 'Registration complete, please log in');

@@ -437,6 +437,27 @@ var inviteUser = function(type){
 adminUsersController  .post('/:currentUser/invite', inviteUser());
 adminStaffController  .post('/:currentUser/invite', inviteUser('staff-member'));
 
+var revokeUser = function(type){
+	return function(req, res){
+		var currentUser = res.data.currentUser;
+
+		if(!currentUser.can('admin', 'access')){
+			return res.sendError(403, 'user cant be invited to admin');
+		}
+
+		currentUser.active = false;
+
+		currentUser.save(function(err){
+			if(err){ return res.sendError(500, err); }
+
+			req.flash('message', 'User access to the admin has been revoked');
+			res.redirect('/admin/'+ (type||'user') +'s/' + currentUser.id );
+		});
+	};
+};
+adminUsersController  .post('/:currentUser/revoke', revokeUser());
+adminStaffController  .post('/:currentUser/revoke', revokeUser('staff-member'));
+
 var deleteUser = function(type){
 	return function (req, res) {
 		var user = res.data.currentUser;

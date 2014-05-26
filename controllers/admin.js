@@ -15,9 +15,9 @@ adminController.beforeEach(function (req, res, next) {
 
 	var id = db.Types.ObjectId(req.session.passport.user.id);
 	User.findOne({_id: id}, function (err, user) {
-		if (!user || user.type !== 'admin') {
-			return res.send(403, 'Forbiden');
-		}
+		if(!user){return res.send(403, 'Forbiden');}
+		if(!user.active){return res.send(403, 'Forbiden');}
+		if (!user.can('admin', 'access')) {return res.send(403, 'Forbiden');}
 		res.data.user = user;
 		res.user = user;
 
