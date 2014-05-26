@@ -24,6 +24,14 @@ adminStartUpsController.beforeEach(function(req, res, next){
 	next();
 });
 
+adminStartUpsController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'startups')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
 adminStartUpsController.param('currentStartup', function (currentStartupId, done) {
 	Startup.findOne({_id: db.Types.ObjectId(currentStartupId)}, done);
 });

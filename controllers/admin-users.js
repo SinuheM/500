@@ -38,6 +38,17 @@ adminMentorsController.beforeEach(breadcrumbs);
 adminUsersController.beforeEach(breadcrumbs);
 adminStaffController.beforeEach(breadcrumbs);
 
+var aclCheck = function(req, res, next){
+	if(res.user.can('admin', 'user-managment')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+};
+adminMentorsController.beforeEach(aclCheck);
+adminUsersController.beforeEach(aclCheck);
+adminStaffController.beforeEach(aclCheck);
+
 var labels = {
 	plurals : {
 		mentor : 'Mentors',

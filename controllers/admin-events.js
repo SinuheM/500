@@ -21,6 +21,14 @@ adminEventsController.beforeEach(function(req, res, next){
 	next();
 });
 
+adminEventsController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'events')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
 adminEventsController.param('currentEvent', function (currentEventId, done) {
 	Event.findOne({_id: db.Types.ObjectId(currentEventId)}, done);
 });

@@ -13,6 +13,14 @@ var adminPagesController = controller({
 	path : '/pages'
 });
 
+adminPagesController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'pages')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
 var ensureExists = function (pageName) {
 	return function (req, res, next) {
 		Page.findOne({name:pageName}, function (err, page) {

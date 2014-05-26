@@ -101,19 +101,27 @@ User.prototype.can = function(resourse, action) {
 
 User.setPermisions('admin', {
 	'admin' : {
-		'access' : true
+		'access' : true,
+		'user-managment' : true,
+		'startups' : true,
+		'activities' : true,
+		'pages' : true,
+		'events' : true,
+		'redirects' : true
 	}
 });
 
 User.setPermisions('team', {
 	'admin' : {
-		'access' : true
+		'access' : true,
+		'activities' : true,
 	}
 });
 
 User.setPermisions('contentEditor', {
 	'admin' : {
-		'access' : true
+		'access' : true,
+		'activities' : true,
 	}
 });
 

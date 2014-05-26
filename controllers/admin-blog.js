@@ -30,6 +30,22 @@ var breadcrumbs = function(req, res, next){
 adminBlogController.beforeEach(breadcrumbs);
 adminPodcastController.beforeEach(breadcrumbs);
 
+adminBlogController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'activities')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
+adminPodcastController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'activities')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
 var currentBlogpostParam = function(type){
 	return function (currectActivityId, done) {
 		var query = {_id: db.Types.ObjectId(currectActivityId)};

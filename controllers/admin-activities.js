@@ -18,6 +18,14 @@ adminActivitiesController.beforeEach(function(req, res, next){
 	next();
 });
 
+adminActivitiesController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'activities')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
 adminActivitiesController.param('currectActivity', function (currectActivityId, done) {
 	Activity.findOne({_id: db.Types.ObjectId(currectActivityId)})
 	.populate('uploader')

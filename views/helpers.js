@@ -1,5 +1,8 @@
 var url = require('url'),
-	moment = require('moment');
+	moment = require('moment'),
+	db = require('../lib/db');
+
+var User = db.model('user');
 
 var helpers = function(swig){
 	swig.setFilter('slugPlaceholder', function (provider) {
@@ -130,6 +133,10 @@ var helpers = function(swig){
 
 	swig.setFilter('dateToString', function (date) {
 		return moment(date).format();
+	});
+
+	swig.setFilter('can', function (user, resourse, action) {
+		return User.prototype.can.call(user, resourse,action);
 	});
 };
 

@@ -17,6 +17,14 @@ adminRedirectsController.beforeEach(function(req, res, next){
 	next();
 });
 
+adminRedirectsController.beforeEach(function(req, res, next){
+	if(res.user.can('admin', 'redirects')){
+		next();
+	}else{
+		res.sendError(403, 'forbidden');
+	}
+});
+
 adminRedirectsController.param('redirect', function (redirectId, done) {
 	Activity.findOne({_id: db.Types.ObjectId(redirectId)})
 	.populate('slug')
