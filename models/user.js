@@ -80,4 +80,41 @@ userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
 
 var User = db.model('user', userSchema);
 
+var permisions = {};
+User.setPermisions = function(type, config){
+	if(!permisions[type]) permisions[type] = {};
+
+	permisions[type] = _.extend(permisions[type],config);
+};
+
+User.prototype.can = function(resourse, action) {
+	if(
+		permisions[this.type] &&
+		permisions[this.type][resourse] &&
+		permisions[this.type][resourse][action]
+	){
+		return true;
+	}else{
+		return false;
+	}
+};
+
+User.setPermisions('admin', {
+	'admin' : {
+		'access' : true
+	}
+});
+
+User.setPermisions('team', {
+	'admin' : {
+		'access' : true
+	}
+});
+
+User.setPermisions('contentEditor', {
+	'admin' : {
+		'access' : true
+	}
+});
+
 module.exports = User;

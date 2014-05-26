@@ -39,3 +39,9 @@ body {
   display: block;
   border-top: 1px solid #d3d3d3;
 }
+.container > p {
+  padding: 5px 10px;
+}
+.container > h3 {
+  padding: 0 10px;
+}

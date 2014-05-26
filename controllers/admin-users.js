@@ -4,7 +4,11 @@ var controller = require('stackers'),
 	Busboy = require('busboy'),
 	path = require('path'),
 	_ = require('underscore'),
-	fs = require('fs');
+	fs = require('fs'),
+	uuid = require('uuid'),
+	moment = require('moment'),
+	conf = require('../conf'),
+	mailer = require('../lib/mailer');
 
 var User = db.model('user');
 var Slug = db.model('slug');
@@ -402,6 +406,36 @@ adminUsersController.post('/searchAngelList', function(req, res){
 		res.send(results);
 	});
 });
+
+var inviteUser = function(type){
+	return function(req, res){
+		var currentUser = res.data.currentUser;
+
+		if(!currentUser.can('admin', 'access')){
+			return res.sendError(403, 'user cant be invited to admin');
+		}
+
+		currentUser.token = uuid.v4();
+		currentUser.tokenExpiration = moment().add('days', 1).toDate();
+
+		currentUser.save(function(err){
+			if(err){ return res.sendError(500, err); }
+
+			mailer.send({
+				to:       currentUser.username,
+				from:     'siedrix@gmail.com',
+				subject:  '500 Admin panel inviation',
+				html:     'You have been invited to have access to 500.co admin panel<br>To complete the registration process click on this link<br><a href="' + conf.baseUrl + '/complete-registration?token=' + currentUser.token + '">' + conf.baseUrl + '/complete-registration?token=' + currentUser.token + '</a>.'
+			}, function(err) {
+				if(err){return res.sendError(500, err);}
+				req.flash('message', 'User invited sucessfully');
+				res.redirect('/admin/'+ (type||'user') +'s/' + currentUser.id );
+			});
+		});
+	};
+};
+adminUsersController  .post('/:currentUser/invite', inviteUser());
+adminStaffController  .post('/:currentUser/invite', inviteUser('staff-member'));
 
 var deleteUser = function(type){
 	return function (req, res) {

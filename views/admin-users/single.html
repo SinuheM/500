@@ -163,7 +163,51 @@
 	</form>
 </div>
 
-{% if  user.type == 'admin' %}
+{% if user.type == 'admin' %}
+
+{% if currentUser.type == 'admin' or currentUser.type == 'team' %}
+	{% if !currentUser.active %}
+	<div class="panel panel-dark">
+		<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}s/{{currentUser.id}}/invite">
+			<div class="panel-heading">
+				<h4 class="panel-title">Invite user</h4>
+			</div>
+			<div class="panel-footer">
+				{% if currentUser.username %}
+				<div class="row">
+					<label class="col-sm-9">This action will invite user the 500 admin panel</label>
+					<div class="col-sm-3 text-right">
+						<button class="btn btn-primary">Send invitation</button>
+					</div>
+				</div>
+				{% else %}
+				<div class="row">
+					<label class="col-sm-9">Add email to be able to invite usar to admin panel</label>
+				</div>			
+				{% endif %}
+			</div>
+		</form>
+	</div>
+	{% else %}
+	<div class="panel panel-danger">
+		<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}s/{{currentUser.id}}/delete">
+			<div class="panel-heading">
+				<h4 class="panel-title">This is a active user</h4>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<label class="col-sm-9">This action will revoke user access to admin</label>
+					<div class="col-sm-3 text-right">
+						<button class="btn btn-danger">Revoke access</button>
+					</div>
+				</div>
+			</div>		
+		</form>
+	</div>
+	{% endif %}
+{% endif %}
+
+
 <div class="panel panel-danger">
 	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}s/{{currentUser.id}}/delete">
 		<div class="panel-heading">

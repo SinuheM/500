@@ -85,6 +85,33 @@ loginController.get('/reset-password', function(req, res){
 	});
 });
 
+loginController.get('/complete-registration', function(req, res){
+	if(!req.query.token){
+		return res.render('login/complete-registration',{error:'You need a invition token, please contact the admin team to get one'});
+	}
+
+	User.findOne({token:req.query.token}, function(err, user){
+		if(err){return res.sendError(500, err);}
+		if(!user){
+			return res.render('login/complete-registration',{error:'invalid token, please contact the admin team to get a new one'});
+		}
+
+		if( (moment(user.tokenExpiration) - moment()) > 0){
+			var error = req.flash('complete-error');
+			var softError = req.flash('complete-soft-error');
+
+			res.render('login/complete-registration',{
+				user: user,
+				token:user.token,
+				error:error[0],
+				softError:softError[0]
+			});
+		}else{
+			res.render('login/complete-registration',{error:'token has expire, get a new one'});
+		}
+	});
+});
+
 loginController.post('/login', passport.authenticate('local', {
 	successRedirect: '/admin',
 	failureRedirect: '/login?error=true',
@@ -107,10 +134,10 @@ loginController.post('/forgot-password', function(req, res){
 			if(err){return res.sendError(500, err);}
 
 			mailer.send({
-				to:       'siedrix@gmail.com',
+				to:       user.username,
 				from:     'siedrix@gmail.com',
 				subject:  'Password reset',
-				html:     'To reset you password click on this link<br><a href="' + conf.baseUrl + '/reset-password/?token=' + user.token + '">' + conf.baseUrl + '/reset-password/?token=' + user.token + '</a>.'
+				html:     'To reset you password click on this link<br><a href="' + conf.baseUrl + '/reset-password?token=' + user.token + '">' + conf.baseUrl + '/reset-password?token=' + user.token + '</a>.'
 			}, function(err) {
 				if(err){return res.sendError(500, err);}
 				req.flash('forgot-message', 'Password reset has been send to you email');
@@ -145,6 +172,40 @@ loginController.post('/reset-password', function(req, res){
 		}else{
 			req.flash('reset-soft-error', 'Passwords doesnt match');
 			return res.redirect('/reset-password?token='+ user.token);
+		}
+	});
+});
+
+loginController.post('/complete-registration', function(req, res){
+	if(!req.body.token){
+		req.flash('complete-error', 'No user found');
+		return res.redirect('/complete-registration');
+	}
+
+	User.findOne({token:req.body.token}, function(err, user){
+		if(err){return res.sendError(500, err);}
+		if(!user){
+			req.flash('complete-error', 'No user found');
+			return res.redirect('/complete-registration');
+		}
+
+		if( (moment(user.tokenExpiration) - moment()) > 0){
+			if(req.body.password === req.body.confirm){
+				user.password = passwordHash.generate(req.body.password);
+				user.token = null;
+				user.tokenExpiration = null;
+
+				user.save(function(){
+					req.flash('message', 'Registration complete, please log in');
+					res.redirect('/login');
+				});
+			}else{
+				req.flash('complete-soft-error', 'Passwords doesnt match');
+				return res.redirect('/complete-registration?token='+ user.token);
+			}
+		}else{
+			req.flash('complete-soft-error', 'Token has expire, request another with the admin team');
+			return res.redirect('/complete-registration?token='+ user.token);
 		}
 	});
 });
