@@ -69,7 +69,7 @@ var beforeEach = function(type){
 		var query = {_id: db.Types.ObjectId(currentUserId)};
 
 		if(type === 'staff-member'){
-			query.type = {$in:['team', 'admin']};
+			query.type = {$in:['team', 'admin', 'contentEditor']};
 		}else if(type){
 			query.type = labels.queryBy[type];
 		}
@@ -90,7 +90,7 @@ var indexRoute = function(type){
 
 		var query;
 		if(type === 'staff-member'){
-			query = {type:{$in:['team', 'admin']} };
+			query = {type:{$in:['team', 'admin', 'contentEditor']} };
 		}else if(type){
 			query = {type:labels.queryBy[type]};
 		}else{

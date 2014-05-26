@@ -60,6 +60,7 @@
 					<select id="type" name="type" class="form-control input-sm mb15">
 						<option value="founder" {% if currentUser.type == "founder"%}selected{% endif %}>Founder</option>
 						<option value="mentor" {% if currentUser.type == "mentor"%}selected{% endif %}>Mentor</option>
+						<option value="contentEditor" {% if currentUser.type == "contentEditor"%}selected{% endif %}>Content Editor</option>
 						<option value="team" {% if currentUser.type == "team"%}selected{% endif %}>Team</option>
 						<option value="admin" {% if currentUser.type == "admin"%}selected{% endif %}>Admin</option>
 					</select>
@@ -165,7 +166,7 @@
 
 {% if user.type == 'admin' %}
 
-{% if currentUser.type == 'admin' or currentUser.type == 'team' %}
+{% if currentUser.type == 'admin' or currentUser.type == 'team' or currentUser.type == 'contentEditor' %}
 	{% if !currentUser.active %}
 	<div class="panel panel-dark">
 		<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/{{type}}s/{{currentUser.id}}/invite">

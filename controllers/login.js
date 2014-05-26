@@ -166,7 +166,9 @@ loginController.post('/reset-password', function(req, res){
 			user.tokenExpiration = null;
 			user.active = true;
 
-			req.session.destroy();
+			if(req.session.passport){
+				req.session.passport = null;
+			}
 
 			user.save(function(){
 				req.flash('message', 'Password Updated!');
@@ -204,7 +206,9 @@ loginController.post('/complete-registration', function(req, res){
 				user.tokenExpiration = null;
 				user.active = true;
 
-				req.session.destroy();
+				if(req.session.passport){
+					req.session.passport = null;
+				}
 
 				user.save(function(){
 					req.flash('message', 'Registration complete, please log in');
