@@ -108,6 +108,11 @@ User.setPermisions('admin', {
 		'pages' : true,
 		'events' : true,
 		'redirects' : true
+	},
+	'slug' : {
+		'activity' : true,
+		'user' : true,
+		'startup' : true
 	}
 });
 
@@ -115,6 +120,9 @@ User.setPermisions('team', {
 	'admin' : {
 		'access' : true,
 		'activities' : true,
+	},
+	'slug' : {
+		'activity' : true
 	}
 });
 
@@ -122,6 +130,9 @@ User.setPermisions('contentEditor', {
 	'admin' : {
 		'access' : true,
 		'activities' : true,
+	},
+	'slug' : {
+		'activity' : true
 	}
 });
 

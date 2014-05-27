@@ -32,6 +32,10 @@ adminSlugsController.post('/:slug/change', function (req, res) {
 
 	var slug = res.data.slug;
 
+	if(!res.user.can('slug', slug.resourceType)){
+		return res.send({error:true, message:'Forbidden'});
+	}
+
 	slug.change(req.body.value, function(err){
 		if(err){
 			if(err.validationError){
