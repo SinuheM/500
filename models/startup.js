@@ -26,7 +26,7 @@ var startupSchema = schema({
 	markets     : [{type : String}],
 	
 	batch       : {type : schema.Types.ObjectId, ref: 'batch'},
-	founders    : [{type : schema.Types.ObjectId, ref: 'user'}],
+	founders    : [schema.Types.Mixed],
 	updatedDate : {type : Date},
 	createdDate	: {type : Date, default: Date.now},
 	createdBy   : {type : schema.Types.ObjectId, ref: 'user'},

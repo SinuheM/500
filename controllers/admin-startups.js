@@ -397,6 +397,23 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	req.pipe(busboy);
 });
 
+adminStartUpsController.post('/:currentStartup/add-founders', function (req, res) {
+	var founders;
+	var startup = res.data.currentStartup;
+
+	if(req.body.founder){
+		founders = JSON.parse(req.body.founder);
+	}
+
+	startup.founders = founders;
+
+	startup.save(function(err){
+		if(err){ return res.sendError(500, err); }
+		req.flash('message', 'Founders updated sucessfully');
+		res.redirect('/admin/startups/' + startup.id );
+	});
+});
+
 adminStartUpsController.post('/:currentStartup/delete', function (req, res) {
 	var startup = res.data.currentStartup;
 

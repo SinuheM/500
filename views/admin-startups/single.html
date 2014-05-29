@@ -169,6 +169,48 @@
 	</form>
 </div>
 
+<div class="panel panel-dark">	
+	<div class="form-horizontal form-bordered">
+		<div class="panel-heading">
+			<h4 class="panel-title">Add founders to startup</h4>
+		</div>
+		<div class="panel-body panel-body-nopadding">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Search angellist to add founder</label>
+				<div class="col-sm-6">
+					<input id="founders" type="text" class="form-control page-autocomplete" data-url="/admin/users/searchAngelList" data-store="founders" data-list="#founders-list">
+				</div>
+			</div>
+			<div id="founders-list" class="form-group sortable">
+			{% for founder in currentStartup.founders %}
+				<div class="order-label alert alert-founder" data-id="{{founder.id}}" data-pic="{{founder.pic}}" data-name="{{founder.name}}" data-name="{{founder.name}}">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					<div class="row">
+						<div class="col-xs-3">
+							<img src="{{founder.pic}}"/>
+						</div>
+						<div class="col-xs-9">
+							<h4>{{ founder.name }}</h4>
+							<input class="title" placeholder="founder title" value="{{founder.title}}"> 
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+	<form id="founders-form" class="form-horizontal form-bordered" method="post" action="/admin/startups/{{currentStartup.id}}/add-founders">
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-sm-9 col-sm-offset-3 text-right">
+					<input id="founders-input" name="founder" type="hidden"/>
+					<button class="btn btn-primary">Save</button>
+				</div>
+			</div>
+		</div>
+	</form>	
+</div>
+
 {% if  user.type == 'admin' %}
 <div class="panel panel-danger">
 	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/startups/{{currentStartup.id}}/delete">
@@ -196,7 +238,9 @@
 <script type="text/javascript" src="/js/vendors/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript" src="/js/vendors/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript" src="/js/admin/page.js"></script>
 <script type="text/javascript">
+window.founders = {};
 window.placeToObject = function (place) {
 	var o = {};
 
@@ -284,6 +328,48 @@ $(document).ready(function(){
 				}
 			});
 		}
+	});
+
+	$('#founders').on('keyup', function (e) {
+		var $this = $(this);
+		var store = $this.data('store');
+
+		if( e.which === 13 && $this.val() && window[store][$this.val()] ){
+			var founder = window[store][$this.val()];
+
+			var $label = $('<div class="order-label alert alert-founder">' +
+				'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+				'<div class="row">'+
+					'<div class="col-xs-3">'+
+						'<img src="' + founder.pic + '"/>' +
+					'</div>'+
+					'<div class="col-xs-9">'+
+						'<h4>' + founder.name + '</h4>'+
+						'<input class="title" placeholder="founder title">' +
+					'</div>'+
+				'</div>'+
+			'</div>');
+
+			$label.data(window[store][$this.val()] );
+
+			$this.val('');
+			$($this.data('list')).append($label);
+		}
+	});
+
+	$('#founders-form').on('submit', function(e){
+		var founders = [];
+		$('#founders-list').find('> div').each(function(i, item){
+			var $item = $(item);
+
+			var data = $item.data();
+			data.title = $item.find('input').val();
+
+			founders.push(data);
+		});
+
+		var foundersAsStr = JSON.stringify(founders);
+		$('#founders-input').val(foundersAsStr);
 	});
 });
 

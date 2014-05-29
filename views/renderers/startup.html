@@ -95,38 +95,19 @@
                         <p>{{startup.description|safe}}</p>
                     </div>
                 </div>
-                {% if startup.founders.lenght %}
+                {% if startup.founders.length %}
                 <div class="founders">
                     <h4>Founders</h4>
                     <ul>
+                        {% for founder in startup.founders %}
                         <li>
-                            <img src="/img/founders/founder1.png">
+                            <img src="{{ founder.pic }}">
                             <div class="perfil">
-                                <h5>Jeduan Cornejo</h5>
-                                <h6>CEO</h6>
+                                <h5>{{ founder.name }}</h5>
+                                <h6>{{ founder.title }}</h6>
                             </div>
                         </li>
-                        <li>
-                            <img src="/img/founders/founder1.png">
-                            <div class="perfil">
-                                <h5>Jeduan Cornejo</h5>
-                                <h6>CEO</h6>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="/img/founders/founder1.png">
-                            <div class="perfil">
-                                <h5>Jeduan Cornejo</h5>
-                                <h6>CEO</h6>
-                            </div>
-                        </li>
-                        <li>
-                            <img src="/img/founders/founder1.png">
-                            <div class="perfil">
-                                <h5>Jeduan Cornejo</h5>
-                                <h6>CEO</h6>
-                            </div>
-                        </li>
+                        {% endfor %}
                     </ul>
                     {% endif %}
                     <div class="clearfix"></div>
