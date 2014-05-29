@@ -6,6 +6,7 @@
     <title>Mentors @500.co</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
+    <link rel="stylesheet" href="/css/animate.min.css" />
     <script src="/js/vendor/modernizr.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
@@ -69,8 +70,9 @@
     <div class="clearfix"></div>
 </script>
 <script type="text/template" id="listItemTemplate">
-    <li>
+    <li class="animated flipInX">
         <a href="/<%= item.slugStr %>">
+        
             <img src="<%= item.avatar %>">
             <div class="content">
                 <p class="name"><%= item.displayName %></p>
@@ -94,6 +96,30 @@
     {% endautoescape %}
 
     $(document).foundation();
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var lastScrollTop = 0;
+        $(window).on('scroll', function(){
+            $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
+            var busy = 0;
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop && busy==0 && st>0){
+                busy=1;
+                $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
+            }
+            if (st <= lastScrollTop){
+                if( $('#int').attr('rel') == 'bar_top' ){
+                    $('#int').attr('rel','1');
+                    $('#int').css('position','fixed').addClass('animated bounceInDown');
+                }
+                else
+                    $('#int').css('position','fixed');
+            }
+            lastScrollTop = st;
+        });
+    });
 </script>
 </body>
 </html>
