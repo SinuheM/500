@@ -34,6 +34,9 @@ var userSchema = schema({
 	publish : {type : Boolean},
 	deleted : {type : Boolean, default: false},
 
+	updatedDate : {type : Date},
+	createdDate	: {type : Date},
+
 	token : {type : String},
 	tokenExpiration : {type:Date}
 });
@@ -77,6 +80,17 @@ userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
 		});
 	});
 };
+
+// Update date
+userSchema.pre('save', function (next) {
+	if(!this.createdDate){
+		this.createdDate = new Date();
+	}
+
+	this.updatedDate = new Date();
+
+	next();
+});
 
 var User = db.model('user', userSchema);
 

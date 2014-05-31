@@ -38,13 +38,20 @@ window.Widgets.List = Backbone.View.extend({
 		if(this.hideOnEmpty && data.length === 0){
 			this.$el.hide();
 		}
+
+		if(data.length === 0){
+			this.setEmpty();
+		}else{
+			this.$el.find('.empty').remove();
+		}
 	},
 	render : function () {
 		this.$el.html( this.template() );
 		this.$rowContainer = this.$el.find('.list-container');
 
 		return this;
-	}
+	},
+	setEmpty : function () {}
 });
 
 window.Widgets.List.ListItem = Backbone.View.extend({

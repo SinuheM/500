@@ -47,12 +47,12 @@
                             </ul>
                         </li>
                         <li>Order results by:</li>
-                        <li class="drop">
+                        <li class="drop active" data-name="sort">
                             <span>New Mentors first</span>
                             <ul class="submain">
-                                <li><a href="">one</a></li>
-                                <li><a href="">two</a></li>
-                                <li><a href="">three</a></li>
+                                <li class="active" data-value="time"><a href="">New Mentors first</a></li>
+                                <li data-value="displayName"><a href="">A - Z</a></li>
+                                <li data-value="-displayName"><a href="">Z - A</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -90,10 +90,10 @@
 <script src="/js/foundation.min.js"></script>
 <script src="/js/public.js"></script>
 <script>
-    {% autoescape false %}
-    window.mentors = {{mentors|json}};
-    window.queryMentors = {{queryMentors|json}};
-    {% endautoescape %}
+    window.mentors = {{mentors|json|safe}};
+    {% if queryMentors %}
+    window.queryMentors = {{queryMentors|json|safe}};
+    {% endif %}
 
     $(document).foundation();
 </script>

@@ -42,6 +42,7 @@ utilsController.post('/mentors/search', function(req, res){
 	}else{
 		var query = {type:'mentor', publish:true};
 		var paginate = true;
+
 		if(req.body.expertise){
 			query.expertise = req.body.expertise;
 			paginate = false;
@@ -56,6 +57,10 @@ utilsController.post('/mentors/search', function(req, res){
 
 		if(paginate){
 			queryObject.limit(20).skip(20*(req.body.page - 1));
+		}
+
+		if(req.body.sort){
+			queryObject.sort(req.body.sort);
 		}
 
 		queryObject.exec(function (err, mentors) {

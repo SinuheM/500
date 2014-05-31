@@ -16,7 +16,6 @@ adminSlugsController.post('/available', function (req, res) {
 	Slug.findOne({slug: req.body.slug}, function(err, slug){
 		if(err){return res.sendError(500, err);}
 
-		console.log(slug);
 		if(slug){
 			res.send({status:'taken'});
 		}else{

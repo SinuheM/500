@@ -13,6 +13,10 @@ window.getQueryValues = function(){
 	return query;
 };
 
+window.Widgets.List.prototype.setEmpty = function(){
+	this.$el.find('.list-container').html('<div class="empty"><h5>No mentors found</h5></div>');
+};
+
 window.Widgets.List.prototype.search = function(){
 	var query = window.getQueryValues();
 	var self = this;
@@ -34,7 +38,7 @@ $(document).ready(function () {
 	list.$el.addClass('center');
 	list.render().$el.appendTo('#mentors');
 
-	if(window.queryMentors.length){
+	if(window.queryMentors){
 		list.fill(window.queryMentors);
 		loading = true;
 	}else{
@@ -104,7 +108,9 @@ $(document).ready(function () {
 	$('.submain a').on('click', function(e){
 		e.preventDefault();
 
-		var $list = $(this).closest('ul');
+		var $this = $(this);
+		var $list = $this.closest('ul');
+		var $drop = $(this).closest('.drop');
 		var $listItems = $list.find('li.active');
 
 		$listItems.removeClass('active');
@@ -113,11 +119,15 @@ $(document).ready(function () {
 			$(this).closest('li').addClass('active');
 		}
 
-		$listItems = $list.find('li.active');
-		if($listItems.length){
-			$(this).closest('.drop').addClass('active');
+		if($drop.data('name') === 'sort'){
+			$drop.find('> span').text( $this.text() );
 		}else{
-			$(this).closest('.drop').removeClass('active');
+			$listItems = $list.find('li.active');
+			if($listItems.length){
+				$drop.addClass('active');
+			}else{
+				$drop.removeClass('active');
+			}
 		}
 
 		window.widgets.list.search();
