@@ -85,7 +85,9 @@ $(document).ready(function () {
 
 	$(window).on('scroll', function(){
 		if($('footer').offset().top - window.scrollY - window.innerHeight < 0 && !loading){
-			if(!_.isEmpty(window.getQueryValues())){return;}
+			var query = window.getQueryValues();
+			delete query.sort;
+			if(!_.isEmpty(query)){return;}
 
 			loading = true;
 			page++;
