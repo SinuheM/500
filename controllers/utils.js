@@ -21,8 +21,9 @@ utilsController.post('/startups/search', function(req, res){
 });
 
 utilsController.post('/mentors/search', function(req, res){
+	var query
 	if(req.body.search){
-		var query = {type:'mentor', publish:true};
+		query = {type:'mentor', publish:true};
 
 		if(req.body.expertise){
 			query.expertise = req.body.expertise;
@@ -36,11 +37,26 @@ utilsController.post('/mentors/search', function(req, res){
 			if(err){return res.sendError(500, err);}
 
 			var mentors = _.filter(results.hits, function(item){return item.displayName;})
-			.map(function(item){return {displayName:item.displayName, title:item.title, avatar:item.avatar, slugStr:item.slugStr} });
+			.map(function(item){
+				return {displayName:item.displayName, title:item.title, avatar:item.avatar, slugStr:item.slugStr};
+			});
+
+			if(req.body.sort === 'time'){
+				mentors = _.sortBy(mentors, function(item){return item.createdDate;});
+			}
+
+			if(req.body.sort === 'displayName'){
+				mentors = _.sortBy(mentors, function(item){return item.displayName;});
+			}
+
+			if(req.body.sort === '-displayName'){
+				mentors = _.sortBy(mentors, function(item){return item.displayName;}).reverse();
+			}
+
 			res.send(mentors);
 		});
 	}else{
-		var query = {type:'mentor', publish:true};
+		query = {type:'mentor', publish:true};
 		var paginate = true;
 
 		if(req.body.expertise){
