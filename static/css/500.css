@@ -407,10 +407,12 @@ section#events .content .image-event {position: absolute; right: 400px; top: 0;}
 section#events .content .image-event img {height: 620px; max-width: inherit;}
 section#events #subscribe {text-align: center; padding: 3rem 0}
 section#events #subscribe h5 {font-size: 2rem}
-section#events #subscribe #form {width: 60%; margin: 2rem auto 0}
+section#events #subscribe #form {width: 60%; margin: 2rem auto 0; position: relative;}
 section#events #subscribe #form input[type="text"] {display: inline-block; border: solid 2px #222; font-weight: 300; font-size: 1.25rem; height: 3rem; width: 75%}
-section#events #subscribe #form input[type="submit"] {display: inline-block; border: solid 2px #b43322; font-weight: 300; font-size: 1.25rem; height: 3rem; color: #b43322; background-color: transparent; cursor: pointer; width: 24%}
+section#events #subscribe #form input[type="email"] {display: inline-block; border: solid 2px #222; font-weight: 300; font-size: 1.25rem; height: 3rem; width: 75%}
+section#events #subscribe #form input[type="submit"] {display: inline-block; border: solid 2px #b43322; font-weight: 300; font-size: 1.25rem; height: 3rem; color: #b43322; background-color: transparent; cursor: pointer; width: 24%; margin: 0;text-transform: uppercase;}
 section#events #subscribe #form input[type="submit"]:hover {background-color: #b43322; color: #fff}
+section#events #subscribe #form [for="mce-EMAIL"]{}
 
 body.layer-single {background-color: #f2f2f2; height:100%;}
 body.layer-single #mentor-single {}
