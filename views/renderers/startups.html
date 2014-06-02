@@ -23,7 +23,80 @@
                     <h5>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</h5>
                     <input id="searchbox" type="search" placeholder="search">
                     <p class="place_holder_search"><span>Try makerbot, education, China</span></p>
-                    <ul id="filter">
+                    <ul id="filter_cool">
+                        <li>Show me</li>
+                        <li id="filter_cat" class="filter_cool">all <div class="filter_img"></div></li>
+                        <li>startups in</li>
+                        <li id="filter_place" class="filter_cool">the world <div class="filter_img"></div></li>
+                        <li>focusing on</li>
+                        <li id="filter_type" class="filter_cool">all investor themes <div class="filter_img"></div></li>
+                    </ul>
+
+                    <div id="filters_cool">
+
+                        <div id="filter_cat_content" class="filter_content arrow_box">
+                            <ul class="filter_header">
+                                <li rel="filter_cat_content" id="filter_car_all" class="active">All</li>
+                            </ul>
+                            <ul>
+                                <li rel="filter_cat_content"  class="title_filter">Silicon Valley</li>
+                                <li rel="filter_cat_content" >Batch 009</li>
+                                <li rel="filter_cat_content" >Batch 008</li>
+                                <li rel="filter_cat_content" >Batch 007</li>
+                                <li rel="filter_cat_content" >Batch 006</li>
+                                <li rel="filter_cat_content" >Batch 005</li>
+                                <li rel="filter_cat_content" >Batch 004</li>
+                                <li rel="filter_cat_content" >Batch 003</li>
+                                <li rel="filter_cat_content" >Batch 002</li>
+                                <li rel="filter_cat_content" >Batch 001</li>
+                                <li rel="filter_cat_content" >Batch 000</li>
+
+                            </ul>
+                            <ul>
+                                <li rel="filter_cat_content"  class="title_filter">Mexico City</li>
+                                <li rel="filter_cat_content" >Winter 2013</li>
+                                <li rel="filter_cat_content" >Winter 2013</li>
+                                <li rel="filter_cat_content" >Winter 2013</li>
+                            </ul>
+                            <ul>
+                                <li rel="filter_cat_content" class="title_filter">Seed</li>
+                              
+                            </ul>
+                        </div>
+                        
+
+                        <div id="filter_place_content" class="filter_content arrow_box">
+                            <ul class="filter_header">
+                                <li rel="filter_place_content"  id="filter_place_all" class="active">All</li>
+                            </ul>
+                            <ul>
+                                <li rel="filter_place_content"  class="title_filter">US cities</li>
+                                <li rel="filter_place_content" >Winter 2013</li>
+                                <li rel="filter_place_content" >Winter 2013</li>
+                                <li rel="filter_place_content" >Winter 2013</li>
+                            </ul>
+                            <ul>
+                                <li rel="filter_place_content"  class="title_filter">Countries</li>
+                                <li rel="filter_place_content" >Winter 2013</li>
+                                <li rel="filter_place_content" >Winter 2013</li>
+                                <li rel="filter_place_content" >Winter 2013</li>
+                            </ul>
+                        </div>
+
+                        <div id="filter_type_content" class="filter_content arrow_box">
+                            <ul class="filter_header">
+                                <li rel="filter_type_content" id="filter_type_all" class="active">All</li>
+                            </ul>
+                            <ul>
+                                <li rel="filter_type_content">Winter 2013</li>
+                                <li rel="filter_type_content">Winter 2013</li>
+                                <li rel="filter_type_content">Winter 2013</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    
+                    <!--ul id="filter">
                         <li>Filter results by:</li>
                         <li class="drop">
                             <span>Investment Themes</span>
@@ -74,7 +147,7 @@
                                 <li><a href="">three</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul-->
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -166,6 +239,31 @@
             }
             lastScrollTop = st;
         });
+
+        $('#filter_cat').on('click',function(){
+            var obj_position = $(this).position();
+            $('.filter_content').fadeOut();
+            $('#filter_cat_content').css('margin-left',''+(obj_position.left/2)+'px').fadeIn();
+        })
+
+        $('#filter_place').on('click',function(){
+            var obj_position = $(this).position();
+            $('.filter_content').fadeOut();
+            $('#filter_place_content').css('margin-left',''+(obj_position.left)+'px').fadeIn();
+        })
+
+        $('#filter_type').on('click',function(){
+            var obj_position = $(this).position();
+            $('.filter_content').fadeOut();
+            $('#filter_type_content').css('margin-left',''+(obj_position.left)+'px').fadeIn();
+        });
+
+        $('.filter_content li').on('click',function(){
+            $('#'+$(this).attr('rel')+' li').removeClass('active');
+            $(this).addClass('active');
+            $('.filter_content').fadeOut();
+        })
+
     });
 </script>
 </body>
