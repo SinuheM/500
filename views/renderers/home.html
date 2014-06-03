@@ -31,14 +31,39 @@
     {% include "../partials/navbar.html" with {currentPage: 'about'} %}
     <section id="entrepreneurs">
         <div class="center">
-            <h3>500 Startups is a seed fund and accelerator founded</h3><br>
-            <p>We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
-            <p>We're based in Silicon Valley, but our 500 family exists all over the world.</p>
+            <h3>“Every day at 500 Startups is a master class in how to build a kickass startup.” </h3>
+            <p> -@CynthiaSchames </p>
             <iframe width="785" height="442" src="//www.youtube.com/embed/oy--ub2jMHs?list=PL571BAAD2DFD8F8C7" frameborder="0" allowfullscreen></iframe>
         </div>
+          <section>
+         
+            <p>500 Startups isn't just a name — we really have invested in over 500 companies.<br>The numbers speak for themselves.</p>
+        <ul id="date-500">
+            <li>
+                <h2>500+</h2>
+                <p>companies</p>
+            </li>
+            <li>
+                <h2>40+</h2>
+                <p>ocountries</p>
+            </li>
+            <li>
+                <h2>1000+</h2>
+                <p>entrepreneurs</p>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="center button-container">
+            <form action="/startups">
+                <button class="outline">SEE ALL OUR STARTUPS</button>
+            </form>
+        </div>
+    </section>
+         <div class="clearfix"></div>
+
     </section>
     <section id="map-container">
-        <h4>We're based in Silicon Valley,<br> but the 500 Family exists all over the world.</h4>
+        <h4>Diversity is not just a strategy or tactic.<br>It’s who we are.</h4>
         <div id="map">
             <img id="map-image" src="/imgs/map/map.png">
             <img id="map-dots" src="/imgs/map/pins.png">
@@ -50,15 +75,15 @@
                 <img src="/img/primary.png"><p>Primary Geographies</p>
                 <img src="/img/countries.png"><p>Countries where we’ve invested</p>
             </div>
-            <p>Our #500Strong family is diverse, colorful, and awesome. </p>
+            <p>We're based in Silicon Valley, but the 500 Family exists all over the world. </p>
             <p>No matter where you’re from or who you are, we’ll welcome you with open arms.</p>
             <a class="outline" href="/team">GET TO KNOW OUR TEAM</a>
         </div>
     </section>
     <section id="team-home">
         <ul id="date-500">
-            <h3>This is a title</h3>
-            <p>We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
+            <h3>Think you're crazy? We are too.</h3>
+            <p>We invest all kinds of companies, but here are a few of the themes we care about:</p>
         </ul>
         <div class="clearfix"></div>
     </section>
@@ -88,46 +113,44 @@
     </section>
     <section id="help-startups">
         <div class="center">
-            <h3>How we help startups</h3>
-            <p class="subtitle">We’ve helped more than 1000 entrepreneurs all around the world build their companies.</p>
+            <h3>Build something amazing. We're banking on it.</h3>
+            <p class="subtitle">Whether you're just starting out or raising your next round, we have the resources you're looking for. </p>
             <div class="row-5">
-                <h3>Acceleration</h3>
-                <p>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</p>
-                <p>Work alongside other smart, talented founders from around the world, and finish your time in the program by pitching to top-notch investors at demo days.</p>
-                <a class="btn-accelerator" href="/accelerator">LEARN MORE</a>
+                <h3>Accelerator</h3>
+                <p>Execution is everything. With our 4-month accelerator program  you'll get access to awesome mentorship, hands-on sessions with startup experts, and a great office space where you'll work with other smart, talented founders from around the world. </p>
+                <p>We run our accelerator program in Mountain View, </br>San Francisco and Mexico City. Think you're ready?</p>
+                <a class="btn-accelerator" href="/accelerator">YOUR MOVE</a>
             </div>
             <div class="row-7">
-                <p>These startups went through our acceleration program</p>
                 <ul>
                 {% for startup in acceleration %}
                     <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></a></li>
                 {% endfor %}
                 </ul>
-                <a href="/startups?investmentType=acceleration">Browse more</a>
+                <a href="/startups?investmentType=acceleration">All accelerator companies</a>
             </div>
             <div class="clearfix"></div>
             <div class="row-5">
                 <h3>Seed fund</h3>
-                <p>We fund companies outside our accelerator program, with investments in ranging from $25K - $250K. </p>
-                <p>Become part of the 500 family and get access to our awesome (and expansive) community of mentors, founders, and partners. </p>
-                <button class="outline">GET MONEY</button>
+                <p>Have your shit together? We fund startups with traction through investments that range from $25K - $250K.</p>
+                <p>You'll get all the perks of being in 500 too - like access to our vast network of investors, partners and founders.</p>
+                <p>Get a referral from someone in the 500 family to get money.</p>
             </div>
             <div class="row-7">
-                <p>These startups receieved seed funding from 500 startups</p>
                 <ul>
                     {% for startup in seed %}
                     <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></a></li>
                     {% endfor %}
                 </ul>
-                <a href="/startups?investmentType=seed">Browse more</a>
+                <a href="/startups?investmentType=seed">All seed companies</a>
             </div>
         </div>
         <div class="clearfix"></div>
     </section>
     <section id="amazing">
         <div class="center">
-            <h3>Rising stars</h3>
-            <p>Just a few companies in our current batch</p>
+            <h3>Up and coming</h3>
+            <p>These startups are new to the 500 family. And they're awesome</p>
             <ul class="card">
                 {% for startup in stars %}
                 <li>
@@ -147,7 +170,7 @@
             </ul>
             <div class="clearfix"></div>
             <div class="separator"></div>
-            <h3>Thanks to our amazing partners</h3>
+            <h3>We have friends in the business</h3>
             <p class="sub">Platinum Annual Partners</p>
             <ul class="amazing-partners">
                 <li><img src="/imgs/partners/rackspace.jpg"></li>
