@@ -50,18 +50,6 @@
                         </div>
                     </div>
 
-
-                    <ul class="social">
-                        {% for profile in uploader.profiles %}
-                            {% if profile.url %}
-                            <li>
-                                <a target="_blank" href="{{profile.url|socialUrl(profile.provider)}}">
-                                    <img class="has-retina" src="{{profile.provider|socialEmoticon()}}" alt="{{profile.provider}}">
-                                </a>
-                            </li>                    
-                            {% endif %}
-                        {% endfor%}
-                    </ul>
                     <div class="clearfix"></div>
                 </div>
             </div>
