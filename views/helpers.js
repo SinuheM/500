@@ -138,6 +138,10 @@ var helpers = function(swig){
 	swig.setFilter('can', function (user, resourse, action) {
 		return User.prototype.can.call(user, resourse,action);
 	});
+
+	swig.setFilter('has', function(array, item){
+		return array.indexOf(item) !== -1 ? true : false;
+	});
 };
 
 module.exports = helpers;

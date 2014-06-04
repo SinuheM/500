@@ -25,72 +25,82 @@
                     <p class="place_holder_search"><span>Try makerbot, education, China</span></p>
                     <ul id="filter_cool">
                         <li>Show me</li>
-                        <li id="filter_cat" class="filter_cool">all <div class="filter_img"></div></li>
+                        <li id="filter_cat" class="filter_cool"><span>all</span> <div class="filter_img"></div></li>
                         <li>startups in</li>
-                        <li id="filter_place" class="filter_cool">the world <div class="filter_img"></div></li>
+                        <li id="filter_place" class="filter_cool"><span>the world</span> <div class="filter_img"></div></li>
                         <li>focusing on</li>
-                        <li id="filter_type" class="filter_cool">all investor themes <div class="filter_img"></div></li>
+                        <li id="filter_type" class="filter_cool"><span>all investor themes</span> <div class="filter_img"></div></li>
                     </ul>
 
                     <div id="filters_cool">
 
-                        <div id="filter_cat_content" class="filter_content arrow_box">
+                        <div id="filter_cat_content" class="filter_content arrow_box" data-select-box="#filter_cat">
                             <ul class="filter_header">
                                 <li rel="filter_cat_content" id="filter_car_all" class="active">All</li>
                             </ul>
+                            {% if batches.siliconValley.length %}
                             <ul>
                                 <li rel="filter_cat_content"  class="title_filter">Silicon Valley</li>
-                                <li rel="filter_cat_content" >Batch 009</li>
-                                <li rel="filter_cat_content" >Batch 008</li>
-                                <li rel="filter_cat_content" >Batch 007</li>
-                                <li rel="filter_cat_content" >Batch 006</li>
-                                <li rel="filter_cat_content" >Batch 005</li>
-                                <li rel="filter_cat_content" >Batch 004</li>
-                                <li rel="filter_cat_content" >Batch 003</li>
-                                <li rel="filter_cat_content" >Batch 002</li>
-                                <li rel="filter_cat_content" >Batch 001</li>
-                                <li rel="filter_cat_content" >Batch 000</li>
-
+                                {% for batch in batches.siliconValley %}
+                                <li rel="filter_cat_content">Batch {{batch.name}}</li>
+                                {% endfor %}
                             </ul>
+                            {% endif %}
+                            {% if batches.mexicoCity.length %}
                             <ul>
                                 <li rel="filter_cat_content"  class="title_filter">Mexico City</li>
-                                <li rel="filter_cat_content" >Winter 2013</li>
-                                <li rel="filter_cat_content" >Winter 2013</li>
-                                <li rel="filter_cat_content" >Winter 2013</li>
+                                {% for batch in batches.mexicoCity %}
+                                <li rel="filter_cat_content">{{batch.name}}</li>
+                                {% endfor %}                                
                             </ul>
+                            {% endif %}
+                            {% if batches.sanFransisco.length %}
+                            <ul>
+                                <li rel="filter_cat_content"  class="title_filter">San fransisco</li>
+                                {% for batch in batches.sanFransisco %}
+                                <li rel="filter_cat_content">{{batch.name}}</li>
+                                {% endfor %}                                
+                            </ul>
+                            {% endif %}                            
                             <ul>
                                 <li rel="filter_cat_content" class="title_filter">Seed</li>
-                              
                             </ul>
                         </div>
                         
 
-                        <div id="filter_place_content" class="filter_content arrow_box">
+                        <div id="filter_place_content" class="filter_content arrow_box" data-select-box="#filter_place">
                             <ul class="filter_header">
                                 <li rel="filter_place_content"  id="filter_place_all" class="active">All</li>
                             </ul>
                             <ul>
                                 <li rel="filter_place_content"  class="title_filter">US cities</li>
-                                <li rel="filter_place_content" >Winter 2013</li>
-                                <li rel="filter_place_content" >Winter 2013</li>
-                                <li rel="filter_place_content" >Winter 2013</li>
+                                {% for location in locations.us %}
+                                <li rel="filter_place_content" >{{location.location}}</li>
+                                {% endfor %}
                             </ul>
                             <ul>
                                 <li rel="filter_place_content"  class="title_filter">Countries</li>
-                                <li rel="filter_place_content" >Winter 2013</li>
-                                <li rel="filter_place_content" >Winter 2013</li>
-                                <li rel="filter_place_content" >Winter 2013</li>
+                                {% for location in locations.world %}
+                                <li rel="filter_place_content" >{{location.location}}</li>
+                                {% endfor %}
                             </ul>
                         </div>
 
-                        <div id="filter_type_content" class="filter_content arrow_box">
+                        <div id="filter_type_content" class="filter_content arrow_box" data-select-box="#filter_type">
                             <ul class="filter_header">
                                 <li rel="filter_type_content" id="filter_type_all" class="active">All</li>
                             </ul>
                             <ul>
-                                <li rel="filter_type_content">Winter 2013</li>
-                                <li rel="filter_type_content">Winter 2013</li>
-                                <li rel="filter_type_content">Winter 2013</li>
+                                <li rel="filter_type_content">consumer commerce</li>
+                                <li rel="filter_type_content">family tech and education</li>
+                                <li rel="filter_type_content">design</li>
+                                <li rel="filter_type_content">smb productivity & cloud services</li>
+                                <li rel="filter_type_content">international / emerging markets</li>
+                                <li rel="filter_type_content">food tech + digital healthcare</li>
+                                <li rel="filter_type_content">mobile + tablet (ios and android)</li>
+                                <li rel="filter_type_content">payments and  financial services</li>
+                                <li rel="filter_type_content">online video</li>
+                                <li rel="filter_type_content">Bitcoin</li>
                             </ul>
                         </div>
 

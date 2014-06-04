@@ -25,4 +25,13 @@ $(document).ready(function () {
 			lastSearch = $this.val();
 		}, 500);
 	});
+
+	$('#filter_cat_content, #filter_place_content, #filter_type_content').on('click', 'li',function(){
+		var $item = $(this);
+		var $filter = $item.closest('.filter_content');
+		var $selectBox = $($filter.data('select-box'));
+
+		$selectBox.find('span').text($item.text());
+		console.log($item);
+	});
 });

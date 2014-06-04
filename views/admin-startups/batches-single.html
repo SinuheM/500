@@ -45,7 +45,11 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Location</label>
 				<div class="col-sm-6">
-					<input name="location" type="text" class="form-control validate[required]" value="{{batch.location}}">
+					<select name="location" class="form-control input-sm mb15">
+						<option value="silicon valley" {% if batch.location == "silicon valley"%} selected="true"{% endif %}>Silicon Valley</option>
+						<option value="mexico city" {% if batch.location == "mexico city"%} selected="true"{% endif %}>Mexico City</option>
+						<option value="san francisco" {% if batch.location == "san francisco"%} selected="true"{% endif %}>San Francisco</option>
+					<select/>
 				</div>
 			</div>
 		</div>

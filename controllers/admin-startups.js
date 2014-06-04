@@ -156,10 +156,12 @@ adminStartUpsController.get('/batches/:batch', function (req, res) {
 	});
 
 	var message = req.flash('message');
+	var error = req.flash('error');
 
 	res.render('admin-startups/batches-single',{
 		batch : res.data.batch,
-		message : message[0]
+		message : message[0],
+		error : error[0]
 	});
 });
 
@@ -183,6 +185,7 @@ adminStartUpsController.get('/:currentStartup', getBatches, function (req, res) 
 adminStartUpsController.post('/new', function (req, res) {
 	var busboy = new Busboy({ headers: req.headers });
 	var fields = {};
+	var investmentFields = [];
 
 	var startup = new Startup();
 	var useLocalLogo, extension;
@@ -200,19 +203,25 @@ adminStartUpsController.post('/new', function (req, res) {
 	});
 
 	busboy.on('field', function(fieldname, val) {
-		fields[fieldname] = val;
+		if(fieldname === 'investment-field'){
+			investmentFields.push(val);
+		}else{
+			fields[fieldname] = val;
+		}
 	});
 
 	busboy.on('finish', function() {
 		startup.name    = fields.name;
 		startup.slugStr = fields.slug;
 		startup.url     = fields.url;
-		startup.investmentType = fields.investmentType;
 		startup.excerpt = fields.excerpt;
 		startup.description = fields.description;
 		startup.video   = fields.video;
-		startup.investmentClass = fields.investmentClass;
 		startup.active  = true;
+		
+		startup.investmentType = fields.investmentType;
+		startup.investmentFields = investmentFields;
+		startup.investmentClass = fields.investmentClass;
 
 		startup.createdBy = res.user;
 		startup.updatedBy = res.user;
@@ -274,7 +283,7 @@ adminStartUpsController.post('/batches/new', function (req, res) {
 adminStartUpsController.post('/batches/:batch/edit', function (req, res) {
 	if( !(req.body.name && req.body.location) ){
 		req.flash('error', 'Batches require name and location');
-		res.redirect('/admin/startups/batches/' + res.data.batch._id );
+		return res.redirect('/admin/startups/batches/' + res.data.batch._id );
 	}
 
 	var batch = res.data.batch;
@@ -323,6 +332,7 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	var fields = {};
 	var useLocalLogo, extension;
 	var startup = res.data.currentStartup;
+	var investmentFields = [];
 
 	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
 		if(fieldname === 'logo' && filename !== 'undefined') {
@@ -337,11 +347,14 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	});
 
 	busboy.on('field', function(fieldname, val) {
-		fields[fieldname] = val;
+		if(fieldname === 'investment-field'){
+			investmentFields.push(val);
+		}else{
+			fields[fieldname] = val;
+		}
 	});
 
 	busboy.on('finish', function() {
-		console.log(fields);
 		startup.name    = fields.name;
 		startup.url     = fields.url;
 		startup.excerpt = fields.excerpt;
@@ -349,8 +362,9 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		startup.location  = fields.location;
 		startup.size      = fields.size;
 
-		startup.investmentType  = fields.investmentType;
-		startup.investmentClass = fields.investmentClass;
+		startup.investmentFields = investmentFields;
+		startup.investmentType   = fields.investmentType;
+		startup.investmentClass  = fields.investmentClass;
 
 		startup.updatedBy = res.user;
 
