@@ -219,7 +219,6 @@ section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 5em; posi
 section#portfolio #mentors.team500 {padding: 3rem 0 10rem}
 section#portfolio #mentors h6 {text-align: center; position: relative; top: -2rem}
 section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 10}
-section#portfolio #mentors ul .empty {text-align: center;height: 300px;}
 section#portfolio #mentors ul.up {top: -10rem}
 section#portfolio #mentors ul li {float: left; margin: 10px; width: 220px; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #mentors ul li a {display: block;height: 294px;}
@@ -229,6 +228,9 @@ section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0
 section#portfolio #mentors ul li .content p.name {font-size: 1rem; font-weight: 600; }
 section#portfolio #mentors ul li .content p.role {color: #888; text-transform: uppercase; font-size: 0.8rem; font-weight:800; }
 section#portfolio .team500 h6{clear:both;}
+
+section#portfolio #mentors ul .empty,
+section#portfolio #starters ul .empty {text-align: center;height: 300px;}
 
 section#portfolio #team {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
 section#portfolio #team.team500 {padding: 3rem 0 10rem}

@@ -53,7 +53,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Investment Class</label>
 				<div class="col-sm-6">
-					<select name="investmentClass" class="form-control input-sm mb15">
+					<select id="investmentClass" name="investmentClass" class="form-control input-sm mb15">
 						<option value="acceleration" {% if currentStartup.investmentClass == "acceleration"%} selected="true"{% endif %}>Acceleration</option>
 						<option value="seed" {% if currentStartup.investmentClass == "seed"%} selected="true"{% endif %}>Seed</option>
 					<select/>
@@ -100,7 +100,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Batch</label>
 				<div class="col-sm-6">
-					<select name="batch" class="form-control input-sm mb15">
+					<select id="batch" name="batch" class="form-control input-sm mb15">
 						<option value=""></option>
 						{% for batch in batches %}
 						<option value="{{batch.id}}" {% if batch.id == currentStartup.batch %} selected="true"{% endif %}>{{batch.name}}</option>
@@ -388,6 +388,16 @@ $(document).ready(function(){
 		var foundersAsStr = JSON.stringify(founders);
 		$('#founders-input').val(foundersAsStr);
 	});
+
+	var investmentClassHandler = function(){
+		if($('#investmentClass').val() === 'seed'){
+			$('batch').hide();
+		}else{
+			$('batch').show();
+		}
+	}
+	$('#investmentClass').on('change', investmentClassHandler);
+	investmentClassHandler();
 });
 
 </script>

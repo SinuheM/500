@@ -58,14 +58,31 @@ utilsController.post('/startups/search', function(req, res){
 		}
 
 		if(req.body.search){
-			Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query}}, function(err, results) {
+			Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query, populate:'batch'}}, function(err, results) {
 				if(err){return res.sendError(500, err);}
 
 				var startups = _.filter(results.hits, function(item){return item.name;});
+				startups = _.map(startups, function(startup){
+					startup = startup.toJSON();
+
+					if(startup.batch){
+						startup.batch = {
+							name : startup.batch.name
+						};
+					}
+
+					return {
+						name : startup.name,
+						logo : startup.logo,
+						investmentType : startup.investmentType,
+						excerpt : startup.excerpt,
+						batch : startup.batch
+					};
+				});
 				res.send(startups);
 			});
 		} else {
-			var queryObject = Startup.find(query, {logo:1, name:1, avatar:1, investmentType:1, excerpt:1, batch:1});
+			var queryObject = Startup.find(query, {logo:1, name:1, investmentType:1, excerpt:1, batch:1, _id: 0});
 			queryObject.populate('batch');
 
 			if(paginate){
@@ -74,6 +91,18 @@ utilsController.post('/startups/search', function(req, res){
 
 			queryObject.exec(function (err, startups) {
 				if(err){ return res.send(500, err);}
+
+				startups = _.map(startups, function(startup){
+					startup = startup.toJSON();
+
+					if(startup.batch){
+						startup.batch = {
+							name : startup.batch.name
+						};
+					}
+
+					return startup;
+				});
 
 				res.send(startups);
 			});

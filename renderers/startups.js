@@ -25,12 +25,24 @@ var render = function (req, res) {
 
 			console.log(req.query);
 
-			Startup.find({publish:true})
+			Startup.find({publish:true}, {logo:1, name:1, avatar:1, investmentType:1, excerpt:1, batch:1, _id:0})
 			.limit(20)
 			.sort('-updatedDate')
 			.populate('batch')
 			.exec(function(err, startups){
 				if(err){ return res.send(500, err);}
+
+				startups = _.map(startups, function(startup){
+					startup = startup.toJSON();
+
+					if(startup.batch){
+						startup.batch = {
+							name : startup.batch.name
+						};
+					}
+
+					return startup;
+				});
 
 				res.render('renderers/startups', {
 					params : req.query,

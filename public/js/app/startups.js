@@ -31,11 +31,13 @@ window.getQueryValues = function(){
 	return query;
 };
 
+window.Widgets.List.prototype.setEmpty = function(){
+	this.$el.find('.list-container').html('<div class="empty"><h5>No startups found</h5></div>');
+};
+
 window.Widgets.List.prototype.search = function(){
 	var query = window.getQueryValues();
 	var self = this;
-
-	console.log('query:', query);
 
 	query.search = $('#searchbox').val();
 
@@ -73,7 +75,7 @@ $(document).ready(function () {
 				});
 			}else{
 				if ( window._.isEmpty( window.getQueryValues() ) ) {
-					list.fill(window.mentors);
+					list.fill(window.startups);
 					loading = false;
 				}else{
 					query = window.getQueryValues();
@@ -121,6 +123,38 @@ $(document).ready(function () {
 	query.search = $('#searchbox').val();
 
 	if(!window._.isEmpty(query)){
+		var $filter, $selectBox;
+
+		var $batch = $('#filter_cat_content .active');
+		if($batch.length && $batch.attr('id') !== 'filter_car_all'){
+			$filter = $batch.closest('.filter_content');
+			$selectBox = $($filter.data('select-box'));
+
+			$selectBox.find('span').text($batch.text());
+		}else{
+			$('#filter_cat_content .filter_header li').addClass('active');
+		}
+
+		var $location = $('#filter_place_content .active');
+		if($location.length && $location.attr('id') !== 'filter_place_all'){
+			$filter = $location.closest('.filter_content');
+			$selectBox = $($filter.data('select-box'));
+
+			$selectBox.find('span').text($location.text());
+		}else{
+			$('#filter_place_content .filter_header li').addClass('active');
+		}
+
+		var $theme = $('#filter_type_content .active');
+		if($theme.length && $theme.attr('id') !== 'filter_type_all'){
+			$filter = $theme.closest('.filter_content');
+			$selectBox = $($filter.data('select-box'));
+
+			$selectBox.find('span').text($theme.text());
+		}else{
+			$('#filter_type_content .filter_header li').addClass('active');
+		}
+
 		window.widgets.list.search();
 	}
 });
