@@ -125,6 +125,14 @@ utilsController.post('/mentors/search', function(req, res){
 			query.location = req.body.location;
 		}
 
+		if(req.body.locationGroup === 'world'){
+			query.location = /,\s?\w\w\w/;
+		}
+
+		if(req.body.locationGroup === 'us'){
+			query.location = /,\s?\w\w$/;
+		}
+
 		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query}}, function(err, results) {
 			if(err){return res.sendError(500, err);}
 
@@ -159,6 +167,14 @@ utilsController.post('/mentors/search', function(req, res){
 		if(req.body.location){
 			query.location = req.body.location;
 			paginate = false;
+		}
+
+		if(req.body.locationGroup === 'world'){
+			query.location = /,\s?\w\w\w/;
+		}
+
+		if(req.body.locationGroup === 'us'){
+			query.location = /,\s?\w\w$/;
 		}
 
 		var queryObject = User.find(query, {displayName:1, slugStr:1, avatar:1, title:1});

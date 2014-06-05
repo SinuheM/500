@@ -218,7 +218,7 @@ section#portfolio.team #search h6 {margin: 4em 0 0}
 section#portfolio #mentors {background-color: #f2f2f2; padding: 3rem 0 5em; position: relative;}
 section#portfolio #mentors.team500 {padding: 3rem 0 10rem}
 section#portfolio #mentors h6 {text-align: center; position: relative; top: -2rem}
-section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 10}
+section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 9}
 section#portfolio #mentors ul.up {top: -10rem}
 section#portfolio #mentors ul li {float: left; margin: 10px; width: 220px; position: relative; background-color: #fff; border: solid 1px #ccc;}
 section#portfolio #mentors ul li a {display: block;height: 294px;}
@@ -470,6 +470,7 @@ section#help-startups a.btn-accelerator:hover{background-color: #891e1b;color: w
 #filter_cat_content{position:absolute; margin-top:60px; margin-left:44px; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
 #filter_place_content{position:absolute; margin-top:60px; margin-left:300px; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
 #filter_type_content{position:absolute; margin-top:60px; margin-left:594px; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
+#filter_place_content ul li{text-transform: capitalize;}
 
 .filter_img{display:inline-block; margin-left:3px; width:9px; height:6px; background:url(../img/filter_arrow.png);}
 .filter_content ul{float:left; overflow:hidden}
