@@ -16,13 +16,14 @@ var render = function (req, res) {
 
 		Startup.find({location:{$exists:true}, publish:true}, {location:1}, function(err, locations){
 			if(err){ return res.send(500, err);}
+			locations = _.chain(locations).map(function(item){return item.location;}).unique();
 
 			var locationData = {
-				us : _.filter(locations, function(batch){if(batch.location && /,\s?\w\w$/.exec(batch.location)){return true;}}),
-				world : _.filter(locations, function(batch){if(batch.location && !/,\s?\w\w$/.exec(batch.location)){return true;}}),
+				us : locations.filter(function(location){if(location && /,\s?\w\w$/.exec(location)){return true;}}).value(),
+				world : locations.filter(function(location){if(location && /,\s?\w\w\w/.exec(location)){return true;}}).value(),
 			};
 
-			console.log(locationData);
+			console.log(req.query);
 
 			Startup.find({publish:true})
 			.limit(20)
@@ -32,6 +33,7 @@ var render = function (req, res) {
 				if(err){ return res.send(500, err);}
 
 				res.render('renderers/startups', {
+					params : req.query,
 					startups : startups,
 					batches : batchData,
 					locations : locationData,

@@ -21,7 +21,7 @@
                 <div class="container">
                     <h3>Search all the companies in the 500 family</h3>
                     <h5>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</h5>
-                    <input id="searchbox" type="search" placeholder="search">
+                    <input id="searchbox" type="search" placeholder="search" value="{{params.query}}">
                     <p class="place_holder_search"><span>Try makerbot, education, China</span></p>
                     <ul id="filter_cool">
                         <li>Show me</li>
@@ -36,71 +36,71 @@
 
                         <div id="filter_cat_content" class="filter_content arrow_box" data-select-box="#filter_cat">
                             <ul class="filter_header">
-                                <li rel="filter_cat_content" id="filter_car_all" class="active">All</li>
+                                <li rel="filter_cat_content" id="filter_car_all" {% if !params.seed && !params.batchgroup && !params.batch %}class="active"{% endif %}>All</li>
                             </ul>
                             {% if batches.siliconValley.length %}
                             <ul>
-                                <li rel="filter_cat_content"  class="title_filter">Silicon Valley</li>
+                                <li rel="filter_cat_content"  class="title_filter{% if params.batchgroup == 'silicon valley' %} active{% endif %}" data-value="silicon valley" data-type="category">Silicon Valley</li>
                                 {% for batch in batches.siliconValley %}
-                                <li rel="filter_cat_content">Batch {{batch.name}}</li>
+                                <li rel="filter_cat_content" data-value="{{batch.id}}" {% if params.batch == batch.name %}class="active"{% endif %}>Batch {{batch.name}}</li>
                                 {% endfor %}
                             </ul>
                             {% endif %}
                             {% if batches.mexicoCity.length %}
                             <ul>
-                                <li rel="filter_cat_content"  class="title_filter">Mexico City</li>
+                                <li rel="filter_cat_content"  class="title_filter{% if params.batchgroup == 'mexico city' %} active{% endif %}" data-value="mexico city" data-type="category">Mexico City</li>
                                 {% for batch in batches.mexicoCity %}
-                                <li rel="filter_cat_content">{{batch.name}}</li>
+                                <li rel="filter_cat_content" data-value="{{batch.id}}" {% if params.batch == batch.name %}class="active"{% endif %}>{{batch.name}}</li>
                                 {% endfor %}                                
                             </ul>
                             {% endif %}
                             {% if batches.sanFransisco.length %}
                             <ul>
-                                <li rel="filter_cat_content"  class="title_filter">San fransisco</li>
+                                <li rel="filter_cat_content"  class="title_filter" data-value="san francisco" data-type="category">San fransisco</li>
                                 {% for batch in batches.sanFransisco %}
-                                <li rel="filter_cat_content">{{batch.name}}</li>
+                                <li rel="filter_cat_content" data-value="{{batch.id}}" {% if params.batch == batch.name %}class="active"{% endif %}>{{batch.name}}</li>
                                 {% endfor %}                                
                             </ul>
                             {% endif %}                            
                             <ul>
-                                <li rel="filter_cat_content" class="title_filter">Seed</li>
+                                <li rel="filter_cat_content" class="title_filter{% if params.seed %} active{% endif %}" data-value="seed" data-type="category">Seed</li>
                             </ul>
                         </div>
                         
 
                         <div id="filter_place_content" class="filter_content arrow_box" data-select-box="#filter_place">
                             <ul class="filter_header">
-                                <li rel="filter_place_content"  id="filter_place_all" class="active">All</li>
+                                <li rel="filter_place_content"  id="filter_place_all" {% if !params.seed && !params.locationgroup && !params.location %}class="active"{% endif %}>All</li>
                             </ul>
                             <ul>
-                                <li rel="filter_place_content"  class="title_filter">US cities</li>
+                                <li rel="filter_place_content"  class="title_filter{% if params.locationgroup == 'us' %} active{% endif %}" data-value="us" data-type="category">US cities</li>
                                 {% for location in locations.us %}
-                                <li rel="filter_place_content" >{{location.location}}</li>
+                                <li rel="filter_place_content" data-value="{{location}}" {% if params.location == location %}class="active"{% endif %}>{{location}}</li>
                                 {% endfor %}
                             </ul>
                             <ul>
-                                <li rel="filter_place_content"  class="title_filter">Countries</li>
+                                <li rel="filter_place_content"  class="title_filter{% if params.locationgroup == 'world' %} active{% endif %}" data-value="world" data-type="category">Countries</li>
                                 {% for location in locations.world %}
-                                <li rel="filter_place_content" >{{location.location}}</li>
+                                <li rel="filter_place_content" data-value="{{location}}" {% if params.location == location %}class="active"{% endif %}>{{location}}</li>
                                 {% endfor %}
                             </ul>
                         </div>
 
                         <div id="filter_type_content" class="filter_content arrow_box" data-select-box="#filter_type">
                             <ul class="filter_header">
-                                <li rel="filter_type_content" id="filter_type_all" class="active">All</li>
+                                <li rel="filter_type_content" id="filter_type_all" {% if !params.theme %}class="active"{% endif %}>All</li>
                             </ul>
                             <ul>
-                                <li rel="filter_type_content">consumer commerce</li>
-                                <li rel="filter_type_content">family tech and education</li>
-                                <li rel="filter_type_content">design</li>
-                                <li rel="filter_type_content">smb productivity & cloud services</li>
-                                <li rel="filter_type_content">international / emerging markets</li>
-                                <li rel="filter_type_content">food tech + digital healthcare</li>
-                                <li rel="filter_type_content">mobile + tablet (ios and android)</li>
-                                <li rel="filter_type_content">payments and  financial services</li>
-                                <li rel="filter_type_content">online video</li>
-                                <li rel="filter_type_content">Bitcoin</li>
+                                <li rel="filter_type_content" {% if params.theme == "consumer commerce" %} class="active"{% endif %} data-value="consumer commerce">consumer commerce</li>
+                                <li rel="filter_type_content" {% if params.theme == "family tech and education" %} class="active"{% endif %} data-value="family tech and education">family tech and education</li>
+                                <li rel="filter_type_content" {% if params.theme == "design" %} class="active"{% endif %} data-value="design">design</li>
+                                <li rel="filter_type_content" {% if params.theme == "smb productivity cloud services" %} class="active"{% endif %} data-value="smb productivity & cloud services">smb productivity & cloud services</li>
+                                <li rel="filter_type_content" {% if params.theme == "international / emerging markets" %} class="active"{% endif %} data-value="international / emerging markets">international / emerging markets</li>
+                                <li rel="filter_type_content" {% if params.theme == "food tech + digital healthcare" %} class="active"{% endif %} data-value="food tech + digital healthcare">food tech + digital healthcare</li>
+                                <li rel="filter_type_content" {% if params.theme == "mobile tablet" %} class="active"{% endif %} data-value="mobile + tablet">mobile + tablet (ios and android)</li>
+                                <li rel="filter_type_content" {% if params.theme == "payments and financial services" %} class="active"{% endif %} data-value="payments and financial services">payments and financial services</li>
+                                <li rel="filter_type_content" {% if params.theme == "online video" %} class="active"{% endif %} data-value="online video">online video</li>
+                                <li rel="filter_type_content" {% if params.theme == "bitcoin" %} class="active"{% endif %} data-value="bitcoin">Bitcoin</li>
                             </ul>
                         </div>
 

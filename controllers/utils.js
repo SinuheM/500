@@ -6,22 +6,84 @@ var controller = require('stackers'),
 var Startup = db.model('startup');
 var User = db.model('user');
 var Activity = db.model('activity');
+var Batch = db.model('batch');
 
 var utilsController = controller({
 	path : '/utils'
 });
 
 utilsController.post('/startups/search', function(req, res){
-	Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: {active:true, publish:true}}}, function(err, results) {
+	Batch.find({active: true}, function(err, batches){
 		if(err){return res.sendError(500, err);}
 
-		var startups = _.filter(results.hits, function(item){return item.name;});
-		res.send(startups);
+		var query = {active:true, publish:true};
+		var paginate = true;
+
+		if(req.body.batch){
+			query.batch = req.body.batch;
+			paginate = false;
+		}
+
+		if(req.body.batchGroup){
+			query.batch = {
+				$in: batches.filter(function(item){
+					if(item.location && item.location.toLowerCase() === req.body.batchGroup){
+						return item.location;
+					}
+				}).map(function(item){
+					return item._id;
+				})
+			};
+			paginate = false;
+		}
+
+		if(req.body.seed){
+			query.investmentClass = 'seed';
+		}
+
+		if(req.body.location){
+			query.location = req.body.location;
+		}
+
+		if(req.body.locationGroup === 'world'){
+			query.location = /,\s?\w\w\w/;
+		}
+
+		if(req.body.locationGroup === 'us'){
+			query.location = /,\s?\w\w$/;
+		}
+
+		if(req.body.theme){
+			query.investmentFields = req.body.theme;
+		}
+
+		if(req.body.search){
+			Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query}}, function(err, results) {
+				if(err){return res.sendError(500, err);}
+
+				var startups = _.filter(results.hits, function(item){return item.name;});
+				res.send(startups);
+			});
+		} else {
+			var queryObject = Startup.find(query, {logo:1, name:1, avatar:1, investmentType:1, excerpt:1, batch:1});
+			queryObject.populate('batch');
+
+			if(paginate){
+				queryObject.limit(20).skip(20*(req.body.page - 1));
+			}
+
+			queryObject.exec(function (err, startups) {
+				if(err){ return res.send(500, err);}
+
+				res.send(startups);
+			});
+		}
 	});
 });
 
 utilsController.post('/mentors/search', function(req, res){
-	var query
+	var query;
+
 	if(req.body.search){
 		query = {type:'mentor', publish:true};
 
