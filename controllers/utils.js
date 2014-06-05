@@ -72,6 +72,7 @@ utilsController.post('/startups/search', function(req, res){
 					}
 
 					return {
+						slugStr : startup.slugStr,
 						name : startup.name,
 						logo : startup.logo,
 						investmentType : startup.investmentType,
@@ -82,7 +83,7 @@ utilsController.post('/startups/search', function(req, res){
 				res.send(startups);
 			});
 		} else {
-			var queryObject = Startup.find(query, {logo:1, name:1, investmentType:1, excerpt:1, batch:1, _id: 0});
+			var queryObject = Startup.find(query, {logo:1, name:1, investmentType:1, excerpt:1, slugStr: 1,batch:1, _id: 0});
 			queryObject.populate('batch');
 
 			if(paginate){

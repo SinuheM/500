@@ -25,7 +25,7 @@ var render = function (req, res) {
 
 			console.log(req.query);
 
-			Startup.find({publish:true}, {logo:1, name:1, avatar:1, investmentType:1, excerpt:1, batch:1, _id:0})
+			Startup.find({publish:true}, {logo:1, name:1, avatar:1, investmentType:1, excerpt:1, batch:1, slugStr: 1, _id:0})
 			.limit(20)
 			.sort('-updatedDate')
 			.populate('batch')
