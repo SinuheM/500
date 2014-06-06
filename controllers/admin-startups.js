@@ -87,7 +87,6 @@ adminStartUpsController.get('/new', getBatches, function (req, res) {
 		angelListApi.getStatUpInfo(req.query.angelListId, function(err, data){
 			if(err){return res.sendError(500, err);}
 
-			console.log(data);
 			data.slug = Slug.slugify(data.name);
 			data.description = data.description !== null ? data.description : '';
 			data.excerpt = data.excerpt !== null ? data.excerpt : '';

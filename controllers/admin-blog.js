@@ -49,7 +49,6 @@ adminPodcastController.beforeEach(function(req, res, next){
 var currentBlogpostParam = function(type){
 	return function (currectActivityId, done) {
 		var query = {_id: db.Types.ObjectId(currectActivityId)};
-		console.log(currectActivityId, type);
 		if(type === 'podcast'){
 			query.type = 'podcast';
 		}else{
@@ -65,7 +64,6 @@ adminPodcastController.param('currentBlogpost', currentBlogpostParam('podcast'))
 
 var list = function(type){
 	return function (req, res) {
-		console.log( type +' list');
 		res.data.breadcrumbs.push({
 			label : 'Blog',
 			url : '/admin/blog/'
