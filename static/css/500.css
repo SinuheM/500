@@ -234,8 +234,8 @@ section#portfolio #starters ul .empty {text-align: center;height: 300px;}
 
 section#portfolio #team {background-color: #f2f2f2; padding: 3rem 0 0; position: relative;}
 section#portfolio #team.team500 {padding: 3rem 0 10rem}
-section#portfolio #team h6 {text-align: center; position: relative; padding: 8rem 0 2rem}
-section#portfolio #team h6.top {top: -2rem; padding: 0}
+section#portfolio #team h6 {text-align: center; position: relative; padding: 8rem 0 2rem;}
+section#portfolio #team h6.top {top: -2rem; padding: 0;}
 section#portfolio #team ul {margin: 0; position: relative; list-style: none; z-index: 10}
 section#portfolio #team ul.cards-1 {width: 230px; margin: 0 auto;}
 section#portfolio #team ul.cards-2 {width: 488px; margin: 0 auto;}
@@ -249,6 +249,7 @@ section#portfolio #team ul li .content {text-align: center; padding: 1rem 0 0.75
 section#portfolio #team ul li .content p.name {font-size: 1rem; font-weight: 600;}
 section#portfolio #team ul li .content p.role {color: #888; font-weight:800; text-transform: uppercase; font-size: 0.8rem;}
 section#portfolio .team500 h6{clear:both;}
+section#portfolio h6 {font-size: 1.5em; font-weight: 900;}
 
 section#portfolio .team500 .card{height: 294px;margin: 0;}
 section#portfolio .team500 img{width: 219px;height: 219px;}
@@ -313,7 +314,9 @@ section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: n
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd:last-child {border: none;}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a {background-color: transparent; border: solid 1px #000; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd.active a, section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a:hover {background-color: #000; color: #fff}
-section#portfolio.accelerator-top #mentors.accelerator .tabs-content {margin-top: 2rem}
+section#portfolio.accelerator-top #mentors.accelerator .tabs-content {margin-top: 2rem; color: #fff;}
+section#portfolio.accelerator-top #mentors.accelerator .content-active h4 {color: #fff;}
+section#portfolio.accelerator-top #mentors.accelerator .content h4 {color: #fff;}
 section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations {}
 section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations img {}
 section#portfolio.accelerator-top #mentors.accelerator .mentors-network {margin-top: 4rem}
@@ -322,7 +325,7 @@ section#portfolio.accelerator-top #mentors.accelerator ul.area {margin-top:3rem;
 section#portfolio.accelerator-top #mentors.accelerator ul.area li {width: 30%; margin: 1rem; padding: 1.5rem; text-align: left; height: 25rem}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container {text-align: right;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px; width: inherit; height: inherit;}
-section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800; line-height: 1em; margin-bottom: .8em;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li p {width:100%; text-align:left; font-size: 0.85rem; margin: 0.25rem 0.25rem 1.25rem;}
 section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 62px 0; text-align: center;}
 section#portfolio.accelerator-top .deal h3 {color: #fff}
@@ -335,6 +338,8 @@ section#portfolio.accelerator-top .deal .tabs-content {margin-bottom: 0px;}
 section#portfolio.accelerator-top .deal .tabs-content h3{font-weight:300}
 section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 62px 0}
 section#portfolio.accelerator-top .apply h3 {color: #fff}
+section#portfolio.accelerator-top .apply h4 {color: #fff;}
+section#portfolio.accelerator-top .apply h4 a {color: #fff; text-decoration: underline; font-weight: 600;}
 section#portfolio.accelerator-top .apply h3 a {color: #fff; text-decoration: underline;}
 section#portfolio.accelerator-top .apply dl#apply-tabs {margin: 2rem 0 1rem !important}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
