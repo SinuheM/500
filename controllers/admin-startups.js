@@ -252,11 +252,34 @@ adminStartUpsController.post('/new', function (req, res) {
 
 		startup.funding = JSON.parse(fields.investments);
 
-		startup.save(function(err){
-			if(err){ return res.sendError(500, err); }
-			req.flash('message', 'Saved sucessfully');
-			res.redirect('/admin/startups/' + startup.id );
-		});
+		if(fields.angelListId){
+			Startup.fetchFounders(fields.angelListId, function(err, founders){
+				if(err){ return res.sendError(500, err); }
+
+				founders = _.map(founders, function(founder){
+					return {
+						id : founder.id,
+						pic : founder.image,
+						name : founder.name,
+						title : ''
+					};
+				});
+
+				startup.founders = founders;
+
+				startup.save(function(err){
+					if(err){ return res.sendError(500, err); }
+					req.flash('message', 'Saved sucessfully, including founders');
+					res.redirect('/admin/startups/' + startup.id );
+				});
+			});
+		}else{
+			startup.save(function(err){
+				if(err){ return res.sendError(500, err); }
+				req.flash('message', 'Saved sucessfully');
+				res.redirect('/admin/startups/' + startup.id );
+			});
+		}
 	});
 
 	req.pipe(busboy);

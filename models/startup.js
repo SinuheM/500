@@ -72,6 +72,10 @@ startupSchema.pre('save', function (next) {
 var Startup = db.model('startup', startupSchema);
 var angelListApi = require('../lib/angelListApi');
 
+Startup.fetchFounders = function(id, callback) {
+	angelListApi.getFounders(id, callback);
+};
+
 Startup.prototype.fetchFounders = function(callback) {
 	angelListApi.getFounders(this.angelListData.id, callback);
 };
