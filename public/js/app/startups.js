@@ -102,8 +102,8 @@ $(document).ready(function () {
 	});
 
 	$(window).on('scroll', function(){
-		if($('footer').offset().top - window.scrollY - window.innerHeight < 0 && !loading){
-			loading = true;
+		if($('footer').offset().top - window.scrollY - window.innerHeight < 0 && !window.loading){
+			window.loading = true;
 			page++;
 
 			var xhr = $.post('/utils/startups/search',{
