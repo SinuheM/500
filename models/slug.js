@@ -11,6 +11,7 @@ var slugSchema = schema({
 
 var Slug = db.model('slug', slugSchema);
 Slug._reserved = {};
+Slug._redirect = {};
 Slug._models = {};
 
 Slug.slugify = function (toBeSlugify) {
@@ -19,6 +20,11 @@ Slug.slugify = function (toBeSlugify) {
 
 Slug.reserve = function (slug) {
 	this._reserved[slug] = true;
+};
+
+Slug.redirect = function (slug, redirect) {
+	this._reserved[slug] = true;
+	this._redirect[slug] = redirect;
 };
 
 Slug.plugIt = function (schema, options) {
@@ -84,6 +90,7 @@ Slug.plugIt = function (schema, options) {
 };
 
 Slug.getResourceBySlug = function (slug, callback) {
+	if(Slug._redirect[slug]){ return callback(null, {type:'redirect', redirect:Slug._redirect[slug]}); }
 	if(Slug._reserved[slug]){ return callback(null, {type:'reserved'}); }
 
 	Slug.findOne({slug : slug}, function(err, item){
@@ -163,5 +170,17 @@ Slug.reserve('on-the-web');
 
 Slug.reserve('feed');
 
+Slug.redirect('portfolio', '/startups');
+
+Slug.redirect('consumer-commerce', '/startups?theme=consumer commerce');
+Slug.redirect('family-tech-and-education', '/startups?theme=family tech and education');
+Slug.redirect('design', '/startups?theme=design');
+Slug.redirect('smb-productivity-cloud-services', '/startups?theme=smb productivity cloud services');
+Slug.redirect('international-emerging-markets', '/startups?theme=international / emerging markets');
+Slug.redirect('food-tech-digital-healthcare', '/startups?theme=food tech + digital healthcare');
+Slug.redirect('mobile-tablet', '/startups?theme=mobile tablet');
+Slug.redirect('payments-and-financial-services', '/startups?theme=payments and financial services');
+Slug.redirect('online-video', '/startups?theme=online video');
+Slug.redirect('bitcoin', '/startups?theme=bitcoin');
 
 module.exports = Slug;

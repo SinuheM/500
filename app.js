@@ -104,15 +104,25 @@ app.get('/:slug', function (req, res) {
 
 	Slug.getResourceBySlug(req.params.slug, function(err, data){
 		if(err) {return res.sendError(500, err);}
-		if(!data) {return res.sendError(404, 'not found');}
+		if(!data) {
+			if(/batch/.exec(req.params.slug)){
+				return res.redirect('/startups?batch=' + req.params.slug.replace('batch', '') );
+			}
+
+			if(/location/.exec(req.params.slug)){
+				return res.redirect('/startups?location=' + req.params.slug.replace('location', '') );
+			}
+
+			return res.sendError(404, 'not found');
+		}
 
 		var render;
 
-		if(data.type === 'reserved'){
-			if(req.params.slug === 'portfolio'){
-				return res.redirect(301, '/startups');
-			}
+		if(data.type === 'redirect'){
+			return res.redirect(301, data.redirect);
+		}
 
+		if(data.type === 'reserved'){
 			if(['blog', 'podcast', 'videos', 'on-the-web', 'announcements'].indexOf(req.params.slug) >=0){
 				render = renderer.get('activity');
 				return render(req, res, req.params.slug);
