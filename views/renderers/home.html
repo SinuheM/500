@@ -218,8 +218,9 @@
 <script>
     window.mapShown = false;
     window.mapAnimation = function(e){
-        var entrepreneurs = $('#entrepreneurs').position();
-        if($(window).scrollTop() > entrepreneurs.top+700 && !window.mapShown){
+        var mapContainerPosition = $('#map-container').position();
+
+        if($(window).scrollTop() + $(window).height() > mapContainerPosition.top + 200 && !window.mapShown){
             window.mapShown = true;
 
             $('#map-container #map img#map-dots').animate({top:0}, 1000, 'swing', function(){
