@@ -23,8 +23,6 @@ var render = function (req, res) {
 				world : locations.filter(function(location){if(location && /,\s?\w\w\w/.exec(location)){return true;}}).value(),
 			};
 
-			console.log(req.query);
-
 			Startup.find({publish:true}, {logo:1, name:1, avatar:1, investmentType:1, excerpt:1, batch:1, slugStr: 1, _id:0})
 			.limit(20)
 			.sort('-updatedDate')

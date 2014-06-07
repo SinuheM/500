@@ -39,18 +39,26 @@ window.Widgets.List.prototype.search = function(){
 	var query = window.getQueryValues();
 	var self = this;
 
-	query.search = $('#searchbox').val();
+	if($('#searchbox').val()){
+		query.search = $('#searchbox').val();
+	}
 
 	var xhr = $.post('/utils/startups/search',query);
 
 	xhr.done(function(data){
 		self.fill(data);
-		window.loading = true;
+		if( window._.isEmpty(query) ){
+			window.loading = false;
+		}else{
+			window.loading = true;
+		}
 	});
 };
 
 $(document).ready(function () {
-	var stoppedTyping, lastSearch, loading, page = 1;
+	var stoppedTyping, lastSearch;
+	window.loading = false;
+	window.page = 1;
 	var list = new window.Widgets.List({});
 
 	list.$el.addClass('center');
@@ -120,9 +128,9 @@ $(document).ready(function () {
 	});
 
 	var query = window.getQueryValues();
-	query.search = $('#searchbox').val();
 
 	if(!window._.isEmpty(query)){
+		query.search = $('#searchbox').val();
 		var $filter, $selectBox;
 
 		var $batch = $('#filter_cat_content .active');
