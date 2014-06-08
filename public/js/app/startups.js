@@ -71,7 +71,7 @@ $(document).ready(function () {
 
 		stoppedTyping = setTimeout(function(){
 			if($this.val()){
-				window.loading = false;
+				window.loading = true;
 				if($this.val() === lastSearch){return;}
 
 				var query = window.getQueryValues();
