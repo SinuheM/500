@@ -71,6 +71,7 @@ $(document).ready(function () {
 
 		stoppedTyping = setTimeout(function(){
 			if($this.val()){
+				window.loading = false;
 				if($this.val() === lastSearch){return;}
 
 				var query = window.getQueryValues();
@@ -112,16 +113,16 @@ $(document).ready(function () {
 	$(window).on('scroll', function(){
 		if($('footer').offset().top - window.scrollY - window.innerHeight < 0 && !window.loading){
 			window.loading = true;
-			page++;
+			window.page++;
 
 			var xhr = $.post('/utils/startups/search',{
-				page:page
+				page:window.page
 			});
 
 			xhr.done(function(data){
 				list.items.add(data);
 				if(data.length){
-					loading = false;
+					window.loading = false;
 				}
 			});
 		}
