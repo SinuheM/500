@@ -28,7 +28,7 @@
                     {% if mentor.link %}<li class="web"><a target="_blank" href="{{mentor.link}}">{{mentor.link|domain}}</a></li>{% endif %}
                 </ul>
                 {% if mentor.expertise.length %}
-                <h6>Expertise:</h6>
+                <h6>Expertise</h6>
                 <ul class="expertise">
                 {% for expertise in mentor.expertise %}
                     <li>{{expertise}}</li>

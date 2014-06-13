@@ -182,7 +182,7 @@ section#startup #top-head .container {text-align: center;}
 section#startup #top-head .container.video {padding-bottom: 15em}
 section#startup #top-head .container .logo {margin-bottom: 80px;}
 section#startup #top-head .container .logo img{max-height: 200px;}
-section#startup #top-head .container h4 {}
+section#startup #top-head .container h4 { font-weight: 900; color: #444444;}
 section#startup #top-head .container p {}
 section#startup #top-head .container .link {margin: 0 auto; width: auto}
 section#startup #top-head .container a.outline {background-color: transparent; color: #666; display: inline-block; border: solid 1px #666; padding: 1em 2em; font-weight: 300; margin: 1em 0em}
@@ -198,15 +198,16 @@ section#startup #detail .video {text-align: center; position: absolute; margin: 
 section#startup #detail .video iframe{border: 20px solid #fff}
 section#startup #detail .info {margin: 0}
 section#startup #detail .info .company {display: inline-block; width: 38%; vertical-align: top; background-color: #FFF; padding: 2em; border: solid 1px #ccc; margin-right: 3em}
-section#startup #detail .info .company h4 {margin-bottom: 1em}
+section#startup #detail .info .company h4 {margin-bottom: 1em; font-weight: 900; color: #444444;}
 section#startup #detail .info .company div {margin-bottom: 1em}
 section#startup #detail .info .company div h6 {color: #666; display: inline-block; vertical-align: top; width: 35%}
 section#startup #detail .info .company div p {display: inline-block; vertical-align: top; width: 60%; font-size: 1em; text-align: right;}
 section#startup #detail .info .product {display: inline-block; width: 55%; vertical-align: top;}
-section#startup #detail .info .product h4 {margin-bottom: 1em}
-section#startup #detail .info .product p {font-size: 1em; margin-bottom: 1em;}
+section#startup #detail .info .product h4 {margin-bottom: 1em; font-weight: 900; color: #444444;}
+section#startup #detail .info .product p {font-size: 1em; margin-bottom: 1em; line-height: 1.6em;}
+section#startup #detail .info .product p + p {margin-top: 1.5em;}
 section#startup #detail .founders {}
-section#startup #detail .founders h4 {margin-top: 2em}
+section#startup #detail .founders h4 {margin-top: 2em; font-weight: 900; color: #444444;}
 section#startup #detail .founders ul {list-style: none; margin: 1em 0 0; display: inline-block; width: 100%}
 section#startup #detail .founders ul li {float: left; width: 25%}
 section#startup #detail .founders ul li img {display: inline-block; vertical-align: top; width: 60px; border-radius: 50%}
@@ -262,8 +263,8 @@ section#mentor-single {padding-top: 11em}
 section#mentor-single .center {width: 50%; position: relative;}
 section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
 section#mentor-single .archive .head-info { margin-top: 2.1em}
-section#mentor-single .archive .head-info .image-container {display: inline-block; width: 23%; vertical-align: top;}
-section#mentor-single .archive .head-info .image-container img {width: 100%}
+section#mentor-single .archive .head-info .image-container {display: inline-block; width: 23%; vertical-align: top; }
+section#mentor-single .archive .head-info .image-container img {width: 100%; border-radius: 100px;}
 section#mentor-single .archive .head-info .name {display: inline-block; width: 76%; vertical-align: bottom; padding-left: 1rem;}
 section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
 section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #888; font-size: 1.5rem; font-weight: 600; margin: 0; text-transform: uppercase;}
@@ -291,8 +292,8 @@ section#staff-member .content {color: #FFF; position: relative; z-index: 5;}
 section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
 section#staff-member .content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
 section#staff-member .content h5 {color: #fff; font-size: 1.1rem}
-section#staff-member .content p {font-size: 1rem; margin-bottom: 2.5rem}
-section#staff-member .content p a {color: #fff; text-decoration: underline;}
+section#staff-member .content p {font-size: 5rem; margin-bottom: 2.5rem, }
+section#staff-member .content p a {color: #fff; text-decoration: underline; font-weight: 900;}
 section#staff-member .content ul.meta {list-style: none; margin: 2.5rem 0 2.5rem 1.25rem}
 section#staff-member .content ul.meta li {}
 section#staff-member .content ul.meta li a {color: #fff; font-weight: 300}
