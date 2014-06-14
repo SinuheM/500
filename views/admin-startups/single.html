@@ -78,7 +78,15 @@
 						<img src="{{currentStartup.logo}}"/>
 					</div>
 				</div>
-			</div>			
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Background</label>
+				<div class="col-sm-6">
+					<div class="image-uploader" name="background">
+						<img src="{{currentStartup.background}}"/>
+					</div>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Video</label>
 				<div class="col-sm-6">
@@ -287,6 +295,12 @@ $(document).ready(function(){
 
 		if($logoUploader.val() === ''){
 			$logoUploader.remove();
+		}
+
+		var $backgroundUploader = $('#update-startup #uploader-background');
+
+		if($backgroundUploader.val() === ''){
+			$backgroundUploader.remove();
 		}
 
 		var investment = [];

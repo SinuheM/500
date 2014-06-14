@@ -11,6 +11,7 @@ var startupSchema = schema({
 	name        : {type : String, require: true},
 	url         : {type : String},
 	logo        : {type : String},
+	background  : {type : String},
 	excerpt     : {type : String, max: 60},
 	description : {type : String},
 	location    : {type : String},

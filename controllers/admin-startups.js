@@ -187,17 +187,28 @@ adminStartUpsController.post('/new', function (req, res) {
 	var investmentFields = [];
 
 	var startup = new Startup();
-	var useLocalLogo, extension;
+	var useLocalLogo, logoExtension, useLocalBackground, backgroundExtension;
 
 	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+		var extensionArray;
 		if(fieldname === 'logo' && filename !== 'undefined') {
-			var extensionArray = filename.split('.');
-			extension      = _.last(extensionArray);
+			extensionArray = filename.split('.');
+			logoExtension  = _.last(extensionArray);
 
-			var logoFilePath   = path.join(process.cwd(), '/public/uploads/', 'logo-' + startup._id.toString() +  '.' + extension );
+			var logoFilePath = path.join(process.cwd(), '/public/uploads/', 'logo-' + startup._id.toString() +  '.' + logoExtension );
 			useLocalLogo = true;
 
 			file.pipe(fs.createWriteStream(logoFilePath));
+		}
+
+		if(fieldname === 'background' && filename !== 'undefined') {
+			extensionArray      = filename.split('.');
+			backgroundExtension = _.last(extensionArray);
+
+			var backgroundFilePath = path.join(process.cwd(), '/public/uploads/', 'background-' + startup._id.toString() +  '.' + backgroundExtension );
+			useLocalBackground = true;
+
+			file.pipe(fs.createWriteStream(backgroundFilePath));
 		}
 	});
 
@@ -234,9 +245,13 @@ adminStartUpsController.post('/new', function (req, res) {
 		}
 
 		if(useLocalLogo){
-			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + extension );
+			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + logoFilePath );
 		}else{
 			startup.logo = fields.remoteLogoUrl;
+		}
+
+		if(useLocalBackground){
+			startup.background = path.join('/uploads/', 'background-' + startup._id.toString() +  '.' + backgroundExtension );
 		}
 
 		if(fields.action === 'publish'){
@@ -352,19 +367,30 @@ adminStartUpsController.post('/search', function(req, res){
 adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 	var busboy = new Busboy({ headers: req.headers });
 	var fields = {};
-	var useLocalLogo, extension;
+	var useLocalLogo, logoExtension, useLocalBackground, backgroundExtension;
 	var startup = res.data.currentStartup;
 	var investmentFields = [];
 
 	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+		var extensionArray;
 		if(fieldname === 'logo' && filename !== 'undefined') {
-			var extensionArray = filename.split('.');
-			extension      = _.last(extensionArray);
+			extensionArray = filename.split('.');
+			logoExtension  = _.last(extensionArray);
 
-			var logoFilePath   = path.join(process.cwd(), '/public/uploads/', 'logo-' + startup._id.toString() +  '.' + extension );
+			var logoFilePath = path.join(process.cwd(), '/public/uploads/', 'logo-' + startup._id.toString() +  '.' + logoExtension );
 			useLocalLogo = true;
 
 			file.pipe(fs.createWriteStream(logoFilePath));
+		}
+
+		if(fieldname === 'background' && filename !== 'undefined') {
+			extensionArray      = filename.split('.');
+			backgroundExtension = _.last(extensionArray);
+
+			var backgroundFilePath = path.join(process.cwd(), '/public/uploads/', 'background-' + startup._id.toString() +  '.' + backgroundExtension );
+			useLocalBackground = true;
+
+			file.pipe(fs.createWriteStream(backgroundFilePath));
 		}
 	});
 
@@ -403,7 +429,11 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		}
 
 		if(useLocalLogo){
-			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + extension );
+			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + logoExtension );
+		}
+
+		if(useLocalBackground){
+			startup.background = path.join('/uploads/', 'background-' + startup._id.toString() +  '.' + backgroundExtension );
 		}
 
 		startup.socialProfiles = [];
