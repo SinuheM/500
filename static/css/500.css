@@ -292,7 +292,7 @@ section#staff-member .content {color: #FFF; position: relative; z-index: 5;}
 section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
 section#staff-member .content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
 section#staff-member .content h5 {color: #fff; font-size: 1.1rem}
-section#staff-member .content p {font-size: 5rem; margin-bottom: 2.5rem, }
+section#staff-member .content p {font-size: 1rem; margin-bottom: 2.5rem, }
 section#staff-member .content p a {color: #fff; text-decoration: underline; font-weight: 900;}
 section#staff-member .content ul.meta {list-style: none; margin: 2.5rem 0 2.5rem 1.25rem}
 section#staff-member .content ul.meta li {}
@@ -364,7 +364,7 @@ section#blogpost .center {position: relative; z-index: 1; padding-bottom: 8rem}
 section#blogpost .content {text-align: center; color: #fff; padding: 10rem 0 1rem; position: relative; background-repeat: no-repeat; background-size: cover; min-height: 40rem; background-color: #000}
 section#blogpost .content .center {padding: 0 2rem}
 section#blogpost .content .tag-announcement {font-weight: 300; background-color: #b43425; display: inline; padding: 0.25rem 1rem; font-size: 0.85rem; margin-top: 2em}
-section#blogpost .content h1 {color: #FFF; line-height: 4.5rem; font-size: 4rem; margin-top: 2em;}
+section#blogpost .content h1 {color: #FFF; line-height: 4.5rem; font-size: 4rem; margin-top: 1em; margin-bottom: auto;}
 section#blogpost .content p.subtitle {font-family: 'PT Serif', 'serif'; font-style: italic; font-size: 1.5rem}
 section#blogpost .meta {margin-top: 8rem; font-weight: 300; color: #fff;position: absolute; width: 100%; bottom: 20px; z-index: 1;}
 section#blogpost .meta .author {}
