@@ -15,6 +15,7 @@ a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-tr
 
 header {font-weight: 300; position: absolute; z-index: 100; bottom: 0; padding-left: 1.25em; margin: 1.25em 0; height: 65px; border-left-style: solid; border-left-width: 0px; border-left-color: #FFF; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 header#int {position: absolute; top: 0; background:rgba(255,255,255,0.9) !important; height:106px; padding:1.25em 0 !important; margin:0 !important; border-left-width: 16px !important; border-left-color: transparent !important}
+header#int.simple {background: transparent !important;}
 header#int.normal {border-color: #222;}
 header#int.nav_fixed{position: fixed}
 header#int nav a:hover, header#int nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem;}
@@ -46,7 +47,7 @@ section {}
 header nav a:hover, header nav a.active {color: #f2f2f2; border-bottom: solid 4px #f2f2f2; padding-bottom: 0.5rem;}
 
 .bxslider{width:960px; border:none}
-.accelerator-top .video{position:relative}
+.accelerator-top .video{position:relative;}
 .accelerator-top .cover_video{position:absolute; width:100%; height:50%; background:#f2f2f2; bottom:0; z-index:-1}
 
 section#home {position:fixed; background-image: url(../img/bg-home.jpg); width: 100%; height: 100%; background-repeat: no-repeat; background-size: cover; color: #FFF; background-position: right center; overflow:hidden; z-index:100; background-color: #000}
@@ -177,7 +178,7 @@ section#portfolio #search .container #filter li .submain li.active a:hover {back
 section#portfolio #search .container #filter span {}
 section#portfolio #starters {background-color: #f2f2f2; padding: 1rem 0 6rem}
 section#startup {padding: 200px 0 0}
-section#startup #top-head {}
+{background: #fff;}
 section#startup #top-head .container {text-align: center;}
 section#startup #top-head .container.video {padding-bottom: 15em}
 section#startup #top-head .container .logo {margin-bottom: 80px;}
@@ -191,6 +192,28 @@ section#startup #top-head .container .social {margin: 3em auto 2em; text-align: 
 section#startup #top-head .container .social li {display: inline-block; margin: 0 0.25em}
 section#startup #top-head .container .social li a {}
 section#startup #top-head .container .social li a img {}
+
+section#startup #startup-info {position: relative;background: #000; height: 100%}
+section#startup #startup-info .center {width: 450px; margin-left: 200px}
+section#startup #startup-info .content {color: #FFF; position: relative; z-index: 5;}
+section#startup #startup-info .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
+section#startup #startup-info.content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
+section#startup #startup-info.content h5 {color: #fff; font-size: 1.1rem}
+section#startup #startup-info.content .bio {font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.6em; font-weight: 300;}
+section#startup #startup-info.content .bio a{color: #fff; font-weight: 600; text-decoration: underline;}
+section#startup #startup-info.content p a {color: #fff; text-decoration: underline; font-weight: 900;}
+section#startup #startup-info.content ul.meta {list-style: none; margin: 2.5rem 0 2.5rem 1.25rem}
+section#startup #startup-info.content ul.meta li {}
+section#startup #startup-info.content ul.meta li a {color: #fff; font-weight: 300}
+section#startup #startup-info.content ul.meta li.city {list-style-image: url(../img/pin.png); text-transform: capitalize;}
+section#startup #startup-info.content ul.meta li.mail {list-style-image: url(../img/mail.png);}
+section#startup #startup-info.content ul.meta li.web {list-style-image: url(../img/web.png);}
+section#startup #startup-info.content ul.social {margin: 0; list-style: none;}
+section#startup #startup-info.content ul.social li {float: left; margin-right: 0.5rem}
+section#startup #startup-info.content ul.social li a {display: block;}
+section#startup #startup-info.over-shadow {position: fixed; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
+section#startup #startup-info.staff-cover {position: fixed; top: 0; z-index: 0; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat;}
+
 section#startup #detail {position: relative; background-color: #f2f2f2; padding-bottom: 10rem; padding-top: 4rem}
 section#startup #detail.video {padding-top: 17em}
 section#startup #detail .center {position: relative;}
@@ -226,12 +249,13 @@ section#portfolio #mentors h6 {text-align: center; position: relative; top: -2re
 section#portfolio #mentors ul {margin: 0; position: relative; list-style: none; z-index: 9}
 section#portfolio #mentors ul.up {top: -10rem}
 section#portfolio #mentors ul li {float: left; margin: 10px; width: 220px; position: relative; background-color: #fff; border: solid 1px #ccc;}
-section#portfolio #mentors ul li a {display: block;height: 294px;}
+section#portfolio #mentors ul li a {display: block;height: 320px;}
 section#portfolio #mentors ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #mentors ul li img {width: 219px;height: 219px;}
-section#portfolio #mentors ul li .content {text-align: center; padding: 1rem 0 0.75rem}
+section#portfolio #mentors ul li .content {text-align: center; padding-top: 0.55rem; }
 section#portfolio #mentors ul li .content p.name {font-size: 1rem; font-weight: 600; }
-section#portfolio #mentors ul li .content p.role {color: #888; text-transform: uppercase; font-size: 0.8rem; font-weight:800; }
+section#portfolio #mentors ul li .content div.role-container {display: table; height: 53px; width: 100%; padding: 0 15px;}
+section#portfolio #mentors ul li .content p.role {color: #888; text-transform: uppercase; font-size: 0.8rem; font-weight:800; display: table-cell; vertical-align: middle; text-align: center; width: 100%;}
 section#portfolio .team500 h6{clear:both;}
 
 section#portfolio #mentors ul .empty,
@@ -250,36 +274,37 @@ section#portfolio #team ul li {float: left; margin: 0.5rem; width: 219px; positi
 section#portfolio #team ul li a {display: block;}
 section#portfolio #team ul li a:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 section#portfolio #team ul li img {}
-section#portfolio #team ul li .content {text-align: center; padding: 1rem 0 0.75rem}
-section#portfolio #team ul li .content p.name {font-size: 1rem; font-weight: 600;}
-section#portfolio #team ul li .content p.role {color: #888; font-weight:800; text-transform: uppercase; font-size: 0.8rem;}
+section#portfolio #team ul li .content {text-align: center; padding-top: 0.55rem; position: relative;}
+section#portfolio #team ul li .content p.name {font-size: 0.9rem; font-weight: 600;}
+section#portfolio #team ul li .content div.role-container {display: table; height: 53px; width: 100%; padding: 0 15px;}
+section#portfolio #team ul li .content p.role {color: #888; font-weight:800; text-transform: uppercase; font-size: 0.8rem; display: table-cell; vertical-align: middle; text-align: center; width: 100%;}
 section#portfolio .team500 h6{clear:both;}
 section#portfolio h6 {font-size: 1.5em; font-weight: 900;}
 
-section#portfolio .team500 .card{height: 294px;margin: 0;}
+section#portfolio .team500 .card{height: 320px;margin: 0;}
 section#portfolio .team500 img{width: 219px;height: 219px;}
 
 section#mentor-single {padding-top: 11em}
 section#mentor-single .center {width: 50%; position: relative;}
 section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
-section#mentor-single .archive .head-info { margin-top: 2.1em}
-section#mentor-single .archive .head-info .image-container {display: inline-block; width: 23%; vertical-align: top; }
-section#mentor-single .archive .head-info .image-container img {width: 100%; border-radius: 100px;}
-section#mentor-single .archive .head-info .name {display: inline-block; width: 76%; vertical-align: bottom; padding-left: 1rem;}
-section#mentor-single .archive .head-info .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
-section#mentor-single .archive .head-info .name h4 {font-family: 'Exo 2', sans-serif; color: #888; font-size: 1.5rem; font-weight: 600; margin: 0; text-transform: uppercase;}
-section#mentor-single .archive .info {font-weight: 300; margin:30px 0 30px 20px }
-section#mentor-single .archive .info li {}
-section#mentor-single .archive .info li.location {list-style-image: url(../img/black-pin.png);}
-section#mentor-single .archive .info li.web {list-style-image: url(../img/home.png);}
-section#mentor-single .archive h6 {font-family: 'Open Sans', sans-serif; font-size: 1.2rem;}
-section#mentor-single .archive .expertise {margin: 0; list-style: none;}
-section#mentor-single .archive .expertise li {float: left; background-color: #f1f1f1; font-weight: 300; padding: 0.15rem 0.5rem; border: solid 1px #e0e0e0; margin-right: 0.5rem;}
-section#mentor-single .archive p {font-size: 1rem; margin: 2rem 0.25rem; width:620px}
-section#mentor-single .archive .social-connect {margin: 0; line-height: 1rem}
-section#mentor-single .archive .social-connect li {display: inline-block; margin-right: 0.5rem}
-section#mentor-single .archive .social-connect li a {}
-section#mentor-single .archive .social-connect li a img {}
+section#mentor-single .archive .image-container {display: inline-block; width: 155px; vertical-align: top; float: left; height: 100%; margin-top: 50px}
+section#mentor-single .archive .image-container img {width: 100%; border-radius: 100px;}
+section#mentor-single .archive .head-body {display: inline-block; margin: 50px 0 0 47px; width: 450px;}
+section#mentor-single .archive .head-body .name {display: inline-block; vertical-align: bottom;}
+section#mentor-single .archive .head-body .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
+section#mentor-single .archive .head-body .name h4 {font-family: 'Exo 2', sans-serif; color: #888; font-size: 1.5rem; font-weight: 600; margin: 0; text-transform: uppercase;}
+section#mentor-single .archive .head-body .info {font-weight: 300; margin:30px 0 30px 20px;}
+section#mentor-single .archive .head-body .info li:first-child {margin-left: 0;}
+section#mentor-single .archive .head-body .info li.location {list-style-image: url(../img/black-pin.png);}
+section#mentor-single .archive .head-body .info li.web {list-style-image: url(../img/home.png);}
+section#mentor-single .archive .head-body h6 {font-family: 'Open Sans', sans-serif; font-size: 1.2rem;}
+section#mentor-single .archive .head-body .expertise {margin: 0; list-style: none;}
+section#mentor-single .archive .head-body .expertise li {float: left; background-color: #f1f1f1; font-weight: 300; padding: 0.15rem 0.5rem; border: solid 1px #e0e0e0; margin-right: 0.5rem;}
+section#mentor-single .archive .head-body .bio {font-size: 1rem; margin: 2rem 0.25rem 2rem 0; font-weight: 300; line-height: 1.3em;}
+section#mentor-single .archive .head-body .social-connect {margin: 0; line-height: 1rem;}
+section#mentor-single .archive .head-body .social-connect li {display: inline-block; margin-right: 0.5rem;}
+section#mentor-single .archive .head-body .social-connect li a {}
+section#mentor-single .archive .head-body .social-connect li a img {}
 section#mentor-single .next-mentor {float: right; width: 2%; position: absolute; right: 0; padding-top: 0.75em;}
 section#mentor-single .next-mentor a {display: block; background-color: #fff; border-right: solid 1px #ccc; border-top: solid 1px #ccc; border-bottom: solid 1px #ccc;}
 section#mentor-single .next-mentor a:hover {background-color: #ccc}
@@ -292,7 +317,8 @@ section#staff-member .content {color: #FFF; position: relative; z-index: 5;}
 section#staff-member .content h1 {color: #fff; line-height: 4.5rem; text-transform: uppercase;}
 section#staff-member .content h4 {color: #fff; font-size: 1.25rem; text-transform: uppercase;}
 section#staff-member .content h5 {color: #fff; font-size: 1.1rem}
-section#staff-member .content p {font-size: 1rem; margin-bottom: 2.5rem, }
+section#staff-member .content .bio {font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.6em; font-weight: 300;}
+section#staff-member .content .bio a{color: #fff; font-weight: 600; text-decoration: underline;}
 section#staff-member .content p a {color: #fff; text-decoration: underline; font-weight: 900;}
 section#staff-member .content ul.meta {list-style: none; margin: 2.5rem 0 2.5rem 1.25rem}
 section#staff-member .content ul.meta li {}
@@ -309,17 +335,21 @@ section#portfolio.accelerator-top #search {padding: 10rem 0 0 0;}
 section#portfolio.accelerator-top #search h4 {}
 section#portfolio.accelerator-top #search p {line-height: 1.9rem; margin: 1rem auto 3rem; width:620px}
 section#portfolio.accelerator-top #search button {margin: 3rem 0 1.25rem;}
-section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padding: 6rem 0 6rem}
+section#portfolio.accelerator-top .center {max-width: 960px;}
+section#portfolio.accelerator-top .center.full-width {max-width: 100%;}
+section#portfolio.accelerator-top #mentors.accelerator {text-align: center; padding: 6rem 0 0rem; }
 section#portfolio.accelerator-top #mentors.accelerator h4 {margin-top: 5rem}
 section#portfolio.accelerator-top #mentors.accelerator h4:first-child {margin-top: 5rem}
 section#portfolio.accelerator-top #mentors.accelerator p{text-align:center; width:620px; margin:0 auto}
 section#portfolio.accelerator-top #mentors.accelerator .content p{width: 100%}
+section#portfolio.accelerator-top #mentors.accelerator #place-to-work {background: white; margin-top: 50px; padding-top: 10px;}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations {margin-top: 2rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; border-right: solid 1px #000; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd:last-child {border: none;}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a {background-color: transparent; border: solid 1px #000; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd.active a, section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a:hover {background-color: #000; color: #fff}
-section#portfolio.accelerator-top #mentors.accelerator .tabs-content {margin-top: 2rem; color: #fff;}
+section#portfolio.accelerator-top #mentors.accelerator .tabs-content {margin-top: 2rem; color: #fff; margin-bottom: 0;}
+section#portfolio.accelerator-top #mentors.accelerator .content.active {padding-bottom: 0;}
 section#portfolio.accelerator-top #mentors.accelerator .content-active h4 {color: #fff;}
 section#portfolio.accelerator-top #mentors.accelerator .content h4 {color: #fff;}
 section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .image-locations {}
@@ -396,10 +426,10 @@ section#blogpost .post figure {margin: 2rem 0}
 section#blogpost .post figure img {width: 100%}
 section#blogpost .post figure figcaption {font-size: 0.75rem; text-align: right; margin-top: 0.5rem;}
 section#blogpost .post .bottom {background-color: #f2f2f2; padding: 5rem 0 0}
-section#blogpost .post .bottom .author {text-align: center; max-width: 60%}
-section#blogpost .post .bottom .author img {display: inline-block; width: 12.5%; vertical-align: top;}
+section#blogpost .post .bottom .author {text-align: center;}
+section#blogpost .post .bottom .author img {display: block; width: 12.5%; vertical-align: top; margin: 0 auto; -webkit-border-radius: 60px; -moz-border-radius: 60px; border-radius: 60px;}
 section#blogpost .post .bottom .author .info {display: inline-block; width: 60%; vertical-align: top; margin-left: 1rem}
-section#blogpost .post .bottom .author .info h5 {font-family: 'Open Sans', sans-serif; font-size: 1.25rem; color: #808080; font-weight: 400; margin: 0}
+section#blogpost .post .bottom .author .info h5 {font-family: 'Open Sans', sans-serif; font-size: 1.25rem; color: #808080; font-weight: 400; margin: 30px 0 0 0}
 section#blogpost .post .bottom .author .info h5 span {color: #222}
 section#blogpost .post .bottom .author .info p {}
 section#blogpost .post .bottom .social {float: right; margin: 2rem 0 0; list-style: none;}
@@ -477,9 +507,9 @@ section#help-startups a.btn-accelerator:hover{background-color: #891e1b;color: w
 
 #filters_cool{position:relative; width:760px; margin:0 auto; background:red}
 
-#filter_cat_content{position:absolute; margin-top:60px; margin-left:44px; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
-#filter_place_content{position:absolute; margin-top:60px; margin-left:300px; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
-#filter_type_content{position:absolute; margin-top:60px; margin-left:594px; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
+#filter_cat_content{position:absolute; margin-top:60px; margin-left:0px !important;  background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
+#filter_place_content{position:absolute; margin-top:60px; margin-left:224px !important; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none}
+#filter_type_content{position:absolute; margin-top:60px; margin-left:461px !important; background:#FFF; border:1px solid #CCC; border-radius:5px; z-index:10; display:none ;width: 315px; }
 #filter_place_content ul li{text-transform: capitalize;}
 
 .filter_img{display:inline-block; margin-left:3px; width:9px; height:6px; background:url(../img/filter_arrow.png);}
@@ -545,7 +575,7 @@ box-shadow:         0px 0px 23px 0px rgba(89, 89, 89, 0.5);
 .card li p {font-size: 0.85rem}
 .card li p.title {font-size: 1rem; font-weight: 800; margin-top: 30px; text-transform: uppercase;}
 .card li p.detail {font-size: 0.65rem;margin-bottom: .8em; font-weight: 300; text-transform: capitalize;min-height: 16px}
-.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;position: absolute;bottom: 20px;left: 0;width: 100%;}
+.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;position: absolute;bottom: 20px;width: 100%; font-size: 0.76em;}
 .startup-card li .content: {height: 420px}
 
 .amazing-partners {margin: 1rem 0; list-style: none;}

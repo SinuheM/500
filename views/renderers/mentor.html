@@ -16,45 +16,47 @@
     <section id="mentor-single">
         <div class="center">
             <div class="archive">
-                <div class="head-info">
-                    <div class="image-container"><img src="{{mentor.avatar}}"></div>
+                <div class="image-container">
+                    <img src="{{mentor.avatar}}">
+                </div>
+                <div class='head-body'>
                     <div class="name">
                         <h2>{{mentor.displayName}}</h2>
                         <h4>{{mentor.title}}</h4>
                     </div>
-                </div>
-                <ul class="info">
-                    {% if mentor.location %}<li class="location">{{mentor.location}}</li>{% endif %}
-                    {% if mentor.link %}<li class="web"><a target="_blank" href="{{mentor.link}}">{{mentor.link|domain}}</a></li>{% endif %}
-                </ul>
-                {% if mentor.expertise.length %}
-                <h6>Expertise</h6>
-                <ul class="expertise">
-                {% for expertise in mentor.expertise %}
-                    <li>{{expertise}}</li>
-                {% endfor %}
-                </ul>
-                {% endif %}
-                <div class="clearfix"></div>
-                <p>{{mentor.bio|safe}}</p>
-                <ul class="social-connect">
-                {% if mentor.angelListData.name %}
-                    <li>
-                        <a target="_blank" href="{{ mentor.angelListData.angellist_url }}">
-                            <img class="has-retina" src="{{"angellist"|socialEmoticon()}}" alt="angellist">
-                        </a>
-                    </li>
-                {% endif %}
-                {% for profile in mentor.profiles %}
-                    {% if profile.url %}
-                    <li>
-                        <a target="_blank" href="{{profile.url|socialUrl(profile.provider)}}">
-                            <img class="has-retina" src="{{profile.provider|socialEmoticon()}}" alt="{{profile.provider}}">
-                        </a>
-                    </li>
+                    <ul class="info">
+                        {% if mentor.location %}<li class="location">{{mentor.location}}</li>{% endif %}
+                        {% if mentor.link %}<li class="web"><a target="_blank" href="{{mentor.link}}">{{mentor.link|domain}}</a></li>{% endif %}
+                    </ul>
+                    {% if mentor.expertise.length %}
+                    <h6>Expertise</h6>
+                    <ul class="expertise">
+                    {% for expertise in mentor.expertise %}
+                        <li>{{expertise}}</li>
+                    {% endfor %}
+                    </ul>
                     {% endif %}
-                {% endfor%}
-                </ul>
+                    <div class="clearfix"></div>
+                    <div class="bio">{{mentor.bio|safe}}</div>
+                    <ul class="social-connect">
+                    {% if mentor.angelListData.name %}
+                        <li>
+                            <a target="_blank" href="{{ mentor.angelListData.angellist_url }}">
+                                <img class="has-retina" src="{{"angellist"|socialEmoticon()}}" alt="angellist">
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for profile in mentor.profiles %}
+                        {% if profile.url %}
+                        <li>
+                            <a target="_blank" href="{{profile.url|socialUrl(profile.provider)}}">
+                                <img class="has-retina" src="{{profile.provider|socialEmoticon()}}" alt="{{profile.provider}}">
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor%}
+                    </ul>
+                </div>
             </div>
             <!--div class="next-mentor"><a href="/utils/mentors/random"><img src="/img/clear.png"></a></div-->
             <div class="clearfix"></div>

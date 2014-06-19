@@ -29,7 +29,7 @@
                         <li>startups in</li>
                         <li id="filter_place" class="filter_cool"><span>the world</span> <div class="filter_img"></div></li>
                         <li>focusing on</li>
-                        <li id="filter_type" class="filter_cool"><span>all investor themes</span> <div class="filter_img"></div></li>
+                        <li id="filter_type" class="filter_cool"><span>all investment themes</span> <div class="filter_img"></div></li>
                     </ul>
 
                     <div id="filters_cool">
@@ -148,7 +148,7 @@
                 <p class="detail"><%= item.investmentType %></p>
                 <p> <%= item.excerpt %></p>
                 <% if(item.batch){ %>
-                <p class="footer">Batch <%= item.batch.name %></p>
+                <p class="footer"><%= item.batch.name %></p>
                 <% } %>
             </div>
         </a>

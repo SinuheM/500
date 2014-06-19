@@ -16,7 +16,7 @@
     {% include "../partials/navbar.html" %}
     <section id="portfolio" class="accelerator-top">
         <div id="search">
-            <div class="center">
+            <div class="center full-width">
                 <div class="container">
                     <h3>Build your startup and learn from the best.<br> All in one place.</h3>
                     <p>Take your startup to the next level with our 4-month accelerator programs in Mountain View, San Francisco, and Mexico City.</p>
@@ -90,7 +90,7 @@
                         <h3>Curriculum</h3>
                         <p>500 brings in a wide variety of experts focused on marketing, culture, startup accounting, product design, mobile, user testing, sales, and more.</p>
                         <p>It's like a Startup MBA on steroids.</p>
-                       
+
                     </li>
                     <li>
                         <div class="image-container"><img src="/img/icon_hands.png"></div>
@@ -132,122 +132,123 @@
                         <p>We specialize in distribution for search, social, and mobile platforms such as Google, Facebook, Twitter, YouTube, Apple, and Android.</p>
                     </li>-->
                 </ul>
- <div class="clearfix"></div>
-  <div class="center">
-<h3 style="margin-top:40px">You'll have a place to work.</h3>
-                <p>We believe startups learn more when they work side by side.</br> Many founders say that working with peers is the best part of 500.<br><br>Take a look at our work spaces:</p>
-                <dl id="locations" class="tabs" data-tab>
-                    <dd class="active"><a href="#mountainview">MOUNTAIN VIEW</a></dd>
-                    <dd><a href="#sanfrancisco">SAN FRANCISCO</a></dd>
-                    <dd><a href="#mexicocity">MÉXICO CITY</a></dd>
-                </dl>
-                <div class="tabs-content">
-                    <div class="content active" id="mountainview">
-                        <div class="image-locations"><img src="/img/accelerator-mountainview.jpg"></div>
-                    </div>
-                    <div class="content" id="sanfrancisco">
-                        <div class="image-locations"><img src="/img/accelerator-sanfrancisco.jpg"></div>
-                    </div>
-                    <div class="content" id="mexicocity">
-                        <div class="image-locations"><img src="/img/accelerator-mexicocity.jpg"></div>
-                    </div>
-                </div>
             </div>
-
-                <div class="clearfix"></div>
-
-           <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        <div class="center full-width" id='place-to-work'>
+            <h3 style="margin-top:40px">You'll have a place to work.</h3>
+            <p>We believe startups learn more when they work side by side.</br> Many founders say that working with peers is the best part of 500.<br><br>Take a look at our work spaces:</p>
+            <dl id="locations" class="tabs" data-tab>
+                <dd class="active"><a href="#mountainview">MOUNTAIN VIEW</a></dd>
+                <dd><a href="#sanfrancisco">SAN FRANCISCO</a></dd>
+                <dd><a href="#mexicocity">MÉXICO CITY</a></dd>
+            </dl>
+            <div class="tabs-content">
+                <div class="content active" id="mountainview">
+                    <div class="image-locations"><img src="/img/accelerator-mountainview.jpg"></div>
+                </div>
+                <div class="content" id="sanfrancisco">
+                    <div class="image-locations"><img src="/img/accelerator-sanfrancisco.jpg"></div>
+                </div>
+                <div class="content" id="mexicocity">
+                    <div class="image-locations"><img src="/img/accelerator-mexicocity.jpg"></div>
                 </div>
             </div>
         </div>
-        <div class="apply">
-            <div class="center">
-                <h3>When to apply</h3>
-                <dl id="apply-tabs" class="tabs" data-tab>
-                    <dd class="active">
-                        <a href="#apply1">MOUNTAIN VIEW</a>
-                    </dd>
-                    <dd>
-                        <a href="#apply2">SAN FRANCISCO</a>
-                    </dd>
-                    <dd>
-                        <a href="#apply3">MEXICO CITY</a>
-                    </dd>
-                </dl>
-                <div class="tabs-content">
-                    <div class="content active" id="apply1">
-                        <h4>{{page.data['mountain-view']|safe}}</h4>
-                    </div>
-                    <div class="content" id="apply2">
-                        <h4>{{page.data['san-francisco']|safe}}</h4>
-                    </div>
-                    <div class="content" id="apply3">
-                        <h4>{{page.data['mexico-city']|safe}}</h4>
-                    </div>
-                </div>
+
+<div class="clearfix"></div>
+
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+<div class="apply">
+    <div class="center">
+        <h3>When to apply</h3>
+        <dl id="apply-tabs" class="tabs" data-tab>
+            <dd class="active">
+                <a href="#apply1">MOUNTAIN VIEW</a>
+            </dd>
+            <dd>
+                <a href="#apply2">SAN FRANCISCO</a>
+            </dd>
+            <dd>
+                <a href="#apply3">MEXICO CITY</a>
+            </dd>
+        </dl>
+        <div class="tabs-content">
+            <div class="content active" id="apply1">
+                <h4>{{page.data['mountain-view']|safe}}</h4>
             </div>
-        </div> 
+            <div class="content" id="apply2">
+                <h4>{{page.data['san-francisco']|safe}}</h4>
+            </div>
+            <div class="content" id="apply3">
+                <h4>{{page.data['mexico-city']|safe}}</h4>
+            </div>
+        </div>
+    </div>
+</div> 
 
 
+</div>
+</div>
+<div class="deal">
+    <div class="center">
+        <h3>What’s the deal?</h3>
+        <dl id="deal-tabs" class="tabs" data-tab>
+            <dd class="active">
+                <a href="#mountainview-and-sanfrancisco">MOUNTAIN VIEW & SAN FRANCISCO</a>
+            </dd>
+            <dd>
+                <a href="#mexico">MEXICO CITY</a>
+            </dd>
+        </dl>
+        <div class="tabs-content">
+            <div class="content active" id="mountainview-and-sanfrancisco">
+                <h3>We invest $100k in exchange for 7%, and charge a $25K program fee for a net $75K investment.</h3>
+            </div>
+            <div class="content" id="mexico">
+                <h3>We invest $40k in exchange for 10%, and charge a $12K program fee for a net $28K investment.</h3>
             </div>
         </div>
-        <div class="deal">
-            <div class="center">
-                <h3>What’s the deal?</h3>
-                <dl id="deal-tabs" class="tabs" data-tab>
-                    <dd class="active">
-                        <a href="#mountainview-and-sanfrancisco">MOUNTAIN VIEW & SAN FRANCISCO</a>
-                    </dd>
-                    <dd>
-                        <a href="#mexico">MEXICO CITY</a>
-                    </dd>
-                </dl>
-                <div class="tabs-content">
-                    <div class="content active" id="mountainview-and-sanfrancisco">
-                        <h3>We invest $100k in exchange for 7%, and charge a $25K program fee for a net $75K investment.</h3>
+    </div>
+</div>
+<div id="special-bg">
+    <div class="center">
+        <h3>★ Featured Alumni ★</h3>
+        <p>These awesome startups survived our 3-month program</p>
+        <ul class="card">
+            {% for startup in startups %}
+            <li>
+                <a href="/{{ startup.slugStr }}">
+                    <div class="content">
+                        <div class="image-container"><img src="{{ startup.logo }}"></div>
+                        <p class="title">{{ startup.name }}</p>
+                        <p class="detail">{{ startup.investmentType }}</p>
+                        <p>{{ startup.excerpt }}</p>
+                        {% if startup.batch %}
+                        <p class="footer">Batch {{startup.batch.name}}</p>
+                        {% endif %}
                     </div>
-                    <div class="content" id="mexico">
-                        <h3>We invest $40k in exchange for 10%, and charge a $12K program fee for a net $28K investment.</h3>
-                    </div>
-                </div>
-            </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="clearfix"></div>
+        <div>
+            <a href="http://angel.co" class="apply_button outline">APPLY TODAY</a>
         </div>
-        <div id="special-bg">
-            <div class="center">
-                <h3>★ Featured Alumni ★</h3>
-                <p>These awesome startups survived our 3-month program</p>
-                <ul class="card">
-                    {% for startup in startups %}
-                    <li>
-                        <a href="/{{ startup.slugStr }}">
-                            <div class="content">
-                                <div class="image-container"><img src="{{ startup.logo }}"></div>
-                                <p class="title">{{ startup.name }}</p>
-                                <p class="detail">{{ startup.investmentType }}</p>
-                                <p>{{ startup.excerpt }}</p>
-                                {% if startup.batch %}
-                                <p class="footer">Batch {{startup.batch.name}}</p>
-                                {% endif %}
-                            </div>
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <div class="clearfix"></div>
-                <div>
-                    <a href="http://angel.co" class="apply_button outline">APPLY TODAY</a>
-                </div>
-            </div>
+    </div>
 
-            <span class="bg"></span>
-        </div>
-        <div class="questions">
-            <div class="center">
-                <h3>Still have questions?</h3>
-                <p>Read what founders think of our program on <a href="http://www.quora.com/500-Startups/What-is-it-like-being-in-500-Startups">Quora</a></p>
-                <p>Send us a tweet <a href="http://twitter.com/500startups">@500startups</a></p>
-            </div>
-        </div>
+    <span class="bg"></span>
+</div>
+<div class="questions">
+    <div class="center">
+        <h3>Still have questions?</h3>
+        <p>Read what founders think of our program on <a href="http://www.quora.com/500-Startups/What-is-it-like-being-in-500-Startups">Quora</a></p>
+        <p>Send us a tweet <a href="http://twitter.com/500startups">@500startups</a></p>
+    </div>
+</div>
     </section>
     {% include "../partials/footer.html" %}
 
