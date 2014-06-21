@@ -6,6 +6,7 @@
     <title>{{startup.name}} at 500.co</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
+    <link rel="stylesheet" href="/css/animate.min.css" />
     <script src="js/vendor/modernizr.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
@@ -13,10 +14,103 @@
 </head>
 <body>
     {% include "../partials/navbar.html" %}
-    <section id="startup">
+    <div id="startup_profile" style="background-image:url( http://rubberit.co/img/back/img1.jpg ); background-size:cover">
+        <div id="startup_profile_over"></div>
+        <div class="content">
+            {% if startup.logo %}
+            <img src="{{startup.logo}}">
+            {% endif %}
+            <h6>{{startup.name}}</h6>
+            <p>{{startup.excerpt}}</p>
+
+            {% if startup.url %}
+            <div class="link"><a href="{{startup.url}}" class="outline">{{startup.url|domain}}</a></div>
+            {% endif %}
+
+            {% if startup.embed %}
+                <div class="video">
+                    {% autoescape false %}{{ startup.embed }}{% endautoescape %}
+                </div>
+                {% endif %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div id="startup_detail" {% if startup.video %}class="video"{% endif %}>
+        <div class="info">
+            <div class="company">
+                <h4>Company</h4>
+                {% if startup.location %}
+                <div>
+                    <h6>LOCATION</h6>
+                    <p>San Francisco</p>
+                </div>
+                {% endif %}
+                {% if startup.size %}
+                <div>
+                    <h6>SIZE</h6>
+                    <p>1-29 employes</p>
+                </div>
+                {% endif %}
+                {% if startup.funding.length %}
+                <div>
+                    <h6>FUNDING</h6>
+                    <p>
+                    {% for investment in startup.funding %}
+                        {% if investment.url %}
+                        <a class="block" href="{{investment.url}}">{{ investment.amount }}</a>
+                        {% else %}
+                        <span class="block">{{ investment.amount }}</span>
+                        {% endif %}
+                    {% endfor %}
+                    </p>
+                </div>
+                {% endif %}
+                {% if startup.markets.length %}
+                <div>
+                    <h6>MARKET</h6>
+                    <p>{{ startup.markets|join(',') }}</p>
+                </div>
+                {% endif %}
+                {% if batch %}
+                <div>
+                    <h6>BATCH</h6>
+                    <p>{{batch.name}}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="product">
+                <h4>Product</h4>
+                <p>{{startup.description|safe}}</p>
+            </div>
+        </div>
+        {% if startup.founders.length %}
+        <div class="founders">
+            <h4>Founders</h4>
+            <ul>
+                {% for founder in startup.founders %}
+                <li>
+                    <img src="{{ founder.pic }}">
+                    <div class="perfil">
+                        <h5>{{ founder.name }}</h5>
+                        <h6>{{ founder.title }}</h6>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+        
+    
+
+
+    <!--section id="startup">
         <div id="top-head">
             <div class="center">
-                <div class="container {% if startup.video %}video{% endif %}">
+                <div class="container {% if startup.video %}video{% endif %}" style="background:url(http://rubberit.co/img/back/img1.jpg); background-size:cover">
                 	{% if startup.logo %}
                     <div class="logo"><img src="{{startup.logo}}" alt="{{startup.name}}"></div>
                 	{% endif %}
@@ -114,13 +208,36 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section-->
     {% include "../partials/footer.html" %}
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/foundation.min.js"></script>
 <script src="/js/public.js"></script>
 <script>
     $(document).foundation();
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var lastScrollTop = 0;
+        $(window).on('scroll', function(){
+            $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
+            var busy = 0;
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop && busy==0 && st>0){
+                busy=1;
+                $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
+            }
+            if (st <= lastScrollTop){
+                if( $('#int').attr('rel') == 'bar_top' ){
+                    $('#int').attr('rel','1');
+                    $('#int').css('position','fixed').addClass('animated bounceInDown');
+                }
+                else
+                    $('#int').css('position','fixed');
+            }
+            lastScrollTop = st;
+        });
+    });
 </script>
 </body>
 </html>

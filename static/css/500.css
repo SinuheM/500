@@ -332,6 +332,37 @@ section#staff-member .content ul.social li {float: left; margin-right: 0.5rem}
 section#staff-member .content ul.social li a {display: block;}
 section#staff-member .over-shadow {position: fixed; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
 section#staff-member .staff-cover {position: fixed; top: 0; z-index: 0; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat;}
+
+#startup_profile{position:relative; overflow:hidden; height:800px !important}
+#startup_profile #startup_profile_over{position:absolute; width:100%; height:100%; background: rgba(255,255,255,0.5)}
+#startup_profile .content{position:absolute; width:450px; margin-left:200px; margin-top:170px !important}
+#startup_profile .content h6{font-size:28px; color:#000; margin:40px 0 0 0}
+#startup_profile .content p{color:#CCC; margin:0 !important}
+#startup_profile .content .link {margin:30px auto; width: auto}
+#startup_profile .content a.outline {background-color: transparent; color: #666; display: inline-block; border: solid 1px #666; padding: 1em 2em; font-weight: 300; margin: 1em 0em}
+#startup_profile .content a.outline:hover {background-color: #666; color: #FFF}
+#startup_profile .content .video{width:450px}
+#startup_profile .content .video iframe{width:450px !important; height:253px !important}
+
+#startup_detail .info{width:450px; margin-left:200px}
+#startup_detail .info .company {display: inline-block; width: 38%; vertical-align: top; background-color: #FFF; padding: 2em; border: solid 1px #ccc; margin-right: 3em}
+#startup_detail .info .company h4 {margin-bottom: 1em; font-weight: 900; color: #444444;}
+#startup_detail .info .company div {margin-bottom: 1em}
+#startup_detail .info .company div h6 {color: #666; display: inline-block; vertical-align: top; width: 35%}
+#startup_detail .info .company div p {display: inline-block; vertical-align: top; width: 60%; font-size: 1em; text-align: right;}
+#startup_detail .info .product {display: inline-block; width: 55%; vertical-align: top;}
+#startup_detail .info .product h4 {margin-bottom: 1em; font-weight: 900; color: #444444;}
+#startup_detail .info .product p {font-size: 1em; margin-bottom: 1em; line-height: 1.6em;}
+#startup_detail .info .product p + p {margin-top: 1.5em;}
+#startup_detail .founders {width:450px; margin-left:200px; margin-bottom:100px}
+#startup_detail .founders h4 {margin-top: 2em; font-weight: 900; color: #444444;}
+#startup_detail .founders ul {list-style: none; margin: 1em 0 0; display: inline-block; width: 100%}
+#startup_detail .founders ul li {float: left; width: 25%}
+#startup_detail .founders ul li img {display: inline-block; vertical-align: top; width: 60px; border-radius: 50%}
+#startup_detail .founders ul li .perfil {display: inline-block; width: 70%; vertical-align: top; margin-left: 0.5em}
+#startup_detail .founders ul li h5 {margin: 0.25em 0; line-height: 1em; font-size: 1.1em}
+#startup_detail .founders ul li h6 {color: #666; text-transform: uppercase;}
+
 section#portfolio.accelerator-top #search {padding: 10rem 0 0 0;}
 section#portfolio.accelerator-top #search h4 {}
 section#portfolio.accelerator-top #search p {line-height: 1.9rem; margin: 1rem auto 3rem; width:620px}
