@@ -88,13 +88,16 @@ section#help-startups .row-7 ul {height: 200px}
 section#help-startups .row-7 ul li {height: 100px}
 section#help-startups .row-7 ul li a {color: inherit; text-decoration: inherit;}
 section#help-startups .row-7 ul li img {width: 55px; margin-bottom: 10px}
-
 section#amazing {text-align: center; padding: 4rem 0; margin: 1rem 0}
 section#amazing p.sub {margin-top: 3rem; font-size: 1rem}
 section#legal {background-image: url(../img/bg-legal.jpg); background-repeat: repeat-x; background-position: top center; background-color: #f2f2f2; padding: 10rem 0}
 section#legal .center {background-color: #FFF; padding: 5rem; border: solid 1px #999;}
+section#legal .center li {margin-left: 2em;}
 section#legal h3 {text-align: center; margin-bottom: 5rem}
 section#legal p {font-size: 1rem; margin-bottom: 2rem}
+section#legal .center #note {font-size: .5rem;}
+section#legal .center #note ol {font-size: .5rem; margin-left: 4em; font-weight: 300; margin-bottom: .5em;}
+section#legal .center #note p {font-size: .5rem; margin-bottom: .5em;}
 section#activity {padding: 10rem 0 0}
 section#activity #activity-list {margin: 5rem 0 0; list-style: none; background-image: url(../img/activity-line.jpg); background-repeat: repeat-y; background-position: left center; padding-bottom: 6rem}
 section#activity #activity-circle{width:27px; height:27px; margin:0 0 30px 133px; background:url(../img/end_activity.png)}
@@ -441,7 +444,9 @@ section#blogpost .post h3 {font-size: 1rem; margin-top: 1em;}
 section#blogpost .post h4 {font-size: 1rem; margin-top: 1em;}
 section#blogpost .post h5 {font-size: 1rem; margin-top: 1em;}
 section#blogpost .post p {font-size: 1rem; line-height: 1.6em;}
-section#blogpost .post strong {font-weight: 600; letter-spacing: -0.03em;}
+section#blogpost .paragraph {font-family: 'open sans', 'helvetica', 'arial', 'sans-serif'; font-weight: 300; font-size: 1rem; line-height: 1.6em;}
+section#blogpost {font-family: 'open sans', 'helvetica', 'arial', 'sans-serif'; font-weight: 300; font-size: 1rem; line-height: 1.6em;}
+section#blogpost .post strong {font-weight: 600; letter-spacing: -0.03em; line-height: 1.6em;}
 section#blogpost .post p + p {margin-top: 1.5em;}
 section#blogpost .post ul{line-height: 1.5em; font-weight: 300; margin-top: 2em; margin-bottom: 2em; margin-left: 4em;}
 section#blogpost .post ol {line-height: 1.5em; font-weight: 300; margin-top: 2em; margin-bottom: 2em; margin-left: 4em;}
@@ -621,7 +626,7 @@ box-shadow:         0px 0px 23px 0px rgba(89, 89, 89, 0.5);
 footer {background-color: #000; color: #FFF; padding: 5rem 0 3rem}
 footer nav {font-size: 1rem}
 footer nav a {color: #FFF; display: block; margin-bottom: 1.5rem; font-weight: 600; letter-spacing:-1px}
-footer a:hover {text-decoration: underline;}
+footer a:hover {text-decoration: underline; color: #FFF;}
 footer .pin {}
 footer .pin li {list-style-image: url(../img/pin.png); margin-bottom: 2rem}
 footer .pin li .city_title{font-weight:600}
