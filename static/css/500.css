@@ -351,13 +351,14 @@ section#staff-member .staff-cover {position: fixed; top: 0; z-index: 0; height: 
 #startup_detail .info{width:450px; margin-left:200px; margin-bottom: 100px; padding-top: 170px; position: relative;}
 #startup_detail .info h4 {margin: 50px 0 25px; font-weight: 900; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-size: 18px !important;}
 #startup_detail .info p {margin: 0;}
+#startup_detail .info .company {margin-top: 50px;}
 #startup_detail .info .company div {margin-bottom: 1em}
 #startup_detail .info .company div h6 {color: #666; display: inline-block; vertical-align: top; width: 35%}
 #startup_detail .info .company div p {display: inline-block; vertical-align: top; width: 60%; font-size: 1em;}
 #startup_detail .info .product { margin-bottom: 50px;}
 #startup_detail .info .product p {font-size: 1em; line-height: 1.6em;}
 #startup_detail .founders {}
-#startup_detail .founders ul {list-style: none; margin: 0; margin-bottom: 50px; display: inline-block; width: 100%}
+#startup_detail .founders ul {list-style: none; margin: 0; display: inline-block; width: 100%}
 #startup_detail .founders ul li {float: left; width: 100%; margin-bottom: 15px;}
 #startup_detail .founders ul li img {display: inline-block; vertical-align: top; width: 60px; border-radius: 50%}
 #startup_detail .founders ul li .perfil {display: inline-block; margin-left: 0.5em}
