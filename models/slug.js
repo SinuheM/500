@@ -160,6 +160,7 @@ Slug.reserve('team');
 Slug.reserve('mentors');
 Slug.reserve('accelerator');
 Slug.reserve('events');
+Slug.reserve('invest')
 
 Slug.reserve('blog');
 Slug.reserve('activity');
@@ -167,6 +168,7 @@ Slug.reserve('podcast');
 Slug.reserve('videos');
 Slug.reserve('announcements');
 Slug.reserve('on-the-web');
+Slug.reserve('faqs')
 
 Slug.reserve('feed');
 

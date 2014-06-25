@@ -16,6 +16,8 @@
     {% if page.data.backgroundImage %}
     <style type="text/css">section#home{background-image: url({{page.data.backgroundImage}}) }</style>
     {% endif %}
+    <script src="/js/google-analytics.js"></script>
+
 </head>
 <body>
     <section id="home">
@@ -106,7 +108,7 @@
     <section id="themes">
         <div class="center">
             <div class="line">
-                <a href="/consumer-commerce"><div><img src="/img/icons-consumer.png"> <span>consumer<br>commerce</span></div></a>
+                <a href="/consumer-commerce" class="zoom"><div><img src="/img/icons-consumer.png"> <span>consumer<br>commerce</span></div></a>
                 <a href="/family-tech-and-education"><div><img src="/img/icons-education.png"> <span>family tech<br>and education</span></div></a>
                 <a href="/design"><div><img src="/img/icons-design.png"> <span>design</span></div></a>
                 <a href="/smb-productivity-cloud-services"><div><img src="/img/icons-cloud.png"> <span>smb productivity<br>& cloud services</span></div></a>
@@ -179,7 +181,7 @@
                             <p class="detail">{{startup.investmentType}}</p>
                             <p>{{startup.excerpt}}</p>
                             {% if startup.batch %}
-                            <p class="footer">Batch {{startup.batch.name}}</p>
+                            <p class="footer">{{startup.batch.name}}</p>
                             {% endif %}
                         </div>
                     </a>
@@ -261,9 +263,13 @@
             $('body').css('overflow','auto');
             $('#home').css('position', 'relative');
             var e_pos = $('#entrepreneurs').position();
-            $('html , body').animate( {scrollTop : e_pos.top+'px'},400,function(){
-                $('body').scrollTop(scroll-e_pos.top);
-            });
+
+            // Disable scroll animation in Firefox
+            if( typeof InstallTrigger === 'undefined' ){
+                $('html , body').animate( {scrollTop : e_pos.top+'px'},400,function(){
+                    $('body').scrollTop(scroll-e_pos.top);
+                });
+            }
             $('#home').fadeOut();
             $('#fixadent').fadeOut();
             $('#int').fadeIn(0).addClass('animated bounceInDown');

@@ -11,6 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
+    <script src="/js/google-analytics.js"></script>
 </head>
 <body>
     {% include "../partials/navbar.html" %}
@@ -171,19 +172,19 @@
         $('#filter_cat').on('click',function(){
             var obj_position = $(this).position();
             $('.filter_content').fadeOut();
-            $('#filter_cat_content').css('margin-left',''+(obj_position.left/2)+'px').fadeIn();
+            $('#filter_cat_content').css('margin-left',''+(obj_position.left/2)+'px').toggle();
         });
 
         $('#filter_place').on('click',function(){
             var obj_position = $(this).position();
             $('.filter_content').fadeOut();
-            $('#filter_place_content').css('margin-left',''+(obj_position.left)+'px').fadeIn();
+            $('#filter_place_content').css('margin-left',''+(obj_position.left)+'px').toggle();
         });
 
         $('#filter_type').on('click',function(){
             var obj_position = $(this).position();
             $('.filter_content').fadeOut();
-            $('#filter_type_content').css('margin-left',''+(obj_position.left)+'px').fadeIn();
+            $('#filter_type_content').css('margin-left',''+(obj_position.left)+'px').toggle();
         });
 
         $('.filter_content li').on('click',function(){

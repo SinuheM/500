@@ -13,6 +13,7 @@
             <a href="/mentors">MENTORS</a>
             <a href="/events">EVENTS</a>
             <a href="/activity">ACTIVITY</a>
+            <a href="/invest">INVEST</a>
         </nav>
     </header>
 {% elseif currentPage == "staff" || currentPage == "events" || currentPage == "post" %}
@@ -29,9 +30,10 @@
             <a href="/mentors" {% if currentPage == "mentors" %}class="active"{% endif %}>MENTORS</a>
             <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
             <a href="/activity" {% if currentPage == "post" %}class="active"{% endif %}>ACTIVITY</a>
+            <a href="/invest" {% if currentPage == "invest" %}class="active"{% endif %}>INVEST</a>
         </nav>
     </header>
-{% elseif currentPage == "mentor" || currentPage == "about" %}
+{% elseif currentPage == "mentor" || currentPage == "portfolio" %}
     <header id="int" class="simple fixed normal">
         <div id="logo">
             <a href="/">
@@ -45,6 +47,7 @@
             <a href="/mentors" {% if currentPage == "mentor" %}class="active"{% endif %}>MENTORS</a>
             <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
             <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
+            <a href="/invest" {% if currentPage == "invest" %}class="active"{% endif %}>INVEST</a>
         </nav>
     </header>   
 {% else %}
@@ -61,6 +64,7 @@
             <a href="/mentors" {% if currentPage == "mentors" %}class="active"{% endif %}>MENTORS</a>
             <a href="/events" {% if currentPage == "events" %}class="active"{% endif %}>EVENTS</a>
             <a href="/activity" {% if currentPage == "activity" %}class="active"{% endif %}>ACTIVITY</a>
+            <a href="/invest" {% if currentPage == "invest" %}class="active"{% endif %}>INVEST</a>
         </nav>
     </header>
 {% endif %}

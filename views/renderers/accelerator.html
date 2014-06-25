@@ -11,6 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
+    <script src="/js/google-analytics.js"></script>
 </head>
 <body>
     {% include "../partials/navbar.html" %}
@@ -26,7 +27,7 @@
 
  <div class="clearfix"></div>
         <div>
-            <a href="http://angel.co" class="apply_button outline">APPLY TODAY</a>
+            <a href="#apply" class="apply_button outline" data-scroll>APPLY TODAY</a>
         </div>
 
 
@@ -168,7 +169,7 @@
 </div>
 </div>
 </div>
-<div class="apply">
+<div class="apply" id="apply">
     <div class="center">
         <h3>When to apply</h3>
         <dl id="apply-tabs" class="tabs" data-tab>
@@ -243,7 +244,7 @@
         </ul>
         <div class="clearfix"></div>
         <div>
-            <a href="http://angel.co" class="apply_button outline">APPLY TODAY</a>
+            <a href="#apply" class="apply_button outline" data-scroll>APPLY TODAY</a>
         </div>
     </div>
 
@@ -262,6 +263,7 @@
 
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/foundation.min.js"></script>
+<script src="/js/vendor/smooth-scroll.js"></script>
 <script>
     $(document).foundation();
     $(document).ready(function(){
@@ -269,10 +271,12 @@
             window.location = '/mentors'
         });
 
-        $('#apply').on('click', function () {
-            window.location = '/'
+        smoothScroll.init({
+            speed: 500,
+            easing: 'easeInOutCubic',
+            updateURL: false,
+            offset: 104
         });
-
 
     })
 </script>

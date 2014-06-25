@@ -1,6 +1,6 @@
 var render = function (req, res, data) {
-	res.render('renderers/legal', {
-		currentPage : 'legal'
+	res.render('renderers/faqs', {
+		currentPage : 'faqs'
 	});
 };
 

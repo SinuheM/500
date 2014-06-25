@@ -11,35 +11,65 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Exo+2:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
+    <script src="/js/google-analytics.js"></script>
 </head>
 <body>
     {% include "../partials/navbar.html" %}
-    <div id="startup_profile" style="background-image:url( http://rubberit.co/img/back/img1.jpg ); background-size:cover">
-        <div id="startup_profile_over"></div>
-        <div class="content">
+    <div id="startup_profile" style="background-image:url( {{startup.background}}); background-size:cover">
+        <div class="over-shadow" style="background-image: url(/img/gradient-over-startup.png);"></div>
+    </div>
+
+    <div id="startup_detail">
+        <div class="info">
             {% if startup.logo %}
-            <img src="{{startup.logo}}">
+            <img class="logo" src="{{startup.logo}}">
             {% endif %}
-            <h6>{{startup.name}}</h6>
+            <h6 class="name">{{startup.name}}</h6>
             <p>{{startup.excerpt}}</p>
 
             {% if startup.url %}
             <div class="link"><a href="{{startup.url}}" class="outline">{{startup.url|domain}}</a></div>
             {% endif %}
+            <ul class="social">
+            {% for profile in startup.socialProfiles %}
+                {% if profile.url %}
+                <li>
+                    <a href="{{profile.url|socialUrl(profile.provider)}}">
+                        <img class="has-retina" src="{{profile.provider|socialEmoticon}}" alt="{{profile.provider}}">
+                    </a>
+                </li>
+                {% endif %}
+            {% endfor%}
+            </ul>
+
+            <div class="product">
+                <h4>Product</h4>
+                <p>{{startup.description|safe}}</p>
+            </div>
 
             {% if startup.embed %}
                 <div class="video">
                     {% autoescape false %}{{ startup.embed }}{% endautoescape %}
                 </div>
+            {% endif %}
+            {% if startup.founders.length %}
+            <div class="founders">
+                <h4>Founders</h4>
+                <ul>
+                    {% for founder in startup.founders %}
+                    <li>
+                        <img src="{{ founder.pic }}">
+                        <div class="perfil">
+                            <h5>{{ founder.name }}</h5>
+                            <h6>{{ founder.title }}</h6>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
                 {% endif %}
-            <div class="clearfix"></div>
-        </div>
-    </div>
-
-    <div id="startup_detail" {% if startup.video %}class="video"{% endif %}>
-        <div class="info">
+                <div class="clearfix"></div>
+            </div>
             <div class="company">
-                <h4>Company</h4>
                 {% if startup.location %}
                 <div>
                     <h6>LOCATION</h6>
@@ -69,7 +99,7 @@
                 {% if startup.markets.length %}
                 <div>
                     <h6>MARKET</h6>
-                    <p>{{ startup.markets|join(',') }}</p>
+                    <p>{{ startup.markets|join(', ') }}</p>
                 </div>
                 {% endif %}
                 {% if batch %}
@@ -79,27 +109,6 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="product">
-                <h4>Product</h4>
-                <p>{{startup.description|safe}}</p>
-            </div>
-        </div>
-        {% if startup.founders.length %}
-        <div class="founders">
-            <h4>Founders</h4>
-            <ul>
-                {% for founder in startup.founders %}
-                <li>
-                    <img src="{{ founder.pic }}">
-                    <div class="perfil">
-                        <h5>{{ founder.name }}</h5>
-                        <h6>{{ founder.title }}</h6>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <div class="clearfix"></div>
         </div>
     </div>
 

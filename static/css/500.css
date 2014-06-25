@@ -15,8 +15,8 @@ a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-tr
 
 header {font-weight: 300; position: absolute; z-index: 100; bottom: 0; padding-left: 1.25em; margin: 1.25em 0; height: 65px; border-left-style: solid; border-left-width: 0px; border-left-color: #FFF; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 header#int {position: absolute; top: 0; background:rgba(255,255,255,0.9) !important; height:106px; padding:1.25em 0 !important; margin:0 !important; border-left-width: 16px !important; border-left-color: transparent !important}
-header#int.simple {background: transparent !important;}
 header#int.normal {border-color: #222;}
+header#int.simple {background-color: transparent !important;}
 header#int.nav_fixed{position: fixed}
 header#int nav a:hover, header#int nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem;}
 header#staff {position: absolute; top: 0; width: 100%; z-index: 99}
@@ -336,35 +336,35 @@ section#staff-member .content ul.social li a {display: block;}
 section#staff-member .over-shadow {position: fixed; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
 section#staff-member .staff-cover {position: fixed; top: 0; z-index: 0; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat;}
 
-#startup_profile{position:relative; overflow:hidden; height:800px !important}
-#startup_profile #startup_profile_over{position:absolute; width:100%; height:100%; background: rgba(255,255,255,0.5)}
-#startup_profile .content{position:absolute; width:450px; margin-left:200px; margin-top:170px !important}
-#startup_profile .content h6{font-size:28px; color:#000; margin:40px 0 0 0}
-#startup_profile .content p{color:#CCC; margin:0 !important}
-#startup_profile .content .link {margin:30px auto; width: auto}
-#startup_profile .content a.outline {background-color: transparent; color: #666; display: inline-block; border: solid 1px #666; padding: 1em 2em; font-weight: 300; margin: 1em 0em}
-#startup_profile .content a.outline:hover {background-color: #666; color: #FFF}
-#startup_profile .content .video{width:450px}
-#startup_profile .content .video iframe{width:450px !important; height:253px !important}
+#startup_profile{position:fixed; width: 100%; height: 100%; overflow:hidden; z-index: -1;}
+#startup_profile .over-shadow {height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; position: absolute;}
+#startup_detail .info .logo {max-width: 310px; max-height: 160px;}
+#startup_detail .info .name{font-size:28px; color:#000; margin:100px 0 0 0}
+#startup_detail .info p{margin:0 !important}
+#startup_detail .info .link {margin: 60px auto 20px; width: auto}
+#startup_detail .info a.outline {background-color: transparent; color: #666; display: inline-block; border: solid 1px #666; padding: 1em 2em; font-weight: 300; margin: 1em 0em}
+#startup_detail .info a.outline:hover {background-color: #666; color: #FFF}
+#startup_detail .info .video{wtailidth:450px}
+#startup_detail .info .video iframe{width:450px !important; height:253px !important}
 
-#startup_detail .info{width:450px; margin-left:200px}
-#startup_detail .info .company {display: inline-block; width: 38%; vertical-align: top; background-color: #FFF; padding: 2em; border: solid 1px #ccc; margin-right: 3em}
-#startup_detail .info .company h4 {margin-bottom: 1em; font-weight: 900; color: #444444;}
+
+#startup_detail .info{width:450px; margin-left:200px; margin-bottom: 50px; padding-top: 170px; position: relative;}
+#startup_detail .info h4 {margin: 50px 0 25px; font-weight: 900; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-size: 18px !important;}
+#startup_detail .info p {margin: 0;}
 #startup_detail .info .company div {margin-bottom: 1em}
 #startup_detail .info .company div h6 {color: #666; display: inline-block; vertical-align: top; width: 35%}
-#startup_detail .info .company div p {display: inline-block; vertical-align: top; width: 60%; font-size: 1em; text-align: right;}
-#startup_detail .info .product {display: inline-block; width: 55%; vertical-align: top;}
-#startup_detail .info .product h4 {margin-bottom: 1em; font-weight: 900; color: #444444;}
-#startup_detail .info .product p {font-size: 1em; margin-bottom: 1em; line-height: 1.6em;}
-#startup_detail .info .product p + p {margin-top: 1.5em;}
-#startup_detail .founders {width:450px; margin-left:200px; margin-bottom:100px}
-#startup_detail .founders h4 {margin-top: 2em; font-weight: 900; color: #444444;}
-#startup_detail .founders ul {list-style: none; margin: 1em 0 0; display: inline-block; width: 100%}
-#startup_detail .founders ul li {float: left; width: 25%}
+#startup_detail .info .company div p {display: inline-block; vertical-align: top; width: 60%; font-size: 1em;}
+#startup_detail .info .product { margin-bottom: 50px;}
+#startup_detail .info .product p {font-size: 1em; line-height: 1.6em;}
+#startup_detail .founders {}
+#startup_detail .founders ul {list-style: none; margin: 0; margin-bottom: 50px; display: inline-block; width: 100%}
+#startup_detail .founders ul li {float: left; width: 100%; margin-bottom: 15px;}
 #startup_detail .founders ul li img {display: inline-block; vertical-align: top; width: 60px; border-radius: 50%}
-#startup_detail .founders ul li .perfil {display: inline-block; width: 70%; vertical-align: top; margin-left: 0.5em}
+#startup_detail .founders ul li .perfil {display: inline-block; margin-left: 0.5em}
 #startup_detail .founders ul li h5 {margin: 0.25em 0; line-height: 1em; font-size: 1.1em}
 #startup_detail .founders ul li h6 {color: #666; text-transform: uppercase;}
+#startup_detail .social {display: inline-block; list-style: none; margin: 0;}
+#startup_detail .social li {float: left; margin-right: 0.5rem}
 
 section#portfolio.accelerator-top #search {padding: 10rem 0 0 0;}
 section#portfolio.accelerator-top #search h4 {}
@@ -406,7 +406,7 @@ section#portfolio.accelerator-top .deal dl#deal-tabs dd a {color: #fff; backgrou
 section#portfolio.accelerator-top .deal dl#deal-tabs dd.active a, section#portfolio.accelerator-top .deal dl#deal-tabs dd a:hover {background-color: #fff; color: #7ac364}
 section#portfolio.accelerator-top .deal .tabs-content {margin-bottom: 0px;}
 section#portfolio.accelerator-top .deal .tabs-content h3{font-weight:300}
-section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 62px 0}
+section#portfolio.accelerator-top .apply {background-color: #010101; text-align: center; padding: 62px 0;}
 section#portfolio.accelerator-top .apply h3 {color: #fff}
 section#portfolio.accelerator-top .apply h4 {color: #fff;}
 section#portfolio.accelerator-top .apply h4 a {color: #fff; text-decoration: underline; font-weight: 600;}
@@ -474,7 +474,7 @@ section#blogpost .post .bottom .social li {display: inline-block; margin-left: 0
 section#blogpost .post .bottom .social li a {display: block;}
 section#blogpost .post .bottom .social li a img {}
 section#error404 {padding: 2rem 0 5rem}
-section#error404 .center {}
+section#error404 .center {position: absolute;top: 0;bottom: 0;left: 0;right: 0;height: 500px;margin: auto;}
 section#error404 .top {}
 section#error404 .top .image-404 {display: inline-block; margin-left: 4rem}
 section#error404 .top .image-404 img {}
@@ -508,8 +508,6 @@ body.layer-single #mentor-single {}
 body.layer-single #mentor-single .center {height:100%;}
 body.layer-single #mentor-single .center .archive{min-height:80%; margin-bottom:100px}
 body.layer-single #mentor-single .center .archive a{text-decoration: underline;}
-
-header#int.simple {background-color: transparent;z-index: 2}
 
 .line {height: 8em}
 .line p {float: left; margin: 0; width: 50%}
@@ -608,11 +606,11 @@ box-shadow:         0px 0px 23px 0px rgba(89, 89, 89, 0.5);
 .card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;height: 410px; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 .card li .content:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
 .card li .image-container {height: 200px;display: table-cell;vertical-align: middle;width: 190px;}
-.card li img {}
+.card li img {width: inherit;}
 .card li p {font-size: 0.85rem}
 .card li p.title {font-size: 1rem; font-weight: 800; margin-top: 30px; text-transform: uppercase;}
 .card li p.detail {font-size: 0.65rem;margin-bottom: .8em; font-weight: 300; text-transform: capitalize;min-height: 16px}
-.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;position: absolute;bottom: 20px;width: 100%; font-size: 0.76em;}
+.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;font-size: 0.76em;}
 .startup-card li .content: {height: 420px}
 
 .amazing-partners {margin: 1rem 0; list-style: none;}
