@@ -118,7 +118,11 @@ var helpers = function(swig){
 	swig.setFilter('domain', function (urlStr) {
 		var location = url.parse(urlStr);
 
-		return location.hostname.toLowerCase();
+		if(location.hostname){
+			return location.hostname.toLowerCase();
+		}else{
+			return '';
+		}
 	});
 
 	swig.setFilter('ago', function (date) {
