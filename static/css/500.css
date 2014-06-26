@@ -81,7 +81,7 @@ section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1r
 section#help-startups .subtitle{padding-bottom:92px}
 section#help-startups p {font-size: 1rem; margin:20px 0}
 section#help-startups ul {margin: 3rem 0; list-style: none;}
-section#help-startups ul li {float: left; width: 33.33%; margin-bottom: 3rem; font-size: 0.75rem}
+section#help-startups ul li {float: right; width: 33.33%; margin-bottom: 3rem; font-size: 0.75rem}
 section#help-startups a {color: #b43322; text-decoration: underline;}
 section#help-startups .clearfix {margin: 5rem 0}
 section#help-startups h4 {margin-bottom: 4rem}
