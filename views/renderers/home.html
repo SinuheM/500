@@ -147,7 +147,7 @@
                     <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><strong>{{startup.name}}</strong><br><span>{{startup.investmentType}}</span></a></li>
                 {% endfor %}
                 </ul>
-                <a href="/startups?investmentType=acceleration">All accelerator companies</a>
+                <a href="/startups?investmentType=acceleration" class="all-companies">All accelerator companies</a>
             </div>
             <div class="clearfix"></div>
             <div class="row-5">
@@ -159,10 +159,10 @@
             <div class="row-7">
                 <ul>
                     {% for startup in seed %}
-                    <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><span>{{startup.investmentType}}</span></a></li>
+                    <li><a href="/{{startup.slugStr}}"><img src="{{startup.logo}}"><br><strong>{{startup.name}}</strong><br><span>{{startup.investmentType}}</span></a></li>
                     {% endfor %}
                 </ul>
-                <a href="/startups?investmentType=seed">All seed companies</a>
+                <a href="/startups?investmentType=seed" class="all-companies">All seed companies</a>
             </div>
         </div>
         <div class="clearfix"></div>
