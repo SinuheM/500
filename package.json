@@ -9,7 +9,7 @@
     "mongoose": "~3.8.8",
     "passport": "~0.1.18",
     "passport-local": "~0.1.6",
-    "stackers": "~0.1.2",
+    "stackers": "~0.1.5",
     "password-hash": "~1.2.1",
     "connect-flash": "~0.1.1",
     "optimist": "~0.6.1",
