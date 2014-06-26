@@ -22,7 +22,10 @@ var render = function (req, res) {
 		if(err){return res.send(500);}
 
 		activities.forEach(function(item){
-			var image = item.image.indexOf('http') >= 0 ? item.image : conf.baseUrl + item.image;
+			var image;
+			if(item.image){
+				image = item.image.indexOf('http') >= 0 ? item.image : conf.baseUrl + item.image;
+			}
 
 			feed.addItem({
 				title:item.title,
