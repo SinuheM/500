@@ -17,13 +17,13 @@ var render = function (req, res, data) {
 			res.render('renderers/startup', {
 				startup : startup,
 				batch : batch,
-				currentPage : 'portfolio'
+				currentPage : 'startup-profile'
 			});
 		});
 	}else{
 		res.render('renderers/startup', {
 			startup : startup,
-			currentPage : 'portfolio'
+			currentPage : 'startup-profile'
 		});
 	}
 
