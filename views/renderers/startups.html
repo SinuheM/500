@@ -105,30 +105,7 @@
             </div>
         </div>
         <div id="starters">
-            {% if false %}
-            <div class="center">
-                <ul class="card">
-                    {% for startup in startups %}
-                    <li>
-                    	<a target="_blank" href="/{{startup.slugStr}}">
-	                        <div class="content">
-                                <div class="image-container">
-                                    <img src="{{startup.logo}}">
-                                </div>
-	                            <p class="title">{{startup.name}}</p>
-	                            <p class="detail">{{startup.investmentType}}</p>
-	                            <p>{{startup.excerpt}}</p>
-	                            {% if startup.batch %}
-	                            <p class="footer">{{startup.batch.name}}</p>
-	                            {% endif %}
-	                        </div>
-                    	</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            {% endif %}
+
         </div>
     </section>
     {% include "../partials/footer.html" %}
@@ -138,7 +115,7 @@
     <div class="clearfix"></div>
 </script>
 <script type="text/template" id="listItemTemplate">
-    <li class="animated flipInX">
+    <li class="animated fadeInDown">
         <a href="/<%= item.slugStr %>">
             <div class="content">
                 <div class="image-container">
