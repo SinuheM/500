@@ -36,7 +36,7 @@ header#fixadent.fixed nav a:hover, header#fixadent.fixed nav a.active {color: #2
 #ribbon p {color: #fff; font-weight: 600; font-size: 13px; text-transform: uppercase;}
 #ribbon a {color: #fff; font-weight: 900; text-decoration: underline;}
 
-#splash_text{margin:150px 0 0 200px; padding:0 !important; position:relative; z-index: 2;}
+#splash_text{margin:200px 0 0 180px; padding:0 !important; position:relative; z-index: 2;}
 #splash_text #your-move{text-transform: uppercase;}
 #splash_text h1{text-transform: uppercase;}
 #home .over-shadow {position:absolute; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
