@@ -474,7 +474,7 @@ var deleteUser = function(type){
 		var user = res.data.currentUser;
 
 		user.publish = false;
-		user.active = true;
+		user.active = false;
 		user.deleted = true;
 
 		user.save(function(err){
