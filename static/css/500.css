@@ -32,7 +32,11 @@ header nav a {color: #222; margin: 0 1em; font-weight:400}
 header#fixadent nav a {color: #FFF;}
 header#fixadent.fixed nav a:hover, header#fixadent.fixed nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
 
-#splash_text{margin:200px 0 0 200px; padding:0 !important; position:relative;}
+#ribbon{background-color: #B43322; position: relative; padding: 2px; padding-right: 100px; z-index: 2; text-align: center;}
+#ribbon p {color: #fff; font-weight: 600; font-size: 13px; text-transform: uppercase;}
+#ribbon a {color: #fff; font-weight: 900; text-decoration: underline;}
+
+#splash_text{margin:150px 0 0 200px; padding:0 !important; position:relative; z-index: 2;}
 #splash_text #your-move{text-transform: uppercase;}
 #splash_text h1{text-transform: uppercase;}
 #home .over-shadow {position:absolute; top: 0; z-index: 1; height: 100%; width: 100%; background-size: cover; background-repeat: no-repeat; left: 0}
