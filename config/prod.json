@@ -6,5 +6,5 @@
 	"mongo" : {
 		"db" : "500Production"
 	},
-	"baseUrl" : "http://500.co.dev"
+	"baseUrl" : "http://500.co"
 }
