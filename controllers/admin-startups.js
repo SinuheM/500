@@ -422,6 +422,8 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		}
 		if(fields.markets){
 			startup.markets = fields.markets.split(',');
+		}else{
+			startup.markets = [];
 		}
 
 		if(fields.batch){
