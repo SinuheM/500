@@ -245,7 +245,7 @@ adminStartUpsController.post('/new', function (req, res) {
 		}
 
 		if(useLocalLogo){
-			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + logoFilePath );
+			startup.logo = path.join('/uploads/', 'logo-' + startup._id.toString() +  '.' + logoExtension );
 		}else{
 			startup.logo = fields.remoteLogoUrl;
 		}
