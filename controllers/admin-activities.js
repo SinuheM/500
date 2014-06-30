@@ -4,6 +4,7 @@ var controller = require('stackers'),
 
 var embedlyApi = require('../lib/embedlyApi');
 var Activity = db.model('activity');
+var User = db.model('user');
 
 var adminActivitiesController = controller({
 	path : '/activities'
@@ -16,6 +17,14 @@ adminActivitiesController.beforeEach(function(req, res, next){
 	}];
 
 	next();
+});
+
+adminActivitiesController.beforeEach(function(req, res, next){
+	User.find({type: {$in:['team', 'admin']}, active: true }, function(err, teamMembers){
+		res.data.teamMembers = teamMembers;
+
+		next();
+	});
 });
 
 adminActivitiesController.beforeEach(function(req, res, next){
@@ -37,7 +46,13 @@ adminActivitiesController.get('', function (req, res) {
 		label : 'Activities'
 	});
 
-	Activity.find({type:{$in:['video', 'on the web']}})
+	var query = {type:{$in:['video', 'on the web']}}
+
+	if(res.user.type !== 'admin'){
+		query.uploader = res.user._id;
+	}
+
+	Activity.find(query)
 	.populate('uploader')
 	.sort('-createdDate')
 	.exec(function(err, activities){
@@ -75,7 +90,12 @@ adminActivitiesController.post('/new', function (req, res) {
 	if(req.body.author){
 		req.body.author = JSON.parse(req.body.author);
 	}
-	req.body.uploader  = res.user;
+
+	if(res.user.type == 'admin'){
+		req.body.uploader  = req.body.uploader;
+	}else{
+		req.body.uploader  = res.user;
+	}
 	
 	var activity = new Activity(req.body);
 
@@ -111,6 +131,10 @@ adminActivitiesController.post('/:currectActivity/edit', function (req, res) {
 	currectActivity.title       = req.body.title;
 	currectActivity.description = req.body.description;
 	currectActivity.image       = req.body.image;
+
+	if(res.user.type === 'admin'){
+		currectActivity.uploader  = req.body.uploader;
+	}
 
 	if(req.body.action === 'publish'){
 		currectActivity.active = true;

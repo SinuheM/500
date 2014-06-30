@@ -31,10 +31,25 @@
 				<label class="col-sm-3 control-label">Provider</label>
 				<label id="providerDisplay" class="col-sm-9"><img src="{{currectActivity.favicon}}"/> {{currectActivity.provider}}</label>
 			</div>
+			{% if user.type == 'admin' %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Uploader</label>
+				<div class="col-sm-6">
+					<select id="type" name="uploader" class="form-control input-sm mb15">
+						{% for teamMember in teamMembers %}
+						<option value="{{teamMember.id}}" {% if teamMember.id == currectActivity.uploader.id %}selected{% endif %}>
+							{{ teamMember.displayName }}
+						</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			{% else %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Uploader</label>
 				<label id="providerDisplay" class="col-sm-9">{{currectActivity.uploader.displayName}}</label>
-			</div>			
+			</div>						
+			{% endif %}					
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Title</label>
 				<div class="col-sm-6">

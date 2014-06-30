@@ -9,6 +9,7 @@ var controller = require('stackers'),
 	db = require('../lib/db');
 
 var Activity = db.model('activity');
+var User = db.model('user');
 var Slug = db.model('slug');
 
 var adminBlogController = controller({
@@ -44,6 +45,22 @@ adminPodcastController.beforeEach(function(req, res, next){
 	}else{
 		res.sendError(403, 'forbidden');
 	}
+});
+
+adminBlogController.beforeEach(function(req, res, next){
+	User.find({type: {$in:['team', 'admin']}, active: true }, function(err, teamMembers){
+		res.data.teamMembers = teamMembers;
+
+		next();
+	});
+});
+
+adminPodcastController.beforeEach(function(req, res, next){
+	User.find({type: {$in:['team', 'admin']}, active: true }, function(err, teamMembers){
+		res.data.teamMembers = teamMembers;
+
+		next();
+	});
 });
 
 var currentBlogpostParam = function(type){
@@ -168,8 +185,12 @@ var blogpostUpdate = function (type) {
 			post.content = fields.content;
 			post.type = type;
 
-			if(!res.data.currentBlogpost){
-				post.uploader = res.data.user;
+			if(res.user.type === 'admin'){
+				post.uploader = fields.uploader;
+			}else{
+				if(!res.data.currentBlogpost){
+					post.uploader = res.data.user;
+				}
 			}
 
 			if(fields.announcement === 'on'){

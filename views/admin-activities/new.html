@@ -43,7 +43,21 @@
 						<input id="slug" name="slugStr" type="text" placeholder="leave empty to have a generic slug" class="input-slug form-control" value="{{angelListUser.slug}}">
 					</div>					
 				</div>
-			</div>		
+			</div>
+			{% if user.type == 'admin' %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Uploader</label>
+				<div class="col-sm-6">
+					<select id="type" name="uploader" class="form-control input-sm mb15">
+						{% for teamMember in teamMembers %}
+						<option value="{{teamMember.id}}" {% if teamMember.id == user.id%}selected{% endif %}>
+							{{ teamMember.displayName }}
+						</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			{% endif %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Title</label>
 				<div class="col-sm-6">

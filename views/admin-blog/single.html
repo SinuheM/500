@@ -52,6 +52,33 @@
 					<input name="subtitle" type="text" class="form-control" value="{{ post.subtitle }}">
 				</div>
 			</div>
+			{% if user.type == "admin" %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Uploader</label>
+				<div class="col-sm-6">
+					<select id="type" name="uploader" class="form-control input-sm mb15">
+						{% for teamMember in teamMembers %}
+							{% if post %}
+								<option value="{{teamMember.id}}" {% if teamMember.id == post.uploader.id %}selected{% endif %}>
+									{{ teamMember.displayName }}
+								</option>
+							{% else %}
+								<option value="{{teamMember.id}}" {% if teamMember.id == user.id %}selected{% endif %}>
+									{{ teamMember.displayName }}
+								</option>							
+							{% endif %}
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+			{% else %}
+				{% if post%}
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Uploader</label>
+					<label id="providerDisplay" class="col-sm-9">{{post.uploader.displayName}}</label>
+				</div>		
+				{% endif %}
+			{% endif %}
 			{% if type == "podcast" %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">iTunes Link</label>
@@ -77,7 +104,6 @@
 					<input id="date" name="date" type="text" class="form-control" value="{{ date }}">
 				</div>
 				<div class="col-sm-3">
-					{{ time }}
 					<div class="input-group mb15">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
 						<div class="bootstrap-timepicker"><input id="timepicker" type="text" class="form-control" data-date="{{ post.createdDate|dateToString }}"/></div>
