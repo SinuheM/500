@@ -18,8 +18,8 @@ var startupSchema = schema({
 	size        : {type : String},
 
 	investmentType   : {type : String, max: 50}, // seed, acceleration
-	investmentClass  : {type : String}, // seed, acceleration
-	investmentFields : [{type : String}], // seed, acceleration
+	investmentClass  : {type : String},
+	investmentFields : [{type : String}],
 
 	video       : {type : String},
 	embed       : {type : String}, // Clear to refetch

@@ -107,6 +107,12 @@
                     <p>{{batch.name}}</p>
                 </div>
                 {% endif %}
+                {% if startup.investmentFields.length %}
+                <div>
+                    <h6>INVESTMENT THEMES</h6>
+                    <p>{{ startup.investmentFields|capitalize|join(', ') }}</p>
+                </div>
+                {% endif %}                
             </div>
         </div>
     </div>
