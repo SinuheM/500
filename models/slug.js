@@ -184,5 +184,7 @@ Slug.redirect('mobile-tablet', '/startups?theme=mobile tablet');
 Slug.redirect('payments-and-financial-services', '/startups?theme=payments and financial services');
 Slug.redirect('online-video', '/startups?theme=online video');
 Slug.redirect('bitcoin', '/startups?theme=bitcoin');
+Slug.redirect('money', '/startups?theme=money');
+Slug.redirect('gaming', '/startups?theme=gaming');
 
 module.exports = Slug;
