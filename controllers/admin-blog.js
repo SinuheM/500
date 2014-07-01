@@ -48,7 +48,7 @@ adminPodcastController.beforeEach(function(req, res, next){
 });
 
 adminBlogController.beforeEach(function(req, res, next){
-	User.find({type: {$in:['team', 'admin']}, active: true }, function(err, teamMembers){
+	User.find({type: {$in:['team', 'admin', 'contentEditor']}, publish: true }, function(err, teamMembers){
 		res.data.teamMembers = teamMembers;
 
 		next();
@@ -56,7 +56,7 @@ adminBlogController.beforeEach(function(req, res, next){
 });
 
 adminPodcastController.beforeEach(function(req, res, next){
-	User.find({type: {$in:['team', 'admin']}, active: true }, function(err, teamMembers){
+	User.find({type: {$in:['team', 'admin', 'contentEditor']}, publish: true }, function(err, teamMembers){
 		res.data.teamMembers = teamMembers;
 
 		next();

@@ -20,7 +20,7 @@ adminActivitiesController.beforeEach(function(req, res, next){
 });
 
 adminActivitiesController.beforeEach(function(req, res, next){
-	User.find({type: {$in:['team', 'admin']}, active: true }, function(err, teamMembers){
+	User.find({type: {$in:['team', 'admin', 'contentEditor']}, publish: true }, function(err, teamMembers){
 		res.data.teamMembers = teamMembers;
 
 		next();
@@ -46,7 +46,7 @@ adminActivitiesController.get('', function (req, res) {
 		label : 'Activities'
 	});
 
-	var query = {type:{$in:['video', 'on the web']}}
+	var query = {type:{$in:['video', 'on the web']}};
 
 	if(res.user.type !== 'admin'){
 		query.uploader = res.user._id;
