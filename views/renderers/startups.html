@@ -55,7 +55,7 @@
                             {% endif %}
                             {% if batches.sanFransisco.length %}
                             <ul>
-                                <li rel="filter_cat_content"  class="title_filter" data-value="san francisco" data-type="category">San fransisco</li>
+                                <li rel="filter_cat_content"  class="title_filter" data-value="san francisco" data-type="category">San Francisco</li>
                                 {% for batch in batches.sanFransisco %}
                                 <li rel="filter_cat_content" data-value="{{batch.id}}" {% if params.batch == batch.name %}class="active"{% endif %}>Batch {{batch.name}}</li>
                                 {% endfor %}                                
