@@ -445,8 +445,8 @@ section#portfolio.accelerator-top .questions p {}
 section#portfolio.accelerator-top .questions a {color: #b43322; text-decoration: underline;}
 section#blogpost {}
 section#blogpost .center {position: relative; z-index: 1; padding-bottom: 5rem}
-section#blogpost .content {text-align: center; color: #fff; padding: 10rem 0 1rem; position: relative; background: no-repeat center center fixed; background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; min-height: 40rem; background-color: #000}
-section#blogpost .content .center {padding: 2em 0 2rem}
+section#blogpost .content { text-align: center; color: #fff; padding: 0 0 1rem; position: relative; background: no-repeat center center fixed; background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; min-height: 45rem; background-color: #000}
+section#blogpost .content .center { padding: 15em 0 2rem; }
 section#blogpost .content .tag-announcement {font-weight: 300; background-color: #b43425; display: inline; padding: 0.25rem 1rem; font-size: 0.85rem; margin-top: 2em}
 section#blogpost .content h1 {color: #FFF; line-height: 4.5rem; font-size: 4rem; margin-top: .1em; margin-bottom: auto;}
 section#blogpost .content p.subtitle {font-family: 'PT Serif', 'serif'; font-style: italic; font-size: 1.5rem}
@@ -505,9 +505,10 @@ section#error404 nav a {margin: 0 1.25rem}
 section#events {}
 section#events #top {border-top-style: solid; border-top-width: 8rem;}
 section#events .content {color: #FFF; position: relative;}
+
 section#events .content .center{height: 620px; position: relative;}
 
-section#events .content #info-container {float: right; width: 50%; display: table; height: 620px;  }
+section#events .content #info-container {float: right; width: 50%; display: table; height: 620px; z-index:10; position: relative; }
 
 section#events .content .info { display: table-cell; vertical-align: middle; z-index: 10;}
 
@@ -520,7 +521,7 @@ section#events .content .info p {font-size: 1rem; margin-top: 1rem}
 section#events .content .info p.date {margin: 2.5rem 0 0 0.5rem !important; font-size: 1.3rem;}
 
 section#events .content .info a {font-weight: 300; background-color: #fff; padding: 0.85rem 2rem; margin-top: 4rem; display: inline-block; font-size: 0.85rem;}
-section#events .content .image-event {position: absolute; right: 485px; top: 0;}
+section#events .content .image-event {position: absolute; right: 400px; top: 0;}
 section#events .content .image-event img {height: 620px; max-width: inherit; z-index: 5;}
 section#events #subscribe {text-align: center; padding: 3rem 0}
 section#events #subscribe h5 {font-size: 2rem}

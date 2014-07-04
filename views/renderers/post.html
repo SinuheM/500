@@ -69,5 +69,13 @@
         });
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    windowheight = $(window).height();
+    t = windowheight - 0; // 450 es el numero que ocupa el header
+    $("contenido").css('top', t); // en el caso que sea declarado el div con position: relativa
+    }
+    });
+</script>
 </body>
 </html>
