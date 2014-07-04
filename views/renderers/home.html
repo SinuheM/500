@@ -56,9 +56,9 @@
                 </li>
             </ul>
             
-            <iframe width="785" height="442" src="//www.youtube.com/embed/oy--ub2jMHs?list=PL571BAAD2DFD8F8C7&rel=0&loop=1&controls=0&autoplay=0&disablekb=1&fs=0&border=0&hd=1&showinfo=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+            <iframe width="960" height="541" src="//www.youtube.com/embed/oy--ub2jMHs?list=PL571BAAD2DFD8F8C7&rel=0&loop=1&controls=0&autoplay=0&disablekb=1&fs=0&border=0&hd=1&showinfo=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
         </div>
-          <section id="team-home">
+          <section id="team-home" class="videobg">
          
             <p>500 Startups isn't just a name — we really have invested in over 500 companies.<br>The numbers speak for themselves.</p>
         <ul id="date-500">
@@ -142,7 +142,7 @@
                 <h3>Accelerator</h3>
                 <p>Execution is everything. With our 4-month accelerator program  you'll get access to awesome mentorship, hands-on sessions with startup experts, and a great office space where you'll work with other smart, talented founders from around the world. </p>
                 <p>We run our accelerator program in Mountain View, </br>San Francisco and Mexico City. Think you're ready?</p>
-                <a class="btn-accelerator" href="/accelerator">APPLY NOW</a>
+                <a class="outline" href="/accelerator">APPLY NOW</a>
             </div>
             <div class="row-7">
                 <ul>
@@ -182,7 +182,7 @@
                             <div class="image-container"><img src="{{startup.logo}}"></div>
                             <p class="title">{{startup.name}}</p>
                             <p class="detail">{{startup.investmentType}}</p>
-                            <p>{{startup.excerpt}}</p>
+                            <p class="excerpt">{{startup.excerpt}}</p>
                             {% if startup.batch %}
                             <p class="footer">{{startup.batch.name}}</p>
                             {% endif %}

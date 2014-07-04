@@ -26,12 +26,14 @@
         {% for event in events %}
         <div {% if loop.first %}id="top"{% endif %} class="content" style="background-color: {{event.backgroundColor}}; border-top-color: {{event.backgroundColor}}; color: {{event.color}}">
             <div class="center">
-                <div class="info">
-                    <h6 style="color: {{event.color}};">{{ event.title }}</h6>
-                    <h1 style="color: {{event.color}};">{{ event.name }}</h1>
-                    <h6 style="color: {{event.color}};">{{ event.date }}</h6>
-                    <p>{{ event.description }}</p>
-                    <a href="{{event.link}}" style="color: {{event.backgroundColor}}; background-color: {{event.color}};">MORE INFO</a>
+                <div id="info-container">
+                    <div class="info">
+                        <h6 style="color: {{event.color}};">{{ event.title }}</h6>
+                        <h1 style="color: {{event.color}};">{{ event.name }}</h1>
+                        <p class="date" style="color: {{event.color}};">{{ event.date }}</p>
+                        <p>{{ event.description }}</p>
+                        <a href="{{event.link}}" style="color: {{event.backgroundColor}}; background-color: {{event.color}};">MORE INFO</a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
                 {% if event.image %}

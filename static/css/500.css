@@ -14,10 +14,10 @@ a {transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-tr
 ::-moz-selection {background: #000000; color: #F0F0F0;}
 
 header {font-weight: 300; position: absolute; z-index: 100; bottom: 0; padding-left: 1.25em; margin: 1.25em 0; height: 65px; border-left-style: solid; border-left-width: 0px; border-left-color: #FFF; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
-header#int {position: absolute; top: 0; background:rgba(255,255,255,0.9) !important; height:106px; padding:1.25em 0 !important; margin:0 !important; border-left-width: 16px !important; border-left-color: transparent !important}
-header#int.normal {border-color: #222;}
+header#int {position: absolute; top: 0; background:rgba(255,255,255,1) !important; height:106px; padding:1.25em 0 1.25em .2em !important; margin:0 !important; border-left-width: 16px !important; border-left-color: transparent !important; }
+header#int.normal {border-color: #222; }
 header#int.simple {background-color: transparent !important;}
-header#int.nav_fixed{position: fixed}
+header#int.nav_fixed{position: fixed; }
 header#int nav a:hover, header#int nav a.active {color: #222; border-bottom: solid 4px #222; padding-bottom: 0.5rem;}
 header#staff {position: absolute; top: 0; width: 100%; z-index: 99}
 header#staff nav a {color: #FFF}
@@ -59,8 +59,9 @@ section#home .center {padding-top: 25%}
 section#home h1 {color: #FFF;}
 
 section#entrepreneurs {text-align: center; padding: 8em 0 0 0;}
-section#entrepreneurs iframe {margin:50px 0 0 0; max-width: 785px; width: 95%}
-section#team-home {padding:50px 0}
+section#entrepreneurs iframe {margin:50px 0 0 0; max-width: 960px; width: 100%}
+section#team-home {padding:100px 0; }
+.videobg {padding:250px 0 100px !important; background: #f2f2f2; margin-top: -200px;}
 section#team-home ul#date-500 {max-width: 960px; margin: 0 auto; list-style: none; text-align: center;}
 section#team-home ul#date-500 li {float: left; width: 33%; margin-top:20px}
 section#team-home .date-left{text-align:left}
@@ -77,11 +78,11 @@ section#team-home #team-list ul li {float: left; opacity: 0.15; width: 7.14%}
 section#team-home #team-list ul li img {width: 100%}
 section#team-home .button-container {text-align: center;}
 
-section#themes{padding-bottom:25px}
+section#themes{padding-bottom:75px}
 section#themes p{text-align:center; padding-bottom:40px}
 section#themes .button-container {text-align: center;}
 
-section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 4rem 0}
+section#help-startups {background-color: #f2f2f2; text-align: center; margin: 1rem 0; padding: 100px 0}
 section#help-startups .subtitle{padding-bottom:92px}
 section#help-startups p {font-size: 1rem; margin:20px 0}
 section#help-startups ul {margin: 3rem 0; list-style: none;}
@@ -100,7 +101,7 @@ section#legal {background-image: url(../img/bg-legal.jpg); background-repeat: re
 section#legal .center {background-color: #FFF; padding: 5rem; border: solid 1px #999;}
 section#legal .center li {margin-left: 2em;}
 section#legal h3 {text-align: center; margin-bottom: 5rem}
-section#legal p {font-size: 1rem; margin-bottom: 2rem}
+section#legal p {font-size: 1rem; margin-bottom: 2rem;}
 section#legal .center #note {font-size: .5rem;}
 section#legal .center #note ol {font-size: .5rem; margin-left: 5em; font-weight: 300; margin-bottom: .5em;}
 section#legal .center #note ol #AB {margin-left: 10em;}
@@ -170,7 +171,7 @@ section#portfolio #search {padding: 10rem 0 2rem 0;}
 section#portfolio #search .container {text-align: center;}
 section#portfolio #search .container h5{width:620px; margin:0 auto}
 section#portfolio input[type="search"] {background-image: url(../img/search.jpg); background-repeat: no-repeat; height: 70px; border: solid 2px #222; width: 620px; margin: 5rem auto 0; padding: 0.5rem 1.5rem 0.5rem 4.5rem; font-size: 2rem; font-weight: 300;}
-section#portfolio p {margin: 0.5rem auto 0; width: 80%}
+section#portfolio p {margin: 0.5rem auto 0; width: 100%}
 section#portfolio p span {float: right; font-size: 0.85em; color: #ccc; margin-right:356px}
 section#portfolio .place_holder_search{margin-bottom:4rem; width:620px !important; text-align:right}
 section#portfolio .place_holder_search span{margin-right:0 !important}
@@ -299,13 +300,13 @@ section#portfolio .team500 .card{height: 320px;margin: 0;}
 section#portfolio .team500 img{width: 219px;height: 219px;}
 
 section#mentor-single {padding-top: 11em}
-section#mentor-single .center {width: 50%; position: relative;}
-section#mentor-single .archive {padding: 0 2.5em 8em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 98%}
+section#mentor-single .center {width: 55%; position: relative;}
+section#mentor-single .archive {padding: 0 4em 5em; position: relative; background-color: #fff; border: solid 1px #ccc; float: left; width: 100%}
 section#mentor-single .archive .image-container {display: inline-block; width: 155px; vertical-align: top; float: left; height: 100%; margin-top: 50px}
 section#mentor-single .archive .image-container img {width: 100%; border-radius: 100px;}
 section#mentor-single .archive .head-body {display: inline-block; margin: 50px 0 0 47px; width: 450px;}
 section#mentor-single .archive .head-body .name {display: inline-block; vertical-align: bottom;}
-section#mentor-single .archive .head-body .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase;}
+section#mentor-single .archive .head-body .name h2 {font-size: 2.2rem; line-height: 1em; text-transform: uppercase; margin-top: 2em;}
 section#mentor-single .archive .head-body .name h4 {font-family: 'Exo 2', sans-serif; color: #888; font-size: 1.5rem; font-weight: 600; margin: 0; text-transform: uppercase;}
 section#mentor-single .archive .head-body .info {font-weight: 300; margin:30px 0 30px 20px;}
 section#mentor-single .archive .head-body .info li:first-child {margin-left: 0;}
@@ -390,7 +391,7 @@ section#portfolio.accelerator-top #mentors.accelerator p{text-align:center; widt
 section#portfolio.accelerator-top #mentors.accelerator .content p{width: 100%}
 section#portfolio.accelerator-top #mentors.accelerator #place-to-work {background: white; margin-top: 50px; padding-top: 10px;}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations {margin-top: 2rem}
-section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; border-right: solid 1px #000; padding: 0.5rem 1rem}
+section#portfolio.accelerator-top #mentors.accelerator dl#locations dd {float: none; display: inline-block; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd:last-child {border: none;}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a {background-color: transparent; border: solid 1px #000; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top #mentors.accelerator dl#locations dd.active a, section#portfolio.accelerator-top #mentors.accelerator dl#locations dd a:hover {background-color: #000; color: #fff}
@@ -403,7 +404,14 @@ section#portfolio.accelerator-top #mentors.accelerator .tabs-content .content .i
 section#portfolio.accelerator-top #mentors.accelerator .mentors-network {margin-top: 4rem}
 section#portfolio.accelerator-top #mentors.accelerator button#view-all {margin-top: 3rem; margin-bottom:3rem}
 section#portfolio.accelerator-top #mentors.accelerator ul.area {margin-top:3rem;}
-section#portfolio.accelerator-top #mentors.accelerator ul.area li {width: 30%; margin: 1rem; padding: 1.5rem; text-align: left; height: 25rem}
+section#portfolio.accelerator-top #mentors.accelerator ul.area li {width: 30%; margin: 1rem; padding: 1.5rem; text-align: left; height: 25rem; transition: all 0.2s ease; -webkit-transition: all 0.2s ease; -moz-transition: all 0.2s ease; -o-transition: all 0.2s ease;}
+
+section#portfolio.accelerator-top #mentors.accelerator ul.area li:hover{transform: scale(1.02);
+-ms-transform: scale(1.02);
+-moz-transform: scale(1.02);
+-webkit-transform: scale(1.02);
+-o-transform: scale(1.02);}
+
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container {text-align: right;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li .image-container img {max-width: 50px; width: inherit; height: inherit;}
 section#portfolio.accelerator-top #mentors.accelerator ul.area li h3 {font-family: 'Exo 2', sans-serif; font-weight: 800; line-height: 1em; margin-bottom: .8em;}
@@ -411,7 +419,7 @@ section#portfolio.accelerator-top #mentors.accelerator ul.area li p {width:100%;
 section#portfolio.accelerator-top .deal {background-color: #7ac364; padding: 62px 0; text-align: center;}
 section#portfolio.accelerator-top .deal h3 {color: #fff}
 section#portfolio.accelerator-top .deal dl#deal-tabs {margin: 2rem 0 1rem !important}
-section#portfolio.accelerator-top .deal dl#deal-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
+section#portfolio.accelerator-top .deal dl#deal-tabs dd {float: none; display: inline-block; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd:last-child {border: none;}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top .deal dl#deal-tabs dd.active a, section#portfolio.accelerator-top .deal dl#deal-tabs dd a:hover {background-color: #fff; color: #7ac364}
@@ -423,7 +431,7 @@ section#portfolio.accelerator-top .apply h4 {color: #fff;}
 section#portfolio.accelerator-top .apply h4 a {color: #fff; text-decoration: underline; font-weight: 600;}
 section#portfolio.accelerator-top .apply h3 a {color: #fff; text-decoration: underline;}
 section#portfolio.accelerator-top .apply dl#apply-tabs {margin: 2rem 0 1rem !important}
-section#portfolio.accelerator-top .apply dl#apply-tabs dd {float: none; display: inline-block; border-right: solid 1px #fff; padding: 0.5rem 1rem}
+section#portfolio.accelerator-top .apply dl#apply-tabs dd {float: none; display: inline-block; padding: 0.5rem 1rem}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd:last-child {border: none;}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd a {color: #fff; background-color: transparent; border: solid 1px #fff; font-weight: 300; padding: 0.5rem 1.5rem}
 section#portfolio.accelerator-top .apply dl#apply-tabs dd.active a, section#portfolio.accelerator-top .apply dl#apply-tabs dd a:hover {background-color: #fff; color: #000}
@@ -436,11 +444,11 @@ section#portfolio.accelerator-top .questions h4 {}
 section#portfolio.accelerator-top .questions p {}
 section#portfolio.accelerator-top .questions a {color: #b43322; text-decoration: underline;}
 section#blogpost {}
-section#blogpost .center {position: relative; z-index: 1; padding-bottom: 8rem}
-section#blogpost .content {text-align: center; color: #fff; padding: 10rem 0 1rem; position: relative; background-repeat: no-repeat; background-size: cover; min-height: 40rem; background-color: #000}
-section#blogpost .content .center {padding: 0 2rem}
+section#blogpost .center {position: relative; z-index: 1; padding-bottom: 5rem}
+section#blogpost .content {text-align: center; color: #fff; padding: 10rem 0 1rem; position: relative; background: no-repeat center center fixed; background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; min-height: 40rem; background-color: #000}
+section#blogpost .content .center {padding: 2em 0 2rem}
 section#blogpost .content .tag-announcement {font-weight: 300; background-color: #b43425; display: inline; padding: 0.25rem 1rem; font-size: 0.85rem; margin-top: 2em}
-section#blogpost .content h1 {color: #FFF; line-height: 4.5rem; font-size: 4rem; margin-top: 1em; margin-bottom: auto;}
+section#blogpost .content h1 {color: #FFF; line-height: 4.5rem; font-size: 4rem; margin-top: .1em; margin-bottom: auto;}
 section#blogpost .content p.subtitle {font-family: 'PT Serif', 'serif'; font-style: italic; font-size: 1.5rem}
 section#blogpost .meta {margin-top: 8rem; font-weight: 300; color: #fff;position: absolute; width: 100%; bottom: 20px; z-index: 1;}
 section#blogpost .meta .author {}
@@ -461,7 +469,8 @@ section#blogpost .post strong {font-weight: 600; letter-spacing: -0.03em; line-h
 section#blogpost .post p + p {margin-top: 1.5em;}
 section#blogpost .post ul{line-height: 1.5em; font-weight: 300; margin-top: 2em; margin-bottom: 2em; margin-left: 4em;}
 section#blogpost .post ol {line-height: 1.5em; font-weight: 300; margin-top: 2em; margin-bottom: 2em; margin-left: 4em;}
-section#blogpost .post blockquote {line-height: 1.5em; font-size: 2em; font-family: 'PT Serif', 'serif'; font-style: italic; margin-top: 1em; margin-bottom: em; margin-left: 2em;}
+section#blogpost .post blockquote { border-left: 0px solid #fff !important; text-align: center; margin: 2em 0 3em; line-height: 1.5em; font-family: 'PT Serif', 'serif'; font-style: italic; width: 960px; margin-left: -164px;}
+section#blogpost .post blockquote p {font-size: 1.5em; }
 section#blogpost .post a {color: #b43425;}
 section#blogpost .post a:hover {text-decoration: underline;}
 
@@ -497,14 +506,22 @@ section#events {}
 section#events #top {border-top-style: solid; border-top-width: 8rem;}
 section#events .content {color: #FFF; position: relative;}
 section#events .content .center{height: 620px; position: relative;}
-section#events .content .info {float: right; width: 50%; position: relative; z-index: 10; margin-top: 20px;}
+
+section#events .content #info-container {float: right; width: 50%; display: table; height: 620px;  }
+
+section#events .content .info { display: table-cell; vertical-align: middle; z-index: 10;}
+
 section#events .content .info h1 {line-height: 4.5rem; margin: 0;text-transform: uppercase;}
-section#events .content .info h6 {margin: 2.5rem 0 0 0.5rem; font-size: 1.35rem}
+section#events .content .info h6 {margin: 0 0 0 0.5rem; font-size: 1.35rem}
+
 section#events .content .info h6:first-child {text-transform: uppercase;}
 section#events .content .info p {font-size: 1rem; margin-top: 1rem}
+
+section#events .content .info p.date {margin: 2.5rem 0 0 0.5rem !important; font-size: 1.3rem;}
+
 section#events .content .info a {font-weight: 300; background-color: #fff; padding: 0.85rem 2rem; margin-top: 4rem; display: inline-block; font-size: 0.85rem;}
-section#events .content .image-event {position: absolute; right: 400px; top: 0;}
-section#events .content .image-event img {height: 620px; max-width: inherit;}
+section#events .content .image-event {position: absolute; right: 485px; top: 0;}
+section#events .content .image-event img {height: 620px; max-width: inherit; z-index: 5;}
 section#events #subscribe {text-align: center; padding: 3rem 0}
 section#events #subscribe h5 {font-size: 2rem}
 section#events #subscribe #form {width: 60%; margin: 2rem auto 0; position: relative;}
@@ -520,12 +537,14 @@ body.layer-single #mentor-single .center {height:100%;}
 body.layer-single #mentor-single .center .archive{min-height:80%; margin-bottom:100px}
 body.layer-single #mentor-single .center .archive a{text-decoration: underline;}
 
-.line {height: 8em}
+.line {height: 8em; }
 .line p {float: left; margin: 0; width: 50%}
-.line div {float: left; width: 25%}
+.line div {float: left; width: 25%; transition: all 0.1s ease; -webkit-transition: all 0.1s ease; -moz-transition: all 0.1s ease; -o-transition: all 0.1s ease;}
+.line div:hover {margin-top: -3px; }
 .line div img {display: inline-block;}
-.line div span {display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle; line-height:20px; text-transform:uppercase; letter-spacing:-1px; font-weight:900}
-#map-container {background: #a9c8de; overflow: hidden; padding-bottom:40px}
+.line div span { display: inline-block; margin: 0 0 0 0.5rem; font-size: 0.85rem; vertical-align: middle; line-height:20px; text-transform:uppercase; letter-spacing:-1px; font-weight:900}
+.line div span:hover{ border-bottom: solid 1px #000; }
+#map-container {background: #a9c8de; overflow: hidden; padding-bottom:100px}
 #map-container h4{text-align:center; padding-top:3rem; color:#FFF}
 #map-container #map {height: 620px; width: 960px; position: relative;margin: 0 auto;}
 #map-container #map img {height: 620px; position: absolute;}
@@ -541,8 +560,11 @@ button.outline {background-color: transparent; color: #b43322; border: solid 1px
 button.outline:hover {background-color: #b43322; color: #FFF}
 a.outline {background-color: transparent; color: #b43322; border: solid 1px #b43322; margin: 1.25rem 0;display: inline-block;padding-top: 1rem;padding-right: 2rem;padding-bottom: 1.0625rem;padding-left: 2rem;font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 1rem;}
 a.outline:hover {background-color: #b43322; color: #FFF}
-section#help-startups a.btn-accelerator{color:white;border-style: solid;border-width: 0px;cursor: pointer;font-family: 'Open Sans', sans-serif;font-weight: 600;line-height: normal;margin: 1.25rem 0;position: relative;text-decoration: none;text-align: center;-webkit-appearance: none;-webkit-border-radius: 0;display: inline-block;padding-top: 1rem;padding-right: 2rem;padding-bottom: 1.0625rem;padding-left: 2rem;font-size: 1rem;background-color: #b43322;border-color: #90291b;color: white;transition: background-color 300ms ease-out;}
-section#help-startups a.btn-accelerator:hover{background-color: #891e1b;color: white;}
+
+section#help-startups a.outline {text-decoration:none; background-color: transparent; color: #b43322; border: solid 1px #b43322; margin: 1.25rem 0;display: inline-block;padding-top: 1rem;padding-right: 2rem;padding-bottom: 1.0625rem;padding-left: 2rem;font-family: 'Open Sans', sans-serif;font-weight: 600;font-size: 1rem;}
+section#help-startups a.outline:hover {background-color: #b43322; color: #FFF}
+
+
 #info_square{width:680px; height:60px; margin:40px auto 0 auto}
 #info_square img{float:left; margin-left:46px}
 #info_square p{float:left; font-size:16px; margin-top:-4px}
@@ -612,14 +634,17 @@ box-shadow:         0px 0px 23px 0px rgba(89, 89, 89, 0.5);
 
 .card {margin: 2rem 0; list-style: none; text-align: center;}
 .card li {float: left; padding: 10px; width: 240px; position: relative;}
-.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1rem;height: 410px; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
-.card li .content:hover {box-shadow: 0px 0px 10px rgba(0,0,0,.32);}
+.card li .content {background-color: #FFF; border: solid 1px #cccccc; padding: 1.5rem;height: 410px; transition: all 0.3s ease-out; -webkit-transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -o-transition: all 0.3s ease-out;}
+.card li .content:hover {transform: scale(1.02); -ms-transform: scale(1.02);-moz-transform: scale(1.02); -webkit-transform: scale(1.02); -o-transform: scale(1.02);}
 .card li .image-container {height: 200px;display: table-cell;vertical-align: middle;width: 190px;}
 .card li img {width: inherit;}
 .card li p {font-size: 0.85rem}
 .card li p.title {font-size: 1rem; font-weight: 800; margin-top: 30px; text-transform: uppercase;}
 .card li p.detail {font-size: 0.65rem;margin-bottom: .8em; font-weight: 300; text-transform: capitalize;min-height: 16px}
-.card p.footer {font-size: 0.563em;color: #808080;margin: 2.5rem 0 0.25rem;text-transform: uppercase;font-weight: 800;font-size: 0.76em;}
+
+p.excerpt{height: 80px;}
+
+.card p.footer {font-size: 0.563em;color: #808080; margin: 0; text-transform: uppercase;font-weight: 800;font-size: 0.76em;}
 .startup-card li .content: {height: 420px}
 
 .amazing-partners {margin: 1rem 0; list-style: none;}
@@ -629,6 +654,8 @@ box-shadow:         0px 0px 23px 0px rgba(89, 89, 89, 0.5);
 #social {list-style: none; margin: 0 0 4rem; float: right;}
 #social li {float: left; margin: 0 0.5rem}
 #social li a {}
+#social li a img { transition: all 0.1s ease; -webkit-transition: all 0.1s ease; -moz-transition: all 0.1s ease; -o-transition: all 0.1s ease;}
+#social li a img:hover { margin-top: -3px !important;}
 
 footer {background-color: #000; color: #FFF; padding: 5rem 0 3rem}
 footer nav {font-size: 1rem}
