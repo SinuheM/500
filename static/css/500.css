@@ -111,10 +111,11 @@ section#legal .center #note p {font-size: .5rem; margin-bottom: .5em;}
 section#legal .center #note li span { margin-left: 3em;}
 
 section#activity {padding: 10rem 0 0}
-section#activity {text-align: center; letter-spacing: -1px;}
-section#activity p a {font-weight: 600;}
-section#activity p a:hover { border-bottom: solid 1px #000;}
+section#activity h6 {text-align: center; letter-spacing: -1px;}
+section#activity h6 a {font-weight: 300;}
+section#activity h6 p a:hover { border-bottom: solid 1px #000;}
 
+section#activity p {margin-top: 1em;}
 section#activity #activity-list {margin: 5rem 0 0; list-style: none; background-image: url(../img/activity-line.jpg); background-repeat: repeat-y; background-position: left center; padding-bottom: 6rem}
 section#activity #activity-circle{width:27px; height:27px; margin:0 0 30px 133px; background:url(../img/end_activity.png)}
 section#activity #activity-list .load {color: #e5e5e5; position: relative; left: 20%; width: 8rem; font-weight: 300; bottom: -2rem}
@@ -124,7 +125,7 @@ section#activity #activity-list li .row-2 span {font-size: 0.85rem; font-weight:
 section#activity #activity-list li .row-2 span.tag {font-weight: 300;}
 section#activity #activity-list li .row-2 span.icon {float: right;width: 28px;height: 28px;background: #e6e6e6;}
 section#activity #activity-list li .row-2 span img {height: 16px;width: 16px;margin-top: 4px;background: white;}
-section#activity #activity-list li h4 {margin-top: 0px}
+section#activity #activity-list li h4 {margin-top: 0px; font-weight: 600; letter-spacing: -1px; margin-bottom: .8em;}
 section#activity #activity-list li .provider {font-size: 0.85rem; text-decoration:underline; color:#b43322}
 section#activity #activity-list li h4 span a {text-decoration: underline; color: #000 !important}
 section#activity #activity-list li a.added-by {color: inherit !important;}
