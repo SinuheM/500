@@ -5,8 +5,22 @@ var Startup = db.model('startup');
 var Batch = db.model('batch');
 
 var render = function (req, res) {
-	Batch.find({}, function(err, batches){
+	Batch.find({active: true}, function(err, batches){
 		if(err){ return res.send(500, err);}
+
+		batches = _.sortBy(batches, function(batch){
+			var name = batch.name;
+
+			if(!name){return 0;}
+
+			name = name.replace('mx ', '');
+
+			if( _.isNaN( parseInt(name, 10) ) ){
+				return 0;
+			}else{
+				return parseInt(name, 10) * -1;
+			}
+		});
 
 		var batchData = {
 			siliconValley : _.filter(batches, function(batch){return batch.location === 'silicon valley';}),
