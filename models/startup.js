@@ -120,4 +120,12 @@ Startup.prototype.addFounders = function(callback) {
 	});
 };
 
+Startup.prototype.ensureSocialProfiles = function(){
+	var providers = _.map(this.socialProfiles, function(item){return item.provider});
+
+	if( _.indexOf(providers, 'facebook') === -1 ){
+		this.socialProfiles.push({provider:'facebook', url : ''});
+	}
+};
+
 module.exports = Startup;

@@ -101,7 +101,8 @@ adminStartUpsController.get('/new', getBatches, function (req, res) {
 				{provider:'crunchbase'},
 				{provider:'twitter'},
 				{provider:'blog'},
-				{provider:'youtube'}
+				{provider:'youtube'},
+				{provider:'facebook'}
 			]
 		});
 	}
@@ -174,6 +175,8 @@ adminStartUpsController.get('/:currentStartup', getBatches, function (req, res) 
 	});
 
 	var message = req.flash('message');
+
+	res.data.currentStartup.ensureSocialProfiles();
 
 	res.render('admin-startups/single',{
 		currentStartup : res.data.currentStartup,
@@ -263,6 +266,7 @@ adminStartUpsController.post('/new', function (req, res) {
 		startup.socialProfiles.push({provider:'angellist', url:fields.angellist});
 		startup.socialProfiles.push({provider:'blog', url:fields.blog});
 		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
+		startup.socialProfiles.push({provider:'facebook', url:fields.facebook});
 
 		startup.funding = JSON.parse(fields.investments);
 
@@ -444,6 +448,7 @@ adminStartUpsController.post('/:currentStartup/edit', function (req, res) {
 		startup.socialProfiles.push({provider:'angellist', url:fields.angellist});
 		startup.socialProfiles.push({provider:'blog', url:fields.blog});
 		startup.socialProfiles.push({provider:'youtube', url:fields.youtube});
+		startup.socialProfiles.push({provider:'facebook', url:fields.facebook});
 
 		startup.funding = JSON.parse(fields.investments);
 
