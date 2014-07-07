@@ -52,6 +52,7 @@ $(document).ready(function () {
 				<th>Type</th>
 				{% endif %}
 				<th>Active</th>
+				<th>Publish</th>
 			</tr>
 		</thead>
 		<tbody class="list-container">			
@@ -69,6 +70,7 @@ $(document).ready(function () {
 	<td><%= item.type %></td>
 	{% endif %}
 	<td><%= item.active %></td>
+	<td><%= item.publish %></td>
 </script>
 <script type="text/template" id="listItemTemplate">
 	<div class="panel">
