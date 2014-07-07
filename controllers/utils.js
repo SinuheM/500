@@ -136,7 +136,7 @@ utilsController.post('/mentors/search', function(req, res){
 		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query}}, function(err, results) {
 			if(err){return res.sendError(500, err);}
 
-			var mentors = _.filter(results.hits, function(item){return item.displayName;})
+			var mentors = _.filter(results.hits, function(item){return item.displayName && item.publish;})
 			.map(function(item){
 				return {displayName:item.displayName, title:item.title, avatar:item.avatar, slugStr:item.slugStr};
 			});
@@ -185,6 +185,8 @@ utilsController.post('/mentors/search', function(req, res){
 
 		if(req.body.sort){
 			queryObject.sort(req.body.sort);
+		}else{
+			queryObject.sort({createdDate: -1});
 		}
 
 		queryObject.exec(function (err, mentors) {
