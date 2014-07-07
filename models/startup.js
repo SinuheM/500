@@ -8,18 +8,19 @@ var db = require('../lib/db'),
 var Slug = require('./slug');
 
 var startupSchema = schema({
-	name        : {type : String, require: true},
+	name        : {type : String, require: true, es_indexed:true},
 	url         : {type : String},
 	logo        : {type : String},
 	background  : {type : String},
-	excerpt     : {type : String, max: 60},
-	description : {type : String},
-	location    : {type : String},
+	excerpt     : {type : String, max: 60, es_indexed:true },
+	description : {type : String, es_indexed:true},
+	location    : {type : String, es_indexed:true},
 	size        : {type : String},
 
 	investmentType   : {type : String, max: 50}, // seed, acceleration
 	investmentClass  : {type : String},
 	investmentFields : [{type : String}],
+	investmentIndex  : {type : String, es_indexed:true},
 
 	video       : {type : String},
 	embed       : {type : String}, // Clear to refetch
@@ -49,6 +50,10 @@ startupSchema.plugin(mongoosastic);
 // Update date
 startupSchema.pre('save', function (next) {
 	this.updatedDate = new Date();
+
+	if(this.investmentFields){
+		this.investmentIndex = this.investmentFields.join(' ');
+	}
 
 	next();
 });

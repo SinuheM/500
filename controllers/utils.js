@@ -61,6 +61,8 @@ utilsController.post('/startups/search', function(req, res){
 			Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query, populate:'batch'}}, function(err, results) {
 				if(err){return res.sendError(500, err);}
 
+				console.log(results);
+
 				var startups = _.filter(results.hits, function(item){return item.name;});
 				startups = _.map(startups, function(startup){
 					startup = startup.toJSON();
