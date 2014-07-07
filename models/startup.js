@@ -9,15 +9,16 @@ var Slug = require('./slug');
 
 var startupSchema = schema({
 	name        : {type : String, require: true, es_indexed:true},
-	url         : {type : String},
-	logo        : {type : String},
-	background  : {type : String},
 	excerpt     : {type : String, max: 60, es_indexed:true },
 	description : {type : String, es_indexed:true},
 	location    : {type : String, es_indexed:true},
 	size        : {type : String},
 
-	investmentType   : {type : String, max: 50}, // seed, acceleration
+	url         : {type : String},
+	logo        : {type : String},
+	background  : {type : String},
+
+	investmentType   : {type : String, max: 50, es_indexed:true}, // seed, acceleration
 	investmentClass  : {type : String},
 	investmentFields : [{type : String}],
 	investmentIndex  : {type : String, es_indexed:true},
@@ -25,8 +26,9 @@ var startupSchema = schema({
 	video       : {type : String},
 	embed       : {type : String}, // Clear to refetch
 
-	funding     : [schema.Types.Mixed],
-	markets     : [{type : String}],
+	funding      : [schema.Types.Mixed],
+	markets      : [{type : String}],
+	marketsIndex : {type : String, es_indexed:true},
 	
 	batch       : {type : schema.Types.ObjectId, ref: 'batch'},
 	founders    : [schema.Types.Mixed],
@@ -53,6 +55,10 @@ startupSchema.pre('save', function (next) {
 
 	if(this.investmentFields){
 		this.investmentIndex = this.investmentFields.join(' ');
+	}
+
+	if(this.markets){
+		this.marketsIndex = this.markets.join(' ');
 	}
 
 	next();

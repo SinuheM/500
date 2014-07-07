@@ -14,15 +14,17 @@ var userSchema = schema({
 	angelListData : schema.Types.Mixed,
 
 	displayName : {type : String, es_indexed:true},
-	title       : {type : String},
-	companyName : {type : String}, // Just mentors
+	title       : {type : String, es_indexed:true},
+	companyName : {type : String, es_indexed:true}, // Just mentors
 	location    : {type : String, lowercase: true},
 	link        : {type : String},
-	avatar      : {type : String},
-	background  : {type : String},// Just staff members
 	bio         : {type : String, es_indexed:true},
 
+	avatar      : {type : String},
+	background  : {type : String},// Just staff members
+
 	expertise   : [{type : String, lowercase: true}], // Just mentors
+	expertiseIndex : {type : String, es_indexed:true},
 	
 	// twitter, facebook, quora, linkedin, github, vimeo, youtube, instagram, googleplus
 	profiles : [{
@@ -85,6 +87,10 @@ userSchema.statics.findMentorExpertiseAndLocatons = function(callback){
 userSchema.pre('save', function (next) {
 	if(!this.createdDate){
 		this.createdDate = new Date();
+	}
+
+	if(this.expertise){
+		this.expertiseIndex = this.expertise.join(' ');
 	}
 
 	this.updatedDate = new Date();

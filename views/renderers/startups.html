@@ -26,8 +26,7 @@
                     <ul id="filter_cool">
                         <li>Show me</li>
                         <li id="filter_cat" class="filter_cool"><span>all</span> <div class="filter_img"></div></li>
-                        <li>startups in</li>
-                        <li id="filter_place" class="filter_cool"><span>the world</span> <div class="filter_img"></div></li>
+                        <li>startups</li>
                         <li>focusing on</li>
                         <li id="filter_type" class="filter_cool"><span>all investment themes</span> <div class="filter_img"></div></li>
                     </ul>
@@ -63,23 +62,6 @@
                             {% endif %}                            
                             <ul>
                                 <li rel="filter_cat_content" class="title_filter{% if params.seed %} active{% endif %}" data-value="seed" data-type="category">Seed</li>
-                            </ul>
-                        </div>
-                        <div id="filter_place_content" class="filter_content arrow_box" data-select-box="#filter_place">
-                            <ul class="filter_header">
-                                <li rel="filter_place_content"  id="filter_place_all" {% if !params.seed && !params.locationgroup && !params.location %}class="active"{% endif %}>All</li>
-                            </ul>
-                            <ul>
-                                <li rel="filter_place_content"  class="title_filter{% if params.locationgroup == 'us' %} active{% endif %}" data-value="us" data-type="category">US cities</li>
-                                {% for location in locations.us %}
-                                <li rel="filter_place_content" data-value="{{location}}" {% if params.location == location %}class="active"{% endif %}>{{location}}</li>
-                                {% endfor %}
-                            </ul>
-                            <ul>
-                                <li rel="filter_place_content"  class="title_filter{% if params.locationgroup == 'world' %} active{% endif %}" data-value="world" data-type="category">Countries</li>
-                                {% for location in locations.world %}
-                                <li rel="filter_place_content" data-value="{{location}}" {% if params.location == location %}class="active"{% endif %}>{{location}}</li>
-                                {% endfor %}
                             </ul>
                         </div>
                         <div id="filter_type_content" class="filter_content arrow_box" data-select-box="#filter_type">
