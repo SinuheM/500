@@ -112,7 +112,7 @@ section#legal .center #note li span { margin-left: 3em;}
 
 section#activity {padding: 10rem 0 0}
 section#activity h6 {text-align: center; letter-spacing: -1px;}
-section#activity h6 a {font-weight: 300;}
+section#activity h6 a {font-weight: 600;}
 section#activity h6 p a:hover { border-bottom: solid 1px #000;}
 
 section#activity p {margin-top: 1em;}
