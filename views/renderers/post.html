@@ -12,6 +12,11 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Serif:400italic,700italic' rel='stylesheet' type='text/css'>
     <link rel="alternate" type="application/rss+xml" title="500 Startups » Feed" href="http://500.co/feed/">
     <script src="/js/google-analytics.js"></script>
+    <script type="text/javascript">
+window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+window.analytics.load("i3r08av9ee");
+window.analytics.page();
+</script>
 </head>
 <body>
     {% include "../partials/navbar.html" %}
@@ -39,19 +44,18 @@
                 <div class="paragraph">
                     {{ post.content|safe }}
                 </div>
-                <!-- <div class="share">
-      <ul>
-        <li>Compártelo</li>
-        <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ post.title }}&amp;url=http://orangestudio.com.mx/clientes/aurigam/el-trafico-en-las-grandes-ciudades/&amp;via=aurigam" class="btn twitter"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/twitter.png"> Twitter</a></li>
+                <!--<div class="share">
+                  <ul>
+                     <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ post.title }}&amp;url="{{ post.url }}"&amp;via=500startups" class="btn twitter"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/twitter.png">Share on Twitter</a></li>
         
-        <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://orangestudio.com.mx/clientes/aurigam/el-trafico-en-las-grandes-ciudades/" class="btn facebook"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/facebook.png"> Facebook</a></li>
+                    <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://500.co/{{activity.slugStr}}" class="btn facebook"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/facebook.png">Share on Facebook</a></li>
         
-        <li><a target="_blank" href="https://plus.google.com/share?url=http://orangestudio.com.mx/clientes/aurigam/el-trafico-en-las-grandes-ciudades/" class="btn google"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/google.png"> Google+</a></li>
+                     <li><a target="_blank" href="https://plus.google.com/share?url={{ post.url }}" class="btn google"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/google.png">Share on Google+</a></li>
         
-        <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://orangestudio.com.mx/clientes/aurigam/el-trafico-en-las-grandes-ciudades/&amp;title={{ post.title }}&amp;summary={{ post.subtitle }};
-&amp;source=http://aurogam.com" class="btn linkedin"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/linkedin.png"> LinkedIn</a></li>
-      </ul>
-    </div>-->
+                    <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ post.url }}&amp;title={{ post.title }}&amp;summary={{ post.subtitle }};
+                    &amp;source=http://aurogam.com" class="btn linkedin"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/linkedin.png">Share on LinkedIn</a></li>
+                 </ul>
+                </div>-->
             </div>
             {% if uploader %}
             <div class="bottom">
