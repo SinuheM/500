@@ -1,3 +1,19 @@
+//footer
++to(767px)
+    footer
+        text-align center
+        padding 20px 0
+        .center > div
+            float none
+            display inline-block
+            width auto
+            text-align left
+        .logo
+            display block !important
+            text-align center !important
+        .menu
+            display none !important
+
 //header
 +to(960px)
     header
@@ -29,8 +45,9 @@
                                 height auto
                                 display inline-block
                                 vertical-align top
-                                // &:nth-child(even)
-                                //     margin-right 0
+                                padding 15px
+                                &:hover
+                                    transform none
     .accelerator-top 
         .video
             margin 0 auto
@@ -45,8 +62,22 @@
                 top 0
                 width 100%
 
-//activity
++to(767px)
+    section
+        &#portfolio
+            &.accelerator-top 
+                #mentors
+                    &.accelerator 
+                        ul.area 
+                            li
+                                width auto
+                                display block
+    h3
+        font-size 30px
+
 +to(1000px)
     #activity-list
         li
             display none
+
+

@@ -2697,36 +2697,23 @@ footer .row-4 p {
 .text-center {
   text-align: center;
 }
-@media only screen and (max-width: 1000px) {
-  #activity-list li {
-    display: none;
+@media only screen and (max-width: 767px) {
+  footer {
+    text-align: center;
+    padding: 20px 0;
   }
-}
-@media only screen and (max-width: 960px) {
-  section#portfolio.accelerator-top #mentors.accelerator ul.area {
-    font-size: 0;
-  }
-  section#portfolio.accelerator-top #mentors.accelerator ul.area li {
-    width: 48%;
+  footer .center > div {
     float: none;
-    margin: 1%;
-    height: auto;
     display: inline-block;
-    vertical-align: top;
+    width: auto;
+    text-align: left;
   }
-  .accelerator-top .video {
-    margin: 0 auto;
-    max-width: 960px;
-    padding-bottom: 55.6%;
+  footer .logo {
+    display: block !important;
+    text-align: center !important;
   }
-  .accelerator-top .video iframe {
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
+  footer .menu {
+    display: none !important;
   }
 }
 @media only screen and (max-width: 960px) {
@@ -2744,5 +2731,50 @@ footer .row-4 p {
   header nav a {
     display: block;
     margin: 0;
+  }
+}
+@media only screen and (max-width: 960px) {
+  section#portfolio.accelerator-top #mentors.accelerator ul.area {
+    font-size: 0;
+  }
+  section#portfolio.accelerator-top #mentors.accelerator ul.area li {
+    width: 48%;
+    float: none;
+    margin: 1%;
+    height: auto;
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px;
+  }
+  section#portfolio.accelerator-top #mentors.accelerator ul.area li:hover {
+    transform: none;
+  }
+  .accelerator-top .video {
+    margin: 0 auto;
+    max-width: 960px;
+    padding-bottom: 55.6%;
+  }
+  .accelerator-top .video iframe {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  section#portfolio.accelerator-top #mentors.accelerator ul.area li {
+    width: auto;
+    display: block;
+  }
+  h3 {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  #activity-list li {
+    display: none;
   }
 }

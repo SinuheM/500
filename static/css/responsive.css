@@ -47,3 +47,9 @@
     display: none;
   }
 }
+@media only screen and (max-width: 767px) {
+  section#portfolio.accelerator-top #mentors.accelerator ul.area li {
+    width: auto;
+    display: block;
+  }
+}
