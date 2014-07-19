@@ -944,7 +944,7 @@ section#portfolio input[type="search"] {
   background-repeat: no-repeat;
   height: 70px;
   border: solid 2px #222;
-  width: 620px;
+  max-width: 620px;
   margin: 5rem auto 0;
   padding: 0.5rem 1.5rem 0.5rem 4.5rem;
   font-size: 2rem;
@@ -1093,7 +1093,7 @@ section#portfolio #team ul.up {
   top: -10rem;
 }
 section#portfolio #team ul li {
-  float: left;
+  display: inline-block;
   margin: 0.5rem;
   width: 219px;
   position: relative;
@@ -2432,14 +2432,12 @@ button.outline:hover {
 }
 #filters_cool {
   position: relative;
-  width: 760px;
   margin: 0 auto;
   background: #f00;
 }
 #filter_cat_content {
   position: absolute;
   margin-top: 60px;
-  margin-left: 0px !important;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -2462,7 +2460,6 @@ button.outline:hover {
 #filter_type_content {
   position: absolute;
   margin-top: 60px;
-  margin-left: 461px !important;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -2510,24 +2507,10 @@ button.outline:hover {
   margin-bottom: 10px;
 }
 .arrow_box {
-  -webkit-box-shadow: 0px 0px 23px 0px rgba(89,89,89,0.5);
-  -moz-box-shadow: 0px 0px 23px 0px rgba(89,89,89,0.5);
   box-shadow: 0px 0px 23px 0px rgba(89,89,89,0.5);
   position: relative;
   background: #fff;
   border: 1px solid #d1d2d4;
-}
-.arrow_box:after {
-  border-color: rgba(255,255,255,0);
-  border-bottom-color: #fff;
-  border-width: 15px;
-  margin-left: -15px;
-}
-.arrow_box:before {
-  border-color: rgba(209,210,212,0);
-  border-bottom-color: #d1d2d4;
-  border-width: 16px;
-  margin-left: -16px;
 }
 .arrow_box:after,
 .arrow_box:before {
@@ -2539,6 +2522,18 @@ button.outline:hover {
   width: 0;
   position: absolute;
   pointer-events: none;
+}
+.arrow_box:after {
+  border-color: transparent;
+  border-bottom-color: #fff;
+  border-width: 15px;
+  margin-left: -15px;
+}
+.arrow_box:before {
+  border-color: transparent;
+  border-bottom-color: #d1d2d4;
+  border-width: 16px;
+  margin-left: -16px;
 }
 .row-2,
 .row-3,
@@ -2696,6 +2691,10 @@ footer .row-4 p {
 }
 .text-center {
   text-align: center;
+}
+#team .cards {
+  text-align: center;
+  font-size: 0;
 }
 @media only screen and (max-width: 767px) {
   footer {

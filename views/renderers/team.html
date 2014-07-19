@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
-<meta name="viewport" content="width=320"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1"/>
     <title>Meet the team at 500 Startups</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
@@ -33,10 +33,8 @@ window.analytics.page();
         </div>
         <div id="team" class="team500">
             <div class="center">
+                <ul class="up cards">
                 {% for member in team.managment %}
-                    {% if loop.index0 % 4 == 0 %}
-                    <ul class="up cards-{% if (team.managment.length - loop.index0) >= 4 %}4{%else%}{{team.managment.length - loop.index0 }}{% endif %}">
-                    {% endif %}
                     <li class="animated flipInX">
                         <a class="card" href="/{{member.slugStr}}">
                             <img src="{{member.avatar}}">
@@ -46,10 +44,8 @@ window.analytics.page();
                             </div>
                         </a>
                     </li>
-                    {% if loop.index % 4 == 0 || loop.last %}
-                    </ul>
-                    {% endif %}
                 {% endfor %}
+                </ul>
                 <h6 class="top">INVESTMENT</h6>
                 {% for member in team.investment %}
                     {% if loop.index0 % 4 == 0 %}
@@ -69,10 +65,8 @@ window.analytics.page();
                     {% endif %}
                 {% endfor %}
                 <h6>FINANCIAL, LEGAL, MARKETING AND PORTFOLIO SUPPORT</h6>
+                <ul class="cards">
                 {% for member in team.support %}
-                    {% if loop.index0 % 4 == 0 %}
-                    <ul class="cards-{% if (team.support.length - loop.index0) >= 4 %}4{%else%}{{team.support.length - loop.index0 }}{% endif %}">
-                    {% endif %}
                     <li class="animated flipInX">
                         <a class="card" href="/{{member.slugStr}}">
                             <img src="{{member.avatar}}">
@@ -82,15 +76,11 @@ window.analytics.page();
                             </div>
                         </a>
                     </li>
-                    {% if loop.index % 4 == 0 || loop.last %}
-                        </ul>          
-                    {% endif %}
                 {% endfor %}
+                </ul>          
                 <h6>DISTRIBUTION TEAM</h6>
+                <ul class="cards">
                 {% for member in team.distribution %}
-                    {% if loop.index0 % 4 == 0 %}
-                    <ul class="cards-{% if (team.distribution.length - loop.index0) >= 4 %}4{%else%}{{team.distribution.length - loop.index0 }}{% endif %}">
-                    {% endif %}
                     <li class="animated flipInX">
                         <a class="card" href="/{{member.slugStr}}">
                             <img src="{{member.avatar}}">
@@ -100,10 +90,8 @@ window.analytics.page();
                             </div>
                         </a>
                     </li>
-                    {% if loop.index % 4 == 0 || loop.last %}
-                        </ul>          
-                    {% endif %}
                 {% endfor %}
+                </ul>
                 </ul>
                 <div class="clearfix"></div>
             </div>

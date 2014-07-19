@@ -876,7 +876,7 @@ section#portfolio
         background-repeat no-repeat
         height 70px
         border solid 2px #222
-        width 620px
+        max-width 620px
         margin 5rem auto 0
         padding 0.5rem 1.5rem 0.5rem 4.5rem
         font-size 2rem
@@ -996,7 +996,8 @@ section#portfolio
             &.up
                 top -10rem
             li
-                float left
+                // float left
+                display inline-block
                 margin 0.5rem
                 width 219px
                 position relative
@@ -2111,14 +2112,14 @@ button
 
 #filters_cool
     position relative
-    width 760px
+    // width 760px
     margin 0 auto
     background red
 
 #filter_cat_content
     position absolute
     margin-top 60px
-    margin-left 0px !important
+    // margin-left 0px !important
     background #FFF
     border 1px solid #CCC
     border-radius 5px
@@ -2141,7 +2142,7 @@ button
 #filter_type_content
     position absolute
     margin-top 60px
-    margin-left 461px !important
+    // margin-left 461px !important
     background #FFF
     border 1px solid #CCC
     border-radius 5px
@@ -2186,32 +2187,34 @@ button
     margin-bottom 10px
 
 .arrow_box
-    -webkit-box-shadow 0px 0px 23px 0px rgba(89, 89, 89, 0.5)
-    -moz-box-shadow 0px 0px 23px 0px rgba(89, 89, 89, 0.5)
+    // -webkit-box-shadow 0px 0px 23px 0px rgba(89, 89, 89, 0.5)
+    // -moz-box-shadow 0px 0px 23px 0px rgba(89, 89, 89, 0.5)
     box-shadow 0px 0px 23px 0px rgba(89, 89, 89, 0.5)
     position relative
     background #fff
     border 1px solid #D1D2D4
+    
+
     &:after
-        border-color rgba(255, 255, 255, 0)
+    &:before
+        bottom 100%
+        left 25%
+        border solid transparent
+        content " "
+        height 0
+        width 0
+        position absolute
+        pointer-events none
+    &:after
+        border-color transparent
         border-bottom-color #fff
         border-width 15px
         margin-left -15px
     &:before
-        border-color rgba(209, 210, 212, 0)
+        border-color transparent
         border-bottom-color #D1D2D4
         border-width 16px
         margin-left -16px
-
-.arrow_box:after, .arrow_box:before
-    bottom 100%
-    left 25%
-    border solid transparent
-    content " "
-    height 0
-    width 0
-    position absolute
-    pointer-events none
 
 .row-2, .row-3, .row-4, .row-5, .row-7, .row-10
     float left
