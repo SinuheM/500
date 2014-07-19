@@ -1,9 +1,38 @@
+#starters
+    .card
+        text-align center
+        > div
+            display inline-block
+            vertical-align top
+
 #team
     .cards
         text-align center
         font-size 0
 
+#select-type
+#select-batch
+    display none
 
++to(767px)
+    section#portfolio 
+        #search
+            padding 0
+        input[type="search"]
+            font-size 20px
+            margin 20px auto
+            width 96%
+        p
+            margin 0 auto  !important
+            width 90%
+    #select-type
+    #select-batch
+        display block
+        margin 0 2%
+        width auto
+        width 96%
+    #filter_cool .filter_cool
+        display none
 //footer
 +to(767px)
     footer

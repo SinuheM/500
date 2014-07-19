@@ -857,7 +857,6 @@ section#portfolio #search .container {
   text-align: center;
 }
 section#portfolio #search .container h5 {
-  width: 620px;
   margin: 0 auto;
 }
 section#portfolio #search .container #filter {
@@ -955,15 +954,13 @@ section#portfolio p {
   width: 100%;
 }
 section#portfolio p span {
-  float: right;
   font-size: 0.85em;
   color: #ccc;
   margin-right: 356px;
 }
 section#portfolio .place_holder_search {
   margin-bottom: 4rem;
-  width: 620px !important;
-  text-align: right;
+  text-align: center;
 }
 section#portfolio .place_holder_search span {
   margin-right: 0 !important;
@@ -2567,9 +2564,10 @@ button.outline:hover {
   margin: 2rem 0;
   list-style: none;
   text-align: center;
+  font-size: 0;
 }
 .card li {
-  float: left;
+  display: inline-block;
   padding: 10px;
   width: 240px;
   position: relative;
@@ -2578,7 +2576,7 @@ button.outline:hover {
   background-color: #fff;
   border: solid 1px #ccc;
   padding: 1.5rem;
-  height: 410px;
+  min-height: 410px;
   transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -2692,9 +2690,44 @@ footer .row-4 p {
 .text-center {
   text-align: center;
 }
+#starters .card {
+  text-align: center;
+}
+#starters .card > div {
+  display: inline-block;
+  vertical-align: top;
+}
 #team .cards {
   text-align: center;
   font-size: 0;
+}
+#select-type,
+#select-batch {
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  section#portfolio #search {
+    padding: 0;
+  }
+  section#portfolio input[type="search"] {
+    font-size: 20px;
+    margin: 20px auto;
+    width: 96%;
+  }
+  section#portfolio p {
+    margin: 0 auto !important;
+    width: 90%;
+  }
+  #select-type,
+  #select-batch {
+    display: block;
+    margin: 0 2%;
+    width: auto;
+    width: 96%;
+  }
+  #filter_cool .filter_cool {
+    display: none;
+  }
 }
 @media only screen and (max-width: 767px) {
   footer {

@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
-<meta name="viewport" content="width=320"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1"/>
     <title>Startups - 500 Startups</title>
     <link rel="icon" type="image/ico" href="/favicon.ico"/>
     <link rel="stylesheet" href="/css/foundation.css" />
@@ -31,9 +31,55 @@ window.analytics.page();
                     <ul id="filter_cool">
                         <li>Show me</li>
                         <li id="filter_cat" class="filter_cool"><span>all</span> <div class="filter_img"></div></li>
+                        <select name="" id="select-batch">
+                            <option value="">All</option>
+                            {% if batches.siliconValley.length %}
+                            <optgroup label="silicon valley">
+                                {% for batch in batches.siliconValley %}
+                                    <option value="{{batch.id}}">Batch {{batch.name}}</option>
+                                {% endfor %}
+                            </optgroup> 
+                                
+                            {% endif %}
+                            {% if batches.mexicoCity.length %}
+                            <optgroup label="silicon valley">
+                                {% for batch in batches.siliconValley %}
+                                    <option value="{{batch.id}}">Batch {{batch.name}}</option>
+                                {% endfor %}
+                            </optgroup> 
+                                
+                            {% endif %}
+                            {% if batches.sanFransisco.length %}
+                            <optgroup label="silicon valley">
+                                {% for batch in batches.siliconValley %}
+                                    <option value="{{batch.id}}">Batch {{batch.name}}</option>
+                                {% endfor %}
+                            </optgroup> 
+                            <option value="seed">Seed</option>
+                                
+                            {% endif %}
+                        </select>
+                        
                         
                         <li>startups focusing on</li>
                         <li id="filter_type" class="filter_cool"><span>all markets</span> <div class="filter_img"></div></li>
+                        <select name="" id="select-type" class="">
+                                <option rel="filter_type_content" value="">All</option>
+
+                                <option rel="filter_type_content" value="consumer commerce">consumer commerce</option>
+
+                                <option rel="filter_type_content" value="family tech and education" >Family tech and education</option>
+                                <option rel="filter_type_content" value="design">Design</option>
+                                <option rel="filter_type_content" value="smb productivity & cloud services">smb productivity & cloud services</option>
+                                <option rel="filter_type_content" value="international / emerging markets">International / emerging markets</option>
+                                <option rel="filter_type_content" value="food tech + digital healthcare">Food tech + digital healthcare</option>
+                                <option rel="filter_type_content" value="mobile + tablet">Mobile + tablet (ios and android)</option>
+                                <option rel="filter_type_content" value="payments and financial services">Payments and financial services</option>
+                                <option rel="filter_type_content" value="online video">Online video</option>
+                                <option rel="filter_type_content" value="bitcoin">Bitcoin</option>
+                                <option rel="filter_type_content" value="ad tech">Ad Tech</option>                                
+                                <option rel="filter_type_content" value="gaming">Gaming</option> 
+                        </select>
                     </ul>
 
                     <div id="filters_cool">
@@ -69,6 +115,8 @@ window.analytics.page();
                                 <li rel="filter_cat_content" class="title_filter{% if params.seed %} active{% endif %}" data-value="seed" data-type="category">Seed</li>
                             </ul>
                         </div>
+
+                        
                         <div id="filter_type_content" class="filter_content arrow_box" data-select-box="#filter_type">
                             <ul class="filter_header">
                                 <li rel="filter_type_content" id="filter_type_all" {% if !params.theme %}class="active"{% endif %}>All</li>
@@ -89,6 +137,8 @@ window.analytics.page();
                             </ul>
                         </div>
                     </div>
+                    
+
                     <div class="clearfix"></div>
                 </div>
             </div>
