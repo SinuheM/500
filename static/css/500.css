@@ -2343,6 +2343,8 @@ section#events #subscribe #form input[type="submit"]:hover {
 #map-container #map img {
   height: 620px;
   position: absolute;
+  left: 0;
+  top: 0;
 }
 #map-container #map img#map-dots {
   top: -620px;
@@ -2622,7 +2624,7 @@ button.outline:hover {
   font-weight: 800;
   font-size: 0.76em;
 }
-.startup-card li .content: {
+.startup-card li .content {
   height: 420px;
 }
 .amazing-partners {
@@ -2690,6 +2692,98 @@ footer .row-4 p {
 .text-center {
   text-align: center;
 }
+@media only screen and (max-width: 960px) {
+  body {
+    overflow: auto !important;
+  }
+  section#home {
+    position: static !important;
+    display: none;
+  }
+  header#int {
+    display: block !important;
+  }
+  #map-container,
+  section#team-home,
+  section#themes,
+  section#help-startups,
+  section#amazing {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #map-container #map {
+    width: auto;
+    height: auto;
+  }
+  #map-container #map img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+  }
+  #map-container #map img:first-child {
+    position: static;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #info_square {
+    display: none;
+  }
+  section#team-home ul#date-500 li {
+    float: none;
+    width: auto;
+  }
+  .video {
+    position: relative;
+    padding-bottom: 54.6%;
+    margin: 20px 0;
+  }
+  .video iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+  }
+  .line div {
+    width: 50%;
+    margin: 10px 0;
+  }
+  .line div:hover {
+    margin-top: 10px;
+  }
+  .line div img {
+    display: block;
+    margin: 0 auto;
+  }
+  .line div span {
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+  }
+  .line div span:hover {
+    border: none;
+  }
+  #help-startups .clearfix {
+    margin: 10px 0 !important;
+  }
+  #help-startups .row-5,
+  #help-startups .row-7 {
+    float: none;
+    width: auto;
+  }
+  #help-startups .row-5 ul,
+  #help-startups .row-7 ul {
+    display: none;
+  }
+  #help-startups .row-5 .all-companies,
+  #help-startups .row-7 .all-companies {
+    float: none;
+    text-align: left;
+    display: block;
+  }
+}
 #starters .card {
   text-align: center;
 }
@@ -2750,11 +2844,21 @@ footer .row-4 p {
 }
 @media only screen and (max-width: 960px) {
   header {
-    position: static !important;
     background: #f00;
+    height: auto;
+    padding: 0 !important;
+    width: 200px !important;
+    border-right: 1px solid #000;
+  }
+  header#int {
+    height: auto;
+    padding: 0 !important;
+    border-left: 0;
   }
   header #logo {
     float: none;
+    text-align: center;
+    padding: 10px auto;
   }
   header nav {
     float: none;
@@ -2763,6 +2867,17 @@ footer .row-4 p {
   header nav a {
     display: block;
     margin: 0;
+    height: 42px;
+    line-height: 42px;
+    border-bottom: 1px solid #000;
+    transition: none;
+    padding: 0 10px;
+  }
+  header nav a.active,
+  header nav a:hover {
+    border-bottom: 1px solid #000 !important;
+    padding: 0 10px !important;
+    background: #f2f1f1;
   }
 }
 @media only screen and (max-width: 960px) {

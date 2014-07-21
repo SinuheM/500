@@ -1,3 +1,80 @@
+//home
++to(960px)
+    body
+        overflow auto !important
+    section#home
+        position static !important
+        display none
+    header
+        &#int
+            display block !important
+    section#entrepreneurs
+    #map-container
+    section#team-home
+    section#themes
+    section#help-startups
+    section#amazing
+        padding-left 20px
+        padding-right 20px
+    #map-container #map
+        width auto
+        height auto
+        img
+            max-width 100%
+            width auto
+            height auto
+            &:first-child
+                position static
++to(767px)
+    #info_square
+        display none
+    section#team-home 
+        ul#date-500 
+            li
+                float none
+                width auto
+    .video
+        position relative
+        padding-bottom 54.6%
+        margin 20px 0
+        iframe
+            position absolute
+            left 0
+            top 0
+            right 0
+            bottom 0
+            height 100%
+            width 100%
+    .line
+        div
+            width 50%
+            margin 10px 0
+            &:hover
+                margin-top 10px
+            img
+                display block
+                margin 0 auto
+            span
+                text-align center
+                display block
+                margin-top 10px
+                &:hover
+                    border none
+    #help-startups
+        .clearfix
+            margin 10px 0 !important
+        .row-5
+        .row-7
+            float none
+            width auto
+            ul
+                display none
+            .all-companies
+                float none
+                text-align left
+                display block
+
+//team
 #starters
     .card
         text-align center
@@ -10,6 +87,7 @@
         text-align center
         font-size 0
 
+//startups
 #select-type
 #select-batch
     display none
@@ -52,16 +130,37 @@
 //header
 +to(960px)
     header
-        position static !important
+        // position static !important
         background red
+        height auto
+        padding 0 !important
+        width 200px !important
+        border-right 1px solid black
+        &#int
+            height auto
+            padding 0 !important
+            border-left 0
         #logo 
             float none
+            text-align center
+            padding 10px auto
         nav
             float none
             margin 0
             a
                 display block
                 margin 0
+                height 42px
+                line-height 42px
+                border-bottom 1px solid black
+                transition none
+                padding 0 10px
+                &.active
+                &:hover
+                    border-bottom 1px solid black !important
+                    padding 0 10px !important
+                    background #F2F1F1
+
 //startups
 +to(960px)
     #startup_detail 
