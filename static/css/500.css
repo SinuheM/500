@@ -2826,6 +2826,21 @@ footer .row-4 p {
     display: inline-block;
   }
 }
+@media only screen and (max-width: 767px) {
+  #startup_detail .info .video {
+    position: relative;
+    padding-bottom: 56.5%;
+  }
+  #startup_detail .info .video iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100% !important;
+    width: 100% !important;
+  }
+}
 #starters .card {
   text-align: center;
 }
