@@ -33,7 +33,7 @@
             li
                 float none
                 width auto
-    .video
+    .video-responsive
         position relative
         padding-bottom 54.6%
         margin 20px 0
@@ -74,6 +74,41 @@
                 text-align left
                 display block
 
+//invest
++to(960px)
+    section#legal
+        padding 0
+        .center
+            padding 20px
+            border none
+
+//activity
++to(960px)
+    section#activity 
+        ul.filter
+            text-align left
+            li
+                margin-bottom 10px
++to(767px)
+    section#activity 
+        #activity-list
+            background-position -130px center
+        #activity-circle
+            margin 0 0 30px 3px
+        .row-10
+            width auto
+            padding-right 20px
+        li .row-2
+            float none
+            width auto
+            padding-left 33px
+            text-align left !important
+            img
+                margin-left 5px
+            span.icon
+                float none !important
+                display inline-block
+        
 //team
 #starters
     .card

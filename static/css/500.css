@@ -2732,12 +2732,12 @@ footer .row-4 p {
     float: none;
     width: auto;
   }
-  .video {
+  .video-responsive {
     position: relative;
     padding-bottom: 54.6%;
     margin: 20px 0;
   }
-  .video iframe {
+  .video-responsive iframe {
     position: absolute;
     left: 0;
     top: 0;
@@ -2782,6 +2782,48 @@ footer .row-4 p {
     float: none;
     text-align: left;
     display: block;
+  }
+}
+@media only screen and (max-width: 960px) {
+  section#legal {
+    padding: 0;
+  }
+  section#legal .center {
+    padding: 20px;
+    border: none;
+  }
+}
+@media only screen and (max-width: 960px) {
+  section#activity ul.filter {
+    text-align: left;
+  }
+  section#activity ul.filter li {
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  section#activity #activity-list {
+    background-position: -130px center;
+  }
+  section#activity #activity-circle {
+    margin: 0 0 30px 3px;
+  }
+  section#activity .row-10 {
+    width: auto;
+    padding-right: 20px;
+  }
+  section#activity li .row-2 {
+    float: none;
+    width: auto;
+    padding-left: 33px;
+    text-align: left !important;
+  }
+  section#activity li .row-2 img {
+    margin-left: 5px;
+  }
+  section#activity li .row-2 span.icon {
+    float: none !important;
+    display: inline-block;
   }
 }
 #starters .card {
