@@ -124,8 +124,39 @@
                     bottom 0
                     height 100% !important
                     width 100% !important
+//mentor
++to(960px)
+    section#mentor-single
+        padding 0
+    body.layer-single #mentor-single .center .archive
+        margin-bottom 0
+    section#mentor-single .center
+        width auto
++to(767px)
+    section#mentor-single 
+        .archive 
+            .image-container
+                display block
+                text-align center
+                float none
+            .head-body
+                margin 0
+                display block
+                width auto
+//post
++to(767px)
 
-        
+    section#blogpost 
+        .content
+            overflow hidden
+            h1
+                font-size 45px
+        .post 
+            img
+                height auto !important
+            .paragraph
+                padding 0 20px
+
 //team
 #starters
     .card
@@ -188,6 +219,7 @@
         padding 0 !important
         width 200px !important
         border-right 1px solid black
+        display none !important
         &#int
             height auto
             padding 0 !important
@@ -212,7 +244,37 @@
                     border-bottom 1px solid black !important
                     padding 0 10px !important
                     background #F2F1F1
-
+//events
++to(960px)
+    section#events 
+        overflow hidden
+        #top
+            border-top 0
+        .content
+            #info-container
+                float none
+                width auto
+                padding 0 30px
+            .image-event
+                right 500px
+           
++to(767px)
+    section#events 
+        .content .info 
+            h1
+                font-size 50px
+                line-height 50px
+            h6:first-child
+                margin-left 0
+        #subscribe #form
+            width auto
+            input[type="submit"]
+                width auto
++to(480px)
+    section#events 
+        .content .info h1
+            font-size 40px
+            line-height 40px
 //startups
 +to(960px)
     #startup_detail 

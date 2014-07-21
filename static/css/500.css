@@ -2841,6 +2841,43 @@ footer .row-4 p {
     width: 100% !important;
   }
 }
+@media only screen and (max-width: 960px) {
+  section#mentor-single {
+    padding: 0;
+  }
+  body.layer-single #mentor-single .center .archive {
+    margin-bottom: 0;
+  }
+  section#mentor-single .center {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 767px) {
+  section#mentor-single .archive .image-container {
+    display: block;
+    text-align: center;
+    float: none;
+  }
+  section#mentor-single .archive .head-body {
+    margin: 0;
+    display: block;
+    width: auto;
+  }
+}
+@media only screen and (max-width: 767px) {
+  section#blogpost .content {
+    overflow: hidden;
+  }
+  section#blogpost .content h1 {
+    font-size: 45px;
+  }
+  section#blogpost .post img {
+    height: auto !important;
+  }
+  section#blogpost .post .paragraph {
+    padding: 0 20px;
+  }
+}
 #starters .card {
   text-align: center;
 }
@@ -2906,6 +2943,7 @@ footer .row-4 p {
     padding: 0 !important;
     width: 200px !important;
     border-right: 1px solid #000;
+    display: none !important;
   }
   header#int {
     height: auto;
@@ -2935,6 +2973,43 @@ footer .row-4 p {
     border-bottom: 1px solid #000 !important;
     padding: 0 10px !important;
     background: #f2f1f1;
+  }
+}
+@media only screen and (max-width: 960px) {
+  section#events {
+    overflow: hidden;
+  }
+  section#events #top {
+    border-top: 0;
+  }
+  section#events .content #info-container {
+    float: none;
+    width: auto;
+    padding: 0 30px;
+  }
+  section#events .content .image-event {
+    right: 500px;
+  }
+}
+@media only screen and (max-width: 767px) {
+  section#events .content .info h1 {
+    font-size: 50px;
+    line-height: 50px;
+  }
+  section#events .content .info h6:first-child {
+    margin-left: 0;
+  }
+  section#events #subscribe #form {
+    width: auto;
+  }
+  section#events #subscribe #form input[type="submit"] {
+    width: auto;
+  }
+}
+@media only screen and (max-width: 480px) {
+  section#events .content .info h1 {
+    font-size: 40px;
+    line-height: 40px;
   }
 }
 @media only screen and (max-width: 960px) {
