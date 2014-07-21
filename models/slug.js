@@ -162,7 +162,7 @@ Slug.reserve('accelerator');
 Slug.reserve('events');
 Slug.reserve('privacy')
 Slug.reserve('invest')
-
+Slug.reserve('thanks')
 Slug.reserve('blog');
 Slug.reserve('activity');
 Slug.reserve('podcast');
