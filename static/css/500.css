@@ -102,6 +102,7 @@ section#legal .center {background-color: #FFF; padding: 5rem; border: solid 1px 
 section#legal .center li {margin-left: 2em;}
 section#legal h3 {text-align: center; margin-bottom: 5rem}
 section#legal p {font-size: 1rem; margin-bottom: 2rem;}
+section#legal h4 {text-align: center;}
 section#legal a {text-decoration: underline;}
 section#legal .center #note {font-size: .5rem;}
 section#legal .center #note ol {font-size: .5rem; margin-left: 5em; font-weight: 300; margin-bottom: .5em;}
