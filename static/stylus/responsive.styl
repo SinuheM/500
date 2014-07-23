@@ -317,7 +317,7 @@ ul.bxslider
     .button-nav
         -webkit-user-select none
         background red
-        background url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png)
+        background url(http://selfservice.dstv.com/images/menu-icon.png)
         background-position center
         background-repeat no-repeat
         background-size 40px
@@ -332,7 +332,8 @@ ul.bxslider
 
     .fixed-menu
         position relative
-        border-bottom 1px solid black
+        // border-bottom 1px solid black
+        color white
     .wrap-menu
         height 50px
         line-height 50px
@@ -344,7 +345,7 @@ ul.bxslider
 +to(960px)
     header
         // position static !important
-        background-color white !important
+        background-color black !important
         height auto
         padding 0 !important
         width 100% !important
@@ -356,14 +357,15 @@ ul.bxslider
             height auto
             padding 0 !important
             border-left 0
+            background black !important
             &.simple 
-                background white !important
+                background black !important
         &#staff
             nav a 
-                color black
+                color white
                 &.active 
                 &:hover
-                    color black
+                    color white
         #logo 
             float none
             text-align center
@@ -378,14 +380,16 @@ ul.bxslider
                 margin 0
                 height 42px
                 line-height 42px
-                border-bottom 1px solid black
+                // border-bottom 1px solid black
                 transition none
                 padding 0 10px
+                color white
                 &.active
                 &:hover
-                    border-bottom 1px solid black !important
+                    border-bottom none !important
                     padding 0 10px !important
                     background #F2F1F1
+                    color white
 //events
 +to(960px)
     section#events 

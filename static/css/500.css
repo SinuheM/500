@@ -3077,7 +3077,7 @@ ul.bxslider {
   .button-nav {
     -webkit-user-select: none;
     background: #f00;
-    background: url("https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png");
+    background: url("http://selfservice.dstv.com/images/menu-icon.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 40px;
@@ -3092,7 +3092,7 @@ ul.bxslider {
   }
   .fixed-menu {
     position: relative;
-    border-bottom: 1px solid #000;
+    color: #fff;
   }
   .wrap-menu {
     height: 50px;
@@ -3104,7 +3104,7 @@ ul.bxslider {
 }
 @media only screen and (max-width: 960px) {
   header {
-    background-color: #fff !important;
+    background-color: #000 !important;
     height: auto;
     padding: 0 !important;
     width: 100% !important;
@@ -3117,16 +3117,17 @@ ul.bxslider {
     height: auto;
     padding: 0 !important;
     border-left: 0;
+    background: #000 !important;
   }
   header#int.simple {
-    background: #fff !important;
+    background: #000 !important;
   }
   header#staff nav a {
-    color: #000;
+    color: #fff;
   }
   header#staff nav a.active,
   header#staff nav a:hover {
-    color: #000;
+    color: #fff;
   }
   header #logo {
     float: none;
@@ -3144,15 +3145,16 @@ ul.bxslider {
     margin: 0;
     height: 42px;
     line-height: 42px;
-    border-bottom: 1px solid #000;
     transition: none;
     padding: 0 10px;
+    color: #fff;
   }
   header nav a.active,
   header nav a:hover {
-    border-bottom: 1px solid #000 !important;
+    border-bottom: none !important;
     padding: 0 10px !important;
     background: #f2f1f1;
+    color: #fff;
   }
 }
 @media only screen and (max-width: 960px) {
