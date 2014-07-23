@@ -47,10 +47,9 @@ window.analytics.page();
                 {% endfor %}
                 </ul>
                 <h6 class="top">INVESTMENT</h6>
+
+                <ul class="cards">
                 {% for member in team.investment %}
-                    {% if loop.index0 % 4 == 0 %}
-                    <ul class="cards-{% if (team.investment.length - loop.index0) >= 4 %}4{%else%}{{team.investment.length - loop.index0 }}{% endif %}">
-                    {% endif %}
                     <li class="animated flipInX">
                         <a class="card" href="/{{member.slugStr}}">
                             <img src="{{member.avatar}}">
@@ -60,10 +59,8 @@ window.analytics.page();
                             </div>
                         </a>
                     </li>
-                    {% if loop.index % 4 == 0 || loop.last %}
-                    </ul>
-                    {% endif %}
                 {% endfor %}
+                </ul>
                 <h6>FINANCIAL, LEGAL, MARKETING AND PORTFOLIO SUPPORT</h6>
                 <ul class="cards">
                 {% for member in team.support %}
@@ -104,28 +101,7 @@ window.analytics.page();
 <script>
     $(document).foundation();
 </script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var lastScrollTop = 0;
-        $(window).on('scroll', function(){
-            $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
-            var busy = 0;
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop && busy==0 && st>0){
-                busy=1;
-                $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
-            }
-            if (st <= lastScrollTop){
-                if( $('#int').attr('rel') == 'bar_top' ){
-                    $('#int').attr('rel','1');
-                    $('#int').css('position','fixed').addClass('animated bounceInDown');
-                }
-                else
-                    $('#int').css('position','fixed');
-            }
-            lastScrollTop = st;
-        });
-    });
-</script>
+<script src="/js/header.js"></script>
+
 </body>
 </html>

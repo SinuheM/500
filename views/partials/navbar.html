@@ -18,6 +18,12 @@
     </header>
 {% elseif currentPage == "staff" || currentPage == "events" || currentPage == "post" %}
     <header id="staff">
+        <div class="fixed-menu">
+            <div class="wrap-menu">
+                {{currentPage}}
+                <div class="button-nav"></div>
+            </div>
+        </div>
         <div id="logo">
             <a href="/">
                 <img class="white" src="/img/500-white.png" alt="500">
@@ -35,6 +41,12 @@
     </header>
 {% elseif currentPage == "mentor"  || currentPage == "startup-profile" %}
     <header id="int" class="simple fixed normal">
+        <div class="fixed-menu">
+            <div class="wrap-menu">
+                {{currentPage}}
+                <div class="button-nav"></div>
+            </div>
+        </div>
         <div id="logo">
             <a href="/">
                 <img class="black" src="/img/500-black.png" alt="500">
@@ -52,6 +64,13 @@
     </header>   
 {% else %}
     <header id="int" class="fixed normal">
+        <div class="fixed-menu">
+            <div class="wrap-menu">
+                {{currentPage}}
+                <div class="button-nav"></div>
+            </div>
+        </div>
+
         <div id="logo">
             <a href="/">
                 <img class="black" src="/img/500-black.png" alt="500">

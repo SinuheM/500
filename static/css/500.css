@@ -2692,6 +2692,15 @@ footer .row-4 p {
 .text-center {
   text-align: center;
 }
+ul.bxslider {
+  margin-left: 0;
+}
+@media only screen and (max-width: 960px) {
+  section#staff-member .center {
+    width: auto;
+    margin-left: 20px;
+  }
+}
 @media only screen and (max-width: 960px) {
   body {
     overflow: auto !important;
@@ -2722,6 +2731,21 @@ footer .row-4 p {
   }
   #map-container #map img:first-child {
     position: static;
+  }
+  section#team-home {
+    padding-bottom: 25px !important;
+  }
+  #map-container {
+    padding-bottom: 25px;
+  }
+  #map-container h4 {
+    padding-top: 25px;
+  }
+  #team-home {
+    padding-top: 25px !important;
+  }
+  section#themes {
+    padding-bottom: 25px;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -2765,20 +2789,29 @@ footer .row-4 p {
   .line div span:hover {
     border: none;
   }
-  #help-startups .clearfix {
+  section#help-startups .clearfix {
     margin: 10px 0 !important;
   }
-  #help-startups .row-5,
-  #help-startups .row-7 {
+  section#help-startups .row-5,
+  section#help-startups .row-7 {
     float: none;
     width: auto;
   }
-  #help-startups .row-5 ul,
-  #help-startups .row-7 ul {
-    display: none;
+  section#help-startups .row-5 ul,
+  section#help-startups .row-7 ul {
+    height: auto;
+    text-align: left;
+    font-size: 0 !important;
   }
-  #help-startups .row-5 .all-companies,
-  #help-startups .row-7 .all-companies {
+  section#help-startups .row-5 ul li,
+  section#help-startups .row-7 ul li {
+    display: inline-block;
+    float: none;
+    width: auto;
+    margin-right: 20px;
+  }
+  section#help-startups .row-5 .all-companies,
+  section#help-startups .row-7 .all-companies {
     float: none;
     text-align: left;
     display: block;
@@ -2786,7 +2819,7 @@ footer .row-4 p {
 }
 @media only screen and (max-width: 960px) {
   section#legal {
-    padding: 0;
+    padding: 70px 0 0;
   }
   section#legal .center {
     padding: 20px;
@@ -2794,14 +2827,27 @@ footer .row-4 p {
   }
 }
 @media only screen and (max-width: 960px) {
+  section#activity {
+    padding-top: 70px;
+  }
   section#activity ul.filter {
     text-align: left;
+    margin: 20px 0;
   }
   section#activity ul.filter li {
     margin-bottom: 10px;
   }
+  section#activity #activity-list {
+    margin-top: 20px;
+  }
 }
 @media only screen and (max-width: 767px) {
+  section#activity ul.filter li {
+    display: block;
+  }
+  section#activity ul.filter li a {
+    display: block;
+  }
   section#activity #activity-list {
     background-position: -130px center;
   }
@@ -2825,8 +2871,15 @@ footer .row-4 p {
     float: none !important;
     display: inline-block;
   }
+  section#activity li .row-2 .tag {
+    position: static !important;
+    margin-left: 20px;
+  }
 }
 @media only screen and (max-width: 767px) {
+  #startup_detail .info {
+    padding-top: 70px;
+  }
   #startup_detail .info .video {
     position: relative;
     padding-bottom: 56.5%;
@@ -2840,6 +2893,23 @@ footer .row-4 p {
     height: 100% !important;
     width: 100% !important;
   }
+  #startup_detail .info .name {
+    margin-top: 20px;
+  }
+  #startup_detail .info .link {
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #startup_profile {
+    background: #fff !important;
+  }
+  #startup_detail .info .logo {
+    max-width: none;
+    width: 100%;
+    max-height: none;
+    height: auto;
+  }
 }
 @media only screen and (max-width: 960px) {
   section#mentor-single {
@@ -2850,6 +2920,16 @@ footer .row-4 p {
   }
   section#mentor-single .center {
     width: auto;
+  }
+  section#portfolio #mentors ul {
+    text-align: center;
+  }
+  section#portfolio #mentors ul div {
+    display: inline-block;
+  }
+  section#portfolio #mentors ul li {
+    float: none;
+    display: inline-block;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -2862,6 +2942,23 @@ footer .row-4 p {
     margin: 0;
     display: block;
     width: auto;
+  }
+}
+@media only screen and (max-width: 480px) {
+  section#portfolio #mentors ul div {
+    display: block;
+  }
+  section#portfolio #mentors ul div li {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+  section#portfolio #mentors ul div li a {
+    height: auto;
+  }
+  section#portfolio #mentors ul div li img {
+    width: 100%;
+    height: auto;
   }
 }
 @media only screen and (max-width: 767px) {
@@ -2889,13 +2986,40 @@ footer .row-4 p {
   text-align: center;
   font-size: 0;
 }
+@media only screen and (max-width: 480px) {
+  section#portfolio #team ul li {
+    display: block;
+    width: auto;
+  }
+  section#portfolio #team ul li .card {
+    height: auto;
+  }
+  section#portfolio #team ul li img {
+    width: 100%;
+    height: auto;
+  }
+}
 #select-type,
 #select-batch {
   display: none;
 }
 @media only screen and (max-width: 767px) {
+  #filter_cool {
+    margin-bottom: 0;
+  }
+  #starters {
+    padding: 20px 10px !important;
+  }
+  #starters .card {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
   section#portfolio #search {
-    padding: 0;
+    padding: 20px !important;
+  }
+  section#portfolio #search h6 {
+    padding: 30px 10px;
+    margin-top: 20px !important;
   }
   section#portfolio input[type="search"] {
     font-size: 20px;
@@ -2920,13 +3044,16 @@ footer .row-4 p {
 @media only screen and (max-width: 767px) {
   footer {
     text-align: center;
-    padding: 20px 0;
+    padding: 20px;
   }
   footer .center > div {
     float: none;
     display: inline-block;
     width: auto;
     text-align: left;
+  }
+  footer .center > div.sociales {
+    text-align: center;
   }
   footer .logo {
     display: block !important;
@@ -2936,28 +3063,81 @@ footer .row-4 p {
     display: none !important;
   }
 }
+.button-nav,
+.fixed-menu,
+.wrap-menu {
+  display: none;
+}
+@media only screen and (max-width: 960px) {
+  .button-nav,
+  .fixed-menu,
+  .wrap-menu {
+    display: block;
+  }
+  .button-nav {
+    -webkit-user-select: none;
+    background: #f00;
+    background: url("https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    user-select: none;
+    width: 50px;
+  }
+  .fixed-menu {
+    position: relative;
+    border-bottom: 1px solid #000;
+  }
+  .wrap-menu {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
 @media only screen and (max-width: 960px) {
   header {
-    background: #f00;
+    background-color: #fff !important;
     height: auto;
     padding: 0 !important;
-    width: 200px !important;
+    width: 100% !important;
     border-right: 1px solid #000;
-    display: none !important;
+    bottom: initial;
+    position: fixed !important;
+    margin: 0 !important;
   }
   header#int {
     height: auto;
     padding: 0 !important;
     border-left: 0;
   }
+  header#int.simple {
+    background: #fff !important;
+  }
+  header#staff nav a {
+    color: #000;
+  }
+  header#staff nav a.active,
+  header#staff nav a:hover {
+    color: #000;
+  }
   header #logo {
     float: none;
     text-align: center;
     padding: 10px auto;
+    display: none;
   }
   header nav {
     float: none;
     margin: 0;
+    display: none;
   }
   header nav a {
     display: block;
@@ -3019,8 +3199,21 @@ footer .row-4 p {
   }
 }
 @media only screen and (max-width: 960px) {
+  section#portfolio.accelerator-top #search {
+    padding: 30px 0 0;
+  }
+  section#portfolio.accelerator-top #search h6 {
+    margin-top: 30px;
+  }
+  section#portfolio {
+    padding-top: 50px;
+  }
+  section#portfolio.accelerator-top #mentors {
+    padding: 20px 10px !important;
+  }
   section#portfolio.accelerator-top #mentors.accelerator ul.area {
     font-size: 0;
+    margin-top: 30px;
   }
   section#portfolio.accelerator-top #mentors.accelerator ul.area li {
     width: 48%;
@@ -3030,12 +3223,13 @@ footer .row-4 p {
     display: inline-block;
     vertical-align: top;
     padding: 15px;
+    margin-bottom: 20px;
   }
   section#portfolio.accelerator-top #mentors.accelerator ul.area li:hover {
     transform: none;
   }
   .accelerator-top .video {
-    margin: 0 auto;
+    margin: 20px auto 0;
     max-width: 960px;
     padding-bottom: 55.6%;
   }
@@ -3056,6 +3250,36 @@ footer .row-4 p {
   }
   h3 {
     font-size: 30px;
+  }
+  section#portfolio.accelerator-top dd {
+    display: block !important;
+  }
+  section#portfolio.accelerator-top .questions {
+    padding-top: 20px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #starters .card > div {
+    display: block;
+  }
+  .card li {
+    width: auto;
+    float: none;
+    display: block;
+  }
+  p.excerpt {
+    height: auto;
+  }
+  .card li .image-container {
+    height: auto;
+    width: auto;
+    text-align: center;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .card li .image-container img {
+    width: 100%;
+    height: auto;
   }
 }
 @media only screen and (max-width: 1000px) {
