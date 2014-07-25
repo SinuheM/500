@@ -3,7 +3,15 @@ window.getQueryValues = function(){
 	var expertise = $('#filter_cat_content .active').data();
 	if(!window._.isEmpty(expertise)){
 		query.expertise = expertise.value;
+	}else{
+		if($('#select-experts :selected').val() !== ""){
+			expertise = $('#select-experts :selected').val();
+			query.expertise = expertise;
+		}
 	}
+
+
+
 
 	var location = $('#filter_place_content .active').data();
 	if(!window._.isEmpty(location)){
@@ -25,8 +33,10 @@ window.Widgets.List.prototype.search = function(){
 	var query = window.getQueryValues();
 	var self = this;
 
-	query.search = $('#searchbox').val();
-
+	// query.search = $('#searchbox').val();
+	if($('#searchbox').val()){
+		query.search = $('#searchbox').val();
+	}
 	var xhr = $.post('/utils/mentors/search',query);
 
 	xhr.done(function(data){
@@ -118,6 +128,17 @@ $(document).ready(function () {
 
 		$selectBox.find('span').text($item.text());
 		window.widgets.list.search();
+	});
+	$('select').on('change',function(){
+		$('#filter_cat_content .active').removeClass('active');
+		var $item = $(this);
+		// var $filter = $item.closest('.filter_content');
+		// var $selectBox = $($filter.data('select-box'));
+		// debugger;
+		// $item.find('option:selected')
+		// console.log($selectBox);
+		// $selectBox.find('span').text($item.find('option:selected').val());
+		window.widgets.list.search($item.find('option:selected').val());
 	});
 
 	$('.submain a').on('click', function(e){

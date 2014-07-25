@@ -35,6 +35,12 @@ window.analytics.page();
                     </ul>
 
                     <div id="filters_cool">
+                        <select name="" id="select-experts" >
+                            {% for expertise in expertises %}
+                            <option value="">All</option>
+                            <option value="{{expertise}}">{{expertise}}</option>
+                            {% endfor %}
+                        </select>
                         <div id="filter_cat_content" class="filter_content arrow_box" data-select-box="#filter_cat">
                             <ul class="filter_header">
                                 <li rel="filter_cat_content" id="filter_car_all">All</li>
