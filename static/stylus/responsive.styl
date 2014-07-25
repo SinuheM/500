@@ -351,7 +351,12 @@ ul.bxslider
         top 0
         user-select none
         width 50px
-
+    .loguito
+        img
+            height 40px 
+            width auto
+            position relative
+            bottom 2px
     .fixed-menu
         position relative
         // border-bottom 1px solid black
@@ -405,13 +410,14 @@ ul.bxslider
                 // border-bottom 1px solid black
                 transition none
                 padding 0 10px
-                color white
+                color white !important
+                font-weight bold
                 &.active
                 &:hover
                     border-bottom none !important
                     padding 0 10px !important
                     background #F2F1F1
-                    color white
+                    color black !important
 //events
 +to(960px)
     section#events 
