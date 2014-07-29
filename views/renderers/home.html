@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
-<meta name="viewport" content="width=320"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1"/>
     <title>#500strong - 500 Startups</title>
     <link rel="icon" type="image/ico" href="/favicon.ico"/>
     <link rel="stylesheet" href="/css/foundation.css" />
@@ -60,7 +60,9 @@ window.analytics.page();
                 </li>
             </ul>
                                                                           
-            <iframe width="960" height="541" src="//www.youtube.com/embed/xg1Mw0ySdP8?&rel=0&loop=1&controls=0&autoplay=0&disablekb=1&fs=0&border=0&hd=1&showinfo=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+            <div class="video-responsive">
+                <iframe width="960" height="541" src="//www.youtube.com/embed/xg1Mw0ySdP8?&rel=0&loop=1&controls=0&autoplay=0&disablekb=1&fs=0&border=0&hd=1&showinfo=0&iv_load_policy=3" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
           <section id="team-home" class="videobg">
          
@@ -281,29 +283,13 @@ window.analytics.page();
             $('#fixadent').fadeOut();
             $('#int').fadeIn(0).addClass('animated bounceInDown');
 
-            var lastScrollTop = 0;
-            $(window).on('scroll', function(){
-                $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
-                var busy = 0;
-                var st = $(this).scrollTop();
-                if (st > lastScrollTop && busy==0 && st>0){
-                    busy=1;
-                    $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
-                }
-                if (st <= lastScrollTop){
-                    if( $('#int').attr('rel') == 'bar_top' ){
-                        $('#int').attr('rel','1');
-                        $('#int').css('position','fixed').addClass('animated bounceInDown');
-                    }
-                    else
-                        $('#int').css('position','fixed');
-                }
-                lastScrollTop = st;
-            });
+           
         });
 
         $(window).on('scroll', window.mapAnimation);
     });
 </script>
+<script src="/js/header.js"></script>
+
 </body>
 </html>

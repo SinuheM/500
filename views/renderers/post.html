@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
-<meta name="viewport" content="width=320"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1"/>
     <title>{{ post.title }} - 500 Startups Blog</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
@@ -44,18 +44,42 @@ window.analytics.page();
                 <div class="paragraph">
                     {{ post.content|safe }}
                 </div>
-                <!--<div class="share">
-                  <ul>
-                     <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ post.title }}&amp;url="{{ post.url }}"&amp;via=500startups" class="btn twitter"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/twitter.png">Share on Twitter</a></li>
-        
-                    <li><a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://500.co/{{activity.slugStr}}" class="btn facebook"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/facebook.png">Share on Facebook</a></li>
-        
-                     <li><a target="_blank" href="https://plus.google.com/share?url={{ post.url }}" class="btn google"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/google.png">Share on Google+</a></li>
-        
-                    <li><a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ post.url }}&amp;title={{ post.title }}&amp;summary={{ post.subtitle }};
-                    &amp;source=http://aurogam.com" class="btn linkedin"><img src="http://orangestudio.com.mx/clientes/aurigam/wp-content/themes/aurigam/img/linkedin.png">Share on LinkedIn</a></li>
-                 </ul>
-                </div>-->
+
+                <div class="share">
+                    <script>(function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=230176173834181&version=v2.0";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                    <div class="fb-share-button" data-href="" data-type="button_count"></div>
+
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="es">Twittear</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+                    <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                      lang: es_ES
+                    </script>
+                    <script type="IN/Share" data-counter="right"></script>
+
+
+                    <!-- Inserta esta etiqueta donde quieras que aparezca Botón Compartir. -->
+                    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+                    <!-- Inserta esta etiqueta después de la última etiqueta de compartir. -->
+                    <script type="text/javascript">
+                      window.___gcfg = {lang: 'es'};
+
+                      (function() {
+                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/platform.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                      })();
+                    </script>
+
+
+                </div>
             </div>
             {% if uploader %}
             <div class="bottom">
@@ -84,6 +108,24 @@ window.analytics.page();
             var $img = $(img); 
             $img.wrap('<div style="width:100%; text-align:center"></div>');
         });
+
+        if($(window).width() <= 480){
+            $('section#blogpost .content').height($(window).height())
+            $('section#blogpost .content .center').css('margin-top',($(window).height() / 2) - ($('section#blogpost .content .center').height()/2) )
+        }
+        $('.btn').on('click',function(e){
+            e.preventDefault();
+            var $boton = $(this),
+                url    = $boton.attr('href'),
+                width;
+            if($boton.hasClass('gplus')){
+                width = 510;
+            }else{
+                width = 400;
+            }
+            window.open(url,'','width='+width+', height=230')
+        });
+
     });
 </script>
 <script type="text/javascript">
@@ -94,5 +136,7 @@ window.analytics.page();
     }
     });
 </script>
+<script src="/js/header.js"></script>
+
 </body>
 </html>

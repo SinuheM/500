@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
-<meta name="viewport" content="width=320"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1"/>
     <title>Events Organized by 500 startups</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
@@ -83,30 +83,8 @@ window.analytics.page();
 <script>
     $(document).foundation();
 </script>
+<script src="/js/header.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        var lastScrollTop = 0;
-        $(window).on('scroll', function(){
-            $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
-            var busy = 0;
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop && busy==0 && st>0){
-                busy=1;
-                $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
-            }
-            if (st <= lastScrollTop){
-                if( $('#int').attr('rel') == 'bar_top' ){
-                    $('#int').attr('rel','1');
-                    $('#int').css('position','fixed').addClass('animated bounceInDown');
-                }
-                else
-                    $('#int').css('position','fixed');
-            }
-            lastScrollTop = st;
-        });
-    });
-</script>
 <script type="text/javascript">
 var fnames = new Array();var ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';
 try {

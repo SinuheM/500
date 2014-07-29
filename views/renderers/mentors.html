@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8" />
-<meta name="viewport" content="width=320"/>
+<meta name="viewport" content="width=device-width, maximum-scale=1"/>
     <title>Mentor Network - 500 Startups</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
@@ -35,6 +35,12 @@ window.analytics.page();
                     </ul>
 
                     <div id="filters_cool">
+                        <select name="" id="select-experts" >
+                            {% for expertise in expertises %}
+                            <option value="">All</option>
+                            <option value="{{expertise}}">{{expertise}}</option>
+                            {% endfor %}
+                        </select>
                         <div id="filter_cat_content" class="filter_content arrow_box" data-select-box="#filter_cat">
                             <ul class="filter_header">
                                 <li rel="filter_cat_content" id="filter_car_all">All</li>
@@ -152,25 +158,7 @@ window.analytics.page();
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var lastScrollTop = 0;
-        $(window).on('scroll', function(){
-            $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
-            var busy = 0;
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop && busy==0 && st>0){
-                busy=1;
-                $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
-            }
-            if (st <= lastScrollTop){
-                if( $('#int').attr('rel') == 'bar_top' ){
-                    $('#int').attr('rel','1');
-                    $('#int').css('position','fixed').addClass('animated bounceInDown');
-                }
-                else
-                    $('#int').css('position','fixed');
-            }
-            lastScrollTop = st;
-        });
+        
 
         $('#filter_cat').on('click',function(){
             var obj_position = $(this).position();
@@ -197,5 +185,7 @@ window.analytics.page();
         });        
     });
 </script>
+<script src="/js/header.js"></script>
+
 </body>
 </html>
