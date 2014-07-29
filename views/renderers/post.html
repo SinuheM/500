@@ -84,6 +84,10 @@ window.analytics.page();
             var $img = $(img); 
             $img.wrap('<div style="width:100%; text-align:center"></div>');
         });
+
+        if($(window).width() <= 480){
+            $('section#blogpost .content').height($(window).height())
+        }
     });
 </script>
 <script type="text/javascript">
