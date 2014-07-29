@@ -87,6 +87,7 @@ window.analytics.page();
 
         if($(window).width() <= 480){
             $('section#blogpost .content').height($(window).height())
+            $('section#blogpost .content .center').css('margin-top',($(window).height() / 2) - ($('section#blogpost .content .center').height()/2) )
         }
     });
 </script>
