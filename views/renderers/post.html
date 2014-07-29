@@ -41,10 +41,6 @@ window.analytics.page();
         </div>
         <div class="post">
             <div class="center">
-                <div class="paragraph">
-                    {{ post.content|safe }}
-                </div>
-
                 <div class="share">
                     <script>(function(d, s, id) {
                       var js, fjs = d.getElementsByTagName(s)[0];
@@ -55,21 +51,21 @@ window.analytics.page();
                     }(document, 'script', 'facebook-jssdk'));</script>
                     <div class="fb-share-button" data-href="" data-type="button_count"></div>
 
-                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="es">Twittear</a>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Twittear</a>
                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
                     <script src="//platform.linkedin.com/in.js" type="text/javascript">
-                      lang: es_ES
+                      lang: en_EN
                     </script>
                     <script type="IN/Share" data-counter="right"></script>
 
 
                     <!-- Inserta esta etiqueta donde quieras que aparezca Botón Compartir. -->
-                    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+                    <div class="g-plus" data-action="share" data-annotation="bubble" ></div>
 
                     <!-- Inserta esta etiqueta después de la última etiqueta de compartir. -->
                     <script type="text/javascript">
-                      window.___gcfg = {lang: 'es'};
+                      window.___gcfg = {lang: 'en'};
 
                       (function() {
                         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -80,6 +76,10 @@ window.analytics.page();
 
 
                 </div>
+                <div class="paragraph">
+                    {{ post.content|safe }}
+                </div>
+
             </div>
             {% if uploader %}
             <div class="bottom">
