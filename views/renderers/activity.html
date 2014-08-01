@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, maximum-scale=1"/>
-    <title>Activity Feed - 500 Startups</title>
+    <title>Blog - 500 Startups</title>
     <link rel="stylesheet" href="/css/foundation.css" />
     <link rel="stylesheet" href="/css/500.css" />
     <link rel="stylesheet" href="/css/animate.min.css" />
@@ -25,12 +25,12 @@ window.analytics.page();
             <h3 class="text-center">One feed for everything 500</h3>
             <h6><a href="http://500.co/feed"> <img src="/img/rss.png">RSS</a></h6>
             <ul class="filter">
-                <li {% if !filter %}class="active"{% endif %}><a href="/activity">ALL</a></li>
+                <li {% if filter == 'post' %}class="active"{% endif %}><a href="/blog">POSTS</a></li>
                 <li {% if filter == 'announcements' %}class="active"{% endif %}><a href="/announcements">ANNOUNCEMENTS</a></li>
-                <li {% if filter == 'post' %}class="active"{% endif %}><a href="/blog">BLOG POSTS</a></li>
                 <li {% if filter == 'podcast' %}class="active"{% endif %}><a href="/podcast">PODCASTS</a></li>
                 <li {% if filter == 'video' %}class="active"{% endif %}><a href="/videos">VIDEOS</a></li>
                 <li><a href="/on-the-web">ON THE WEB</a></li>
+                <li {% if !filter %}class="active"{% endif %}><a href="/activity">ALL ACTIVITY</a></li>
             </ul>
             <div class="clearfix"></div>
             <ul id="activity-list">
@@ -61,7 +61,7 @@ window.analytics.page();
                                 <div class="clearfix"></div>
                                 <div class="meta">
                                     {% if activity.uploader %}
-                                    <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
+                                    <span>PUBLISHED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                                     {% endif %}
                                 </div>
                             </a>
@@ -81,7 +81,7 @@ window.analytics.page();
                         <div class="clearfix"></div>
                         <div class="meta">
                             {% if activity.uploader %}
-                            <span>ADDED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
+                            <span>PUBLISHED BY</span> <a class="added-by" href="/{{ activity.uploader.slugStr }}">{{activity.uploader.displayName}}</a>
                             {% endif %}
                         </div>
                     </div>
