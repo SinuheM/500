@@ -1,21 +1,27 @@
 $(document).ready(function () {
     var lastScrollTop = 0;
     if($(window).width() > 960){
+        var n;
         $(window).on('scroll', function(){
             $('#int').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){ $('#int').removeClass('animated'); });
             var busy = 0;
             var st = $(this).scrollTop();
-            if (st > lastScrollTop && busy==0 && st>0){
+            if (st > lastScrollTop && busy === 0 && st>0){
                 busy=1;
                 $('#int').css('position','absolute').addClass('animated bounceInDown').attr('rel','bar_top');
             }
             if (st <= lastScrollTop){
-                if( $('#int').attr('rel') == 'bar_top' ){
-                    $('#int').attr('rel','1');
-                    $('#int').css('position','fixed').addClass('animated bounceInDown');
+                if(st <= n){
+                    if( $('#int').attr('rel') == 'bar_top' ){
+                        $('#int').attr('rel','1');
+                        $('#int').css('position','fixed').addClass('animated bounceInDown');
+                    }
+                    else{
+                        $('#int').css('position','fixed');
+                    }
                 }
-                else
-                    $('#int').css('position','fixed');
+            }else{
+                n = st - 200;
             }
             lastScrollTop = st;
         });
