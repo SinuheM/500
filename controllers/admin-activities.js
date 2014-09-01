@@ -165,14 +165,23 @@ adminActivitiesController.post('/:currectActivity/delete', function (req, res) {
 });
 
 adminActivitiesController.post('/search', function(req, res) {
-	Activity.search({query: '*' + req.body.search + '*'},
-	{ hydrate:true, hydrateOptions: { where: { active: true } } },
-	function(err, results) {
+	Activity.search({
+		query: '*' + req.body.search + '*'
+	}, {
+		hydrate:true,
+		hydrateOptions: {
+			where: {
+				active: true,
+				deleted: false
+			},
+			populate: 'uploader'
+		}
+	}, function(err, results) {
 		if(err){return res.sendError(500, err);}
 
-		var activities = _.filter(results.hits, function(item){
+		var activities = _.chain(results.hits).filter(function(item){
 			return item.title;
-		});
+		}).sortBy('createdDate').reverse().value();
 		res.send(activities);
 	});
 });

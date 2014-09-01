@@ -161,10 +161,9 @@ var blogpostUpdate = function (type) {
 
 		busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
 			if(fieldname === 'image' && filename !== 'undefined') {
-				var extensionArray = filename.split('.');
-				extension = _.last(extensionArray);
+				var extension = path.extname(filename);
 
-				var imageFilePath = path.join(process.cwd(), '/public/blog-uploads/', post._id.toString() +  '.' + extension );
+				var imageFilePath = path.join(process.cwd(), '/public/blog-uploads/', post._id.toString() +  extension );
 				hasImage = true;
 
 				file.pipe(fs.createWriteStream(imageFilePath));

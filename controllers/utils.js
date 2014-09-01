@@ -58,7 +58,12 @@ utilsController.post('/startups/search', function(req, res){
 		}
 
 		if(req.body.search){
-			Startup.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query, populate:'batch'}}, function(err, results) {
+			Startup.search({
+				query: '*' + req.body.search + '*'
+			}, {
+				hydrate:true,
+				hydrateOptions: {where: query, populate:'batch'}
+			}, function(err, results) {
 				if(err){return res.sendError(500, err);}
 
 				var startups = _.filter(results.hits, function(item){return item.name;});
@@ -111,6 +116,68 @@ utilsController.post('/startups/search', function(req, res){
 	});
 });
 
+utilsController.post('/activities/search', function(req, res){
+	var query = {
+		active:true,
+		deleted:false,
+		createdDate: { $lte: Date.now() }
+	};
+
+	if (req.body.type) {
+		var filter = req.body.type;
+		if(filter === 'blog'){filter='post';}
+		if(filter === 'videos'){filter='video';}
+		if(filter === 'on-the-web'){filter='on the web';}
+
+		if(filter){
+			if(filter === 'announcements'){
+				query.type = 'post';
+				query.announcement = true;
+			}else{
+				query.type = filter;
+				query.announcement = false;
+			}
+		}
+	}
+
+	var omitted = ['__v', 'deleted', 'active', '_id'];
+	if (req.body.search) {
+		Activity.search({
+			query: '*' + req.body.search + '*'
+		}, {
+			hydrate: true,
+			hydrateOptions: {
+				where: query,
+				populate: {path: 'uploader', select: 'displayName'}
+			}
+		}, function(err, data) {
+			var activities = _.chain(data.hits)
+			.filter(function(item) {
+				return item.active && !item.deleted && item.title;
+			}).map(function(item) {
+				return _.omit(item.toJSON(), omitted);
+			}).sortBy('createdDate').reverse().value();
+			return res.send(activities);
+		});
+	} else {
+		Activity.find(query)
+		.sort('-createdDate')
+		.populate({path: 'uploader', select: 'displayName'})
+		.limit(15)
+		.exec(function(err, activities){
+			if(err){ return res.sendError(500, err);}
+
+			activities = _.chain(activities)
+			.map(function(item) {
+				return _.omit(item.toJSON(), omitted);
+			}).value();
+
+			res.send(activities);
+		});
+
+	}
+});
+
 utilsController.post('/mentors/search', function(req, res){
 	var query;
 
@@ -133,7 +200,12 @@ utilsController.post('/mentors/search', function(req, res){
 			query.location = /,\s?\w\w$/;
 		}
 
-		User.search({query: '*' + req.body.search + '*'}, {hydrate:true, hydrateOptions: {where: query}}, function(err, results) {
+		User.search({
+			query: '*' + req.body.search + '*'
+		}, {
+			hydrate:true,
+			hydrateOptions: {where: query}
+		}, function(err, results) {
 			if(err){return res.sendError(500, err);}
 
 			var mentors = _.filter(results.hits, function(item){return item.displayName && item.publish;})
