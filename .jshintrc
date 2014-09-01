@@ -1,0 +1,28 @@
+{
+  "browser": true,
+  "jquery": true,
+  "node": true,
+
+  "asi": false,
+  "camelcase": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
+  "quotmark": "single",
+  "trailing": true,
+  "undef": true,
+  "unused": true,
+  "maxlen": 120,
+  "predef": [ "-Promise" ],
+  "globals": {
+    "angular": true,
+    "describe"   : false,
+    "it"         : false,
+    "before"     : false,
+    "beforeEach" : false,
+    "after"      : false,
+    "afterEach"  : false
+  }
+}
