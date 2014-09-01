@@ -29,7 +29,7 @@ window.analytics.page();
                 <li {% if filter == 'announcements' %}class="active"{% endif %}><a href="/announcements">ANNOUNCEMENTS</a></li>
                 <li {% if filter == 'podcast' %}class="active"{% endif %}><a href="/podcast">PODCASTS</a></li>
                 <li {% if filter == 'video' %}class="active"{% endif %}><a href="/videos">VIDEOS</a></li>
-                <li><a href="/on-the-web">ON THE WEB</a></li>
+                <li {% if filter == 'on the web' %}class="active"{% endif %}><a href="/on-the-web">ON THE WEB</a></li>
                 <li {% if !filter %}class="active"{% endif %}><a href="/activity">ALL ACTIVITY</a></li>
             </ul>
             <div class="clearfix"></div>
@@ -47,7 +47,7 @@ window.analytics.page();
                         <div class="row-2">
                             <span class="refresh-time" data-time="{{activity.createdDate|dateToString}}">{{activity.createdDate|ago}} ago</span>
                             <span class="tag">ON OUR BLOG</span>
-                        </div>                    
+                        </div>
                     {% endif %}
                         <div class="row-10">
                             <a target="_blank" href="/{{activity.slugStr}}">
@@ -93,7 +93,7 @@ window.analytics.page();
                         <span class="icon"><img src="{{ activity.favicon }}"></span>
                     </div>
                     <div class="row-10">
-                        <h4>{{ activity.title }}</h4>                    
+                        <h4>{{ activity.title }}</h4>
                         <div class="info">
                             <div class="video">{{ activity.media|safe }}</div>
                         </div>
@@ -104,7 +104,7 @@ window.analytics.page();
                             {% endif %}
                         </div>
                     </div>
-                </li>                
+                </li>
                 {% else%}
                     {% if activity.provider == "twitter.com"%}
                     <li class="twitt">
@@ -116,7 +116,7 @@ window.analytics.page();
                             <h4><a class="twitt-body" target="_blank" href="{{ activity.slugStr }}">" {{ activity.description }} "</a></h4>
                             <div class="">
                                 <div class="image"><img src="{{ activity.image }}"> by <a target="_blank" href="{{ activity.author.url }}">@{{ activity.author.name }}</a></div>
-                            </div>                            
+                            </div>
                             <div class="clearfix"></div>
                             <div class="meta">
                                 {% if activity.uploader %}
@@ -124,7 +124,7 @@ window.analytics.page();
                                 {% endif %}
                             </div>
                         </div>
-                    </li>                    
+                    </li>
                     {% else %}
                     <li class="normal">
                         <div class="row-2">
