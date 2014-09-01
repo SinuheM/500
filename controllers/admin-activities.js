@@ -1,5 +1,6 @@
 'use strict';
 var controller = require('stackers'),
+	_  = require('underscore'),
 	db = require('../lib/db');
 
 var embedlyApi = require('../lib/embedlyApi');
@@ -91,12 +92,12 @@ adminActivitiesController.post('/new', function (req, res) {
 		req.body.author = JSON.parse(req.body.author);
 	}
 
-	if(res.user.type == 'admin'){
+	if(res.user.type === 'admin'){
 		req.body.uploader  = req.body.uploader;
 	}else{
 		req.body.uploader  = res.user;
 	}
-	
+
 	var activity = new Activity(req.body);
 
 	if(req.body.mediaType === 'video'){
@@ -160,6 +161,19 @@ adminActivitiesController.post('/:currectActivity/delete', function (req, res) {
 		if(err){ return res.sendError(500, err); }
 		req.flash('message', 'Deleted sucessfully');
 		res.redirect('/admin/activities/');
+	});
+});
+
+adminActivitiesController.post('/search', function(req, res) {
+	Activity.search({query: '*' + req.body.search + '*'},
+	{ hydrate:true, hydrateOptions: { where: { active: true } } },
+	function(err, results) {
+		if(err){return res.sendError(500, err);}
+
+		var activities = _.filter(results.hits, function(item){
+			return item.title;
+		});
+		res.send(activities);
 	});
 });
 

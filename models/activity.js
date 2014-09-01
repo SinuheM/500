@@ -21,7 +21,7 @@ var activitySchema = schema({
 	active      : {type : Boolean, default: false},
 	deleted     : {type : Boolean, default: false},
 	oldPath     : {type : String},
-	media		: {type : String},
+	media       : {type : String},
 	author      : schema.Types.Mixed
 });
 

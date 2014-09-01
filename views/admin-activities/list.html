@@ -22,7 +22,7 @@
 	</div>
 </div>
 <div id="startupsTable">
-	
+
 </div>
 <div class="row">
 	<div class="col-xs-12 text-right">
@@ -41,14 +41,14 @@
 				<th>Uploader</th>
 			</tr>
 		</thead>
-		<tbody class="list-container">			
+		<tbody class="list-container">
 		</tbody>
 	</table>
 </script>
 <script type="text/template" id="tableRowTemplate">
 	<td><%= item.title %></td>
 	<td><%= item.slugStr %></td>
-	<td><%= item.uploader.displayName %></td>
+	<td><%= item.uploader && item.uploader.displayName %></td>
 </script>
 <script type="text/javascript" src="/js/vendors/underscore.js"></script>
 <script type="text/javascript" src="/js/vendors/backbone.js"></script>
@@ -73,26 +73,20 @@ $(document).ready(function(){
 
 	window.widgets.activityList = activityList;
 
-	var stoppedTyping;
-	$('.searchbar').on('keyup', function(e){
-		var $this = $(this);
-		
-		if (stoppedTyping) clearTimeout(stoppedTyping);
+	var keyHandler = _.debounce(function(e) {
+		var $this = $(e.target)
+		window.widgets.activityList.empty();
 
-		stoppedTyping = setTimeout(function(){
-			window.widgets.activityList.empty();
-
-			if($this.val()){
-				var xhrSearch = $.post('/admin/users/search',{search: $this.val() });
-
-				xhrSearch.done(function(data){
-					window.widgets.activityList.fill(data.hits);
-				});
-			}else{
-				window.widgets.activityList.fill(window.users);
-			}
-		}, 500);
-	});
+		if($this.val()){
+			$.post('/admin/activities/search',{search: $this.val() })
+			.done(function(data){
+				window.widgets.activityList.fill(data);
+			});
+		}else{
+			window.widgets.activityList.fill(window.activities);
+		}
+	}, 500)
+	$('.searchbar').on('keyup', keyHandler);
 });
 </script>
 {% endblock %}
