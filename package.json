@@ -33,5 +33,6 @@
     "grunt-nodemon": "~0.2.1",
     "grunt-mocha-test": "~0.10.0",
     "chai": "~1.9.1"
-  }
+  },
+  "main": "app.js"
 }

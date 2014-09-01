@@ -241,17 +241,27 @@ if(taskName === 'searchUser'){
 		process.exit();
 	}
 
+	if (['startup', 'user'].indexOf(argv.model) === -1) {
+		try {
+			db.loadModels([argv.model])
+		} catch (err) {
+			console.error(err)
+			process.exit(1)
+		}
+	}
+
 	var model = db.model(argv.model);
 	var count = 0;
 
 	var stream = model.synchronize();
 
-	stream.on('data', function(){
+	stream.on('data', function(err, doc){
+		console.log('indexed document', doc)
 		count++;
 	});
 
 	stream.on('close', function(){
-		console.log('SUCESS!!! indexed ' + count + ' documents!');
+		console.log('SUCCESS!!! indexed ' + count + ' documents!');
 		process.exit();
 	});
 
