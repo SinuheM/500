@@ -51,7 +51,6 @@ $(document).ready(function () {
 				{% if !type %}
 				<th>Type</th>
 				{% endif %}
-				<th>Active</th>
 				<th>Publish</th>
 			</tr>
 		</thead>
@@ -69,8 +68,9 @@ $(document).ready(function () {
 	{% if !type %}
 	<td><%= item.type %></td>
 	{% endif %}
-	<td><%= item.active %></td>
-	<td><%= item.publish %></td>
+	<td>
+		<i class="fa fa-<%= (item.publish) ? 'check text-success' : 'times text-danger' %>">
+	</td>
 </script>
 <script type="text/template" id="listItemTemplate">
 	<div class="panel">
