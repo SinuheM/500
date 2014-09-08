@@ -1,7 +1,6 @@
 'use strict';
 var controller = require('stackers'),
 	Busboy = require('busboy'),
-	_ = require('underscore'),
 	_s = require('underscore.string'),
 	moment = require('moment'),
 	path = require('path'),
@@ -159,9 +158,9 @@ var blogpostUpdate = function (type) {
 
 		var post = res.data.currentBlogpost || new Activity();
 
-		busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+		busboy.on('file', function(fieldname, file, filename) {
 			if(fieldname === 'image' && filename !== 'undefined') {
-				var extension = path.extname(filename);
+				extension = path.extname(filename);
 
 				var imageFilePath = path.join(process.cwd(), '/public/blog-uploads/', post._id.toString() +  extension );
 				hasImage = true;
@@ -178,7 +177,8 @@ var blogpostUpdate = function (type) {
 			post.name = fields.name;
 			post.title = fields.title;
 			post.subtitle = fields.subtitle;
-			post.createdDate = moment(fields.date + ' ' + fields.hour + ':' + fields.minute + fields.meridian, 'MM/DD/YYYY hh:mm a').toDate();
+			post.createdDate = moment(fields.date + ' ' + fields.hour + ':' + fields.minute + fields.meridian,
+				'MM/DD/YYYY hh:mm a').toDate();
 			post.url = fields.link;
 			post.description = fields.description;
 			post.content = fields.content;
@@ -211,7 +211,7 @@ var blogpostUpdate = function (type) {
 			}
 
 			if(hasImage){
-				post.image = path.join('/blog-uploads/', post._id.toString() +  '.' + extension);
+				post.image = path.join('/blog-uploads/', post._id.toString() + extension);
 			}
 
 			post.save(function(err){
@@ -233,22 +233,21 @@ adminBlogController.post('/image-upload', function(req,res){
 	var busboy = new Busboy({ headers: req.headers });
 	var imageName, extension;
 
-	busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+	busboy.on('file', function(fieldname, file, filename) {
 		if(fieldname === 'upload' && filename !== 'undefined') {
-			var extensionArray = filename.split('.');
+			extension = path.extname(filename);
+			imageName = _s.slugify(path.basename(filename)) + '-' + moment().format('YYYY-MM-Do-YY-HH-mm');
 
-			extension = _.last(extensionArray);
-			imageName = _s.slugify( _.first(extensionArray) ) + '-' + moment().format('YYYY-MM-Do-YY-HH-mm');
-
-			var imageFilePath = path.join(process.cwd(), '/public/blog-uploads/',  imageName + '.' + extension );
+			var imageFilePath = path.join(process.cwd(), '/public/blog-uploads/', imageName + extension );
 
 			file.pipe(fs.createWriteStream(imageFilePath));
 		}
 	});
 
 	busboy.on('finish', function() {
-		var imagePath = path.join('/blog-uploads/', imageName +  '.' + extension);
-		res.send('<script type="text/javascript">window.parent.CKEDITOR.tools.callFunction(' + req.query.CKEditorFuncNum + ', "' + imagePath + '");</script>');
+		var imagePath = path.join('/blog-uploads/', imageName + extension);
+		res.send('<script type="text/javascript">window.parent.CKEDITOR.tools.callFunction(' +
+						 req.query.CKEditorFuncNum + ', "' + imagePath + '");</script>');
 	});
 
 	req.pipe(busboy);
