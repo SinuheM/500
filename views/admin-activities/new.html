@@ -59,9 +59,10 @@
 			</div>
 			{% endif %}
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Startup</label>
+				<label class="col-sm-3 control-label">Related startup</label>
 				<div class="col-sm-6">
-					<input id="startup" type="text" name="startup">
+					<div id="startup-select" type="text" name="startup">
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -99,8 +100,32 @@
 </div>
 {% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="/css/vendors/select2.css">
+<link rel="stylesheet" href="/css/vendors/select2-bootstrap.css">
+{% endblock %}
 {% block js %}
+<script type="text/javascript" src="/js/vendors/select2.min.js"></script>
+<script type="text/javascript" src="/js/vendors/underscore.js"></script>
 <script type="text/javascript">
+{% autoescape false %}
+window.startups = {{startups|json}};
+{% endautoescape %}
+
+$('#startup-select').select2({
+	placeholder: 'None',
+	data: function() {
+		return {
+			results: _.map(window.startups, function(item) {
+				return {
+					id: item._id,
+					text: item.name
+				}
+			})
+		}
+	}
+})
+
 $(document).ready(function () {
 	window.searchUrl = function(){
 		var urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/

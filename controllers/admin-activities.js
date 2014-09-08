@@ -6,6 +6,7 @@ var controller = require('stackers'),
 var embedlyApi = require('../lib/embedlyApi');
 var Activity = db.model('activity');
 var User = db.model('user');
+var Startup = db.model('startup');
 
 var adminActivitiesController = controller({
 	path : '/activities'
@@ -68,7 +69,12 @@ adminActivitiesController.get('/new', function (req, res) {
 		label : 'Add activity'
 	});
 
-	res.render('admin-activities/new');
+	Startup.find({active:true}, {name: true}, function(err, startups){
+		if(err){res.sendError(500, err);}
+
+		res.render('admin-activities/new', {startups: startups});
+	});
+
 });
 
 adminActivitiesController.get('/:currectActivity', function (req, res) {
