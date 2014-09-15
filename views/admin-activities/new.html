@@ -26,14 +26,14 @@
 <div class="panel panel-dark" style="display:none">
 	<form class="form-horizontal form-bordered" method="post" action="/admin/activities/new">
 		<div class="panel-heading">
-			<h4 class="panel-title">Edit user information</h4>
+			<h4 class="panel-title">Edit activity information</h4>
 		</div>
 		<div class="panel-body panel-body-nopadding">
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Provider</label>
 				<label id="providerDisplay" class="col-sm-9"></label>
 				<input id="favicon" name="favicon" type="hidden">
-				<input id="provider" name="provider" type="hidden">				
+				<input id="provider" name="provider" type="hidden">
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Slug</label>
@@ -41,7 +41,7 @@
 					<div class="input-group">
 						<span class="input-group-addon">500.co/</span>
 						<input id="slug" name="slugStr" type="text" placeholder="leave empty to have a generic slug" class="input-slug form-control" value="{{angelListUser.slug}}">
-					</div>					
+					</div>
 				</div>
 			</div>
 			{% if user.type == 'admin' %}
@@ -58,6 +58,14 @@
 				</div>
 			</div>
 			{% endif %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Related startup</label>
+				<div class="col-sm-6">
+					<input type="hidden" name="startup" id="startup-value" value>
+					<div id="startup-select" type="text" class="form-control">
+					</div>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Title</label>
 				<div class="col-sm-6">
@@ -88,99 +96,109 @@
 					<button name="action" value="publish" class="btn btn-primary">Create & Publish</button>
 				</div>
 			</div>
-		</div>		
+		</div>
 	</form>
 </div>
 {% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="/css/vendors/select2.css">
+<link rel="stylesheet" href="/css/vendors/select2-bootstrap.css">
+{% endblock %}
 {% block js %}
+<script type="text/javascript" src="/js/vendors/select2.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function () {
-	window.searchUrl = function(){
-		var urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/
+{% autoescape false %}
+window.startups = {{startups|json}};
+{% endautoescape %}
 
-		if( !$('.search-box input').val().match(urlRegex) ){
-			$('.search-box .error-label').show();
+$('#startup-select').select2({
+	placeholder: 'None',
+	data: window.startups
+}).on('change', function(e) {
+	$('#startup-value').val(e.val)
+})
 
-			return;
-		}
+window.searchUrl = function(){
+	var urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/
 
-		var xhr = $.post('/admin/activities/fetchUrlInfo',{
-			url : $('.search-box input').val()
-		});
+	if( !$('.search-box input').val().match(urlRegex) ){
+		$('.search-box .error-label').show();
 
-		$('.search-box .error-label').hide();
-		$('#loader').fadeIn();
-		$('form input').val('');
-		$('form textarea').text('');
-		$('#images').html('');
-		$('.panel').fadeOut();
-
-		xhr.done(function(data){
-			$('#loader').hide();
-			$('#title').val(data.title);
-			$('#provider').val(data.provider_display);
-			$('#url').val(data.url);
-			$('#description').val(data.description);
-			if(data.favicon_url){
-				$('#favicon').val(data.favicon_url);
-				$('#providerDisplay').html('<img src="'+ data.favicon_url +'"/> '+ data.provider_display);
-			}else{
-				$('#providerDisplay').html(data.provider_display);
-			}
-
-			if(data.media && data.media.type === 'video'){			
-				$('.media-type').val('video')
-				$('.media-content').val(data.media.html);
-			}
-
-			if(data.provider_display === 'twitter.com'){
-				$('.author').val( JSON.stringify(data.authors[0]) );
-			}
-
-			if(data.images && data.images.length){
-				$('.image-group').show();
-				$('.image-pool').val( JSON.stringify(data.images) );
-
-				data.images.forEach(function(item){
-					var $image = $('<img src="'+item.url+'">');
-
-					$image.data('colors', item.colors);
-					$image.data('url', item.url);
-					$image.appendTo('#images');
-				});
-
-				$('#images img:first').click();
-			}else{
-				$('.image-group').hide();
-			}
-
-			$('.panel').fadeIn();
-		});
-
-		xhr.fail(function(){
-			console.log(arguments);
-		});
+		return;
 	}
 
-	$('#images').on('click', 'img', function(e){
-		var $img = $(e.currentTarget);
+	$('.search-box .error-label').hide();
+	$('#loader').fadeIn();
+	$('form input').val('');
+	$('form textarea').text('');
+	$('#images').html('');
+	$('.panel').fadeOut();
 
-		$('#images img').removeClass('selected');
-		$img.addClass('selected');
-
-		$('.image-src').val( $img.data('url') );
-	});
-
-	$('.search-box input').on('keypress', function(e){
-		if(e.which === 13){
-			window.searchUrl();
+	$.post('/admin/activities/fetchUrlInfo',{
+		url : $('.search-box input').val()
+	}).done(function(data){
+		$('#loader').hide();
+		$('#title').val(data.title);
+		$('#provider').val(data.provider_display);
+		$('#url').val(data.url);
+		$('#description').val(data.description);
+		if(data.favicon_url){
+			$('#favicon').val(data.favicon_url);
+			$('#providerDisplay').html('<img src="'+ data.favicon_url +'"/> '+ data.provider_display);
+		}else{
+			$('#providerDisplay').html(data.provider_display);
 		}
-	});
 
-	$('.search-box .btn').on('click', function(){
-		window.searchUrl();
+		if(data.media && data.media.type === 'video'){
+			$('.media-type').val('video')
+			$('.media-content').val(data.media.html);
+		}
+
+		if(data.provider_display === 'twitter.com'){
+			$('.author').val( JSON.stringify(data.authors[0]) );
+		}
+
+		if(data.images && data.images.length){
+			$('.image-group').show();
+			$('.image-pool').val( JSON.stringify(data.images) );
+
+			data.images.forEach(function(item){
+				var $image = $('<img src="'+item.url+'">');
+
+				$image.data('colors', item.colors);
+				$image.data('url', item.url);
+				$image.appendTo('#images');
+			});
+
+			$('#images img:first').click();
+		}else{
+			$('.image-group').hide();
+		}
+
+		$('.panel').fadeIn();
+	}).fail(function(){
+		console.log(arguments);
 	});
+}
+
+$('#images').on('click', 'img', function(e){
+	var $img = $(e.currentTarget);
+
+	$('#images img').removeClass('selected');
+	$img.addClass('selected');
+
+	$('.image-src').val( $img.data('url') );
+});
+
+$('.search-box input').on('keypress', function(e){
+	if(e.which === 13){
+		window.searchUrl();
+	}
+});
+
+$('.search-box .btn').on('click', function(){
+	window.searchUrl();
 });
 </script>
 {% endblock %}

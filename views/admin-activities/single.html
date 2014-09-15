@@ -1,17 +1,17 @@
 {% extends '../layouts/admin.html' %}
 
-{% block title %}{{currectActivity.title}}{% endblock %}
+{% block title %}{{currentActivity.title}}{% endblock %}
 
 {% block head %}
 {% endblock %}
 
 {% block header %}
-	<i class="fa fa-file-o"></i>{{currectActivity.title}} 
-	<span><a class="resorce-slug" href="/{{currectActivity.slugStr}}" target="_blank">500.co/{{currectActivity.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
+	<i class="fa fa-file-o"></i>{{currentActivity.title}}
+	<span><a class="resorce-slug" href="/{{currentActivity.slugStr}}" target="_blank">500.co/{{currentActivity.slugStr}}</a><i class="fa fa-pencil-square-o edit-link">edit</i></span>
 {% endblock %}
 
 {% block subheader %}
-	{% include "../partials/slug-change.html" with currectActivity only %}
+	{% include "../partials/slug-change.html" with currentActivity only %}
 {% endblock %}
 
 {% block content %}
@@ -22,14 +22,14 @@
 </div>
 {% endif %}
 <div class="panel panel-dark">
-	<form class="form-horizontal form-bordered" method="post" action="/admin/activities/{{currectActivity.id}}/edit">
+	<form class="form-horizontal form-bordered" method="post" action="/admin/activities/{{currentActivity.id}}/edit">
 		<div class="panel-heading">
 			<h4 class="panel-title">Startup information</h4>
 		</div>
 		<div class="panel-body panel-body-nopadding">
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Provider</label>
-				<label id="providerDisplay" class="col-sm-9"><img src="{{currectActivity.favicon}}"/> {{currectActivity.provider}}</label>
+				<label id="providerDisplay" class="col-sm-9"><img src="{{currentActivity.favicon}}"/> {{currentActivity.provider}}</label>
 			</div>
 			{% if user.type == 'admin' %}
 			<div class="form-group">
@@ -37,7 +37,7 @@
 				<div class="col-sm-6">
 					<select id="type" name="uploader" class="form-control input-sm mb15">
 						{% for teamMember in teamMembers %}
-						<option value="{{teamMember.id}}" {% if teamMember.id == currectActivity.uploader.id %}selected{% endif %}>
+						<option value="{{teamMember.id}}" {% if teamMember.id == currentActivity.uploader.id %}selected{% endif %}>
 							{{ teamMember.displayName }}
 						</option>
 						{% endfor %}
@@ -47,38 +47,45 @@
 			{% else %}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Uploader</label>
-				<label id="providerDisplay" class="col-sm-9">{{currectActivity.uploader.displayName}}</label>
-			</div>						
-			{% endif %}					
+				<label id="providerDisplay" class="col-sm-9">{{currentActivity.uploader.displayName}}</label>
+			</div>
+			{% endif %}
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Related startup</label>
+				<div class="col-sm-6">
+					<input type="hidden" name="startup" id="startup-value" value>
+					<div id="startup-select" class="form-control"></div>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Title</label>
 				<div class="col-sm-6">
-					<input id="title" name="title" type="text" class="form-control" value="{{currectActivity.title}}">
+					<input id="title" name="title" type="text" class="form-control" value="{{currentActivity.title}}">
 				</div>
-			</div>			
+			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Description</label>
 				<div class="col-sm-6">
-					<textarea name="description" class="form-control" rows="5">{{currectActivity.description}}</textarea>
+					<textarea name="description" class="form-control" rows="5">{{currentActivity.description}}</textarea>
 				</div>
 			</div>
-			{% if currectActivity.imagePool.length %}
+			{% if currentActivity.imagePool.length %}
 			<div class="form-group image-group">
 				<label class="col-sm-3 control-label">Images</label>
-				<input class="image-src" name="image" type="hidden" value="{{ currectActivity.image }}">
+				<input class="image-src" name="image" type="hidden" value="{{ currentActivity.image }}">
 				<div id="images" class="col-sm-6">
-					{% for image in currectActivity.imagePool %}
-					<img src="{{image.url}}" data-url="{{ image.url }}" {% if image.url === currectActivity.image %}class="selected"{% endif %} >
+					{% for image in currentActivity.imagePool %}
+					<img src="{{image.url}}" data-url="{{ image.url }}" {% if image.url === currentActivity.image %}class="selected"{% endif %} >
 					{% endfor %}
 				</div>
-			</div>			
+			</div>
 			{% endif %}
 		</div>
 		<div class="panel-footer">
 			<div class="row">
 				<div class="col-sm-9 col-sm-offset-3 text-right">
 					<button name="action" value="update" class="btn btn-success">Update</button>
-					{% if currectActivity.active %}
+					{% if currentActivity.active %}
 					<button name="action" value="unpublish" class="btn btn-primary">Unpublish</button>
 					{% else %}
 					<button name="action" value="publish" class="btn btn-primary">Publish</button>
@@ -90,7 +97,7 @@
 </div>
 {% if user.type == 'admin' %}
 <div class="panel panel-danger">
-	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/activities/{{currectActivity.id}}/delete">
+	<form id="batch-form" class="form-horizontal form-bordered" method="post" action="/admin/activities/{{currentActivity.id}}/delete">
 		<div class="panel-heading">
 			<h4 class="panel-title">Delete activity</h4>
 		</div>
@@ -102,15 +109,35 @@
 				</div>
 			</div>
 		</div>
-	</form>	
+	</form>
 </div>
 {% endif %}
 {% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="/css/vendors/select2.css">
+<link rel="stylesheet" href="/css/vendors/select2-bootstrap.css">
+{% endblock %}
 
 {% block js %}
 <script type="text/javascript" src="/js/admin/edit-url.js"></script>
+<script type="text/javascript" src="/js/vendors/select2.min.js"></script>
 <script type="text/javascript">
+{% autoescape false %}
+window.startups = {{startups|json}};
+{% endautoescape %}
+
+var $select = $('#startup-select').select2({
+	placeholder: 'None',
+	data: window.startups
+}).on('change', function(e) {
+	$('#startup-value').val(e.val)
+});
+{% autoescape false %}{% if currentActivity.startup %}
+$select.val("{{ currentActivity.startup._id }}").trigger('change')
+$('#startup-value').val("{{ currentActivity.startup._id }}")
+{% endif %}{% endautoescape %}
+
 $(document).ready(function(){
 	$('#images').on('click', 'img', function(e){
 		var $img = $(e.currentTarget);

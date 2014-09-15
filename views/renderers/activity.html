@@ -139,6 +139,10 @@ window.analytics.page();
                             <span class="icon"><img src="{{activity.favicon}}"></span>
                         </div>
                         <div class="row-10">
+                            {% if activity.startup and null %}
+                            <a href="{{activity.startup.slugStr}}" target="blank">{{activity.startup.name}} ({{activity.startup.batch.name}} {{activity.startup.batch.location}})</a>
+                            {% endif %}
+
                             <h4><a target="_blank" href="{{activity.slugStr}}">{{activity.title}}</a></h4>
                             <div class="info">
                                 <a target="_blank" href="{{activity.slugStr}}">
