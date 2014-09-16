@@ -87,6 +87,7 @@ window.analytics.page();
                     {{ post.content|safe }}
                 </div>
 
+
             </div>
             {% if uploader %}
             <div class="bottom">
@@ -103,6 +104,15 @@ window.analytics.page();
                 </div>
             </div>
             {% endif %}
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=230176173834181&version=v2.0";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-comments"  data-width="100%" data-numposts="50" data-colorscheme="light"></div>
         </div>
     </section>
     {% include "../partials/footer.html" %}
@@ -113,6 +123,7 @@ window.analytics.page();
 <script>
     $(document).foundation();
     $(document).ready(function(){
+        $('.fb-comments').attr('data-href',window.location.href);
         $('.paragraph img').each(function(i, img){
             var $img = $(img); 
             $img.wrap('<div style="width:100%; text-align:center"></div>');
