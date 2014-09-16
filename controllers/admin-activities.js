@@ -6,6 +6,7 @@ var controller = require('stackers'),
 var embedlyApi = require('../lib/embedlyApi');
 var Activity = db.model('activity');
 var User = db.model('user');
+var Startup = db.model('startup');
 
 var adminActivitiesController = controller({
 	path : '/activities'
@@ -36,9 +37,10 @@ adminActivitiesController.beforeEach(function(req, res, next){
 	}
 });
 
-adminActivitiesController.param('currectActivity', function (currectActivityId, done) {
-	Activity.findOne({_id: db.Types.ObjectId(currectActivityId)})
+adminActivitiesController.param('currentActivity', function (currentActivityId, done) {
+	Activity.findOne({_id: db.Types.ObjectId(currentActivityId)})
 	.populate('uploader')
+	.populate('startup', 'name')
 	.exec(done);
 });
 
@@ -68,20 +70,27 @@ adminActivitiesController.get('/new', function (req, res) {
 		label : 'Add activity'
 	});
 
-	res.render('admin-activities/new');
+	Startup.forSelect(function(err, startups) {
+		if(err){res.sendError(500, err);}
+		res.render('admin-activities/new', {startups: startups});
+	});
 });
 
-adminActivitiesController.get('/:currectActivity', function (req, res) {
-	if(!res.data.currectActivity){return res.sendError(404, 'no activity found');}
+adminActivitiesController.get('/:currentActivity', function (req, res) {
+	if(!res.data.currentActivity){return res.sendError(404, 'no activity found');}
 
 	res.data.breadcrumbs = [];
 
 	var message = req.flash('message');
-
-	res.render('admin-activities/single',{
-		currectActivity : res.data.currectActivity,
-		message : message[0]
+	Startup.forSelect(function(err, startups) {
+		if (err) { return res.sendError(500); }
+		res.render('admin-activities/single',{
+			startups: startups,
+			currentActivity : res.data.currentActivity,
+			message : message[0]
+		});
 	});
+
 });
 
 adminActivitiesController.post('/new', function (req, res) {
@@ -124,40 +133,41 @@ adminActivitiesController.post('/fetchUrlInfo', function (req, res) {
 	});
 });
 
-adminActivitiesController.post('/:currectActivity/edit', function (req, res) {
-	if(!res.data.currectActivity){return res.sendError(404, 'no activity found');}
+adminActivitiesController.post('/:currentActivity/edit', function (req, res) {
+	if(!res.data.currentActivity){return res.sendError(404, 'no activity found');}
 
-	var currectActivity = res.data.currectActivity;
+	var currentActivity = res.data.currentActivity;
 
-	currectActivity.title       = req.body.title;
-	currectActivity.description = req.body.description;
-	currectActivity.image       = req.body.image;
+	currentActivity.title       = req.body.title;
+	currentActivity.description = req.body.description;
+	currentActivity.image       = req.body.image;
+	currentActivity.startup     = req.body.startup;
 
 	if(res.user.type === 'admin'){
-		currectActivity.uploader  = req.body.uploader;
+		currentActivity.uploader  = req.body.uploader;
 	}
 
 	if(req.body.action === 'publish'){
-		currectActivity.active = true;
+		currentActivity.active = true;
 	}
 
 	if(req.body.action === 'unpublish'){
-		currectActivity.active = false;
+		currentActivity.active = false;
 	}
 
-	currectActivity.save(function(err){
+	currentActivity.save(function(err){
 		if(err){ return res.sendError(500, err); }
 		req.flash('message', 'Updated sucessfully');
-		res.redirect('/admin/activities/' + currectActivity.id );
+		res.redirect('/admin/activities/' + currentActivity.id );
 	});
 });
 
-adminActivitiesController.post('/:currectActivity/delete', function (req, res) {
+adminActivitiesController.post('/:currentActivity/delete', function (req, res) {
 	if(res.data.user.type !== 'admin'){return res.send(403);}
 
-	var currectActivity = res.data.currectActivity;
+	var currentActivity = res.data.currentActivity;
 
-	currectActivity.remove(function(err){
+	currentActivity.remove(function(err){
 		if(err){ return res.sendError(500, err); }
 		req.flash('message', 'Deleted sucessfully');
 		res.redirect('/admin/activities/');

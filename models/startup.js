@@ -6,7 +6,7 @@ var db = require('../lib/db'),
 	_ = require('underscore');
 
 var Slug = require('./slug');
-
+/*jshint camelcase:false */
 var startupSchema = schema({
 	name        : {type : String, require: true, es_indexed:true},
 	excerpt     : {type : String, max: 60, es_indexed:true },
@@ -29,7 +29,7 @@ var startupSchema = schema({
 	funding      : [schema.Types.Mixed],
 	markets      : [{type : String}],
 	marketsIndex : {type : String, es_indexed:true},
-	
+
 	batch       : {type : schema.Types.ObjectId, ref: 'batch'},
 	founders    : [schema.Types.Mixed],
 	updatedDate : {type : Date},
@@ -45,6 +45,7 @@ var startupSchema = schema({
 	active  : {type : Boolean},
 	publish : {type : Boolean}
 });
+/*jshint camelcase:true */
 
 startupSchema.plugin(Slug.plugIt, {type: 'startup', slugFrom : 'name' });
 startupSchema.plugin(mongoosastic);
@@ -87,6 +88,20 @@ var angelListApi = require('../lib/angelListApi');
 Startup.fetchFounders = function(id, callback) {
 	angelListApi.getFounders(id, callback);
 };
+
+Startup.forSelect = function(callback) {
+	Startup.find({active:true}, {name: true}, {sort: 'name'}, function(err, startups){
+		if(err){return callback(err);}
+		startups = startups.map(function(item) {
+			return {
+				id: item._id,
+				text: item.name
+			};
+		});
+		callback(null, startups);
+	});
+};
+
 
 Startup.prototype.fetchFounders = function(callback) {
 	angelListApi.getFounders(this.angelListData.id, callback);
@@ -132,7 +147,7 @@ Startup.prototype.addFounders = function(callback) {
 };
 
 Startup.prototype.ensureSocialProfiles = function(){
-	var providers = _.map(this.socialProfiles, function(item){return item.provider});
+	var providers = _.map(this.socialProfiles, function(item){return item.provider;});
 
 	if( _.indexOf(providers, 'facebook') === -1 ){
 		this.socialProfiles.push({provider:'facebook', url : ''});

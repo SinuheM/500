@@ -24,16 +24,22 @@ var render = function (req, res, filter) {
 	Activity.find(query)
 	.sort('-createdDate')
 	.populate('uploader')
+	.populate('startup', {name: 1, slugStr: 1, batch: 1})
 	.limit(15)
-	.exec(function(err, activities){
+	.exec(function(err, docs){
 		if(err){ return res.send(500, err);}
 
-		res.render('renderers/activity', {
-			activities  : activities,
-			currentPage : 'activity',
-			filter : filter,
-			page : 1,
-			hasNext : true
+		Activity.populate(docs, {
+			path: 'startup.batch',
+			model: 'batch'
+		}, function(err, activities) {
+			res.render('renderers/activity', {
+				activities  : activities,
+				currentPage : 'activity',
+				filter : filter,
+				page : 1,
+				hasNext : true
+			});
 		});
 	});
 };

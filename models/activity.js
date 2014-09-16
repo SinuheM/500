@@ -15,6 +15,7 @@ var activitySchema = schema({
 	content     : {type : String},
 	image       : {type : String},
 	uploader    : {type : schema.Types.ObjectId, ref: 'user'},
+	startup     : {type : schema.Types.ObjectId, ref: 'startup'},
 	imagePool   : schema.Types.Mixed,
 	type        : {type : String, default: 'on the web' },
 	announcement: {type : Boolean, default: false},
