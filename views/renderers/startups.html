@@ -49,16 +49,16 @@ window.analytics.page();
                                 
                             {% endif %}
                             {% if batches.mexicoCity.length %}
-                            <optgroup label="silicon valley">
-                                {% for batch in batches.siliconValley %}
+                            <optgroup label="Mexico City">
+                                {% for batch in batches.mexicoCity %}
                                     <option value="{{batch.id}}">Batch {{batch.name}}</option>
                                 {% endfor %}
                             </optgroup> 
                                 
                             {% endif %}
                             {% if batches.sanFransisco.length %}
-                            <optgroup label="silicon valley">
-                                {% for batch in batches.siliconValley %}
+                            <optgroup label="San Fransisco">
+                                {% for batch in batches.sanFransisco %}
                                     <option value="{{batch.id}}">Batch {{batch.name}}</option>
                                 {% endfor %}
                             </optgroup> 
