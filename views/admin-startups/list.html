@@ -56,7 +56,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	{% autoescape false %}
-	window.startups = {{startups|json}};
+	window.startups = {{startups|json(2)}};
 	{% endautoescape %}
 
 	var startupList = new window.Widgets.List({
