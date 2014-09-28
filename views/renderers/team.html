@@ -33,7 +33,7 @@ window.analytics.page();
                 <div class="container">
                     <h3>Meet our awesome, diverse, and colorful team</h3>
                     <p>We speak 20+ languages, come from all over the world, and have the expertise to help you build a great company.</p>
-                    <h6>MANAGEMENT TEAM</h6>
+                    <h6>MANAGEMENT AND INVESTMENT TEAM</h6>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -52,10 +52,6 @@ window.analytics.page();
                         </a>
                     </li>
                 {% endfor %}
-                </ul>
-                <h6 class="top">INVESTMENT</h6>
-
-                <ul class="cards">
                 {% for member in team.investment %}
                     <li class="animated flipInX">
                         <a class="card" href="/{{member.slugStr}}">
