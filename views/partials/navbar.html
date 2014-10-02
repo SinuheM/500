@@ -16,7 +16,7 @@
             <a href="/invest">INVEST</a>
         </nav>
     </header>
-{% elseif currentPage == "staff" || currentPage == "events" || currentPage == "post" %}
+{% elseif currentPage == "staff" || currentPage == "events" || currentPage == "post"  || currentPage == "statup" %}
     <header id="staff">
         <div class="fixed-menu">
             <div class="wrap-menu">
@@ -42,7 +42,7 @@
         </nav>
     </header>
 {% elseif currentPage == "mentor"  || currentPage == "startup-profile" %}
-    <header id="int" class="simple fixed normal">
+    <header id="int" class="simple fixed normal" {% if currentPage == "startup-profile" %}style="background:transparent !important";{% endif%}>
         <div class="fixed-menu">
             <div class="wrap-menu">
                 <a href="/" class="loguito">
