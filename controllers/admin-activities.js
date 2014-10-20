@@ -101,6 +101,10 @@ adminActivitiesController.post('/new', function (req, res) {
 		req.body.author = JSON.parse(req.body.author);
 	}
 
+	if (! req.body.startup) {
+		delete req.body.startup
+	}
+
 	if(res.user.type === 'admin'){
 		req.body.uploader  = req.body.uploader;
 	}else{
