@@ -64,9 +64,10 @@ function mce_init_form(){
               error.insertAfter('#form');
           }
       };
+      var idMailchimp = $('#mc-embedded-subscribe-form').attr('data-id');
       var mce_validator = $("#mc-embedded-subscribe-form").validate(options);
       $("#mc-embedded-subscribe-form").unbind('submit');//remove the validator so we can get into beforeSubmit on the ajaxform, which then calls the validator
-      options = { url: 'http://500startups.us1.list-manage.com/subscribe/post-json?u=a2802c8372764410fb6416083&id=8a1638bf88&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
+      options = { url: 'http://500startups.us1.list-manage.com/subscribe/post-json?u='+idMailchimp+'&c=?', type: 'GET', dataType: 'json', contentType: "application/json; charset=utf-8",
                     beforeSubmit: function(){
                         $('#mce_tmp_error_msg').remove();
                         $('.datefield','#mc_embed_signup').each(
