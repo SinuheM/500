@@ -117,15 +117,11 @@ window.analytics.page();
             <p>Find out about our meetups, news and more</p>
             <!-- Begin MailChimp Signup Form -->
             <div id="form">
-                <form action="http://500startups.us1.list-manage.com/subscribe?u=a2802c8372764410fb6416083&id=acf691bf5f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" data-id="a2802c8372764410fb6416083&id=acf691bf5f" novalidate>
-                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="you@mail.com">
-                    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe">
-                    <div id="mce-responses" class="clear">
-                        <div class="response" id="mce-error-response" style="display:none"></div>
-                        <div class="response" id="mce-success-response" style="display:none"></div>
-                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                    <div style="position: absolute; left: -5000px;"><input type="text" name="b_a2802c8372764410fb6416083_8a1638bf88" tabindex="-1" value=""></div>
+                <form action="http://500startups.us1.list-manage.com/subscribe/post-json?u=a2802c8372764410fb6416083&id=acf691bf5f&c=?" method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank" data-id="a2802c8372764410fb6416083&id=acf691bf5f" novalidate id="suscribe-form">
+                    <input type="email" name="EMAIL" class="required email" placeholder="you@mail.com" required>
+                    <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" >
                     <div class="clear"></div>
+                    <div class="response" id="suscribe-form-response"></div>
                 </form>
             </div>
             <!--End mc_embed_signup-->
@@ -331,7 +327,7 @@ window.analytics.page();
         $(window).on('scroll', window.mapAnimation);
     });
 </script>
-<script type="text/javascript" src="/js/suscribe.js"></script>
+<script type="text/javascript" src="/js/suscribe-mailchimp.js"></script>
 <script src="/js/header.js"></script>
 
 </body>
