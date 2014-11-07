@@ -46,7 +46,15 @@ window.analytics.page();
     <meta property="og:url" content="http://500.co/{{post.slugStr}}/"/>
     <meta property="og:image" content="http://500.co{{ post.image }}" />
     <meta property="og:site_name" content="500.co" />
-  
+
+    <!-- twitter cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@500Startups">
+    <meta name="twitter:title" content="{{ post.title }}">
+    <meta name="twitter:description" content="{{ post.subtitle }}">
+    <meta name="twitter:creator" content="@500Startups">
+    <meta name="twitter:image:src" content="http://500.co{{ post.image }}">
+    <meta name="twitter:domain" content="500.co">
 </head>
 <body>
     {% include "../partials/navbar.html" %}
