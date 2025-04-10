@@ -23,7 +23,7 @@
     "stackers": "~0.1.5",
     "swig": "^1.3.2",
     "underscore": "~1.6.0",
-    "underscore.string": "~2.3.3",
+    "underscore.string": "~3.3.5",
     "uuid": "~1.4.1"
   },
   "devDependencies": {
